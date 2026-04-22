@@ -1,0 +1,56 @@
+<!-- Fallback: Primer theme이 적용된 경우에도 Mermaid/MathJax를 주입 -->
+<!-- 내 _layouts/default.html이 적용되면 중복되지만 무해 (스크립트가 이미 있으면 mermaid 변수가 재할당될 뿐) -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  (function () {
+    if (window.__gbiMermaidInit) return;
+    window.__gbiMermaidInit = true;
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('pre > code.language-mermaid').forEach(function (el) {
+        var div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = el.textContent;
+        el.parentElement.replaceWith(div);
+      });
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'default',
+          securityLevel: 'loose',
+          flowchart: { htmlLabels: true, curve: 'basis' }
+        });
+        mermaid.run();
+      }
+    });
+  })();
+</script>
+
+<script>
+  window.MathJax = window.MathJax || {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+
+<style>
+  .mermaid {
+    text-align: center;
+    margin: 24px 0;
+    background: #fff;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  mjx-container[display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+  }
+</style>
