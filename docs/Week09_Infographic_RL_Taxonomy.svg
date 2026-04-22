@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldG9" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="valueG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5f8e"/>
+      <stop offset="100%" stop-color="#164669"/>
+    </linearGradient>
+    <linearGradient id="policyG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a5a8a"/>
+      <stop offset="100%" stop-color="#603c60"/>
+    </linearGradient>
+    <linearGradient id="acG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c99a38"/>
+      <stop offset="100%" stop-color="#8a6820"/>
+    </linearGradient>
+    <marker id="ar9" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#d4a244"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    RL 3대 계열 · GBI 적용 계보
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="14" fill="url(#goldG9)" font-weight="500">
+    Value-based · Policy-based · Actor-Critic · DORS DP에서 Bauman DRL까지
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- Three columns: Value-based, Policy-based, Actor-Critic -->
+  
+  <!-- Column 1: Value-based -->
+  <g transform="translate(40, 135)">
+    <rect x="0" y="0" width="360" height="530" rx="12" fill="url(#valueG)" stroke="#2a7bbb" stroke-width="1.5"/>
+    <text x="180" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">Value-based</text>
+    <text x="180" y="52" text-anchor="middle" font-size="11" fill="#b0d4f0" font-style="italic">Q-function 근사</text>
+    <line x1="30" y1="64" x2="330" y2="64" stroke="#4a90c8" stroke-width="0.5"/>
+
+    <!-- Formula -->
+    <rect x="20" y="80" width="320" height="70" rx="6" fill="#0a1a2a" stroke="#2a4060" stroke-width="0.5"/>
+    <text x="180" y="100" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="600">Core Update</text>
+    <text x="180" y="120" text-anchor="middle" font-size="11" fill="#d0e0f0" font-style="italic">Q(s,a) ← Q(s,a) + α[r + γ max Q(s',a') − Q(s,a)]</text>
+    <text x="180" y="140" text-anchor="middle" font-size="9" fill="#a0c0d0">Watkins (1989) · Watkins-Dayan (1992) 수렴 증명</text>
+
+    <!-- Algorithms -->
+    <text x="20" y="180" font-size="11" fill="#f0c869" font-weight="700">대표 알고리즘</text>
+    <text x="30" y="200" font-size="10.5" fill="#d0d0d0">· Tabular Q-learning</text>
+    <text x="30" y="218" font-size="10.5" fill="#d0d0d0">· DQN (Mnih 2013 Nature)</text>
+    <text x="30" y="236" font-size="10.5" fill="#d0d0d0">· Double DQN, Dueling DQN</text>
+    <text x="30" y="254" font-size="10.5" fill="#d0d0d0">· Rainbow (DeepMind 2018)</text>
+
+    <!-- Strengths -->
+    <text x="20" y="290" font-size="11" fill="#7ae0a0" font-weight="700">장점</text>
+    <text x="30" y="308" font-size="10" fill="#a8d0b8">· Off-policy learning (sample 재사용)</text>
+    <text x="30" y="324" font-size="10" fill="#a8d0b8">· Sample efficiency 우수</text>
+    <text x="30" y="340" font-size="10" fill="#a8d0b8">· 이론적 수렴 보장 강함</text>
+
+    <!-- Weaknesses -->
+    <text x="20" y="370" font-size="11" fill="#e07a7a" font-weight="700">단점</text>
+    <text x="30" y="388" font-size="10" fill="#d0a8a8">· Discrete action만 (연속 불가)</text>
+    <text x="30" y="404" font-size="10" fill="#d0a8a8">· Max operator 편향 (Double DQN)</text>
+    <text x="30" y="420" font-size="10" fill="#d0a8a8">· Hyperparameter sensitivity</text>
+
+    <!-- GBI Applications -->
+    <rect x="15" y="440" width="330" height="82" rx="6" fill="#0a1a2a" stroke="#d4a244" stroke-width="0.8"/>
+    <text x="180" y="460" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="700">GBI 적용</text>
+    <line x1="30" y1="468" x2="330" y2="468" stroke="#d4a244" stroke-width="0.3"/>
+    <text x="25" y="485" font-size="10" fill="#e8e8e8">· <tspan fill="#f0c869" font-weight="600">Das-Varma (2020)</tspan> — Tabular Q-learning</text>
+    <text x="25" y="501" font-size="10" fill="#e8e8e8">· Prémont (2021) — LR 점진 감소</text>
+    <text x="25" y="517" font-size="10" fill="#e8e8e8">· Volakakis (2023) — DQN 확장</text>
+  </g>
+
+  <!-- Column 2: Policy-based -->
+  <g transform="translate(420, 135)">
+    <rect x="0" y="0" width="360" height="530" rx="12" fill="url(#policyG)" stroke="#aa7aca" stroke-width="1.5"/>
+    <text x="180" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">Policy-based</text>
+    <text x="180" y="52" text-anchor="middle" font-size="11" fill="#e0c0e0" font-style="italic">정책 π 직접 학습</text>
+    <line x1="30" y1="64" x2="330" y2="64" stroke="#aa7aca" stroke-width="0.5"/>
+
+    <rect x="20" y="80" width="320" height="70" rx="6" fill="#1a0f1a" stroke="#4a304a" stroke-width="0.5"/>
+    <text x="180" y="100" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="600">Policy Gradient</text>
+    <text x="180" y="120" text-anchor="middle" font-size="11" fill="#e8d0e8" font-style="italic">∇_θ J = E[∇_θ log π(a|s) · G_t]</text>
+    <text x="180" y="140" text-anchor="middle" font-size="9" fill="#c0a0c0">Williams (1992) REINFORCE · Sutton (1999) PG theorem</text>
+
+    <text x="20" y="180" font-size="11" fill="#f0c869" font-weight="700">대표 알고리즘</text>
+    <text x="30" y="200" font-size="10.5" fill="#d0d0d0">· REINFORCE (Williams 1992)</text>
+    <text x="30" y="218" font-size="10.5" fill="#d0d0d0">· TRPO (Schulman 2015)</text>
+    <text x="30" y="236" font-size="10.5" fill="#d0d0d0">· Natural Policy Gradient</text>
+
+    <text x="20" y="290" font-size="11" fill="#7ae0a0" font-weight="700">장점</text>
+    <text x="30" y="308" font-size="10" fill="#a8d0b8">· Continuous action 자연스러움</text>
+    <text x="30" y="324" font-size="10" fill="#a8d0b8">· Stochastic policy (탐험 내재)</text>
+    <text x="30" y="340" font-size="10" fill="#a8d0b8">· Action space 큰 경우 우수</text>
+
+    <text x="20" y="370" font-size="11" fill="#e07a7a" font-weight="700">단점</text>
+    <text x="30" y="388" font-size="10" fill="#d0a8a8">· High variance (Monte Carlo)</text>
+    <text x="30" y="404" font-size="10" fill="#d0a8a8">· Sample inefficient</text>
+    <text x="30" y="420" font-size="10" fill="#d0a8a8">· Local optima 빠지기 쉬움</text>
+
+    <rect x="15" y="440" width="330" height="82" rx="6" fill="#1a0f1a" stroke="#d4a244" stroke-width="0.8"/>
+    <text x="180" y="460" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="700">GBI 적용</text>
+    <line x1="30" y1="468" x2="330" y2="468" stroke="#d4a244" stroke-width="0.3"/>
+    <text x="25" y="485" font-size="10" fill="#e8e8e8">· Volakakis (2023) REINFORCE GBWM</text>
+    <text x="25" y="501" font-size="10" fill="#e8e8e8">· 단독 사용은 드묾 → AC로 진화</text>
+    <text x="25" y="517" font-size="10" fill="#c0a0c0" font-style="italic">순수 policy-based는 대부분 stepping stone</text>
+  </g>
+
+  <!-- Column 3: Actor-Critic -->
+  <g transform="translate(800, 135)">
+    <rect x="0" y="0" width="360" height="530" rx="12" fill="url(#acG)" stroke="#b08830" stroke-width="1.5"/>
+    <text x="180" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1a1a">Actor-Critic</text>
+    <text x="180" y="52" text-anchor="middle" font-size="11" fill="#3a2810" font-style="italic">Value + Policy 하이브리드</text>
+    <line x1="30" y1="64" x2="330" y2="64" stroke="#b08830" stroke-width="0.5"/>
+
+    <rect x="20" y="80" width="320" height="70" rx="6" fill="#2a1f0f" stroke="#4a3820" stroke-width="0.5"/>
+    <text x="180" y="100" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="600">Advantage-based Update</text>
+    <text x="180" y="120" text-anchor="middle" font-size="11" fill="#f0e0b8" font-style="italic">A(s,a) = Q(s,a) − V(s) · variance reduction</text>
+    <text x="180" y="140" text-anchor="middle" font-size="9" fill="#d0b088">Actor: π_θ · Critic: V_φ or Q_φ</text>
+
+    <text x="20" y="180" font-size="11" fill="#8a6020" font-weight="700">대표 알고리즘</text>
+    <text x="30" y="200" font-size="10.5" fill="#2a1f0f">· A2C, A3C (Mnih 2016)</text>
+    <text x="30" y="218" font-size="10.5" fill="#2a1f0f">· DDPG (Lillicrap 2015)</text>
+    <text x="30" y="236" font-size="10.5" fill="#2a1f0f" font-weight="700">· <tspan fill="#8a4040">PPO (Schulman 2017)</tspan> ★</text>
+    <text x="30" y="254" font-size="10.5" fill="#2a1f0f" font-weight="700">· <tspan fill="#8a4040">SAC (Haarnoja 2018)</tspan> ★</text>
+    <text x="30" y="272" font-size="10.5" fill="#2a1f0f">· TD3 (Fujimoto 2018)</text>
+
+    <text x="20" y="300" font-size="11" fill="#1e6040" font-weight="700">장점</text>
+    <text x="30" y="318" font-size="10" fill="#2a4028">· Variance 감소 + sample 효율</text>
+    <text x="30" y="334" font-size="10" fill="#2a4028">· Continuous + discrete 모두</text>
+    <text x="30" y="350" font-size="10" fill="#2a4028">· 실무 default choice (PPO)</text>
+
+    <text x="20" y="376" font-size="11" fill="#8a2020" font-weight="700">단점</text>
+    <text x="30" y="394" font-size="10" fill="#402020">· 구현 복잡도 ↑</text>
+    <text x="30" y="410" font-size="10" fill="#402020">· Actor·Critic 학습 안정화 어려움</text>
+    <text x="30" y="426" font-size="10" fill="#402020">· Hyperparameter tuning 중요</text>
+
+    <rect x="15" y="440" width="330" height="82" rx="6" fill="#2a1f0f" stroke="#d4a244" stroke-width="0.8"/>
+    <text x="180" y="460" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="700">GBI 적용</text>
+    <line x1="30" y1="468" x2="330" y2="468" stroke="#d4a244" stroke-width="0.3"/>
+    <text x="25" y="485" font-size="10" fill="#f0e0b8">· <tspan fill="#f0c869" font-weight="600">Bauman et al. (2023, 2024)</tspan> — PPO+HMM</text>
+    <text x="25" y="501" font-size="10" fill="#f0e0b8">· Bauman (2025) — non-stationary 확장</text>
+    <text x="25" y="517" font-size="10" fill="#f0e0b8">· SAC 기반 continuous GBWM (연구 단계)</text>
+  </g>
+
+  <!-- Bottom: GBI lineage timeline -->
+  <g transform="translate(40, 685)">
+    <rect x="0" y="0" width="1120" height="105" rx="10" fill="#0a1a2a" stroke="#d4a244" stroke-width="1"/>
+    <text x="560" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#f0c869">
+      GBI × RL 논문 계보 · 2018 → 2025
+    </text>
+    <line x1="30" y1="38" x2="1090" y2="38" stroke="#d4a244" stroke-width="0.3" opacity="0.5"/>
+
+    <!-- Horizontal timeline -->
+    <line x1="60" y1="75" x2="1060" y2="75" stroke="#4a5470" stroke-width="1.5"/>
+    
+    <g font-size="10">
+      <!-- 2018 -->
+      <circle cx="120" cy="75" r="5" fill="#7ab8e0"/>
+      <text x="120" y="60" text-anchor="middle" fill="#7ab8e0" font-weight="700">2018</text>
+      <text x="120" y="92" text-anchor="middle" fill="#d0d0d0">DORS2018</text>
+      <text x="120" y="102" text-anchor="middle" fill="#a8b0c0" font-size="9">(정적 MA)</text>
+      
+      <!-- 2020 -->
+      <circle cx="300" cy="75" r="6" fill="#f0c869"/>
+      <text x="300" y="60" text-anchor="middle" fill="#f0c869" font-weight="700">2020</text>
+      <text x="300" y="92" text-anchor="middle" fill="#f0c869" font-weight="600">DORS2020 DP</text>
+      <text x="300" y="102" text-anchor="middle" fill="#d4a868" font-size="9">Das-Varma Q-learn · Dixon-Halperin G-Learner</text>
+      
+      <!-- 2021 -->
+      <circle cx="500" cy="75" r="4" fill="#aa7aca"/>
+      <text x="500" y="60" text-anchor="middle" fill="#aa7aca" font-weight="700">2021</text>
+      <text x="500" y="92" text-anchor="middle" fill="#d0d0d0">Prémont LR</text>
+      <text x="500" y="102" text-anchor="middle" fill="#a8b0c0" font-size="9">(수렴 개선)</text>
+      
+      <!-- 2022 -->
+      <circle cx="640" cy="75" r="5" fill="#7ab8e0"/>
+      <text x="640" y="60" text-anchor="middle" fill="#7ab8e0" font-weight="700">2022</text>
+      <text x="640" y="92" text-anchor="middle" fill="#d0d0d0">DORS2022</text>
+      <text x="640" y="102" text-anchor="middle" fill="#a8b0c0" font-size="9">(multi-goal)</text>
+      
+      <!-- 2023 -->
+      <circle cx="800" cy="75" r="5" fill="#4cbf7a"/>
+      <text x="800" y="60" text-anchor="middle" fill="#4cbf7a" font-weight="700">2023</text>
+      <text x="800" y="92" text-anchor="middle" fill="#d0d0d0">Bauman AIAI</text>
+      <text x="800" y="102" text-anchor="middle" fill="#a8b0c0" font-size="9">(PPO+HMM 기초)</text>
+      
+      <!-- 2024 -->
+      <circle cx="940" cy="75" r="6" fill="#f0c869"/>
+      <text x="940" y="60" text-anchor="middle" fill="#f0c869" font-weight="700">2024</text>
+      <text x="940" y="92" text-anchor="middle" fill="#f0c869" font-weight="600">Bauman NLDL</text>
+      <text x="940" y="102" text-anchor="middle" fill="#d4a868" font-size="9">(regime-switching DRL)</text>
+      
+      <!-- 2025 -->
+      <circle cx="1050" cy="75" r="4" fill="#e07a7a"/>
+      <text x="1050" y="60" text-anchor="middle" fill="#e07a7a" font-weight="700">2025+</text>
+      <text x="1050" y="92" text-anchor="middle" fill="#d0d0d0">IEEE Access</text>
+      <text x="1050" y="102" text-anchor="middle" fill="#a8b0c0" font-size="9">(non-stationary)</text>
+    </g>
+  </g>
+
+  <text x="1140" y="808" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 09 · Figure 1
+  </text>
+</svg>

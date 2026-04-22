@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldG4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="bptBox" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5f8e"/>
+      <stop offset="100%" stop-color="#164669"/>
+    </linearGradient>
+    <linearGradient id="varBox" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a7a5a"/>
+      <stop offset="100%" stop-color="#3c5c3c"/>
+    </linearGradient>
+    <linearGradient id="mvBox" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a5a8a"/>
+      <stop offset="100%" stop-color="#603c60"/>
+    </linearGradient>
+    <marker id="arrHead4" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#d4a244"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    MVT · MA · VaR Equivalence
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="15" fill="url(#goldG4)" font-weight="500">
+    Das · Markowitz · Scheid · Statman (2010) · 정규분포 가정 하 세 문제의 동등성
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- Triangle of three problems -->
+  <!-- BPT (top-left) -->
+  <g transform="translate(80, 150)">
+    <rect x="0" y="0" width="380" height="200" rx="10" fill="url(#bptBox)" stroke="#2a7bbb" stroke-width="1"/>
+    <text x="190" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#f5f5f5">Behavioral (MA)</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" fill="#b0d4f0" font-style="italic">Chance-constrained BPT</text>
+    <line x1="30" y1="66" x2="350" y2="66" stroke="#4a90c8" stroke-width="0.5"/>
+
+    <text x="20" y="90" font-size="11" fill="#f0c869" font-weight="600">"목표 미달 확률을 제한하며 기대 수익 극대화"</text>
+
+    <rect x="20" y="105" width="340" height="42" rx="4" fill="#0a1a2a" stroke="#2a4060" stroke-width="0.5"/>
+    <text x="190" y="125" text-anchor="middle" font-size="13" fill="#f5f5f5" font-style="italic">max  μᵀw</text>
+    <text x="190" y="142" text-anchor="middle" font-size="12" fill="#b0d4f0">s.t.  Pr(W_T &lt; H) ≤ α</text>
+
+    <text x="20" y="170" font-size="10.5" fill="#b0d4f0">• 투자자 언어: (목표, 확률)</text>
+    <text x="20" y="186" font-size="10.5" fill="#b0d4f0">• Shefrin-Statman (2000) BPT 기원</text>
+  </g>
+
+  <!-- VaR (top-right) -->
+  <g transform="translate(740, 150)">
+    <rect x="0" y="0" width="380" height="200" rx="10" fill="url(#varBox)" stroke="#4a8a4a" stroke-width="1"/>
+    <text x="190" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#f5f5f5">Risk Management (VaR)</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" fill="#c0e0c0" font-style="italic">Linear constraint in (σ, μ) space</text>
+    <line x1="30" y1="66" x2="350" y2="66" stroke="#6aaa6a" stroke-width="0.5"/>
+
+    <text x="20" y="90" font-size="11" fill="#f0c869" font-weight="600">"VaR 제약 만족하며 기대 수익 극대화"</text>
+
+    <rect x="20" y="105" width="340" height="42" rx="4" fill="#0a1a2a" stroke="#2a4060" stroke-width="0.5"/>
+    <text x="190" y="125" text-anchor="middle" font-size="13" fill="#f5f5f5" font-style="italic">max  μᵀw</text>
+    <text x="190" y="142" text-anchor="middle" font-size="12" fill="#c0e0c0">s.t.  μᵀw − z_{1−α}σ_p ≥ θ</text>
+
+    <text x="20" y="170" font-size="10.5" fill="#c0e0c0">• 리스크 매니저 언어: (VaR, 신뢰수준)</text>
+    <text x="20" y="186" font-size="10.5" fill="#c0e0c0">• Telser (1956) safety-first 후손</text>
+  </g>
+
+  <!-- MV (bottom center) -->
+  <g transform="translate(410, 450)">
+    <rect x="0" y="0" width="380" height="200" rx="10" fill="url(#mvBox)" stroke="#aa7aca" stroke-width="1"/>
+    <text x="190" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#f5f5f5">Mean-Variance (MVT)</text>
+    <text x="190" y="52" text-anchor="middle" font-size="11" fill="#e0c0e0" font-style="italic">Quadratic utility maximization</text>
+    <line x1="30" y1="66" x2="350" y2="66" stroke="#aa7aca" stroke-width="0.5"/>
+
+    <text x="20" y="90" font-size="11" fill="#f0c869" font-weight="600">"위험회피 계수 γ 하 효용 극대화"</text>
+
+    <rect x="20" y="105" width="340" height="42" rx="4" fill="#0a1a2a" stroke="#2a4060" stroke-width="0.5"/>
+    <text x="190" y="125" text-anchor="middle" font-size="13" fill="#f5f5f5" font-style="italic">max  μᵀw − (γ/2)wᵀΣw</text>
+    <text x="190" y="142" text-anchor="middle" font-size="12" fill="#e0c0e0">s.t.  1ᵀw = 1</text>
+
+    <text x="20" y="170" font-size="10.5" fill="#e0c0e0">• 경제학 교과서 언어: (γ, 효용함수)</text>
+    <text x="20" y="186" font-size="10.5" fill="#e0c0e0">• Markowitz (1952) 원형</text>
+  </g>
+
+  <!-- Equivalence arrows -->
+  <!-- BPT <-> VaR (top horizontal) -->
+  <line x1="460" y1="250" x2="740" y2="250" stroke="url(#goldG4)" stroke-width="2.5" marker-end="url(#arrHead4)"/>
+  <line x1="740" y1="260" x2="460" y2="260" stroke="url(#goldG4)" stroke-width="2.5" marker-end="url(#arrHead4)"/>
+  <rect x="520" y="220" width="160" height="36" rx="6" fill="#1a2138" stroke="#d4a244" stroke-width="1"/>
+  <text x="600" y="240" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="600">정규분포 대입</text>
+  <text x="600" y="252" text-anchor="middle" font-size="10" fill="#d4a244" font-style="italic">z_{1−α} = Φ⁻¹(1−α)</text>
+
+  <!-- BPT <-> MV (left diagonal) -->
+  <line x1="260" y1="350" x2="500" y2="450" stroke="url(#goldG4)" stroke-width="2.5" marker-end="url(#arrHead4)"/>
+  <line x1="500" y1="460" x2="260" y2="360" stroke="url(#goldG4)" stroke-width="2.5" marker-end="url(#arrHead4)"/>
+  <rect x="260" y="390" width="180" height="36" rx="6" fill="#1a2138" stroke="#d4a244" stroke-width="1"/>
+  <text x="350" y="410" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="600">KKT 조건 · FOC 일치</text>
+  <text x="350" y="422" text-anchor="middle" font-size="10" fill="#d4a244" font-style="italic">∃ γ* : 동일 해 산출</text>
+
+  <!-- VaR <-> MV (right diagonal) -->
+  <line x1="940" y1="350" x2="700" y2="450" stroke="url(#goldG4)" stroke-width="2.5" marker-end="url(#arrHead4)"/>
+  <line x1="700" y1="460" x2="940" y2="360" stroke="url(#goldG4)" stroke-width="2.5" marker-end="url(#arrHead4)"/>
+  <rect x="760" y="390" width="180" height="36" rx="6" fill="#1a2138" stroke="#d4a244" stroke-width="1"/>
+  <text x="850" y="410" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="600">효율선 접점 = 해</text>
+  <text x="850" y="422" text-anchor="middle" font-size="10" fill="#d4a244" font-style="italic">Lagrangian 매개변수 변환</text>
+
+  <!-- Central "=" symbol -->
+  <circle cx="600" cy="405" r="30" fill="url(#goldG4)" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="600" y="413" text-anchor="middle" font-size="28" font-weight="700" fill="#1a1a1a">≡</text>
+
+  <!-- Bottom: conclusions -->
+  <g transform="translate(60, 690)">
+    <rect x="0" y="0" width="1080" height="100" rx="10" fill="#0a1a2a" stroke="#1e5f8e" stroke-width="1"/>
+    <text x="30" y="32" font-size="15" font-weight="700" fill="#f0c869">세 언어, 하나의 수학</text>
+    <line x1="30" y1="45" x2="1050" y2="45" stroke="#2a4060" stroke-width="0.5"/>
+
+    <text x="30" y="68" font-size="11.5" fill="#d8d8d8">
+      <tspan fill="#7ab8e0" font-weight="700">투자자(MA):</tspan>
+      <tspan fill="#a8b0c0"> 목표·확률</tspan>
+      <tspan fill="#d8d8d8" dx="20">↔</tspan>
+      <tspan fill="#8ac08a" font-weight="700" dx="20">리스크매니저(VaR):</tspan>
+      <tspan fill="#a8b8a8"> z값·임계값</tspan>
+      <tspan fill="#d8d8d8" dx="20">↔</tspan>
+      <tspan fill="#c08ac0" font-weight="700" dx="20">이론가(MV):</tspan>
+      <tspan fill="#c0a8c0"> 위험회피 γ</tspan>
+    </text>
+    <text x="30" y="88" font-size="11" fill="#a8b0c0" font-style="italic">
+      각자 다른 매개변수 공간·다른 언어로 같은 최적 포트폴리오를 표현한다. 이것이 GBI가 "MV의 확장된 해석"으로 재정립되는 수학적 근거.
+    </text>
+  </g>
+
+  <text x="1140" y="808" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 04 · Figure 1
+  </text>
+</svg>

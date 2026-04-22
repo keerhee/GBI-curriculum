@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldGw3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="pBot" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4cbf7a"/>
+      <stop offset="100%" stop-color="#2a8a52"/>
+    </linearGradient>
+    <linearGradient id="pMid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0c869"/>
+      <stop offset="100%" stop-color="#c99a38"/>
+    </linearGradient>
+    <linearGradient id="pTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e07a7a"/>
+      <stop offset="100%" stop-color="#a84848"/>
+    </linearGradient>
+  </defs>
+
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    BPT Geometry · 피라미드와 효율경계
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="14" fill="url(#goldGw3)" font-weight="500">
+    BPT-MA 피라미드 구조 · MV 효율선과의 접점·괴리
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- LEFT: BPT-MA Pyramid (with K_i, α_i annotations) -->
+  <g transform="translate(60, 140)">
+    <text x="250" y="25" text-anchor="middle" font-size="16" font-weight="700" fill="#f0c869">
+      BPT-MA Pyramid · 3-Layer
+    </text>
+    <text x="250" y="45" text-anchor="middle" font-size="11" fill="#a8b0c0" font-style="italic">
+      각 층이 독립 최적화 · corner solution 중첩
+    </text>
+
+    <rect x="10" y="60" width="480" height="400" rx="6" fill="#0a1a2a" stroke="#2a3048" stroke-width="0.5"/>
+
+    <!-- Top layer -->
+    <polygon points="200,90 300,90 330,180 170,180" fill="url(#pTop)" stroke="#c04a4a" stroke-width="1.5"/>
+    <text x="250" y="115" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">TOP · Aspirational</text>
+    <text x="250" y="135" text-anchor="middle" font-size="10" fill="#fde4e4" font-style="italic">A_3 = high, α_3 ≈ 20%</text>
+    <text x="250" y="153" text-anchor="middle" font-size="10" fill="#fde4e4">potential-minded (q_p dominant)</text>
+    <text x="250" y="170" text-anchor="middle" font-size="10" fill="#fff0f0">lottery · PE · 집중투자</text>
+
+    <!-- Middle layer -->
+    <polygon points="170,180 330,180 360,290 140,290" fill="url(#pMid)" stroke="#b08830" stroke-width="1.5"/>
+    <text x="250" y="210" text-anchor="middle" font-size="13" font-weight="700" fill="#2a2416">MIDDLE · Market</text>
+    <text x="250" y="232" text-anchor="middle" font-size="10.5" fill="#3a301a" font-style="italic">A_2 = mid, α_2 ≈ 70–85%</text>
+    <text x="250" y="252" text-anchor="middle" font-size="10.5" fill="#3a301a">mixed (q_s ≈ q_p)</text>
+    <text x="250" y="270" text-anchor="middle" font-size="10.5" fill="#3a301a">분산 equity · balanced TDF</text>
+
+    <!-- Bottom layer -->
+    <polygon points="140,290 360,290 400,420 100,420" fill="url(#pBot)" stroke="#1e6040" stroke-width="1.5"/>
+    <text x="250" y="320" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">BOTTOM · Personal</text>
+    <text x="250" y="344" text-anchor="middle" font-size="11" fill="#d4f1d4" font-style="italic">A_1 = low, α_1 ≈ 99%</text>
+    <text x="250" y="364" text-anchor="middle" font-size="11" fill="#d4f1d4">security-minded (q_s dominant)</text>
+    <text x="250" y="384" text-anchor="middle" font-size="11" fill="#d4f1d4">bond · MMF · 단기국채</text>
+
+    <!-- Annotation -->
+    <text x="250" y="445" text-anchor="middle" font-size="10.5" fill="#8a95a8" font-style="italic">
+      각 층이 SP/A의 {security, potential, aspiration} 삼각구조를 반영
+    </text>
+  </g>
+
+  <!-- RIGHT: BPT vs MV frontier chart -->
+  <g transform="translate(610, 140)">
+    <text x="250" y="25" text-anchor="middle" font-size="16" font-weight="700" fill="#f0c869">
+      Efficient Frontier Comparison
+    </text>
+    <text x="250" y="45" text-anchor="middle" font-size="11" fill="#a8b0c0" font-style="italic">
+      MV hyperbola · Telser line · BPT corner solutions
+    </text>
+
+    <rect x="10" y="60" width="480" height="400" rx="6" fill="#0a1a2a" stroke="#2a3048" stroke-width="0.5"/>
+
+    <!-- Axes area (within chart bg): x-axis at y=320, y-axis at x=60 -->
+    <!-- Chart region: x 60..440 (width 380), y 320..100 (flipped, height 220) -->
+    <line x1="60" y1="320" x2="440" y2="320" stroke="#4a5470" stroke-width="1"/>
+    <line x1="60" y1="100" x2="60" y2="320" stroke="#4a5470" stroke-width="1"/>
+
+    <!-- axis labels -->
+    <text x="445" y="324" font-size="11" fill="#a8b0c0">σ</text>
+    <text x="60" y="92" text-anchor="middle" font-size="11" fill="#a8b0c0">E[R]</text>
+    <text x="60" y="335" text-anchor="middle" font-size="9" fill="#8a95a8">0</text>
+    <text x="440" y="335" text-anchor="middle" font-size="9" fill="#8a95a8">0.4</text>
+    <text x="52" y="323" text-anchor="end" font-size="9" fill="#8a95a8">0</text>
+    <text x="52" y="103" text-anchor="end" font-size="9" fill="#8a95a8">0.20</text>
+
+    <!-- MV hyperbola (upper branch) - shifted down by 60 to fit chart region top 100 -->
+    <!-- Using original chart coords where x 60..440, y 260..40, shift y +60 -->
+    <g transform="translate(0, 60)">
+      <path d="M 100.0 216.0 L 104.7 208.3 L 109.5 204.8 L 114.2 201.9 L 119.0 199.3 L 123.7 196.9 L 128.5 194.6 L 133.2 192.4 L 138.0 190.2 L 142.7 188.1 L 147.5 186.1 L 152.2 184.0 L 156.9 182.0 L 161.7 180.0 L 166.4 178.0 L 171.2 176.1 L 175.9 174.1 L 180.7 172.2 L 185.4 170.2 L 190.2 168.3 L 194.9 166.4 L 199.7 164.5 L 204.4 162.6 L 209.2 160.7 L 213.9 158.8 L 218.6 156.9 L 223.4 155.0 L 228.1 153.1 L 232.9 151.2 L 237.6 149.4 L 242.4 147.5 L 247.1 145.6 L 251.9 143.8 L 256.6 141.9 L 261.4 140.0 L 266.1 138.2 L 270.9 136.3 L 275.6 134.5 L 280.4 132.6 L 285.1 130.8 L 289.9 128.9 L 294.6 127.1 L 299.4 125.3 L 304.1 123.4 L 308.9 121.6 L 313.6 119.6 L 318.3 117.8 L 323.1 115.9 L 327.8 114.1 L 332.5 112.2 L 337.3 110.4 L 342.0 108.5 L 346.8 106.7 L 351.5 104.8 L 356.3 103.0 L 361.0 101.1 L 365.8 99.3 L 370.5 97.5 L 375.3 95.6 L 380.0 93.8"
+            stroke="#7ab8e0" stroke-width="2.2" fill="none"/>
+    </g>
+
+    <!-- Label MV frontier -->
+    <text x="380" y="170" font-size="11" fill="#7ab8e0" font-weight="600">MV frontier</text>
+    <line x1="375" y1="175" x2="370" y2="183" stroke="#7ab8e0" stroke-width="0.8"/>
+
+    <!-- Telser safety-first line: mu = 0.01 + 2*sigma, clipped to chart -->
+    <!-- At sigma=0.02, mu=0.05; at sigma=0.08, mu=0.17 -->
+    <!-- x=60+0.02*950=79; y=320-0.05*1100=265 (check scale)
+         Scale: x: 380/0.4 = 950 per unit sigma; y: 220/0.20 = 1100 per unit mu
+         Point (0.02, 0.05): x=60+0.02*950=79, y=320-0.05*1100=265
+         Point (0.08, 0.17): x=60+0.08*950=136, y=320-0.17*1100=133
+    -->
+    <line x1="60" y1="309" x2="143" y2="126" stroke="#f0c869" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="150" y="130" font-size="10.5" fill="#f0c869" font-weight="600">Telser/BPT chance constraint</text>
+    <text x="150" y="144" font-size="10" fill="#d4a244" font-style="italic">μ ≥ R_L + z·σ</text>
+
+    <!-- Tangent point = Telser optimal -->
+    <circle cx="120" cy="165" r="5" fill="#f0c869" stroke="#1a1a1a" stroke-width="1.5"/>
+    <text x="128" y="163" font-size="10" fill="#f0c869" font-weight="600">Telser opt.</text>
+
+    <!-- BPT-MA three points (corner solutions per layer) -->
+    <!-- Bottom layer: low risk low return -->
+    <circle cx="95" cy="290" r="7" fill="#4cbf7a" stroke="#0a1a2a" stroke-width="1.5"/>
+    <text x="105" y="294" font-size="10" fill="#4cbf7a" font-weight="600">Personal (bond)</text>
+
+    <!-- Middle layer: balanced -->
+    <circle cx="190" cy="220" r="7" fill="#f0c869" stroke="#0a1a2a" stroke-width="1.5"/>
+    <text x="200" y="224" font-size="10" fill="#f0c869" font-weight="600">Market (balanced)</text>
+
+    <!-- Top layer: very high risk high return (positive skew - below MV frontier due to inefficiency) -->
+    <circle cx="360" cy="120" r="7" fill="#e07a7a" stroke="#0a1a2a" stroke-width="1.5"/>
+    <text x="240" y="105" font-size="10" fill="#e07a7a" font-weight="600">Aspirational (lottery)</text>
+    <line x1="300" y1="110" x2="355" y2="118" stroke="#e07a7a" stroke-width="0.6"/>
+
+    <!-- Aggregate portfolio point: on MV frontier per Das-Markowitz theorem -->
+    <circle cx="200" cy="195" r="6" fill="none" stroke="#d4a244" stroke-width="2.5"/>
+    <text x="210" y="192" font-size="10" fill="#d4a244" font-weight="600">Aggregate Σπ_k w_k</text>
+    <text x="210" y="205" font-size="9" fill="#d4a244" font-style="italic">(Das et al. 2010: MV-efficient)</text>
+
+    <!-- Legend below chart -->
+    <g transform="translate(30, 350)">
+      <rect x="0" y="0" width="440" height="96" rx="6" fill="#1a2138" stroke="#3a4460" stroke-width="0.5"/>
+      <text x="12" y="20" font-size="11" font-weight="700" fill="#d4a244">실증 결과 (Pfiffelmann et al. 2016)</text>
+      <text x="12" y="40" font-size="10.5" fill="#d8d8d8">· CRSP 1995-2011, BPT 최적해 시뮬레이션</text>
+      <text x="12" y="56" font-size="10.5" fill="#d8d8d8">· 70%+ 경우 BPT 최적 포트폴리오가 MV 효율선 위</text>
+      <text x="12" y="72" font-size="10.5" fill="#d8d8d8">· 단, BPT 해 = 높은 위험, 양(+) 왜도, MV λ 대비 1/10 공격적</text>
+      <text x="12" y="88" font-size="10" fill="#a8b0c0" font-style="italic">→ "같은 효율선 위 다른 점" 을 선택</text>
+    </g>
+  </g>
+
+  <!-- Bottom conclusion -->
+  <g transform="translate(60, 600)">
+    <rect x="0" y="0" width="1080" height="170" rx="10" fill="#0a1a2a" stroke="#1e5f8e" stroke-width="1"/>
+    <text x="30" y="32" font-size="15" font-weight="700" fill="#f0c869">핵심 Takeaway · BPT와 MV의 관계</text>
+    <line x1="30" y1="45" x2="1050" y2="45" stroke="#2a4060" stroke-width="0.5"/>
+
+    <text x="30" y="72" font-size="12" fill="#d8d8d8">
+      <tspan fill="#f0c869" font-weight="700">① BPT는 MV의 적이 아니다.</tspan>
+    </text>
+    <text x="30" y="92" font-size="11" fill="#a8b0c0">
+      Telser 이래 chance-constrained 접근은 MV 효율선의 한 점을 고르는 규칙이었다. BPT-MA aggregate는 정규분포+short-sales 조건 하 여전히 효율선 위.
+    </text>
+
+    <text x="30" y="118" font-size="12" fill="#d8d8d8">
+      <tspan fill="#f0c869" font-weight="700">② 그러나 "다른 점"을 고른다.</tspan>
+    </text>
+    <text x="30" y="138" font-size="11" fill="#a8b0c0">
+      MV는 분산민감, BPT는 왜도·꼬리 민감. 동일 효율선 위에서 BPT 투자자는 훨씬 공격적 점을 선택(λ_BPT ≈ λ_MV / 10). 이는 SP/A의 potential-minded 성향의 직접 표현.
+    </text>
+  </g>
+
+  <text x="1140" y="800" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 03 · Figure 2
+  </text>
+</svg>

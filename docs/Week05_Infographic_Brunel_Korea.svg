@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldG5b" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="personalG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4cbf7a"/>
+      <stop offset="100%" stop-color="#2a8a52"/>
+    </linearGradient>
+    <linearGradient id="dynasticG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0c869"/>
+      <stop offset="100%" stop-color="#c99a38"/>
+    </linearGradient>
+    <linearGradient id="philanthropicG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a874d4"/>
+      <stop offset="100%" stop-color="#7a4ca8"/>
+    </linearGradient>
+    <linearGradient id="koreaG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c04040"/>
+      <stop offset="100%" stop-color="#902020"/>
+    </linearGradient>
+  </defs>
+
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    Brunel 3-Goal · 한국 UHNW 현실
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="14" fill="url(#goldG5b)" font-weight="500">
+    Personal · Dynastic · Philanthropic + Internal/External 구조 + 한국 패밀리오피스 지형
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- UPPER: 3-Goal horizontal tiles -->
+  <g transform="translate(60, 140)">
+    <!-- Personal -->
+    <rect x="0" y="0" width="350" height="230" rx="12" fill="url(#personalG)" stroke="#1e6040" stroke-width="1.5"/>
+    <text x="175" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">PERSONAL</text>
+    <text x="175" y="55" text-anchor="middle" font-size="11" fill="#d4f1d4" font-style="italic">개인 · Lifestyle</text>
+    <line x1="30" y1="70" x2="320" y2="70" stroke="#1e6040" stroke-width="0.4"/>
+
+    <text x="20" y="96" font-size="11" fill="#1a1a1a" font-weight="600">시간지평</text>
+    <text x="20" y="112" font-size="10.5" fill="#3a301a">잔여 기대수명 (20-30년)</text>
+
+    <text x="20" y="136" font-size="11" fill="#1a1a1a" font-weight="600">필요자본 (H)</text>
+    <text x="20" y="152" font-size="10.5" fill="#3a301a">Lifestyle 현가 + 인플레</text>
+
+    <text x="20" y="176" font-size="11" fill="#1a1a1a" font-weight="600">α (목표 확률)</text>
+    <text x="20" y="192" font-size="10.5" fill="#3a301a">≥ 95% (non-negotiable)</text>
+
+    <text x="20" y="216" font-size="11" fill="#1a1a1a" font-weight="600">대표 Module</text>
+    <text x="160" y="216" font-size="10.5" fill="#3a301a">Capital Preservation</text>
+
+    <!-- Dynastic -->
+    <rect x="370" y="0" width="350" height="230" rx="12" fill="url(#dynasticG)" stroke="#b08830" stroke-width="1.5"/>
+    <text x="545" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#1a1a1a">DYNASTIC</text>
+    <text x="545" y="55" text-anchor="middle" font-size="11" fill="#3a301a" font-style="italic">가문 · Generational Transfer</text>
+    <line x1="400" y1="70" x2="690" y2="70" stroke="#b08830" stroke-width="0.4"/>
+
+    <text x="390" y="96" font-size="11" fill="#1a1a1a" font-weight="600">시간지평</text>
+    <text x="390" y="112" font-size="10.5" fill="#3a301a">30-100년 (multi-generational)</text>
+
+    <text x="390" y="136" font-size="11" fill="#1a1a1a" font-weight="600">필요자본 (H)</text>
+    <text x="390" y="152" font-size="10.5" fill="#3a301a">N세대 후 가족 부의 목표</text>
+
+    <text x="390" y="176" font-size="11" fill="#1a1a1a" font-weight="600">α (목표 확률)</text>
+    <text x="390" y="192" font-size="10.5" fill="#3a301a">70-85% (중-고)</text>
+
+    <text x="390" y="216" font-size="11" fill="#1a1a1a" font-weight="600">대표 Module</text>
+    <text x="525" y="216" font-size="10.5" fill="#3a301a">Long-term Growth · PE</text>
+
+    <!-- Philanthropic -->
+    <rect x="740" y="0" width="350" height="230" rx="12" fill="url(#philanthropicG)" stroke="#7a4ca8" stroke-width="1.5"/>
+    <text x="915" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">PHILANTHROPIC</text>
+    <text x="915" y="55" text-anchor="middle" font-size="11" fill="#e0c8e0" font-style="italic">자선 · Foundation · Impact</text>
+    <line x1="770" y1="70" x2="1060" y2="70" stroke="#7a4ca8" stroke-width="0.4"/>
+
+    <text x="760" y="96" font-size="11" fill="#f0c869" font-weight="600">시간지평</text>
+    <text x="760" y="112" font-size="10.5" fill="#e0c8e0">영구 (perpetual) 또는 time-limit</text>
+
+    <text x="760" y="136" font-size="11" fill="#f0c869" font-weight="600">필요자본 (H)</text>
+    <text x="760" y="152" font-size="10.5" fill="#e0c8e0">기부 규모 + 재단 운영비</text>
+
+    <text x="760" y="176" font-size="11" fill="#f0c869" font-weight="600">α (목표 확률)</text>
+    <text x="760" y="192" font-size="10.5" fill="#e0c8e0">가변 (spending rule 의존)</text>
+
+    <text x="760" y="216" font-size="11" fill="#f0c869" font-weight="600">대표 Module</text>
+    <text x="895" y="216" font-size="10.5" fill="#e0c8e0">Perpetual Endowment (Yale-like)</text>
+  </g>
+
+  <!-- MIDDLE: Internal / External structure -->
+  <g transform="translate(60, 395)">
+    <text x="540" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#f0c869">
+      Internal vs External Assets · Brunel's Lifestyle Hedge 구조
+    </text>
+
+    <rect x="0" y="35" width="1030" height="125" rx="10" fill="#0a1a2a" stroke="#2a4060" stroke-width="1"/>
+
+    <!-- Internal (left) -->
+    <g transform="translate(20, 50)">
+      <rect x="0" y="0" width="480" height="95" rx="6" fill="#1a2838" stroke="#3a5060" stroke-width="0.5"/>
+      <text x="12" y="20" font-size="12" fill="#e07a7a" font-weight="700">INTERNAL (가족 통제)</text>
+      <text x="12" y="42" font-size="11" fill="#d0d0d0">
+        <tspan font-weight="600">Lifestyle:</tspan>
+        <tspan fill="#a8b0c0"> 주거 주택 · 가족기업 운영자본</tspan>
+      </text>
+      <text x="12" y="60" font-size="11" fill="#d0d0d0">
+        <tspan font-weight="600">Non-lifestyle:</tspan>
+        <tspan fill="#a8b0c0"> 가족기업 성장자본 · 상장지분 · 수집품</tspan>
+      </text>
+      <text x="12" y="80" font-size="10" fill="#e07a7a" font-style="italic">→ 금융최적화 대상 아님 · "주어진 hedge"로 취급</text>
+    </g>
+
+    <!-- Arrow connecting -->
+    <text x="540" y="105" text-anchor="middle" font-size="16" fill="#d4a244" font-weight="700">⟷</text>
+    <text x="540" y="125" text-anchor="middle" font-size="9" fill="#d4a244" font-style="italic">hedge</text>
+
+    <!-- External (right) -->
+    <g transform="translate(560, 50)">
+      <rect x="0" y="0" width="450" height="95" rx="6" fill="#1a3828" stroke="#3a5040" stroke-width="0.5"/>
+      <text x="12" y="20" font-size="12" fill="#4cbf7a" font-weight="700">EXTERNAL (제3자 운영)</text>
+      <text x="12" y="42" font-size="11" fill="#d0d0d0">
+        <tspan font-weight="600">Capital Preservation:</tspan>
+        <tspan fill="#a8b0c0"> 단기채 · TIPS · MMF</tspan>
+      </text>
+      <text x="12" y="60" font-size="11" fill="#d0d0d0">
+        <tspan font-weight="600">Growth + Discretionary:</tspan>
+        <tspan fill="#a8b0c0"> 주식 · PE · VC · Impact</tspan>
+      </text>
+      <text x="12" y="80" font-size="10" fill="#4cbf7a" font-style="italic">→ Das-Markowitz MA 최적화의 실제 대상</text>
+    </g>
+  </g>
+
+  <!-- LOWER: Korea family office landscape -->
+  <g transform="translate(60, 560)">
+    <text x="540" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#f0c869">
+      한국 Family Office 산업 지형 · 2026년 4월 기준
+    </text>
+
+    <rect x="0" y="35" width="1030" height="215" rx="10" fill="#0a1a2a" stroke="#1e5f8e" stroke-width="1"/>
+
+    <!-- Market stats box -->
+    <g transform="translate(20, 55)">
+      <rect x="0" y="0" width="310" height="175" rx="6" fill="url(#koreaG)" stroke="#c04040" stroke-width="0.5" opacity="0.85"/>
+      <text x="155" y="22" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">시장 규모 (2025년말)</text>
+      <line x1="20" y1="32" x2="290" y2="32" stroke="#fff" stroke-width="0.3" opacity="0.3"/>
+
+      <text x="15" y="52" font-size="11" fill="#ffe0e0">
+        <tspan fill="#fff" font-weight="700">금융자산 300억+ 초고액자산가</tspan>
+      </text>
+      <text x="15" y="68" font-size="13" fill="#ffb0b0" font-weight="700">10,100명</text>
+      <text x="80" y="68" font-size="10" fill="#ffd0d0">(전년비 +1,500)</text>
+
+      <text x="15" y="92" font-size="11" fill="#ffe0e0">
+        <tspan fill="#fff" font-weight="700">금융자산 10-100억 자산가</tspan>
+      </text>
+      <text x="15" y="108" font-size="13" fill="#ffb0b0" font-weight="700">42.2만명</text>
+      <text x="80" y="108" font-size="10" fill="#ffd0d0">(+5,900)</text>
+
+      <text x="15" y="135" font-size="11" fill="#ffe0e0">
+        <tspan fill="#fff" font-weight="700">삼성증권 FO (업계 1위)</tspan>
+      </text>
+      <text x="15" y="152" font-size="12" fill="#ffb0b0" font-weight="700">170가문 · 56조원</text>
+      <text x="15" y="166" font-size="9" fill="#ffd0d0" font-style="italic">2020년 서비스 개시 후 6년</text>
+    </g>
+
+    <!-- Providers list -->
+    <g transform="translate(350, 55)">
+      <rect x="0" y="0" width="310" height="175" rx="6" fill="#1a2838" stroke="#3a5060" stroke-width="0.5"/>
+      <text x="155" y="22" text-anchor="middle" font-size="12" fill="#f0c869" font-weight="700">주요 제공사 (런칭 연도)</text>
+      <line x1="20" y1="32" x2="290" y2="32" stroke="#3a5060" stroke-width="0.5"/>
+
+      <text x="15" y="50" font-size="10.5" fill="#d0d0d0">
+        <tspan fill="#7ab8e0" font-weight="600">2020</tspan>
+        <tspan fill="#d0d0d0"> · 삼성증권 SNI · 한국투자</tspan>
+      </text>
+      <text x="15" y="70" font-size="10.5" fill="#d0d0d0">
+        <tspan fill="#7ab8e0" font-weight="600">2021</tspan>
+        <tspan fill="#d0d0d0"> · 신영증권 · NH투자</tspan>
+      </text>
+      <text x="15" y="90" font-size="10.5" fill="#d0d0d0">
+        <tspan fill="#7ab8e0" font-weight="600">2022</tspan>
+        <tspan fill="#d0d0d0"> · 신한투자 · KB · 하나</tspan>
+      </text>
+      <text x="15" y="110" font-size="10.5" fill="#d0d0d0">
+        <tspan fill="#7ab8e0" font-weight="600">2024</tspan>
+        <tspan fill="#d0d0d0"> · 미래에셋 APEX Private</tspan>
+      </text>
+
+      <text x="15" y="140" font-size="10.5" fill="#8a95a8" font-style="italic">진입장벽 (일반 기준)</text>
+      <text x="15" y="158" font-size="10.5" fill="#b0d4f0">금융자산 약 10억~100억 원</text>
+    </g>
+
+    <!-- Korean-specific challenges -->
+    <g transform="translate(680, 55)">
+      <rect x="0" y="0" width="330" height="175" rx="6" fill="#2a1a1a" stroke="#e07a7a" stroke-width="0.5"/>
+      <text x="165" y="22" text-anchor="middle" font-size="12" fill="#ff9090" font-weight="700">한국 특수 과제</text>
+      <line x1="20" y1="32" x2="310" y2="32" stroke="#e07a7a" stroke-width="0.3"/>
+
+      <text x="15" y="52" font-size="10.5" fill="#ffd0d0">
+        <tspan fill="#ff9090" font-weight="700">① 상속세 50% (최대주주 60%)</tspan>
+      </text>
+      <text x="15" y="68" font-size="10" fill="#f0b8b8">→ Dynasty 목표의 절반을 tax가 잠식</text>
+
+      <text x="15" y="91" font-size="10.5" fill="#ffd0d0">
+        <tspan fill="#ff9090" font-weight="700">② 가족기업 집중 (자산의 60-80%)</tspan>
+      </text>
+      <text x="15" y="107" font-size="10" fill="#f0b8b8">→ External hedge 중요도 극단적</text>
+
+      <text x="15" y="130" font-size="10.5" fill="#ffd0d0">
+        <tspan fill="#ff9090" font-weight="700">③ Philanthropic 저조</tspan>
+      </text>
+      <text x="15" y="146" font-size="10" fill="#f0b8b8">→ 세대교체와 함께 최대 성장 여지</text>
+
+      <text x="15" y="166" font-size="10" fill="#ff9090" font-style="italic">자본시장연구원 25-07 (2025) 기반</text>
+    </g>
+  </g>
+
+  <text x="1140" y="808" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 05 · Figure 2
+  </text>
+</svg>

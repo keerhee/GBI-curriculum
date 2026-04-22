@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldG9b" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="hmmG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5f8e"/>
+      <stop offset="100%" stop-color="#164669"/>
+    </linearGradient>
+    <linearGradient id="envG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a7a5a"/>
+      <stop offset="100%" stop-color="#3c5c3c"/>
+    </linearGradient>
+    <linearGradient id="ppoG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c99a38"/>
+      <stop offset="100%" stop-color="#8a6820"/>
+    </linearGradient>
+    <marker id="ar9b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#d4a244"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    Bauman (2024) DRL Framework · HMM + PPO
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="14" fill="url(#goldG9b)" font-weight="500">
+    Regime-Switching 시장에서 robust GBI · State augmentation + Actor-Critic
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- UPPER: Architecture flow diagram -->
+  <g transform="translate(40, 130)">
+    <text x="560" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#f0c869">
+      System Architecture · HMM Regime Detection + PPO Policy Learning
+    </text>
+
+    <!-- 1. Market data -->
+    <g transform="translate(20, 55)">
+      <rect x="0" y="0" width="170" height="75" rx="8" fill="#1a2838" stroke="#3a5060" stroke-width="1"/>
+      <text x="85" y="20" text-anchor="middle" font-size="12" fill="#7ab8e0" font-weight="700">1. Historical Data</text>
+      <line x1="20" y1="28" x2="150" y2="28" stroke="#3a5060" stroke-width="0.3"/>
+      <text x="85" y="46" text-anchor="middle" font-size="10" fill="#d0d0d0">Stock · Bond returns</text>
+      <text x="85" y="60" text-anchor="middle" font-size="9" fill="#a8b0c0">Shiller 1871–1991</text>
+    </g>
+
+    <!-- Arrow -->
+    <line x1="192" y1="92" x2="228" y2="92" stroke="#d4a244" stroke-width="2" marker-end="url(#ar9b)"/>
+
+    <!-- 2. HMM -->
+    <g transform="translate(230, 55)">
+      <rect x="0" y="0" width="185" height="75" rx="8" fill="url(#hmmG)" stroke="#2a7bbb" stroke-width="1"/>
+      <text x="92" y="20" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">2. Gaussian HMM</text>
+      <line x1="20" y1="28" x2="165" y2="28" stroke="#4a90c8" stroke-width="0.3"/>
+      <text x="92" y="46" text-anchor="middle" font-size="10" fill="#d0e0f0">Baum-Welch (EM)</text>
+      <text x="92" y="60" text-anchor="middle" font-size="9" fill="#a0c0d0">R=2 regimes (bull/bear)</text>
+    </g>
+
+    <!-- Arrow -->
+    <line x1="418" y1="92" x2="454" y2="92" stroke="#d4a244" stroke-width="2" marker-end="url(#ar9b)"/>
+
+    <!-- 3. Regime probabilities -->
+    <g transform="translate(455, 55)">
+      <rect x="0" y="0" width="200" height="75" rx="8" fill="#2a2010" stroke="#f0c869" stroke-width="1"/>
+      <text x="100" y="20" text-anchor="middle" font-size="12" fill="#f0c869" font-weight="700">3. Regime Probs</text>
+      <line x1="20" y1="28" x2="180" y2="28" stroke="#c99a38" stroke-width="0.3"/>
+      <text x="100" y="46" text-anchor="middle" font-size="11" fill="#e8d8b8" font-style="italic">p_bull(t), p_bear(t)</text>
+      <text x="100" y="60" text-anchor="middle" font-size="9" fill="#d4a868">Forward-backward filtering</text>
+    </g>
+
+    <!-- Arrow down + merge -->
+    <path d="M 555 130 L 555 175 L 410 175 L 410 220" stroke="#d4a244" stroke-width="2" fill="none" marker-end="url(#ar9b)"/>
+
+    <!-- 4. Wealth + time (separate input) -->
+    <g transform="translate(680, 55)">
+      <rect x="0" y="0" width="210" height="75" rx="8" fill="#0a2818" stroke="#4cbf7a" stroke-width="1"/>
+      <text x="105" y="20" text-anchor="middle" font-size="12" fill="#7ae0a0" font-weight="700">4. Wealth · Time State</text>
+      <line x1="20" y1="28" x2="190" y2="28" stroke="#4cbf7a" stroke-width="0.3"/>
+      <text x="105" y="46" text-anchor="middle" font-size="11" fill="#d8e8d0" font-style="italic">W_t, t</text>
+      <text x="105" y="60" text-anchor="middle" font-size="9" fill="#a8d0b8">From GBWM environment</text>
+    </g>
+
+    <!-- Arrow down + merge -->
+    <path d="M 785 130 L 785 175 L 410 175" stroke="#d4a244" stroke-width="2" fill="none"/>
+
+    <!-- 5. Augmented State -->
+    <g transform="translate(320, 220)">
+      <rect x="0" y="0" width="380" height="80" rx="10" fill="#1a2138" stroke="#d4a244" stroke-width="1.5"/>
+      <text x="190" y="25" text-anchor="middle" font-size="13" fill="#f0c869" font-weight="700">5. Augmented State (Bauman 핵심)</text>
+      <line x1="30" y1="35" x2="350" y2="35" stroke="#d4a244" stroke-width="0.3"/>
+      <rect x="40" y="44" width="300" height="28" rx="4" fill="#0a1a2a" stroke="#3a4460" stroke-width="0.3"/>
+      <text x="190" y="64" text-anchor="middle" font-size="14" fill="#f0c869" font-style="italic">s_t = (W_t, t, p_bull, p_bear)</text>
+    </g>
+
+    <!-- Arrow to PPO -->
+    <line x1="510" y1="300" x2="510" y2="335" stroke="#d4a244" stroke-width="2" marker-end="url(#ar9b)"/>
+
+    <!-- 6. PPO -->
+    <g transform="translate(220, 340)">
+      <rect x="0" y="0" width="580" height="140" rx="10" fill="url(#ppoG)" stroke="#b08830" stroke-width="1.5"/>
+      <text x="290" y="25" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="700">6. PPO Actor-Critic</text>
+      <text x="290" y="42" text-anchor="middle" font-size="10" fill="#3a2810" font-style="italic">Schulman (2017) · Stable-Baselines3 구현</text>
+      <line x1="30" y1="52" x2="550" y2="52" stroke="#8a6020" stroke-width="0.4"/>
+
+      <!-- Actor network -->
+      <rect x="30" y="65" width="240" height="60" rx="6" fill="#1a100a" stroke="#c04040" stroke-width="0.5"/>
+      <text x="150" y="83" text-anchor="middle" font-size="11" fill="#ff9060" font-weight="700">Actor Network π(a|s)</text>
+      <text x="150" y="100" text-anchor="middle" font-size="9" fill="#e0b098">MLP: 4 → 64 → 64 → softmax(K=15)</text>
+      <text x="150" y="114" text-anchor="middle" font-size="9" fill="#e0b098" font-style="italic">Portfolio selection policy</text>
+
+      <!-- Critic network -->
+      <rect x="310" y="65" width="240" height="60" rx="6" fill="#0a101a" stroke="#4090c0" stroke-width="0.5"/>
+      <text x="430" y="83" text-anchor="middle" font-size="11" fill="#60b0ff" font-weight="700">Critic Network V(s)</text>
+      <text x="430" y="100" text-anchor="middle" font-size="9" fill="#98b8e0">MLP: 4 → 64 → 64 → 1 (scalar)</text>
+      <text x="430" y="114" text-anchor="middle" font-size="9" fill="#98b8e0" font-style="italic">Value function estimation</text>
+    </g>
+
+    <!-- Arrow out -->
+    <line x1="510" y1="480" x2="510" y2="508" stroke="#d4a244" stroke-width="2" marker-end="url(#ar9b)"/>
+
+    <!-- 7. Output -->
+    <g transform="translate(350, 510)">
+      <rect x="0" y="0" width="320" height="45" rx="8" fill="#0a1a2a" stroke="#f0c869" stroke-width="1.5"/>
+      <text x="160" y="22" text-anchor="middle" font-size="12" fill="#f0c869" font-weight="700">7. Optimal Action a* = k ∈ {1, ..., 15}</text>
+      <text x="160" y="38" text-anchor="middle" font-size="9.5" fill="#d4a868" font-style="italic">Portfolio choice · deterministic at test time (mode of π)</text>
+    </g>
+  </g>
+
+  <!-- LOWER: Results comparison -->
+  <g transform="translate(40, 590)">
+    <rect x="0" y="0" width="1120" height="195" rx="10" fill="#0a1a2a" stroke="#d4a244" stroke-width="1"/>
+    <text x="560" y="25" text-anchor="middle" font-size="14" fill="#f0c869" font-weight="700">
+      Bauman (2024) · Goal Success Rate 실증 비교 · Regime-Switching Environment
+    </text>
+    <line x1="30" y1="38" x2="1090" y2="38" stroke="#d4a244" stroke-width="0.3" opacity="0.5"/>
+
+    <!-- Bar chart -->
+    <g transform="translate(50, 60)">
+      <!-- 6 bars -->
+      <!-- Static 70/30: 47.2% -->
+      <rect x="0" y="38" width="140" height="75" fill="#5a7a7a" stroke="#0a1a2a" stroke-width="1" rx="3"/>
+      <text x="70" y="28" text-anchor="middle" font-size="13" fill="#8aa0a0" font-weight="700">47.2%</text>
+      <text x="70" y="128" text-anchor="middle" font-size="10" fill="#d0d0d0" font-weight="600">Static 70/30</text>
+      
+      <!-- TDF: 39.1% -->
+      <rect x="160" y="50" width="140" height="63" fill="#e07a7a" stroke="#0a1a2a" stroke-width="1" rx="3"/>
+      <text x="230" y="40" text-anchor="middle" font-size="13" fill="#ff9090" font-weight="700">39.1%</text>
+      <text x="230" y="128" text-anchor="middle" font-size="10" fill="#d0d0d0" font-weight="600">TDF</text>
+      
+      <!-- Variance Budgeting: 51.8% -->
+      <rect x="320" y="30" width="140" height="83" fill="#7ab8e0" stroke="#0a1a2a" stroke-width="1" rx="3"/>
+      <text x="390" y="20" text-anchor="middle" font-size="13" fill="#a8d8f0" font-weight="700">51.8%</text>
+      <text x="390" y="128" text-anchor="middle" font-size="10" fill="#d0d0d0" font-weight="600">Variance Budget</text>
+      
+      <!-- DP: 58.4% -->
+      <rect x="480" y="19" width="140" height="94" fill="#aa7aca" stroke="#0a1a2a" stroke-width="1" rx="3"/>
+      <text x="550" y="10" text-anchor="middle" font-size="13" fill="#c8a0e0" font-weight="700">58.4%</text>
+      <text x="550" y="128" text-anchor="middle" font-size="10" fill="#d0d0d0" font-weight="600">DP (DORS2020)</text>
+      
+      <!-- Q-learning: 57.9% -->
+      <rect x="640" y="20" width="140" height="93" fill="#4cbf7a" stroke="#0a1a2a" stroke-width="1" rx="3"/>
+      <text x="710" y="10" text-anchor="middle" font-size="13" fill="#7ae0a0" font-weight="700">57.9%</text>
+      <text x="710" y="128" text-anchor="middle" font-size="10" fill="#d0d0d0" font-weight="600">Q-learning</text>
+      <text x="710" y="141" text-anchor="middle" font-size="8.5" fill="#a8b0c0" font-style="italic">(Das-Varma 2020)</text>
+      
+      <!-- PPO + HMM: 63.8% (winner) -->
+      <rect x="800" y="10" width="140" height="103" fill="url(#goldG9b)" stroke="#fff" stroke-width="2" rx="3"/>
+      <text x="870" y="0" text-anchor="middle" font-size="15" fill="#f0c869" font-weight="700">63.8%</text>
+      <text x="870" y="128" text-anchor="middle" font-size="11" fill="#f0c869" font-weight="700">PPO + HMM ★</text>
+      <text x="870" y="141" text-anchor="middle" font-size="9" fill="#d4a868" font-style="italic">(Bauman 2024)</text>
+
+      <!-- Baseline line -->
+      <line x1="-10" y1="113" x2="960" y2="113" stroke="#4a5470" stroke-width="1"/>
+      
+      <!-- Improvement callout -->
+      <g transform="translate(750, 150)">
+        <rect x="0" y="0" width="280" height="22" rx="4" fill="#2a1f0f" stroke="#d4a244" stroke-width="0.5"/>
+        <text x="140" y="15" text-anchor="middle" font-size="10" fill="#f0c869" font-weight="600">
+          DP 대비 +5.4%p · TDF 대비 +24.7%p 개선
+        </text>
+      </g>
+    </g>
+  </g>
+
+  <text x="1140" y="808" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 09 · Figure 2 · Bauman et al. (2024) NLDL Table 1
+  </text>
+</svg>

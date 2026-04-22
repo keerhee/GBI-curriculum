@@ -1,0 +1,103 @@
+<svg width="100%" style="max-width:680px"
+     viewBox="0 0 680 460"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="Tax·ESG·Alternative 3-Pillar GBI Integration Framework">
+  <defs>
+    <marker id="arrow11" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0D47A1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="340" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#0D47A1">
+    GBI의 3-Pillar 확장: Tax · ESG · Alternatives
+  </text>
+  <text x="340" y="42" text-anchor="middle" font-size="10" fill="#37474F">
+    Week 1~10 핵심 프레임 → 실무 차원 3축 결합 → after-tax · ESG 제약 · illiquidity budget
+  </text>
+
+  <!-- Core GBI at center -->
+  <circle cx="340" cy="200" r="65" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="340" y="188" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Core GBI</text>
+  <text x="340" y="204" text-anchor="middle" font-size="10" fill="#263238">Pr(W_T ≥ H)</text>
+  <text x="340" y="218" text-anchor="middle" font-size="9" fill="#37474F">MA·BPT·PSP/GHP</text>
+
+  <!-- Pillar 1: Tax (left) -->
+  <rect x="20" y="95" width="200" height="125" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="120" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#C62828">
+    Pillar 1 · Tax-aware
+  </text>
+  <text x="120" y="133" text-anchor="middle" font-size="10" fill="#263238">after-tax goal 정의</text>
+  <text x="120" y="148" text-anchor="middle" font-size="10" fill="#263238">asset location</text>
+  <text x="120" y="163" text-anchor="middle" font-size="10" fill="#263238">multi-period tax</text>
+  <text x="120" y="178" text-anchor="middle" font-size="10" fill="#263238">lot-level overlay</text>
+  <text x="120" y="196" text-anchor="middle" font-size="9" font-style="italic" fill="#880E4F">"tax α = 연 0.5~1.5%"</text>
+  <text x="120" y="210" text-anchor="middle" font-size="9" fill="#37474F">Dammon-Spatt 2004</text>
+
+  <!-- Pillar 2: ESG (top) -->
+  <rect x="240" y="60" width="200" height="90" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="340" y="79" text-anchor="middle" font-size="12" font-weight="700" fill="#2E7D32">
+    Pillar 2 · ESG-aware
+  </text>
+  <text x="340" y="97" text-anchor="middle" font-size="10" fill="#263238">ESG(w) ≥ ESG_min 제약</text>
+  <text x="340" y="112" text-anchor="middle" font-size="10" fill="#263238">negative · positive screen</text>
+  <text x="340" y="127" text-anchor="middle" font-size="10" fill="#263238">Net-Zero liability</text>
+  <text x="340" y="143" text-anchor="middle" font-size="9" font-style="italic" fill="#1B5E20">"value × return trade"</text>
+
+  <!-- Pillar 3: Alternatives (right) -->
+  <rect x="460" y="95" width="200" height="125" rx="8" fill="#E3F2FD" stroke="#0D47A1" stroke-width="1.5"/>
+  <text x="560" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#0D47A1">
+    Pillar 3 · Alternatives
+  </text>
+  <text x="560" y="133" text-anchor="middle" font-size="10" fill="#263238">PE · 부동산 · HF</text>
+  <text x="560" y="148" text-anchor="middle" font-size="10" fill="#263238">illiquidity premium</text>
+  <text x="560" y="163" text-anchor="middle" font-size="10" fill="#263238">J-curve management</text>
+  <text x="560" y="178" text-anchor="middle" font-size="10" fill="#263238">vintage diversification</text>
+  <text x="560" y="196" text-anchor="middle" font-size="9" font-style="italic" fill="#0D47A1">"150~300bps illiq α"</text>
+  <text x="560" y="210" text-anchor="middle" font-size="9" fill="#37474F">Ang et al. 2014</text>
+
+  <!-- Arrows to center -->
+  <line x1="220" y1="180" x2="273" y2="190" stroke="#C62828" stroke-width="1.5" marker-end="url(#arrow11)"/>
+  <line x1="340" y1="150" x2="340" y2="133" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow11)" transform="rotate(180,340,141)"/>
+  <line x1="340" y1="155" x2="340" y2="135" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow11)"/>
+  <line x1="460" y1="180" x2="407" y2="190" stroke="#0D47A1" stroke-width="1.5" marker-end="url(#arrow11)"/>
+
+  <!-- Bottom: Integrated Optimization -->
+  <rect x="20" y="245" width="640" height="55" rx="8" fill="#FFF9C4" stroke="#F57F17" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="340" y="266" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">
+    통합 최적화 (Integrated Optimization)
+  </text>
+  <text x="340" y="285" text-anchor="middle" font-size="10" fill="#37474F">
+    max Pr(W_T^AT ≥ H) s.t. ESG(w) ≥ ESG_min, w_illiq ≤ B_illiq, 계좌별 w_k 배치
+  </text>
+
+  <!-- Arrow down to implementation -->
+  <line x1="340" y1="305" x2="340" y2="320" stroke="#0D47A1" stroke-width="2" marker-end="url(#arrow11)"/>
+
+  <!-- 3 Implementation domains -->
+  <text x="340" y="340" text-anchor="middle" font-size="12" font-weight="700" fill="#0D47A1">
+    적용 도메인
+  </text>
+
+  <rect x="20" y="352" width="200" height="95" rx="6" fill="#FAFAFA" stroke="#90A4AE"/>
+  <text x="120" y="372" text-anchor="middle" font-size="10" font-weight="700" fill="#C62828">① 개인 (HNW)</text>
+  <text x="120" y="388" text-anchor="middle" font-size="9" fill="#263238">taxable + IRA + 401k</text>
+  <text x="120" y="402" text-anchor="middle" font-size="9" fill="#263238">ESG 가치정렬</text>
+  <text x="120" y="416" text-anchor="middle" font-size="9" fill="#263238">PE access via ELTIF</text>
+  <text x="120" y="432" text-anchor="middle" font-size="9" fill="#37474F">Wealthfront · UBS</text>
+
+  <rect x="240" y="352" width="200" height="95" rx="6" fill="#FAFAFA" stroke="#90A4AE"/>
+  <text x="340" y="372" text-anchor="middle" font-size="10" font-weight="700" fill="#2E7D32">② 연금·기관</text>
+  <text x="340" y="388" text-anchor="middle" font-size="9" fill="#263238">ALM + PSP/GHP</text>
+  <text x="340" y="402" text-anchor="middle" font-size="9" fill="#263238">Net-Zero by 2050</text>
+  <text x="340" y="416" text-anchor="middle" font-size="9" fill="#263238">장기부채 매칭</text>
+  <text x="340" y="432" text-anchor="middle" font-size="9" fill="#37474F">NPS · CalPERS</text>
+
+  <rect x="460" y="352" width="200" height="95" rx="6" fill="#FAFAFA" stroke="#90A4AE"/>
+  <text x="560" y="372" text-anchor="middle" font-size="10" font-weight="700" fill="#0D47A1">③ 국부펀드 (SWF)</text>
+  <text x="560" y="388" text-anchor="middle" font-size="9" fill="#263238">세대간 이전 목표</text>
+  <text x="560" y="402" text-anchor="middle" font-size="9" fill="#263238">인프라·PE 장기</text>
+  <text x="560" y="416" text-anchor="middle" font-size="9" fill="#263238">ESG stewardship</text>
+  <text x="560" y="432" text-anchor="middle" font-size="9" fill="#37474F">GPFG · GIC · ADIA</text>
+</svg>

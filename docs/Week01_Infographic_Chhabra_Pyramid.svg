@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="820" fill="#0f1629"/>
+  
+  <defs>
+    <!-- Pyramid layer gradients -->
+    <linearGradient id="personalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4cbf7a"/>
+      <stop offset="100%" stop-color="#2a8a52"/>
+    </linearGradient>
+    <linearGradient id="marketGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0c869"/>
+      <stop offset="100%" stop-color="#c99a38"/>
+    </linearGradient>
+    <linearGradient id="aspirationGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e07a7a"/>
+      <stop offset="100%" stop-color="#a84848"/>
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="50" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    Chhabra's Three-Bucket Wealth Allocation
+  </text>
+  <text x="600" y="80" text-anchor="middle" font-size="15" fill="url(#goldAccent)" font-weight="500">
+    "Beyond Markowitz" · Journal of Wealth Management (2005)
+  </text>
+  
+  <!-- Divider -->
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+  
+  <!-- PYRAMID (Left side) -->
+  <g transform="translate(80, 160)">
+    
+    <!-- Top layer: Aspirational -->
+    <polygon points="180,0 280,0 310,120 150,120" fill="url(#aspirationGrad)" stroke="#c04a4a" stroke-width="1.5"/>
+    <text x="230" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">ASPIRATIONAL</text>
+    <text x="230" y="60" text-anchor="middle" font-size="11" fill="#fde4e4">부의 극적 확대</text>
+    <text x="230" y="82" text-anchor="middle" font-size="10" fill="#fde4e4" font-style="italic">Pr(목표달성) ≈ 10–30%</text>
+    <text x="230" y="100" text-anchor="middle" font-size="10" fill="#fde4e4">집중투자·PE·스타트업</text>
+    
+    <!-- Middle layer: Market -->
+    <polygon points="150,120 310,120 345,260 115,260" fill="url(#marketGrad)" stroke="#b08830" stroke-width="1.5"/>
+    <text x="230" y="165" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2416">MARKET</text>
+    <text x="230" y="187" text-anchor="middle" font-size="12" fill="#3a301a">시장 평균수익 확보</text>
+    <text x="230" y="212" text-anchor="middle" font-size="11" fill="#3a301a" font-style="italic">Pr(목표달성) ≈ 70–85%</text>
+    <text x="230" y="232" text-anchor="middle" font-size="11" fill="#3a301a">분산 주식·채권</text>
+    
+    <!-- Bottom layer: Personal -->
+    <polygon points="115,260 345,260 380,420 80,420" fill="url(#personalGrad)" stroke="#1e6040" stroke-width="1.5"/>
+    <text x="230" y="315" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">PERSONAL</text>
+    <text x="230" y="340" text-anchor="middle" font-size="12" fill="#d4f1d4">생활수준 붕괴 방지</text>
+    <text x="230" y="368" text-anchor="middle" font-size="11" fill="#d4f1d4" font-style="italic">Pr(목표달성) ≥ 99%</text>
+    <text x="230" y="388" text-anchor="middle" font-size="11" fill="#d4f1d4">현금·MMF·국채</text>
+    
+    <!-- Base label -->
+    <line x1="80" y1="430" x2="380" y2="430" stroke="#5a6478" stroke-width="0.5"/>
+    <text x="230" y="452" text-anchor="middle" font-size="11" fill="#8a95a8">Foundation First · 기초가 먼저</text>
+  </g>
+  
+  <!-- RIGHT SIDE: Analytical breakdown -->
+  <g transform="translate(560, 160)">
+    
+    <!-- Section 1: Why three separate buckets? -->
+    <rect x="0" y="0" width="560" height="130" rx="10" fill="#1a2138" stroke="#3a4460" stroke-width="1"/>
+    <text x="20" y="28" font-size="14" font-weight="700" fill="#f0c869">WHY THREE SEPARATE BUCKETS?</text>
+    <text x="20" y="55" font-size="12" fill="#d8d8d8">한 사람 안에 세 명의 "다른 투자자"가 공존한다.</text>
+    <text x="20" y="78" font-size="11.5" fill="#a8b0c0">· 생활 안전망이 무너지면 남은 자산이 아무 의미 없다 (Personal 우선)</text>
+    <text x="20" y="98" font-size="11.5" fill="#a8b0c0">· 시장수익 없이는 실질 부 유지 불가 (Market)</text>
+    <text x="20" y="118" font-size="11.5" fill="#a8b0c0">· 기회 포착은 별도 버짓으로 분리 (Aspirational)</text>
+    
+    <!-- Section 2: Optimization structure -->
+    <rect x="0" y="150" width="560" height="160" rx="10" fill="#1a2138" stroke="#3a4460" stroke-width="1"/>
+    <text x="20" y="178" font-size="14" font-weight="700" fill="#f0c869">OPTIMIZATION STRUCTURE</text>
+    <rect x="20" y="192" width="520" height="48" rx="6" fill="#0a1020" stroke="#2a3048" stroke-width="0.5"/>
+    <text x="280" y="220" text-anchor="middle" font-size="13" fill="#f5f5f5" font-style="italic">
+      max E[W_T^i]    s.t.  Pr(W_T^i &lt; H_i) ≤ α_i
+    </text>
+    <text x="20" y="265" font-size="11.5" fill="#a8b0c0">각 버킷 i ∈ {Personal, Market, Aspirational}에 대해 독립 최적화.</text>
+    <text x="20" y="285" font-size="11.5" fill="#a8b0c0">Aggregate = Σ π_i · w_i* →  Short-selling 허용 시 MV 효율선 위</text>
+    <text x="20" y="302" font-size="11" fill="#7a8598" font-style="italic">(Das, Markowitz, Scheid, Statman 2010 — 수학적 동등성 증명)</text>
+    
+    <!-- Section 3: Korean application -->
+    <rect x="0" y="330" width="560" height="170" rx="10" fill="#1a2138" stroke="#3a4460" stroke-width="1"/>
+    <text x="20" y="358" font-size="14" font-weight="700" fill="#f0c869">한국 적용 · 2026년 현재</text>
+    
+    <circle cx="35" cy="385" r="4" fill="#4cbf7a"/>
+    <text x="50" y="390" font-size="11.5" fill="#d8d8d8" font-weight="600">Personal</text>
+    <text x="115" y="390" font-size="11.5" fill="#a8b0c0">→ 예금·MMF·개인형 IRP 안전자산 (ISA 포함)</text>
+    
+    <circle cx="35" cy="415" r="4" fill="#f0c869"/>
+    <text x="50" y="420" font-size="11.5" fill="#d8d8d8" font-weight="600">Market</text>
+    <text x="115" y="420" font-size="11.5" fill="#a8b0c0">→ TDF·분산 ETF·로보어드바이저 (RA 테스트베드 통과)</text>
+    
+    <circle cx="35" cy="445" r="4" fill="#e07a7a"/>
+    <text x="50" y="450" font-size="11.5" fill="#d8d8d8" font-weight="600">Aspirational</text>
+    <text x="130" y="450" font-size="11.5" fill="#a8b0c0">→ 집중투자·PE·스타트업 (개인 여유자금)</text>
+    
+    <text x="20" y="482" font-size="11" fill="#7a8598" font-style="italic">
+      2025년말 국내 RA 가입 37.5만 명·1.17조 원 · 퇴직연금 426조 원 시장 확장 중
+    </text>
+  </g>
+  
+  <!-- BOTTOM: Key takeaways -->
+  <g transform="translate(80, 650)">
+    <rect x="0" y="0" width="1040" height="140" rx="10" fill="#0a1a2a" stroke="#1e5f8e" stroke-width="1"/>
+    <text x="25" y="32" font-size="15" font-weight="700" fill="#f0c869">핵심 Takeaway</text>
+    
+    <text x="25" y="60" font-size="12" fill="#d8d8d8">
+      <tspan font-weight="600" fill="#f0c869">① Hierarchy:</tspan>
+      <tspan> 기초(Personal)가 확보되지 않으면 상위(Market·Aspirational)가 무의미하다. 자산배분은 버킷 순서대로.</tspan>
+    </text>
+    <text x="25" y="84" font-size="12" fill="#d8d8d8">
+      <tspan font-weight="600" fill="#f0c869">② Heterogeneous Risk Aversion:</tspan>
+      <tspan> 같은 사람이 버킷별로 전혀 다른 risk profile을 가지는 것이 "정상"이다.</tspan>
+    </text>
+    <text x="25" y="108" font-size="12" fill="#d8d8d8">
+      <tspan font-weight="600" fill="#f0c869">③ Aggregation:</tspan>
+      <tspan> 세 버킷의 합은 여전히 수학적으로 MV-efficient (Das et al. 2010) — 이론적 정합성 확보.</tspan>
+    </text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="1140" y="800" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 01 · Figure 2
+  </text>
+</svg>

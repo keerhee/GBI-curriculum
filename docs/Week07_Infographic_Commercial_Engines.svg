@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldG7b" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="m1G" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5f8e"/>
+      <stop offset="100%" stop-color="#164669"/>
+    </linearGradient>
+    <linearGradient id="m2G" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a7a5a"/>
+      <stop offset="100%" stop-color="#3c5c3c"/>
+    </linearGradient>
+    <linearGradient id="m3G" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a5a8a"/>
+      <stop offset="100%" stop-color="#603c60"/>
+    </linearGradient>
+    <linearGradient id="m4G" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c99a38"/>
+      <stop offset="100%" stop-color="#8a6820"/>
+    </linearGradient>
+  </defs>
+
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    6대 상용 GBI 엔진 · 방법론 비교
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="14" fill="url(#goldG7b)" font-weight="500">
+    Datos Insights (2024) "The Future of Goals-Based Investing" · 4대 Methodology × 6개 벤더
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- UPPER: 4 Methodology tiles -->
+  <g transform="translate(60, 130)">
+    <text x="540" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#f0c869">
+      4대 Methodology · 학술·실무 정합성 기준
+    </text>
+
+    <!-- M1 Monte Carlo -->
+    <rect x="0" y="35" width="260" height="130" rx="10" fill="url(#m1G)" stroke="#2a7bbb" stroke-width="1"/>
+    <text x="130" y="60" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">M1 · Monte Carlo</text>
+    <text x="130" y="76" text-anchor="middle" font-size="10" fill="#b0d4f0" font-style="italic">Probability-of-Success</text>
+    <line x1="20" y1="86" x2="240" y2="86" stroke="#4a90c8" stroke-width="0.4"/>
+    <text x="15" y="104" font-size="10" fill="#d0e0f0">· 10,000+ 시나리오 시뮬레이션</text>
+    <text x="15" y="118" font-size="10" fill="#d0e0f0">· 각 goal의 success probability</text>
+    <text x="15" y="132" font-size="10" fill="#d0e0f0">· 업계 가장 widespread</text>
+    <text x="15" y="152" font-size="9" fill="#a0c0d0" font-style="italic">대표: Envestnet MG Pro, AdvisorEngine</text>
+
+    <!-- M2 Deterministic -->
+    <rect x="270" y="35" width="260" height="130" rx="10" fill="url(#m2G)" stroke="#6aaa6a" stroke-width="1"/>
+    <text x="400" y="60" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">M2 · Deterministic</text>
+    <text x="400" y="76" text-anchor="middle" font-size="10" fill="#c0e0c0" font-style="italic">Cashflow Planning</text>
+    <line x1="290" y1="86" x2="510" y2="86" stroke="#7aba7a" stroke-width="0.4"/>
+    <text x="285" y="104" font-size="10" fill="#d0e8d0">· 단일 가정 수익률 경로</text>
+    <text x="285" y="118" font-size="10" fill="#d0e8d0">· Goal cashflow vs wealth 매칭</text>
+    <text x="285" y="132" font-size="10" fill="#d0e8d0">· 단순·이해 쉬움 / 불확실성 부족</text>
+    <text x="285" y="152" font-size="9" fill="#a0d0a0" font-style="italic">대표: Voyant, (일부 TDF)</text>
+
+    <!-- M3 MV/MA -->
+    <rect x="540" y="35" width="260" height="130" rx="10" fill="url(#m3G)" stroke="#aa7aca" stroke-width="1"/>
+    <text x="670" y="60" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">M3 · MV / MA</text>
+    <text x="670" y="76" text-anchor="middle" font-size="10" fill="#e0c0e0" font-style="italic">Das-Markowitz Mental Accounting</text>
+    <line x1="560" y1="86" x2="780" y2="86" stroke="#ba8ada" stroke-width="0.4"/>
+    <text x="555" y="104" font-size="10" fill="#e8d0e8">· Goal별 sub-portfolio + VaR</text>
+    <text x="555" y="118" font-size="10" fill="#e8d0e8">· MV 효율선 유지 (4주차)</text>
+    <text x="555" y="132" font-size="10" fill="#e8d0e8">· 학술적 정합성 ↑</text>
+    <text x="555" y="152" font-size="9" fill="#c0a0c0" font-style="italic">대표: Nebo (Het MVO), MSCI WealthBench</text>
+
+    <!-- M4 Dynamic/CPPI -->
+    <rect x="810" y="35" width="270" height="130" rx="10" fill="url(#m4G)" stroke="#b08830" stroke-width="1"/>
+    <text x="945" y="60" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">M4 · Dynamic / CPPI</text>
+    <text x="945" y="76" text-anchor="middle" font-size="10" fill="#f0d898" font-style="italic">Martellini PSP/GHP · Das-Ostrov DP</text>
+    <line x1="830" y1="86" x2="1060" y2="86" stroke="#c99a38" stroke-width="0.4"/>
+    <text x="825" y="104" font-size="10" fill="#f0e0b8">· Funding ratio 기반 동적 정책</text>
+    <text x="825" y="118" font-size="10" fill="#f0e0b8">· PSP/GHP 분해 (6주차)</text>
+    <text x="825" y="132" font-size="10" fill="#f0e0b8">· 수학적 sophistication 최상</text>
+    <text x="825" y="152" font-size="9" fill="#d0b088" font-style="italic">대표: Ortec OPAL, Nebo (일부), AE Dynamic</text>
+  </g>
+
+  <!-- MIDDLE: Vendor comparison matrix -->
+  <g transform="translate(60, 350)">
+    <text x="540" y="18" text-anchor="middle" font-size="14" font-weight="700" fill="#f0c869">
+      6대 벤더 × 방법론 Matrix · 차별화 포인트
+    </text>
+
+    <rect x="0" y="30" width="1080" height="245" rx="10" fill="#0a1a2a" stroke="#2a3048" stroke-width="0.5"/>
+
+    <!-- Table header -->
+    <g font-size="10.5" fill="#8a95a8" font-weight="600">
+      <text x="20" y="55">Vendor</text>
+      <text x="195" y="55">M1</text>
+      <text x="240" y="55">M2</text>
+      <text x="285" y="55">M3</text>
+      <text x="330" y="55">M4</text>
+      <text x="395" y="55">Signature Feature</text>
+      <text x="720" y="55">한국 도입 관련성</text>
+    </g>
+    <line x1="15" y1="63" x2="1065" y2="63" stroke="#3a4460" stroke-width="0.5"/>
+
+    <!-- Row: AdvisorEngine -->
+    <g font-size="10.5">
+      <text x="20" y="85" fill="#e8e8e8" font-weight="700">AdvisorEngine</text>
+      <text x="20" y="99" fill="#8a95a8" font-size="9">Core / Dynamic</text>
+      <circle cx="200" cy="92" r="5" fill="#7ab8e0"/>
+      <text x="240" y="96" fill="#5a6478">—</text>
+      <text x="285" y="96" fill="#5a6478">—</text>
+      <circle cx="335" cy="92" r="5" fill="#f0c869"/>
+      <text x="345" y="96" font-size="9" fill="#d4a868">(Dynamic 버전)</text>
+      <text x="395" y="92" fill="#d0d0d0">Core/Dynamic 2버전 제공</text>
+      <text x="395" y="106" fill="#a8b0c0" font-size="9">통합 advisor 대시보드</text>
+      <text x="720" y="92" fill="#d0d0d0">중간</text>
+      <text x="720" y="106" fill="#a8b0c0" font-size="9">RIA 워크플로우 특화</text>
+    </g>
+    <line x1="15" y1="117" x2="1065" y2="117" stroke="#2a3048" stroke-width="0.3"/>
+
+    <!-- Row: Envestnet -->
+    <g font-size="10.5">
+      <text x="20" y="138" fill="#e8e8e8" font-weight="700">Envestnet MoneyGuide</text>
+      <text x="20" y="152" fill="#8a95a8" font-size="9">Pro + Tax Insights</text>
+      <circle cx="200" cy="145" r="6" fill="#7ab8e0" stroke="#fff" stroke-width="1"/>
+      <text x="240" y="149" fill="#5a6478">—</text>
+      <text x="285" y="149" fill="#5a6478">—</text>
+      <text x="330" y="149" fill="#5a6478">—</text>
+      <text x="395" y="145" fill="#d0d0d0">최대 규모 · Tax-loss harvesting AI</text>
+      <text x="395" y="159" fill="#a8b0c0" font-size="9">2024 AI Insights Engine 확장</text>
+      <text x="720" y="145" fill="#d0d0d0">낮음</text>
+      <text x="720" y="159" fill="#a8b0c0" font-size="9">미국 세제 특화</text>
+    </g>
+    <line x1="15" y1="170" x2="1065" y2="170" stroke="#2a3048" stroke-width="0.3"/>
+
+    <!-- Row: Nebo -->
+    <g font-size="10.5">
+      <text x="20" y="191" fill="#f0c869" font-weight="700">GMO Nebo Wealth ★</text>
+      <text x="20" y="205" fill="#8a95a8" font-size="9">Goal-driven MVO</text>
+      <text x="195" y="198" fill="#5a6478">—</text>
+      <text x="240" y="198" fill="#5a6478">—</text>
+      <circle cx="290" cy="194" r="6" fill="#aa7aca" stroke="#fff" stroke-width="1"/>
+      <circle cx="335" cy="194" r="5" fill="#f0c869"/>
+      <text x="395" y="191" fill="#d0d0d0">GMO 10년 내부 개발 · ESG 자체</text>
+      <text x="395" y="205" fill="#a8b0c0" font-size="9">"Beyond Risk Scores" 철학 · 2024 Wealth Benchmark</text>
+      <text x="720" y="191" fill="#d0d0d0">높음</text>
+      <text x="720" y="205" fill="#a8b0c0" font-size="9">수학적 sophistication · UHNW 적합</text>
+    </g>
+    <line x1="15" y1="216" x2="1065" y2="216" stroke="#2a3048" stroke-width="0.3"/>
+
+    <!-- Row: MSCI -->
+    <g font-size="10.5">
+      <text x="20" y="237" fill="#e8e8e8" font-weight="700">MSCI WealthBench</text>
+      <text x="20" y="251" fill="#8a95a8" font-size="9">Factor + Risk Analytics</text>
+      <circle cx="200" cy="244" r="5" fill="#7ab8e0"/>
+      <text x="240" y="248" fill="#5a6478">—</text>
+      <circle cx="290" cy="244" r="5" fill="#aa7aca"/>
+      <text x="295" y="248" font-size="8.5" fill="#c0a0c0">(factor)</text>
+      <text x="330" y="248" fill="#5a6478">—</text>
+      <text x="395" y="244" fill="#d0d0d0">MSCI 글로벌 리스크 모델 통합</text>
+      <text x="395" y="258" fill="#a8b0c0" font-size="9">Factor exposure · stress scenario</text>
+      <text x="720" y="244" fill="#d0d0d0">중상</text>
+      <text x="720" y="258" fill="#a8b0c0" font-size="9">기관·자산운용사 사용</text>
+    </g>
+  </g>
+
+  <!-- MIDDLE-BOTTOM: Ortec & Voyant rows (continuation) -->
+  <g transform="translate(60, 625)">
+    <rect x="0" y="0" width="1080" height="95" rx="10" fill="#0a1a2a" stroke="#2a3048" stroke-width="0.5"/>
+
+    <g font-size="10.5">
+      <!-- Ortec -->
+      <text x="20" y="25" fill="#f0c869" font-weight="700">Ortec Finance OPAL ★</text>
+      <text x="20" y="39" fill="#8a95a8" font-size="9">ESG + Dynamic ALM</text>
+      <circle cx="200" cy="32" r="5" fill="#7ab8e0"/>
+      <text x="205" y="36" font-size="8.5" fill="#a0c0d0">(ESG)</text>
+      <text x="240" y="36" fill="#5a6478">—</text>
+      <text x="285" y="36" fill="#5a6478">—</text>
+      <circle cx="335" cy="32" r="6" fill="#f0c869" stroke="#fff" stroke-width="1"/>
+      <text x="395" y="32" fill="#d0d0d0">네덜란드 연금 ALM 40년 전통</text>
+      <text x="395" y="46" fill="#a8b0c0" font-size="9">7년 연속 WealthTech100 · suitability→value</text>
+      <text x="720" y="32" fill="#d0d0d0">매우 높음</text>
+      <text x="720" y="46" fill="#a8b0c0" font-size="9">NPS·사학연금 ALM 전통과 친화적</text>
+    </g>
+    <line x1="15" y1="54" x2="1065" y2="54" stroke="#2a3048" stroke-width="0.3"/>
+
+    <g font-size="10.5">
+      <!-- Voyant -->
+      <text x="20" y="78" fill="#e8e8e8" font-weight="700">Voyant</text>
+      <text x="20" y="92" fill="#8a95a8" font-size="9">Objective-Based Inv.</text>
+      <text x="195" y="85" fill="#5a6478">—</text>
+      <circle cx="245" cy="81" r="6" fill="#6aaa6a" stroke="#fff" stroke-width="1"/>
+      <text x="285" y="85" fill="#5a6478">—</text>
+      <text x="330" y="85" fill="#5a6478">—</text>
+      <text x="395" y="81" fill="#d0d0d0">Life planning 중심 · UX 강점</text>
+      <text x="395" y="95" fill="#a8b0c0" font-size="9">UK 주력 · goal scenario 시각화</text>
+      <text x="720" y="81" fill="#d0d0d0">낮음</text>
+      <text x="720" y="95" fill="#a8b0c0" font-size="9">retail·리테일 advisor 대상</text>
+    </g>
+  </g>
+
+  <!-- Legend for dots -->
+  <g transform="translate(75, 740)" font-size="9.5">
+    <rect x="0" y="0" width="260" height="50" rx="6" fill="#0a1a2a" stroke="#2a3048" stroke-width="0.3"/>
+    <text x="10" y="17" fill="#f0c869" font-weight="700">범례</text>
+    <circle cx="60" cy="32" r="6" fill="#7ab8e0" stroke="#fff" stroke-width="1"/>
+    <text x="70" y="35" fill="#a8b0c0">주력 · 점 크기 = 강도</text>
+    <circle cx="185" cy="32" r="4" fill="#f0c869"/>
+    <text x="195" y="35" fill="#a8b0c0">부분 구현</text>
+  </g>
+
+  <!-- Korea opportunity box -->
+  <g transform="translate(355, 740)">
+    <rect x="0" y="0" width="800" height="50" rx="6" fill="#2a1a1a" stroke="#e07a7a" stroke-width="0.5"/>
+    <text x="15" y="18" font-size="10.5" fill="#ff9090" font-weight="700">★ 한국 시장 Opportunity</text>
+    <text x="15" y="36" font-size="9.5" fill="#e8c8c8">
+      한국형 GBI 엔진 없음 (2026년 기준) · Nebo·Ortec 라이선싱 vs 자체 개발 · 퇴직연금 426조·UHNW 56조·RA 테스트베드와 결합 가능성
+    </text>
+  </g>
+
+  <text x="1140" y="808" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 07 · Figure 2
+  </text>
+</svg>

@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="spaG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a5a8a"/>
+      <stop offset="100%" stop-color="#603c60"/>
+    </linearGradient>
+    <linearGradient id="telserG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a7a8a"/>
+      <stop offset="100%" stop-color="#3c5c6c"/>
+    </linearGradient>
+    <linearGradient id="bptG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5f8e"/>
+      <stop offset="100%" stop-color="#164669"/>
+    </linearGradient>
+    <linearGradient id="gbiG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#a87826"/>
+    </linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#d4a244"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    SP/A → BPT → GBI · 수학적 계보
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="15" fill="url(#goldG)" font-weight="500">
+    심리학 실험실에서 포트폴리오 이론으로, 그리고 운용 산업으로
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- Row 1: Two roots -->
+  <g transform="translate(60, 140)">
+    <!-- SP/A box -->
+    <rect x="0" y="0" width="480" height="170" rx="10" fill="url(#spaG)" stroke="#aa7aca" stroke-width="1"/>
+    <text x="240" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#f5f5f5">SP/A Theory</text>
+    <text x="240" y="52" text-anchor="middle" font-size="11" fill="#e0c0e0" font-style="italic">Lopes (1987) · Lopes-Oden (1999)</text>
+    <line x1="40" y1="66" x2="440" y2="66" stroke="#aa7aca" stroke-width="0.5"/>
+    <text x="20" y="92" font-size="11.5" fill="#e8e8e8">
+      <tspan font-weight="600">심리학 기반 duality</tspan>
+    </text>
+    <text x="20" y="112" font-size="11" fill="#d0c0d0">Security + Potential (혼합 가중함수 h)</text>
+    <text x="20" y="128" font-size="11" fill="#d0c0d0">Aspiration ρ (독립 criterion)</text>
+    <rect x="20" y="140" width="440" height="24" rx="4" fill="#0a1a2a"/>
+    <text x="240" y="156" text-anchor="middle" font-size="11" fill="#e0c0e0" font-style="italic">V(X) = f(SP(X), A(X; ρ))</text>
+    
+    <!-- Telser box -->
+    <rect x="520" y="0" width="480" height="170" rx="10" fill="url(#telserG)" stroke="#7a9aaa" stroke-width="1"/>
+    <text x="760" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#f5f5f5">Safety-First</text>
+    <text x="760" y="52" text-anchor="middle" font-size="11" fill="#c0d8e0" font-style="italic">Roy (1952) · Telser (1956) · Kataoka (1963)</text>
+    <line x1="560" y1="66" x2="960" y2="66" stroke="#7a9aaa" stroke-width="0.5"/>
+    <text x="540" y="92" font-size="11.5" fill="#e8e8e8">
+      <tspan font-weight="600">포트폴리오 chance constraint</tspan>
+    </text>
+    <text x="540" y="112" font-size="11" fill="#c0d0d8">재앙수준 $R_L$ 회피 확률 제약</text>
+    <text x="540" y="128" font-size="11" fill="#c0d0d8">MV 효율선과 접점으로 해 도출</text>
+    <rect x="540" y="140" width="440" height="24" rx="4" fill="#0a1a2a"/>
+    <text x="760" y="156" text-anchor="middle" font-size="11" fill="#c0d8e0" font-style="italic">max E[R_p] s.t. Pr(R_p ≤ R_L) ≤ ε</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="300" y1="315" x2="420" y2="360" stroke="url(#goldG)" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="760" y1="315" x2="640" y2="360" stroke="url(#goldG)" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="530" y="340" text-anchor="middle" font-size="10" fill="#d4a244" font-weight="600">번역 · 통합</text>
+
+  <!-- Row 2: BPT-SA / BPT-MA -->
+  <g transform="translate(60, 370)">
+    <!-- BPT-SA -->
+    <rect x="0" y="0" width="480" height="180" rx="10" fill="url(#bptG)" stroke="#2a7bbb" stroke-width="1"/>
+    <text x="240" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#f5f5f5">BPT-SA (Single Account)</text>
+    <text x="240" y="52" text-anchor="middle" font-size="11" fill="#b0d4f0" font-style="italic">Shefrin-Statman (2000) Section V-VII</text>
+    <line x1="40" y1="66" x2="440" y2="66" stroke="#4a90c8" stroke-width="0.5"/>
+    <text x="20" y="92" font-size="11.5" fill="#e8e8e8">
+      <tspan font-weight="600">단일 계정 · 피라미드 없음</tspan>
+    </text>
+    <text x="20" y="112" font-size="11" fill="#b0d4f0">최적해 = bond + lottery ticket</text>
+    <text x="20" y="128" font-size="11" fill="#b0d4f0">corner solution · 중간 자산 배제</text>
+    <text x="20" y="144" font-size="11" fill="#f0c869">Friedman-Savage puzzle 해명</text>
+    <rect x="20" y="156" width="440" height="20" rx="4" fill="#0a1a2a"/>
+    <text x="240" y="170" text-anchor="middle" font-size="10.5" fill="#f5f5f5" font-style="italic">max E^h[W] s.t. Pr(W ≤ A) ≤ 1−α</text>
+
+    <!-- BPT-MA -->
+    <rect x="520" y="0" width="480" height="180" rx="10" fill="url(#bptG)" stroke="#2a7bbb" stroke-width="1"/>
+    <text x="760" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#f5f5f5">BPT-MA (Multiple Accounts)</text>
+    <text x="760" y="52" text-anchor="middle" font-size="11" fill="#b0d4f0" font-style="italic">Shefrin-Statman (2000) Section VIII-IX</text>
+    <line x1="560" y1="66" x2="960" y2="66" stroke="#4a90c8" stroke-width="0.5"/>
+    <text x="540" y="92" font-size="11.5" fill="#e8e8e8">
+      <tspan font-weight="600">K개 계정 · 피라미드</tspan>
+    </text>
+    <text x="540" y="112" font-size="11" fill="#b0d4f0">각 계정 독립 최적화 · 다른 A_k, α_k, h_k</text>
+    <text x="540" y="128" font-size="11" fill="#b0d4f0">Two-fund separation 일반적 불성립</text>
+    <text x="540" y="144" font-size="11" fill="#f0c869">SP/A aspiration 구조의 완전 구현</text>
+    <rect x="540" y="156" width="440" height="20" rx="4" fill="#0a1a2a"/>
+    <text x="760" y="170" text-anchor="middle" font-size="10.5" fill="#f5f5f5" font-style="italic">max E^h_k[W_k] s.t. Pr(W_k ≤ A_k) ≤ 1−α_k · Σπ_k w_k</text>
+  </g>
+
+  <!-- Arrow to GBI -->
+  <line x1="300" y1="555" x2="500" y2="605" stroke="url(#goldG)" stroke-width="2.5" marker-end="url(#ar)"/>
+  <line x1="760" y1="555" x2="700" y2="605" stroke="url(#goldG)" stroke-width="2.5" marker-end="url(#ar)"/>
+
+  <!-- Intermediate convergence labels -->
+  <g transform="translate(150, 570)">
+    <text x="0" y="0" font-size="10.5" fill="#a0a8b8" font-style="italic">Chhabra (2005)</text>
+    <text x="0" y="14" font-size="10" fill="#8a95a8">3-bucket 실무화</text>
+  </g>
+  <g transform="translate(770, 570)">
+    <text x="0" y="0" font-size="10.5" fill="#a0a8b8" font-style="italic">Das-Markowitz-</text>
+    <text x="0" y="14" font-size="10.5" fill="#a0a8b8" font-style="italic">Scheid-Statman (2010)</text>
+    <text x="0" y="28" font-size="10" fill="#8a95a8">MV 재화해</text>
+  </g>
+
+  <!-- Final: GBI -->
+  <g transform="translate(250, 620)">
+    <rect x="0" y="0" width="700" height="130" rx="12" fill="url(#gbiG)" stroke="#f0c869" stroke-width="1.5"/>
+    <text x="350" y="35" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a1a">
+      Goal-Based Investing 산업 패러다임
+    </text>
+    <text x="350" y="60" text-anchor="middle" font-size="13" fill="#2a2a2a" font-style="italic">
+      Brunel (2015) · Martellini-Milhau (2015+) · Industry standard
+    </text>
+    <rect x="40" y="75" width="620" height="40" rx="4" fill="#1a1a1a"/>
+    <text x="350" y="92" text-anchor="middle" font-size="11" fill="#f0c869">
+      max Σ ω_i · Pr(W_T^i ≥ H_i)  ·  PSP/GHP decomposition  ·  dynamic glide path
+    </text>
+    <text x="350" y="108" text-anchor="middle" font-size="10" fill="#d4a244" font-style="italic">
+      BPT-MA를 실무 자산군·동적정책으로 확장
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text x="1140" y="800" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 03 · Figure 1
+  </text>
+</svg>

@@ -1,0 +1,128 @@
+<svg width="100%" style="max-width:680px"
+     viewBox="0 0 680 460"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="Grealish-Kolm 로보어드바이저 5-단계 프레임워크">
+  <defs>
+    <linearGradient id="gradStage" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E3F2FD"/>
+      <stop offset="100%" stop-color="#BBDEFB"/>
+    </linearGradient>
+    <marker id="arrowRA" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0D47A1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="340" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#0D47A1">
+    Robo-Advisor 5-Stage Framework (Grealish &amp; Kolm 2022)
+  </text>
+  <text x="340" y="42" text-anchor="middle" font-size="11" fill="#37474F">
+    Onboarding → Asset Allocation → Portfolio Selection → Monitoring → Tax Overlay
+  </text>
+
+  <!-- Stage 1: Onboarding -->
+  <rect x="15" y="70" width="120" height="120" rx="8" fill="url(#gradStage)" stroke="#0D47A1" stroke-width="1.5"/>
+  <text x="75" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#0D47A1">① Onboarding</text>
+  <text x="75" y="106" text-anchor="middle" font-size="10" fill="#263238">KYC · 목표</text>
+  <text x="75" y="121" text-anchor="middle" font-size="10" fill="#263238">RTQ 설문</text>
+  <text x="75" y="136" text-anchor="middle" font-size="10" fill="#263238">제약·시계</text>
+  <text x="75" y="158" text-anchor="middle" font-size="9" fill="#455A64">▼ 위험성향</text>
+  <text x="75" y="172" text-anchor="middle" font-size="9" fill="#455A64">▼ 목표 우선순위</text>
+
+  <!-- Stage 2: Asset Allocation -->
+  <rect x="145" y="70" width="120" height="120" rx="8" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+  <text x="205" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#E65100">② 자산배분</text>
+  <text x="205" y="106" text-anchor="middle" font-size="10" fill="#263238">MVO·Risk</text>
+  <text x="205" y="121" text-anchor="middle" font-size="10" fill="#263238">Parity·BL</text>
+  <text x="205" y="136" text-anchor="middle" font-size="10" fill="#263238">GBI 버킷</text>
+  <text x="205" y="158" text-anchor="middle" font-size="9" fill="#455A64">▼ 전략 비중</text>
+  <text x="205" y="172" text-anchor="middle" font-size="9" fill="#455A64">▼ Glide Path</text>
+
+  <!-- Stage 3: Portfolio Selection -->
+  <rect x="275" y="70" width="130" height="120" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="340" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#2E7D32">③ 상품선택</text>
+  <text x="340" y="106" text-anchor="middle" font-size="10" fill="#263238">ETF 선정</text>
+  <text x="340" y="121" text-anchor="middle" font-size="10" fill="#263238">저비용·유동성</text>
+  <text x="340" y="136" text-anchor="middle" font-size="10" fill="#263238">Tracking Error</text>
+  <text x="340" y="158" text-anchor="middle" font-size="9" fill="#455A64">▼ 실행 포트폴리오</text>
+
+  <!-- Stage 4: Monitoring & Rebalancing -->
+  <rect x="415" y="70" width="125" height="120" rx="8" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1.5"/>
+  <text x="477" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#6A1B9A">④ 모니터링</text>
+  <text x="477" y="106" text-anchor="middle" font-size="10" fill="#263238">Drift 감지</text>
+  <text x="477" y="121" text-anchor="middle" font-size="10" fill="#263238">Threshold RB</text>
+  <text x="477" y="136" text-anchor="middle" font-size="10" fill="#263238">Goal tracking</text>
+  <text x="477" y="158" text-anchor="middle" font-size="9" fill="#455A64">▼ 자동 재배분</text>
+  <text x="477" y="172" text-anchor="middle" font-size="9" fill="#455A64">▼ 알림·UX</text>
+
+  <!-- Stage 5: Tax Overlay -->
+  <rect x="550" y="70" width="115" height="120" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="607" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#C62828">⑤ 세제 오버레이</text>
+  <text x="607" y="106" text-anchor="middle" font-size="10" fill="#263238">TLH</text>
+  <text x="607" y="121" text-anchor="middle" font-size="10" fill="#263238">Asset Location</text>
+  <text x="607" y="136" text-anchor="middle" font-size="10" fill="#263238">Lot 선택</text>
+  <text x="607" y="158" text-anchor="middle" font-size="9" fill="#455A64">▼ after-tax α</text>
+
+  <!-- Arrows between stages -->
+  <line x1="135" y1="130" x2="143" y2="130" stroke="#0D47A1" stroke-width="1.5" marker-end="url(#arrowRA)"/>
+  <line x1="265" y1="130" x2="273" y2="130" stroke="#0D47A1" stroke-width="1.5" marker-end="url(#arrowRA)"/>
+  <line x1="405" y1="130" x2="413" y2="130" stroke="#0D47A1" stroke-width="1.5" marker-end="url(#arrowRA)"/>
+  <line x1="540" y1="130" x2="548" y2="130" stroke="#0D47A1" stroke-width="1.5" marker-end="url(#arrowRA)"/>
+
+  <!-- Human-in-the-loop layer -->
+  <rect x="15" y="215" width="650" height="60" rx="8" fill="#FFF9C4" stroke="#F57F17" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="340" y="236" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">
+    Human-in-the-Loop (HITL) Layer
+  </text>
+  <text x="340" y="254" text-anchor="middle" font-size="10" fill="#37474F">
+    Hybrid Advisor · 대화형 UX · Coach 개입 · 시장 스트레스 알림 · 규제 대응
+  </text>
+  <text x="340" y="268" text-anchor="middle" font-size="10" font-style="italic" fill="#455A64">
+    "완전 자동 ≠ 최적" — 2018 이후 Vanguard PAS·Schwab Intelligent Portfolios Premium이 표준화
+  </text>
+
+  <!-- Feedback arrow (bottom) -->
+  <path d="M 607 275 Q 607 310 340 310 Q 75 310 75 275" fill="none"
+        stroke="#5E35B2" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arrowRA)"/>
+  <text x="340" y="304" text-anchor="middle" font-size="10" fill="#5E35B2" font-weight="600">
+    연속 피드백: 시장·세법·고객 목표 변화 → 재순회
+  </text>
+
+  <!-- Outcome row -->
+  <text x="340" y="335" text-anchor="middle" font-size="12" font-weight="700" fill="#0D47A1">
+    Grealish-Kolm 4대 기여
+  </text>
+
+  <rect x="20" y="348" width="155" height="95" rx="6" fill="#FAFAFA" stroke="#90A4AE" stroke-width="1"/>
+  <text x="97" y="366" text-anchor="middle" font-size="10" font-weight="700" fill="#0D47A1">1. 저비용 민주화</text>
+  <text x="97" y="382" text-anchor="middle" font-size="9" fill="#37474F">전통 wirehouse 1.0%</text>
+  <text x="97" y="395" text-anchor="middle" font-size="9" fill="#37474F">→ RA 0.25%</text>
+  <text x="97" y="408" text-anchor="middle" font-size="9" fill="#37474F">최소투자금 $0~500</text>
+  <text x="97" y="424" text-anchor="middle" font-size="10" fill="#2E7D32">$10 trillion 시장</text>
+  <text x="97" y="437" text-anchor="middle" font-size="9" fill="#455A64">진입장벽 90% ↓</text>
+
+  <rect x="185" y="348" width="155" height="95" rx="6" fill="#FAFAFA" stroke="#90A4AE" stroke-width="1"/>
+  <text x="262" y="366" text-anchor="middle" font-size="10" font-weight="700" fill="#E65100">2. 행동편향 완화</text>
+  <text x="262" y="382" text-anchor="middle" font-size="9" fill="#37474F">자동 리밸런싱</text>
+  <text x="262" y="395" text-anchor="middle" font-size="9" fill="#37474F">감정 배제 실행</text>
+  <text x="262" y="408" text-anchor="middle" font-size="9" fill="#37474F">Liu et al. 2023 COVID:</text>
+  <text x="262" y="424" text-anchor="middle" font-size="10" fill="#2E7D32">RA 손실 −15%</text>
+  <text x="262" y="437" text-anchor="middle" font-size="9" fill="#455A64">vs 사람 −30%</text>
+
+  <rect x="350" y="348" width="155" height="95" rx="6" fill="#FAFAFA" stroke="#90A4AE" stroke-width="1"/>
+  <text x="427" y="366" text-anchor="middle" font-size="10" font-weight="700" fill="#2E7D32">3. Tax Alpha</text>
+  <text x="427" y="382" text-anchor="middle" font-size="9" fill="#37474F">TLH 연 0.77%</text>
+  <text x="427" y="395" text-anchor="middle" font-size="9" fill="#37474F">Asset Location</text>
+  <text x="427" y="408" text-anchor="middle" font-size="9" fill="#37474F">Betterment 백서 2014+</text>
+  <text x="427" y="424" text-anchor="middle" font-size="10" fill="#2E7D32">α ≈ τ·σ²·f</text>
+  <text x="427" y="437" text-anchor="middle" font-size="9" fill="#455A64">wash-sale · 빈도</text>
+
+  <rect x="515" y="348" width="150" height="95" rx="6" fill="#FAFAFA" stroke="#90A4AE" stroke-width="1"/>
+  <text x="590" y="366" text-anchor="middle" font-size="10" font-weight="700" fill="#6A1B9A">4. Goal-Based UX</text>
+  <text x="590" y="382" text-anchor="middle" font-size="9" fill="#37474F">목표별 계좌</text>
+  <text x="590" y="395" text-anchor="middle" font-size="9" fill="#37474F">달성 확률 시각화</text>
+  <text x="590" y="408" text-anchor="middle" font-size="9" fill="#37474F">행동재무 적용</text>
+  <text x="590" y="424" text-anchor="middle" font-size="10" fill="#2E7D32">BPT ↔ 실무</text>
+  <text x="590" y="437" text-anchor="middle" font-size="9" fill="#455A64">Das-Markowitz 상용화</text>
+</svg>

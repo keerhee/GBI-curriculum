@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="'Inter', 'Noto Sans KR', -apple-system, sans-serif">
+  <rect width="1200" height="820" fill="#0f1629"/>
+
+  <defs>
+    <linearGradient id="goldG8" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a244"/>
+      <stop offset="100%" stop-color="#f0c869"/>
+    </linearGradient>
+    <linearGradient id="gridG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e5f8e" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#2a7bbb" stop-opacity="0.2"/>
+    </linearGradient>
+    <marker id="ar8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#f0c869"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f5f5f5">
+    DORS2020 Dynamic Programming Framework
+  </text>
+  <text x="600" y="78" text-anchor="middle" font-size="14" fill="url(#goldG8)" font-weight="500">
+    상태공간 (W, t) 격자 · Backward Induction · Bellman Equation · Optimal Policy π*(W, t)
+  </text>
+  <line x1="200" y1="100" x2="1000" y2="100" stroke="#d4a244" stroke-width="1" opacity="0.4"/>
+
+  <!-- LEFT: State space grid visualization -->
+  <g transform="translate(60, 130)">
+    <text x="280" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#f0c869">
+      상태공간 격자 (W, t)
+    </text>
+
+    <rect x="0" y="40" width="560" height="360" rx="8" fill="#0a1a2a" stroke="#2a3048" stroke-width="0.5"/>
+
+    <!-- Plot area: x (time 0..T=10) 60..520, y (W 0..400) 370..70 -->
+    <!-- Draw grid dots at discrete (t, W_i) -->
+    <!-- Generate dots -->
+    <g fill="#7ab8e0" opacity="0.6">
+      <!-- 11 time points x 8 W levels sample -->
+      <circle cx="60" cy="340" r="1.5"/><circle cx="60" cy="310" r="1.5"/><circle cx="60" cy="280" r="1.5"/><circle cx="60" cy="250" r="1.5"/><circle cx="60" cy="220" r="1.5"/><circle cx="60" cy="190" r="1.5"/><circle cx="60" cy="160" r="1.5"/><circle cx="60" cy="130" r="1.5"/><circle cx="60" cy="100" r="1.5"/>
+      <circle cx="106" cy="340" r="1.5"/><circle cx="106" cy="310" r="1.5"/><circle cx="106" cy="280" r="1.5"/><circle cx="106" cy="250" r="1.5"/><circle cx="106" cy="220" r="1.5"/><circle cx="106" cy="190" r="1.5"/><circle cx="106" cy="160" r="1.5"/><circle cx="106" cy="130" r="1.5"/><circle cx="106" cy="100" r="1.5"/>
+      <circle cx="152" cy="340" r="1.5"/><circle cx="152" cy="310" r="1.5"/><circle cx="152" cy="280" r="1.5"/><circle cx="152" cy="250" r="1.5"/><circle cx="152" cy="220" r="1.5"/><circle cx="152" cy="190" r="1.5"/><circle cx="152" cy="160" r="1.5"/><circle cx="152" cy="130" r="1.5"/><circle cx="152" cy="100" r="1.5"/>
+      <circle cx="198" cy="340" r="1.5"/><circle cx="198" cy="310" r="1.5"/><circle cx="198" cy="280" r="1.5"/><circle cx="198" cy="250" r="1.5"/><circle cx="198" cy="220" r="1.5"/><circle cx="198" cy="190" r="1.5"/><circle cx="198" cy="160" r="1.5"/><circle cx="198" cy="130" r="1.5"/><circle cx="198" cy="100" r="1.5"/>
+      <circle cx="244" cy="340" r="1.5"/><circle cx="244" cy="310" r="1.5"/><circle cx="244" cy="280" r="1.5"/><circle cx="244" cy="250" r="1.5"/><circle cx="244" cy="220" r="1.5"/><circle cx="244" cy="190" r="1.5"/><circle cx="244" cy="160" r="1.5"/><circle cx="244" cy="130" r="1.5"/><circle cx="244" cy="100" r="1.5"/>
+      <circle cx="290" cy="340" r="1.5"/><circle cx="290" cy="310" r="1.5"/><circle cx="290" cy="280" r="1.5"/><circle cx="290" cy="250" r="1.5"/><circle cx="290" cy="220" r="1.5"/><circle cx="290" cy="190" r="1.5"/><circle cx="290" cy="160" r="1.5"/><circle cx="290" cy="130" r="1.5"/><circle cx="290" cy="100" r="1.5"/>
+      <circle cx="336" cy="340" r="1.5"/><circle cx="336" cy="310" r="1.5"/><circle cx="336" cy="280" r="1.5"/><circle cx="336" cy="250" r="1.5"/><circle cx="336" cy="220" r="1.5"/><circle cx="336" cy="190" r="1.5"/><circle cx="336" cy="160" r="1.5"/><circle cx="336" cy="130" r="1.5"/><circle cx="336" cy="100" r="1.5"/>
+      <circle cx="382" cy="340" r="1.5"/><circle cx="382" cy="310" r="1.5"/><circle cx="382" cy="280" r="1.5"/><circle cx="382" cy="250" r="1.5"/><circle cx="382" cy="220" r="1.5"/><circle cx="382" cy="190" r="1.5"/><circle cx="382" cy="160" r="1.5"/><circle cx="382" cy="130" r="1.5"/><circle cx="382" cy="100" r="1.5"/>
+      <circle cx="428" cy="340" r="1.5"/><circle cx="428" cy="310" r="1.5"/><circle cx="428" cy="280" r="1.5"/><circle cx="428" cy="250" r="1.5"/><circle cx="428" cy="220" r="1.5"/><circle cx="428" cy="190" r="1.5"/><circle cx="428" cy="160" r="1.5"/><circle cx="428" cy="130" r="1.5"/><circle cx="428" cy="100" r="1.5"/>
+      <circle cx="474" cy="340" r="1.5"/><circle cx="474" cy="310" r="1.5"/><circle cx="474" cy="280" r="1.5"/><circle cx="474" cy="250" r="1.5"/><circle cx="474" cy="220" r="1.5"/><circle cx="474" cy="190" r="1.5"/><circle cx="474" cy="160" r="1.5"/><circle cx="474" cy="130" r="1.5"/><circle cx="474" cy="100" r="1.5"/>
+      <circle cx="520" cy="340" r="1.5"/><circle cx="520" cy="310" r="1.5"/><circle cx="520" cy="280" r="1.5"/><circle cx="520" cy="250" r="1.5"/><circle cx="520" cy="220" r="1.5"/><circle cx="520" cy="190" r="1.5"/><circle cx="520" cy="160" r="1.5"/><circle cx="520" cy="130" r="1.5"/><circle cx="520" cy="100" r="1.5"/>
+    </g>
+
+    <!-- Highlight key states: W_0 = 100 (initial) -->
+    <circle cx="60" cy="310" r="7" fill="#d4a244" stroke="#fff" stroke-width="1.5"/>
+    <text x="13" y="315" font-size="10" fill="#f0c869" font-weight="600">W₀</text>
+
+    <!-- Goal line G = 200 at t = T -->
+    <line x1="60" y1="190" x2="520" y2="190" stroke="#4cbf7a" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+    <text x="0" y="193" font-size="10" fill="#7ae0a0" font-weight="600">G = 200</text>
+
+    <!-- Terminal boundary at t = T -->
+    <line x1="520" y1="370" x2="520" y2="70" stroke="#e07a7a" stroke-width="1.5" opacity="0.7"/>
+    <text x="535" y="65" font-size="10" fill="#ff9090" font-weight="600">t = T (terminal)</text>
+
+    <!-- Example transitions from W_0 -->
+    <path d="M 60 310 Q 80 300 106 295" stroke="#f0c869" stroke-width="1.2" fill="none" marker-end="url(#ar8)" opacity="0.8"/>
+    <path d="M 60 310 Q 80 310 106 310" stroke="#f0c869" stroke-width="1.2" fill="none" marker-end="url(#ar8)" opacity="0.6"/>
+    <path d="M 60 310 Q 80 320 106 325" stroke="#f0c869" stroke-width="1.2" fill="none" marker-end="url(#ar8)" opacity="0.4"/>
+
+    <!-- Annotation for transition probs -->
+    <text x="115" y="285" font-size="9" fill="#f0c869" font-style="italic">p_ij^(k)</text>
+
+    <!-- Highlight terminal nodes above G (success) -->
+    <g fill="#7ae0a0">
+      <circle cx="520" cy="160" r="4"/>
+      <circle cx="520" cy="130" r="4"/>
+      <circle cx="520" cy="100" r="4"/>
+    </g>
+    <g fill="#ff9090">
+      <circle cx="520" cy="340" r="4"/>
+      <circle cx="520" cy="310" r="4"/>
+      <circle cx="520" cy="280" r="4"/>
+      <circle cx="520" cy="250" r="4"/>
+      <circle cx="520" cy="220" r="4"/>
+    </g>
+
+    <!-- Axes -->
+    <line x1="60" y1="370" x2="540" y2="370" stroke="#4a5470" stroke-width="1"/>
+    <line x1="60" y1="370" x2="60" y2="70" stroke="#4a5470" stroke-width="1"/>
+
+    <g font-size="9" fill="#8a95a8">
+      <text x="60" y="388" text-anchor="middle">t=0</text>
+      <text x="290" y="388" text-anchor="middle">t=5</text>
+      <text x="520" y="388" text-anchor="middle">t=10 = T</text>
+    </g>
+    <g font-size="9" fill="#8a95a8">
+      <text x="52" y="343" text-anchor="end">50</text>
+      <text x="52" y="313" text-anchor="end">100</text>
+      <text x="52" y="253" text-anchor="end">150</text>
+      <text x="52" y="193" text-anchor="end">200</text>
+      <text x="52" y="103" text-anchor="end">350</text>
+    </g>
+
+    <text x="540" y="374" font-size="11" fill="#a8b0c0" font-weight="600">time t</text>
+    <text x="60" y="62" text-anchor="middle" font-size="11" fill="#a8b0c0" font-weight="600">Wealth W</text>
+
+    <!-- Backward induction arrow (right to left) -->
+    <g>
+      <line x1="480" y1="60" x2="100" y2="60" stroke="#d4a244" stroke-width="2" marker-end="url(#ar8)"/>
+      <text x="290" y="52" text-anchor="middle" font-size="10.5" fill="#f0c869" font-weight="700">Backward Induction · t: T → 0</text>
+    </g>
+
+    <!-- Below grid: legend -->
+    <g transform="translate(20, 410)" font-size="10">
+      <circle cx="10" cy="5" r="4" fill="#7ae0a0"/>
+      <text x="20" y="9" fill="#a8d0b0">V_T = 1 (W ≥ G)</text>
+      <circle cx="155" cy="5" r="4" fill="#ff9090"/>
+      <text x="165" y="9" fill="#e0b0b0">V_T = 0 (W &lt; G)</text>
+      <circle cx="295" cy="5" r="4" fill="#d4a244"/>
+      <text x="305" y="9" fill="#f0c869">Initial W₀</text>
+      <circle cx="405" cy="5" r="2" fill="#7ab8e0" opacity="0.6"/>
+      <text x="415" y="9" fill="#a8b0c0">Grid node (W_i, t)</text>
+    </g>
+  </g>
+
+  <!-- RIGHT: Bellman equation and algorithm -->
+  <g transform="translate(640, 130)">
+    <text x="260" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#f0c869">
+      Bellman Equation + Algorithm
+    </text>
+
+    <!-- Terminal condition -->
+    <rect x="0" y="40" width="520" height="60" rx="8" fill="#0a2818" stroke="#4cbf7a" stroke-width="1"/>
+    <text x="15" y="58" font-size="11" fill="#7ae0a0" font-weight="700">Terminal Condition</text>
+    <rect x="40" y="68" width="440" height="24" rx="4" fill="#1a2828" stroke="#2a4030" stroke-width="0.3"/>
+    <text x="260" y="85" text-anchor="middle" font-size="14" fill="#d8e8d0" font-style="italic">V_T(W_i) = 𝟙{W_i ≥ G}</text>
+
+    <!-- Bellman recursion -->
+    <rect x="0" y="110" width="520" height="80" rx="8" fill="#2a2010" stroke="#f0c869" stroke-width="1"/>
+    <text x="15" y="128" font-size="11" fill="#f0c869" font-weight="700">Bellman Recursion (t: T-h → 0)</text>
+    <rect x="20" y="138" width="480" height="42" rx="4" fill="#1a1810" stroke="#3a3020" stroke-width="0.3"/>
+    <text x="260" y="167" text-anchor="middle" font-size="14" fill="#e8d8b8" font-style="italic">
+      V_t(W_i) = max_k Σ_j p_ij^(k) · V_{t+h}(W_j)
+    </text>
+
+    <!-- Optimal policy -->
+    <rect x="0" y="200" width="520" height="60" rx="8" fill="#1a2838" stroke="#7ab8e0" stroke-width="1"/>
+    <text x="15" y="218" font-size="11" fill="#a8d8f0" font-weight="700">Optimal Policy</text>
+    <rect x="40" y="228" width="440" height="24" rx="4" fill="#0a1828" stroke="#2a3848" stroke-width="0.3"/>
+    <text x="260" y="245" text-anchor="middle" font-size="14" fill="#d0e0f0" font-style="italic">π*_t(W_i) = argmax_k Σ_j p_ij^(k) · V_{t+h}(W_j)</text>
+
+    <!-- Algorithm pseudocode -->
+    <rect x="0" y="275" width="520" height="165" rx="8" fill="#0a1a2a" stroke="#d4a244" stroke-width="0.8"/>
+    <text x="15" y="293" font-size="11" fill="#f0c869" font-weight="700">Algorithm (DORS 2020)</text>
+    <line x1="15" y1="300" x2="505" y2="300" stroke="#d4a244" stroke-width="0.3" opacity="0.4"/>
+
+    <g font-family="monospace" font-size="10" fill="#d0d0d0">
+      <text x="20" y="318">
+        <tspan fill="#8a95a8">1.</tspan>
+        <tspan> V[:, T] ← (W_grid ≥ G).astype(float)</tspan>
+      </text>
+      <text x="20" y="336">
+        <tspan fill="#8a95a8">2.</tspan>
+        <tspan> for t = T-h, T-2h, ..., 0:</tspan>
+      </text>
+      <text x="30" y="354">for i in range(n_W):</text>
+      <text x="40" y="372">for k in range(K):</text>
+      <text x="50" y="390">
+        <tspan>v_k ← Σ p_ij^(k) · V[j, t+h]</tspan>
+      </text>
+      <text x="40" y="408">V[i, t] ← max_k v_k</text>
+      <text x="40" y="426">π[i, t] ← argmax_k v_k</text>
+    </g>
+
+    <!-- Bottom: Parameters box -->
+    <rect x="0" y="455" width="520" height="90" rx="8" fill="#1a2138" stroke="#3a4460" stroke-width="0.5"/>
+    <text x="15" y="473" font-size="11" fill="#f0c869" font-weight="700">Key Parameters (DORS2020 §4)</text>
+    <line x1="15" y1="480" x2="505" y2="480" stroke="#3a4460" stroke-width="0.3"/>
+
+    <g font-size="10" fill="#d0d0d0">
+      <text x="20" y="498">
+        <tspan fill="#7ab8e0">m = 15</tspan>
+        <tspan> wealth grid points per σ_min (accuracy sweet spot)</tspan>
+      </text>
+      <text x="20" y="516">
+        <tspan fill="#7ab8e0">K = 15</tspan>
+        <tspan> portfolios on efficient frontier</tspan>
+      </text>
+      <text x="20" y="534">
+        <tspan fill="#7ab8e0">h = 1</tspan>
+        <tspan> year rebalance interval · 계산 복잡도 O(T·|W|·K·|W|)</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom: Role comparison -->
+  <g transform="translate(60, 680)">
+    <rect x="0" y="0" width="1080" height="110" rx="10" fill="#0a1a2a" stroke="#d4a244" stroke-width="1"/>
+    <text x="540" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#f0c869">
+      왜 DP인가 · 전략 A(분해)에서 전략 B(통합)로의 도약
+    </text>
+    <line x1="30" y1="38" x2="1050" y2="38" stroke="#d4a244" stroke-width="0.3"/>
+
+    <g font-size="11" fill="#d0d0d0">
+      <text x="30" y="60">
+        <tspan fill="#7ab8e0" font-weight="700">Forward-looking:</tspan>
+        <tspan> 현재 결정이 미래 모든 상태에서의 최적을 전제로</tspan>
+      </text>
+      <text x="30" y="80">
+        <tspan fill="#f0c869" font-weight="700">State-dependent:</tspan>
+        <tspan> π*(W, t) — 같은 나이라도 wealth에 따라 다른 portfolio</tspan>
+      </text>
+      <text x="30" y="100">
+        <tspan fill="#4cbf7a" font-weight="700">Time-consistent:</tspan>
+        <tspan> Bellman optimality 보장 (vs myopic CPPI · deterministic TDF)</tspan>
+      </text>
+
+      <text x="580" y="60">
+        <tspan fill="#e07a7a" font-weight="700">차원의 저주:</tspan>
+        <tspan> K-goal 확장 시 격자 점이 K에 exponential</tspan>
+      </text>
+      <text x="580" y="80">
+        <tspan fill="#e07a7a" font-weight="700">모델 의존:</tspan>
+        <tspan> GBM·i.i.d. 가정이 현실 위반 시 suboptimal</tspan>
+      </text>
+      <text x="580" y="100">
+        <tspan fill="#aa7aca" font-weight="700">→ RL로 진화:</tspan>
+        <tspan> Das-Varma 2020, Bauman 2024 (9주차)</tspan>
+      </text>
+    </g>
+  </g>
+
+  <text x="1140" y="810" text-anchor="end" font-size="10" fill="#5a6478" font-style="italic">
+    GBI Curriculum · Week 08 · Figure 1
+  </text>
+</svg>

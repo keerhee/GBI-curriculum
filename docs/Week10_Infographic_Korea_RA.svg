@@ -1,0 +1,120 @@
+<svg width="100%" style="max-width:680px"
+     viewBox="0 0 680 500"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="한국 로보어드바이저 산업 생태계 비교">
+
+  <!-- Title -->
+  <text x="340" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#B07517">
+    한국 Robo-Advisor 산업 3-레이어 생태계
+  </text>
+  <text x="340" y="42" text-anchor="middle" font-size="10" fill="#37474F">
+    코스콤 테스트베드 (2016~) · 규제 샌드박스 (2019~) · 퇴직연금 일임 (2024.12~)
+  </text>
+
+  <!-- Layer 1: Fintech RA (Upper) -->
+  <rect x="15" y="60" width="650" height="110" rx="8" fill="#FFF8E1" stroke="#F5A623" stroke-width="1.5"/>
+  <text x="25" y="80" font-size="12" font-weight="700" fill="#B07517">
+    Layer 1 · 핀테크 RA (독립형)
+  </text>
+  <text x="660" y="80" text-anchor="end" font-size="9" fill="#455A64">규모: 누적 AUM ~3조 원 (2025년 말 추정)</text>
+
+  <!-- Fount -->
+  <rect x="25" y="90" width="150" height="70" rx="6" fill="#FFFFFF" stroke="#F5A623"/>
+  <text x="100" y="107" text-anchor="middle" font-size="11" font-weight="700" fill="#B07517">파운트 (Fount)</text>
+  <text x="100" y="122" text-anchor="middle" font-size="9" fill="#263238">AUM ~1.5조 원 (업계 1위)</text>
+  <text x="100" y="135" text-anchor="middle" font-size="9" fill="#263238">글로벌 자산배분·BL</text>
+  <text x="100" y="148" text-anchor="middle" font-size="9" fill="#37474F">테스트베드 1회(2017)~</text>
+
+  <!-- December (Fint) -->
+  <rect x="185" y="90" width="150" height="70" rx="6" fill="#FFFFFF" stroke="#F5A623"/>
+  <text x="260" y="107" text-anchor="middle" font-size="11" font-weight="700" fill="#B07517">디셈버 · 핀트(Fint)</text>
+  <text x="260" y="122" text-anchor="middle" font-size="9" fill="#263238">최초 비대면 일임 (2019)</text>
+  <text x="260" y="135" text-anchor="middle" font-size="9" fill="#263238">AI Agent 4종 생태계</text>
+  <text x="260" y="148" text-anchor="middle" font-size="9" fill="#37474F">Scout·Guardian·Optimizer</text>
+
+  <!-- Bulrio -->
+  <rect x="345" y="90" width="150" height="70" rx="6" fill="#FFFFFF" stroke="#F5A623"/>
+  <text x="420" y="107" text-anchor="middle" font-size="11" font-weight="700" fill="#B07517">불리오(Bulrio)</text>
+  <text x="420" y="122" text-anchor="middle" font-size="9" fill="#263238">두물머리 운영</text>
+  <text x="420" y="135" text-anchor="middle" font-size="9" fill="#263238">테마형 GBI 포트</text>
+  <text x="420" y="148" text-anchor="middle" font-size="9" fill="#37474F">AI·ESG·리츠 바스켓</text>
+
+  <!-- Quantec/AIM -->
+  <rect x="505" y="90" width="150" height="70" rx="6" fill="#FFFFFF" stroke="#F5A623"/>
+  <text x="580" y="107" text-anchor="middle" font-size="11" font-weight="700" fill="#B07517">콴텍·에임 외</text>
+  <text x="580" y="122" text-anchor="middle" font-size="9" fill="#263238">쿼터백·콴텍·에임</text>
+  <text x="580" y="135" text-anchor="middle" font-size="9" fill="#263238">업라이즈(매크로알파)</text>
+  <text x="580" y="148" text-anchor="middle" font-size="9" fill="#37474F">RATB 연 2~3회 심사</text>
+
+  <!-- Layer 2: Bank/Broker RA (Middle) -->
+  <rect x="15" y="180" width="650" height="115" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="25" y="200" font-size="12" font-weight="700" fill="#0D47A1">
+    Layer 2 · 증권사·은행 RA (기관형)
+  </text>
+  <text x="660" y="200" text-anchor="end" font-size="9" fill="#455A64">규모: 증권사 개인 일임 ~1조 원</text>
+
+  <!-- Mirae Asset -->
+  <rect x="25" y="210" width="150" height="75" rx="6" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="100" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#0D47A1">미래에셋증권</text>
+  <text x="100" y="243" text-anchor="middle" font-size="9" fill="#263238">웹·앱 M-STOCK 통합</text>
+  <text x="100" y="256" text-anchor="middle" font-size="9" fill="#263238">해외 ETF 자동투자</text>
+  <text x="100" y="269" text-anchor="middle" font-size="9" fill="#37474F">글로벌 자산배분 강점</text>
+  <text x="100" y="282" text-anchor="middle" font-size="9" fill="#B71C1C">ISA·IRP 연계</text>
+
+  <!-- Korea Investment -->
+  <rect x="185" y="210" width="150" height="75" rx="6" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="260" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#0D47A1">한국투자증권</text>
+  <text x="260" y="243" text-anchor="middle" font-size="9" fill="#263238">'코비(KOBI)'</text>
+  <text x="260" y="256" text-anchor="middle" font-size="9" fill="#263238">글로벌 자산배분</text>
+  <text x="260" y="269" text-anchor="middle" font-size="9" fill="#37474F">퇴직연금 전용 2종</text>
+  <text x="260" y="282" text-anchor="middle" font-size="9" fill="#B71C1C">RATB 통과 (2024)</text>
+
+  <!-- NH -->
+  <rect x="345" y="210" width="150" height="75" rx="6" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="420" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#0D47A1">NH투자증권</text>
+  <text x="420" y="243" text-anchor="middle" font-size="9" fill="#263238">NH-Amundi 연계</text>
+  <text x="420" y="256" text-anchor="middle" font-size="9" fill="#263238">대면+비대면 서비스</text>
+  <text x="420" y="269" text-anchor="middle" font-size="9" fill="#37474F">2024.08 대면 출시</text>
+  <text x="420" y="282" text-anchor="middle" font-size="9" fill="#B71C1C">2024.12 비대면 출시</text>
+
+  <!-- KB WM -->
+  <rect x="505" y="210" width="150" height="75" rx="6" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="580" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#0D47A1">KB국민은행 WM</text>
+  <text x="580" y="243" text-anchor="middle" font-size="9" fill="#263238">KB자산운용 결합</text>
+  <text x="580" y="256" text-anchor="middle" font-size="9" fill="#263238">KB마이머니</text>
+  <text x="580" y="269" text-anchor="middle" font-size="9" fill="#37474F">파운트 3.0 제휴</text>
+  <text x="580" y="282" text-anchor="middle" font-size="9" fill="#B71C1C">AI 코치·생애 설계</text>
+
+  <!-- Layer 3: Pension RA (Bottom) -->
+  <rect x="15" y="305" width="650" height="115" rx="8" fill="#FFEBEE" stroke="#AD1457" stroke-width="1.5"/>
+  <text x="25" y="325" font-size="12" font-weight="700" fill="#880E4F">
+    Layer 3 · 퇴직연금 RA 일임 (2024.12~ 샌드박스)
+  </text>
+  <text x="660" y="325" text-anchor="end" font-size="9" fill="#455A64">시장: DB+DC+IRP 501조 원 (2025년 말)</text>
+
+  <!-- Market Context -->
+  <rect x="25" y="335" width="310" height="75" rx="6" fill="#FFFFFF" stroke="#AD1457"/>
+  <text x="180" y="353" text-anchor="middle" font-size="11" font-weight="700" fill="#880E4F">시장 맥락 (2025)</text>
+  <text x="180" y="370" text-anchor="middle" font-size="9" fill="#263238">퇴직연금 적립금 501조 원 · 10년 IRP 수익률 1.74%</text>
+  <text x="180" y="384" text-anchor="middle" font-size="9" fill="#263238">원리금보장형 87% ← '저수익 함정'</text>
+  <text x="180" y="398" text-anchor="middle" font-size="9" fill="#37474F">(금감원·고용부 2024.05)</text>
+
+  <!-- Regulation Flow -->
+  <rect x="345" y="335" width="310" height="75" rx="6" fill="#FFFFFF" stroke="#AD1457"/>
+  <text x="500" y="353" text-anchor="middle" font-size="11" font-weight="700" fill="#880E4F">규제 3단계 관문</text>
+  <text x="500" y="370" text-anchor="middle" font-size="9" fill="#263238">1. 코스콤 RATB 통과 (알고리즘 안정성)</text>
+  <text x="500" y="384" text-anchor="middle" font-size="9" fill="#263238">2. 금융위 혁신금융서비스 (규제 샌드박스)</text>
+  <text x="500" y="398" text-anchor="middle" font-size="9" fill="#263238">3. 퇴직연금사업자 제휴 (IRP 한정 시범)</text>
+
+  <!-- Gap between KR and US -->
+  <rect x="15" y="430" width="650" height="55" rx="8" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="340" y="450" text-anchor="middle" font-size="11" font-weight="700" fill="#4A148C">
+    한국 RA의 구조적 Gap
+  </text>
+  <text x="340" y="468" text-anchor="middle" font-size="10" fill="#37474F">
+    AUM 미국의 1/100 수준 · 세제 인센티브 부재 (TLH 미활용) · DC는 여전히 제외 · 수수료 압박 (0.3~0.5%)
+  </text>
+  <text x="340" y="481" text-anchor="middle" font-size="9" font-style="italic" fill="#6A1B9A">
+    연구 시사점: IRP 우선 정착 → DC 확대 → 세제 연동이 3단계 로드맵
+  </text>
+</svg>

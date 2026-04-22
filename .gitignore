@@ -1,0 +1,104 @@
+# ═══════════════════════════════════════════════
+# OS 시스템 파일
+# ═══════════════════════════════════════════════
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ═══════════════════════════════════════════════
+# IDE · 에디터
+# ═══════════════════════════════════════════════
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+
+.idea/
+*.iml
+*.iws
+*.ipr
+
+*.sublime-workspace
+*.sublime-project
+
+*.swp
+*.swo
+
+# ═══════════════════════════════════════════════
+# Obsidian 작업 파일
+# ═══════════════════════════════════════════════
+.obsidian/
+.trash/
+
+# ═══════════════════════════════════════════════
+# Python (부록 실습 코드용)
+# ═══════════════════════════════════════════════
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# 가상환경
+venv/
+env/
+.venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_backup
+
+# ═══════════════════════════════════════════════
+# 데이터 (대용량)
+# ═══════════════════════════════════════════════
+*.csv
+*.parquet
+*.pkl
+*.pickle
+data/
+datasets/
+
+# ═══════════════════════════════════════════════
+# 임시 파일
+# ═══════════════════════════════════════════════
+*.tmp
+*.temp
+tmp/
+temp/
+.cache/
+*.bak
+*.backup
+
+# ═══════════════════════════════════════════════
+# 원본 배포 아카이브
+# ═══════════════════════════════════════════════
+GBI_강의노트.zip
+
+# ═══════════════════════════════════════════════
+# Claude Code 내부 파일
+# ═══════════════════════════════════════════════
+.claude/

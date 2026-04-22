@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goal-Based Investing 강의노트 — 목차</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --orange: #ff9d4d;
+      --purple: #bc8cff;
+      --green: #7ee787;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Roboto, sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    header .meta {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    header .repo-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    header .repo-link:hover { color: var(--accent-hover); }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      font-size: 1.25rem;
+      margin: 0 0 16px;
+      padding-left: 12px;
+      border-left: 3px solid var(--orange);
+    }
+    section h2.part-2 { border-left-color: var(--purple); }
+    section h2.part-3 { border-left-color: var(--green); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      display: block;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .card .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card .title {
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .card .sub {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .card.overview { border-color: var(--orange); }
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { color: var(--accent-hover); }
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+    .intro strong { color: var(--orange); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Goal-Based Investing 강의노트</h1>
+      <p>MBA 금융전공을 위한 12주 GBI 종합 커리큘럼 — 이론에서 실무 확장까지</p>
+      <div class="meta">12 weeks × 3 hours · MBA (Finance Concentration) · Korean / English</div>
+      <a class="repo-link" href="https://github.com/keerhee/gbi-curriculum">GitHub 저장소 →</a>
+    </header>
+
+    <div class="intro">
+      <strong>Goal-Based Investing (GBI)</strong> 는 "벤치마크 초과수익"이 아니라
+      <strong>"개인·기관의 구체적 재무 목표 달성 확률 극대화"</strong> 를 목적으로 하는 자산운용 패러다임입니다.
+      본 자료는 MPT의 한계에서 출발해 BPT·Mental Accounting·LDI·동적계획법·RL·로보어드바이저까지
+      12주에 걸쳐 이론·방법론·실무를 연결합니다.
+    </div>
+
+    <section>
+      <h2>Syllabus</h2>
+      <div class="grid">
+        <a class="card overview" href="GBI_Curriculum_Syllabus.md">
+          <div class="label">Overview</div>
+          <div class="title">12주 전체 Syllabus</div>
+          <div class="sub">학습 목표 · 평가 · 주차별 개요 · 핵심 참고문헌</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Part 1. 이론 기초 (Week 1–4)</h2>
+      <div class="grid">
+        <a class="card" href="Week01_Lecture_Note.md">
+          <div class="label">Week 1</div>
+          <div class="title">왜 GBI인가 — MPT의 한계</div>
+          <div class="sub">Markowitz · Chhabra 피라미드 · 리스크 재정의</div>
+        </a>
+        <a class="card" href="Week02_Lecture_Note.md">
+          <div class="label">Week 2</div>
+          <div class="title">행동재무학 기초</div>
+          <div class="sub">Prospect Theory · Mental Accounting · SP/A</div>
+        </a>
+        <a class="card" href="Week03_Lecture_Note.md">
+          <div class="label">Week 3</div>
+          <div class="title">Behavioral Portfolio Theory</div>
+          <div class="sub">Shefrin-Statman · safety-first · BPT-SA/MA</div>
+        </a>
+        <a class="card" href="Week04_Lecture_Note.md">
+          <div class="label">Week 4</div>
+          <div class="title">Mental Accounting Framework</div>
+          <div class="sub">Das-Markowitz-Scheid-Statman · MV 동등성</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="part-2">Part 2. 핵심 방법론 (Week 5–8)</h2>
+      <div class="grid">
+        <a class="card" href="Week05_Lecture_Note.md">
+          <div class="label">Week 5</div>
+          <div class="title">Brunel의 Goals-Based WM</div>
+          <div class="sub">4-bucket · UHNW · family office</div>
+        </a>
+        <a class="card" href="Week06_Lecture_Note.md">
+          <div class="label">Week 6</div>
+          <div class="title">LDI 확장 — PSP/GHP</div>
+          <div class="sub">Martellini-Milhau · risk budget · floor</div>
+        </a>
+        <a class="card" href="Week07_Lecture_Note.md">
+          <div class="label">Week 7</div>
+          <div class="title">Multi-Goal Optimization</div>
+          <div class="sub">자금할당 · funding ratio · surplus transfer</div>
+        </a>
+        <a class="card" href="Week08_Lecture_Note.md">
+          <div class="label">Week 8</div>
+          <div class="title">Dynamic GBWM (DP)</div>
+          <div class="sub">Das-Ostrov · Bellman · TDF 대비 우월성</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="part-3">Part 3. 확장 및 실무 (Week 9–12)</h2>
+      <div class="grid">
+        <a class="card" href="Week09_Lecture_Note.md">
+          <div class="label">Week 9</div>
+          <div class="title">Reinforcement Learning 기반 GBI</div>
+          <div class="sub">Das-Varma · Bauman DRL · PPO · CVaR</div>
+        </a>
+        <a class="card" href="Week10_Lecture_Note.md">
+          <div class="label">Week 10</div>
+          <div class="title">로보어드바이저와 대중화</div>
+          <div class="sub">Grealish-Kolm · TLH · 한국 RA 테스트베드</div>
+        </a>
+        <a class="card" href="Week11_Lecture_Note.md">
+          <div class="label">Week 11</div>
+          <div class="title">Tax · ESG · Alternative 통합</div>
+          <div class="sub">after-tax goal · asset location · SWF</div>
+        </a>
+        <a class="card" href="Week12_Lecture_Note.md">
+          <div class="label">Week 12</div>
+          <div class="title">종합 — GBI의 미래</div>
+          <div class="sub">outcome-based fee · digital twin · 최종 프로젝트</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>학습 안내</h2>
+      <div class="intro" style="margin-bottom: 0;">
+        각 주차는 <strong>강의노트(md) 1개 + 인포그래픽(svg) 2개</strong> 로 구성됩니다.
+        강의노트는 Obsidian wikilink(<code>![[…svg]]</code>)로 인포그래픽을 임베드하므로,
+        <strong>Obsidian에서 <code>docs</code> 폴더를 Vault로 열면 자동 렌더링</strong>됩니다.
+        GitHub 웹·VS Code에서도 동일 폴더의 SVG를 링크로 열람할 수 있습니다.
+      </div>
+    </section>
+
+    <footer>
+      Licensed under <a href="https://github.com/keerhee/gbi-curriculum/blob/main/LICENSE">CC BY-NC 4.0</a> ·
+      <a href="https://github.com/keerhee/gbi-curriculum">Source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<svg width="100%" style="max-width:680px"
+     viewBox="0 0 680 480"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="GBI 진화 로드맵 1952-2050: 이론에서 미래까지">
+  <defs>
+    <marker id="arrow12a" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0D47A1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="340" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#0D47A1">
+    GBI 진화 로드맵: 이론의 탄생 → 상용화 → 미래
+  </text>
+  <text x="340" y="40" text-anchor="middle" font-size="10" fill="#37474F">
+    1952 MPT → 2000 BPT → 2010 로보어드바이저 → 2026 AI Agent → 2050 Outcome-based Fee
+  </text>
+
+  <!-- Timeline horizontal line -->
+  <line x1="30" y1="115" x2="650" y2="115" stroke="#0D47A1" stroke-width="2"/>
+
+  <!-- Year markers on timeline -->
+  <circle cx="55" cy="115" r="6" fill="#FFB74D" stroke="#E65100" stroke-width="2"/>
+  <text x="55" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#E65100">1952</text>
+  <circle cx="160" cy="115" r="6" fill="#FFB74D" stroke="#E65100" stroke-width="2"/>
+  <text x="160" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#E65100">1985</text>
+  <circle cx="255" cy="115" r="6" fill="#FFB74D" stroke="#E65100" stroke-width="2"/>
+  <text x="255" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#E65100">2000</text>
+  <circle cx="350" cy="115" r="6" fill="#FFB74D" stroke="#E65100" stroke-width="2"/>
+  <text x="350" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#E65100">2010</text>
+  <circle cx="445" cy="115" r="6" fill="#FFB74D" stroke="#E65100" stroke-width="2"/>
+  <text x="445" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#E65100">2020</text>
+  <circle cx="540" cy="115" r="8" fill="#E65100" stroke="#880E4F" stroke-width="2"/>
+  <text x="540" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#880E4F">2026</text>
+  <circle cx="635" cy="115" r="6" fill="#F48FB1" stroke="#AD1457" stroke-width="2"/>
+  <text x="635" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#AD1457">2050?</text>
+
+  <!-- Era 1: Theory Foundation (below) -->
+  <rect x="30" y="135" width="205" height="85" rx="6" fill="#E3F2FD" stroke="#1565C0"/>
+  <text x="132" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#0D47A1">
+    Era 1: 이론 기초
+  </text>
+  <text x="132" y="170" text-anchor="middle" font-size="9" fill="#263238">Markowitz MPT (1952)</text>
+  <text x="132" y="183" text-anchor="middle" font-size="9" fill="#263238">Friedman-Savage (1948)</text>
+  <text x="132" y="196" text-anchor="middle" font-size="9" fill="#263238">Prospect Theory (1979)</text>
+  <text x="132" y="209" text-anchor="middle" font-size="9" fill="#263238">Mental Accounting (1985)</text>
+
+  <!-- Era 2: BPT & MA Formalization -->
+  <rect x="240" y="135" width="200" height="85" rx="6" fill="#E8F5E9" stroke="#2E7D32"/>
+  <text x="340" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#1B5E20">
+    Era 2: BPT·MA 공식화
+  </text>
+  <text x="340" y="170" text-anchor="middle" font-size="9" fill="#263238">Shefrin-Statman BPT (2000)</text>
+  <text x="340" y="183" text-anchor="middle" font-size="9" fill="#263238">Chhabra "Beyond" (2005)</text>
+  <text x="340" y="196" text-anchor="middle" font-size="9" fill="#263238">Das-Markowitz MA (2010)</text>
+  <text x="340" y="209" text-anchor="middle" font-size="9" fill="#263238">Brunel 4-bucket (2015)</text>
+
+  <!-- Era 3: Commercialization -->
+  <rect x="445" y="135" width="205" height="85" rx="6" fill="#FFF3E0" stroke="#E65100"/>
+  <text x="547" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#BF360C">
+    Era 3: 상용화
+  </text>
+  <text x="547" y="170" text-anchor="middle" font-size="9" fill="#263238">Betterment·Wealthfront (2008)</text>
+  <text x="547" y="183" text-anchor="middle" font-size="9" fill="#263238">Martellini Flexicure (2015)</text>
+  <text x="547" y="196" text-anchor="middle" font-size="9" fill="#263238">Das-Ostrov DP (2020)</text>
+  <text x="547" y="209" text-anchor="middle" font-size="9" fill="#263238">한국 IRP RA (2024.12)</text>
+
+  <!-- Era 4: Future (below, bottom row) -->
+  <text x="340" y="245" text-anchor="middle" font-size="13" font-weight="700" fill="#AD1457">
+    Era 4 (2026~): GBI의 미래 4대 축
+  </text>
+
+  <!-- Future cell 1: AI Agent -->
+  <rect x="20" y="258" width="155" height="115" rx="6" fill="#FFEBEE" stroke="#C62828"/>
+  <text x="97" y="278" text-anchor="middle" font-size="10" font-weight="700" fill="#C62828">
+    ① Agentic AI
+  </text>
+  <text x="97" y="295" text-anchor="middle" font-size="9" fill="#263238">대화형 onboarding</text>
+  <text x="97" y="308" text-anchor="middle" font-size="9" fill="#263238">causal digital twin</text>
+  <text x="97" y="321" text-anchor="middle" font-size="9" fill="#263238">autonomous finance</text>
+  <text x="97" y="334" text-anchor="middle" font-size="9" fill="#263238">감정 인식 조언</text>
+  <text x="97" y="350" text-anchor="middle" font-size="9" font-style="italic" fill="#880E4F">"개인화 ∞"</text>
+  <text x="97" y="363" text-anchor="middle" font-size="8" fill="#455A64">$300B 시장 (IDC 2026)</text>
+
+  <!-- Future cell 2: Mass Customization -->
+  <rect x="185" y="258" width="155" height="115" rx="6" fill="#E8F5E9" stroke="#2E7D32"/>
+  <text x="262" y="278" text-anchor="middle" font-size="10" font-weight="700" fill="#1B5E20">
+    ② Mass Customization
+  </text>
+  <text x="262" y="295" text-anchor="middle" font-size="9" fill="#263238">direct indexing</text>
+  <text x="262" y="308" text-anchor="middle" font-size="9" fill="#263238">tokenization</text>
+  <text x="262" y="321" text-anchor="middle" font-size="9" fill="#263238">fractional alts</text>
+  <text x="262" y="334" text-anchor="middle" font-size="9" fill="#263238">N=1 portfolio</text>
+  <text x="262" y="350" text-anchor="middle" font-size="9" font-style="italic" fill="#1B5E20">"1인 1포트폴리오"</text>
+  <text x="262" y="363" text-anchor="middle" font-size="8" fill="#455A64">Wealthfront·Frec 확대</text>
+
+  <!-- Future cell 3: Outcome-based Fee -->
+  <rect x="350" y="258" width="155" height="115" rx="6" fill="#FFF9C4" stroke="#F57F17"/>
+  <text x="427" y="278" text-anchor="middle" font-size="10" font-weight="700" fill="#E65100">
+    ③ Outcome Fee
+  </text>
+  <text x="427" y="295" text-anchor="middle" font-size="9" fill="#263238">AUM fee → 목표연동</text>
+  <text x="427" y="308" text-anchor="middle" font-size="9" fill="#263238">성과 기반 보수</text>
+  <text x="427" y="321" text-anchor="middle" font-size="9" fill="#263238">GIPS 2020 → 확장</text>
+  <text x="427" y="334" text-anchor="middle" font-size="9" fill="#263238">CFA 표준 제정 중</text>
+  <text x="427" y="350" text-anchor="middle" font-size="9" font-style="italic" fill="#BF360C">"비용 투명성"</text>
+  <text x="427" y="363" text-anchor="middle" font-size="8" fill="#455A64">신탁의무 강화</text>
+
+  <!-- Future cell 4: Regulatory Convergence -->
+  <rect x="515" y="258" width="155" height="115" rx="6" fill="#F3E5F5" stroke="#6A1B9A"/>
+  <text x="592" y="278" text-anchor="middle" font-size="10" font-weight="700" fill="#4A148C">
+    ④ 규제 수렴
+  </text>
+  <text x="592" y="295" text-anchor="middle" font-size="9" fill="#263238">Reg BI (2020)</text>
+  <text x="592" y="308" text-anchor="middle" font-size="9" fill="#263238">MiFID II 강화</text>
+  <text x="592" y="321" text-anchor="middle" font-size="9" fill="#263238">Net-Zero 공시</text>
+  <text x="592" y="334" text-anchor="middle" font-size="9" fill="#263238">한국 자본시장법</text>
+  <text x="592" y="350" text-anchor="middle" font-size="9" font-style="italic" fill="#4A148C">"fiduciary 확장"</text>
+  <text x="592" y="363" text-anchor="middle" font-size="8" fill="#455A64">AI 거버넌스 추가</text>
+
+  <!-- Bottom convergence statement -->
+  <rect x="30" y="390" width="620" height="70" rx="8" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="340" y="412" text-anchor="middle" font-size="12" font-weight="700" fill="#BF360C">
+    수렴점: "목표 달성 확률의 최대화"가 업계 표준 언어로
+  </text>
+  <text x="340" y="430" text-anchor="middle" font-size="10" fill="#263238">
+    74년(1952~2026)의 개인화·목표기반·세후·가치정렬 축적 → 다음 25년은 AI·규제·거버넌스 통합
+  </text>
+  <text x="340" y="448" text-anchor="middle" font-size="10" font-style="italic" fill="#455A64">
+    "투자는 수학이 아니라 삶이다" — Brunel 2015, 2026에 더 참
+  </text>
+</svg>

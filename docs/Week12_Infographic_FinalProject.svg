@@ -1,0 +1,131 @@
+<svg width="100%" style="max-width:680px"
+     viewBox="0 0 680 460"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="최종 프로젝트 3-옵션 평가 매트릭스와 GBI 역량 결합도">
+
+  <!-- Title -->
+  <text x="340" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#0D47A1">
+    최종 프로젝트: 3-Option × GBI 6-역량 매트릭스
+  </text>
+  <text x="340" y="40" text-anchor="middle" font-size="10" fill="#37474F">
+    Option A(이론) · Option B(실무) · Option C(기술) — 각각의 GBI 역량 결합
+  </text>
+
+  <!-- Header row -->
+  <rect x="20" y="58" width="180" height="38" rx="4" fill="#FAFAFA" stroke="#90A4AE"/>
+  <text x="110" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#263238">GBI 역량</text>
+
+  <rect x="200" y="58" width="150" height="38" rx="4" fill="#FFEBEE" stroke="#C62828"/>
+  <text x="275" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#C62828">Option A</text>
+  <text x="275" y="88" text-anchor="middle" font-size="9" fill="#455A64">이론 확장</text>
+
+  <rect x="350" y="58" width="150" height="38" rx="4" fill="#E3F2FD" stroke="#1565C0"/>
+  <text x="425" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#1565C0">Option B</text>
+  <text x="425" y="88" text-anchor="middle" font-size="9" fill="#455A64">실무 제안서</text>
+
+  <rect x="500" y="58" width="160" height="38" rx="4" fill="#E8F5E9" stroke="#2E7D32"/>
+  <text x="580" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#2E7D32">Option C</text>
+  <text x="580" y="88" text-anchor="middle" font-size="9" fill="#455A64">기술 시뮬레이터</text>
+
+  <!-- Row 1: Goal Definition -->
+  <rect x="20" y="98" width="180" height="36" rx="3" fill="#FFF3E0" stroke="#E65100"/>
+  <text x="30" y="114" font-size="10" font-weight="700" fill="#BF360C">① 목표 정의</text>
+  <text x="30" y="128" font-size="9" fill="#455A64">Pr(W_T ≥ H) 정립</text>
+
+  <rect x="200" y="98" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#C62828"/>
+  <text x="275" y="122" text-anchor="middle" font-size="13" fill="#C62828">★★★★★</text>
+
+  <rect x="350" y="98" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="425" y="122" text-anchor="middle" font-size="13" fill="#1565C0">★★★★☆</text>
+
+  <rect x="500" y="98" width="160" height="36" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="580" y="122" text-anchor="middle" font-size="13" fill="#2E7D32">★★★☆☆</text>
+
+  <!-- Row 2: Behavioral Insights -->
+  <rect x="20" y="136" width="180" height="36" rx="3" fill="#FFF3E0" stroke="#E65100"/>
+  <text x="30" y="152" font-size="10" font-weight="700" fill="#BF360C">② 행동재무</text>
+  <text x="30" y="166" font-size="9" fill="#455A64">BPT · MA · SP/A</text>
+
+  <rect x="200" y="136" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#C62828"/>
+  <text x="275" y="160" text-anchor="middle" font-size="13" fill="#C62828">★★★★★</text>
+
+  <rect x="350" y="136" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="425" y="160" text-anchor="middle" font-size="13" fill="#1565C0">★★★★☆</text>
+
+  <rect x="500" y="136" width="160" height="36" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="580" y="160" text-anchor="middle" font-size="13" fill="#2E7D32">★★☆☆☆</text>
+
+  <!-- Row 3: Dynamic Optimization -->
+  <rect x="20" y="174" width="180" height="36" rx="3" fill="#FFF3E0" stroke="#E65100"/>
+  <text x="30" y="190" font-size="10" font-weight="700" fill="#BF360C">③ 동적 최적화</text>
+  <text x="30" y="204" font-size="9" fill="#455A64">DP · RL · Flexicure</text>
+
+  <rect x="200" y="174" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#C62828"/>
+  <text x="275" y="198" text-anchor="middle" font-size="13" fill="#C62828">★★★★☆</text>
+
+  <rect x="350" y="174" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="425" y="198" text-anchor="middle" font-size="13" fill="#1565C0">★★★☆☆</text>
+
+  <rect x="500" y="174" width="160" height="36" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="580" y="198" text-anchor="middle" font-size="13" fill="#2E7D32">★★★★★</text>
+
+  <!-- Row 4: Implementation Detail -->
+  <rect x="20" y="212" width="180" height="36" rx="3" fill="#FFF3E0" stroke="#E65100"/>
+  <text x="30" y="228" font-size="10" font-weight="700" fill="#BF360C">④ 실무 설계</text>
+  <text x="30" y="242" font-size="9" fill="#455A64">PSP/GHP · 4-bucket</text>
+
+  <rect x="200" y="212" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#C62828"/>
+  <text x="275" y="236" text-anchor="middle" font-size="13" fill="#C62828">★★☆☆☆</text>
+
+  <rect x="350" y="212" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="425" y="236" text-anchor="middle" font-size="13" fill="#1565C0">★★★★★</text>
+
+  <rect x="500" y="212" width="160" height="36" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="580" y="236" text-anchor="middle" font-size="13" fill="#2E7D32">★★★☆☆</text>
+
+  <!-- Row 5: Tax/ESG/Alt -->
+  <rect x="20" y="250" width="180" height="36" rx="3" fill="#FFF3E0" stroke="#E65100"/>
+  <text x="30" y="266" font-size="10" font-weight="700" fill="#BF360C">⑤ Tax·ESG·Alt</text>
+  <text x="30" y="280" font-size="9" fill="#455A64">3-Pillar 통합</text>
+
+  <rect x="200" y="250" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#C62828"/>
+  <text x="275" y="274" text-anchor="middle" font-size="13" fill="#C62828">★★★☆☆</text>
+
+  <rect x="350" y="250" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="425" y="274" text-anchor="middle" font-size="13" fill="#1565C0">★★★★★</text>
+
+  <rect x="500" y="250" width="160" height="36" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="580" y="274" text-anchor="middle" font-size="13" fill="#2E7D32">★★★★☆</text>
+
+  <!-- Row 6: Computational Skill -->
+  <rect x="20" y="288" width="180" height="36" rx="3" fill="#FFF3E0" stroke="#E65100"/>
+  <text x="30" y="304" font-size="10" font-weight="700" fill="#BF360C">⑥ 계산·코딩</text>
+  <text x="30" y="318" font-size="9" fill="#455A64">Python · Monte Carlo</text>
+
+  <rect x="200" y="288" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#C62828"/>
+  <text x="275" y="312" text-anchor="middle" font-size="13" fill="#C62828">★★★☆☆</text>
+
+  <rect x="350" y="288" width="150" height="36" rx="3" fill="#FFFFFF" stroke="#1565C0"/>
+  <text x="425" y="312" text-anchor="middle" font-size="13" fill="#1565C0">★★☆☆☆</text>
+
+  <rect x="500" y="288" width="160" height="36" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="580" y="312" text-anchor="middle" font-size="13" fill="#2E7D32">★★★★★</text>
+
+  <!-- Option examples -->
+  <rect x="20" y="340" width="640" height="110" rx="8" fill="#FFF9C4" stroke="#F57F17" stroke-width="1.5"/>
+  <text x="340" y="360" text-anchor="middle" font-size="11" font-weight="700" fill="#E65100">
+    각 Option별 대표 주제 예시
+  </text>
+
+  <text x="30" y="380" font-size="10" font-weight="700" fill="#C62828">Option A (이론):</text>
+  <text x="30" y="394" font-size="9" fill="#263238">• Rank-dependent GBI (Yaari 1987 + Brunel) 재현·확장</text>
+  <text x="30" y="407" font-size="9" fill="#263238">• CVaR-GBI (Rockafellar-Uryasev) vs Das-Ostrov DP 비교</text>
+  <text x="30" y="420" font-size="9" fill="#263238">• Regime-Switching GBI (Bauman 2024 확장)</text>
+  <text x="30" y="433" font-size="9" fill="#263238">• Causal GBI (do-operator로 개입 시나리오 분석)</text>
+
+  <text x="350" y="380" font-size="10" font-weight="700" fill="#1565C0">Option B (실무):</text>
+  <text x="350" y="394" font-size="9" fill="#263238">• 한국 중산층 가계 (자산 5억) 3-bucket 제안서</text>
+  <text x="350" y="407" font-size="9" fill="#263238">• 한국 UHNW ($50M) 4-bucket UHNW 설계</text>
+  <text x="350" y="420" font-size="9" fill="#263238">• 국내 기관투자자의 GBI 도입 ALM 통합안</text>
+  <text x="350" y="433" font-size="9" fill="#263238">• 퇴직연금 RA의 DC 확장 로드맵</text>
+</svg>
