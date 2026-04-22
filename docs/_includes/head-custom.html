@@ -64,13 +64,20 @@
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
 
 <style>
-  .mermaid {
+  .mermaid,
+  .mermaid[data-processed="true"] {
     text-align: center;
     margin: 24px 0;
-    background: #fff;
-    padding: 20px;
+    background: #ffffff !important;
+    padding: 20px !important;
     border-radius: 6px;
     overflow-x: auto;
+    color-scheme: light;
+  }
+  .mermaid svg {
+    background: #ffffff !important;
+    max-width: 100%;
+    height: auto;
   }
   .mermaid .nodeLabel,
   .mermaid .edgeLabel,

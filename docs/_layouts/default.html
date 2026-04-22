@@ -42,14 +42,21 @@
       .site-nav { padding: 12px 16px; }
     }
     /* Mermaid 다이어그램: 다크 페이지 안에 흰색 카드로 분리해 대비 확보 */
-    .mermaid {
-      background: #ffffff;
-      display: flex;
+    .mermaid,
+    .mermaid[data-processed="true"] {
+      background: #ffffff !important;
+      display: flex !important;
       justify-content: center;
       margin: 24px 0;
-      padding: 20px;
+      padding: 20px !important;
       border-radius: 6px;
       overflow-x: auto;
+      color-scheme: light;
+    }
+    .mermaid svg {
+      background: #ffffff !important;
+      max-width: 100%;
+      height: auto;
     }
     /* Mermaid 노드의 모든 텍스트 요소를 강한 검정 + 굵기로 강제 */
     .mermaid .nodeLabel,
