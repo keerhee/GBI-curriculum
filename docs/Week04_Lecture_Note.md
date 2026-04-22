@@ -21,6 +21,7 @@ created: 2026-04-20
 - **Figure 2** (§6 말미): Aggregate MV Efficiency 수치 증명 (cvxpy SOCP)
 
 ### 강의 구성
+
 | 구간 | 시간 | 내용 |
 |---|---|---|
 | §1 | 15분 | Recap: BPT의 미완결과 Das-Markowitz의 문제의식 |

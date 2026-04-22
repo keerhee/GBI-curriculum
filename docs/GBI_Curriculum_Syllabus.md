@@ -227,6 +227,7 @@ $$
 - 기관형 wealth management(UHNW, family office)로의 확장
 
 ### 핵심 프레임
+
 | Goal 유형 | 시간지평 | 성공확률 요구 | 대표 자산 |
 |---|---|---|---|
 | Personal (생활·보장) | 단기 | 99% | 현금·단기국채 |

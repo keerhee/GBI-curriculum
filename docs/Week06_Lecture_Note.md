@@ -21,6 +21,7 @@ created: 2026-04-20
 - **Figure 2** (§5 말미): Martellini PSP/GHP CPPI 동적 배분 Python 시뮬레이션
 
 ### 강의 구성
+
 | 구간 | 시간 | 내용 |
 |---|---|---|
 | §1 | 15분 | Recap: 정적 MA에서 동적 LDI-GBI로 |

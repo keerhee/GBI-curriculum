@@ -15,6 +15,17 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  # 테이블 구분선 '---' 가 em dash '—' 로 자동 변환되지 않도록
+  # smart quotes / typographic symbols 비활성화
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  typographic_symbols:
+    hellip: "..."
+    mdash: "---"
+    ndash: "--"
+    laquo: "<<"
+    raquo: ">>"
+    laquo_space: "<< "
+    raquo_space: " >>"
 
 exclude:
   - README.md

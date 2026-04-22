@@ -21,6 +21,7 @@ created: 2026-04-20
 - **Figure 2** (§5 말미): Bauman DRL framework · HMM+PPO 아키텍처
 
 ### 강의 구성
+
 | 구간 | 시간 | 내용 |
 |---|---|---|
 | §1 | 15분 | Recap: DP의 한계와 RL 전환의 필연 |

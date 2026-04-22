@@ -21,6 +21,7 @@ created: 2026-04-20
 - **Figure 2** (§6 말미): Brunel 3-Goal + Internal/External + 한국 Family Office 지형
 
 ### 강의 구성
+
 | 구간 | 시간 | 내용 |
 |---|---|---|
 | §1 | 15분 | Recap: 이론에서 실무로, Brunel의 문제의식 |
