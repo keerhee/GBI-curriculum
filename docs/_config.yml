@@ -2,21 +2,10 @@ title: Goal-Based Investing 강의노트
 description: MBA Finance 12주 GBI 종합 커리큘럼 — 이론에서 실무 확장까지
 lang: ko
 
-# Front matter가 있는 모든 페이지에 default layout 자동 적용
-# (index.html은 front matter가 없어 영향 받지 않음)
-defaults:
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: default
-
-# GitHub Pages 기본 kramdown 설정
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 빌드에서 제외할 파일
 exclude:
   - README.md
