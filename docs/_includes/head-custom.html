@@ -1,5 +1,5 @@
 <!-- Fallback: Primer theme이 적용된 경우에도 Mermaid/MathJax를 주입 -->
-<!-- 내 _layouts/default.html이 적용되면 중복되지만 무해 (스크립트가 이미 있으면 mermaid 변수가 재할당될 뿐) -->
+<!-- 내 _layouts/default.html이 적용되면 중복되지만 무해 (__gbiMermaidInit 가드) -->
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>
@@ -20,28 +20,28 @@
           securityLevel: 'loose',
           flowchart: { htmlLabels: true, curve: 'basis' },
           themeVariables: {
-            background: '#ffffff',
-            primaryColor: '#eef2ff',
-            primaryTextColor: '#000000',
-            primaryBorderColor: '#24292f',
-            secondaryColor: '#fef3c7',
-            secondaryTextColor: '#000000',
-            secondaryBorderColor: '#24292f',
-            tertiaryColor: '#dcfce7',
-            tertiaryTextColor: '#000000',
-            tertiaryBorderColor: '#24292f',
-            lineColor: '#24292f',
-            textColor: '#000000',
-            mainBkg: '#eef2ff',
-            nodeTextColor: '#000000',
-            titleColor: '#000000',
-            edgeLabelBackground: '#ffffff',
-            clusterBkg: '#f6f8fa',
-            clusterBorder: '#57606a',
-            labelBackground: '#ffffff',
-            noteBkgColor: '#fff8c5',
-            noteTextColor: '#000000',
-            noteBorderColor: '#57606a'
+            background: 'transparent',
+            primaryColor: 'transparent',
+            primaryTextColor: '#e6edf3',
+            primaryBorderColor: '#8b949e',
+            secondaryColor: 'transparent',
+            secondaryTextColor: '#e6edf3',
+            secondaryBorderColor: '#8b949e',
+            tertiaryColor: 'transparent',
+            tertiaryTextColor: '#e6edf3',
+            tertiaryBorderColor: '#8b949e',
+            lineColor: '#8b949e',
+            textColor: '#e6edf3',
+            mainBkg: 'transparent',
+            nodeTextColor: '#e6edf3',
+            titleColor: '#e6edf3',
+            edgeLabelBackground: '#0d1117',
+            clusterBkg: '#161b22',
+            clusterBorder: '#30363d',
+            labelBackground: '#0d1117',
+            noteBkgColor: '#161b22',
+            noteTextColor: '#e6edf3',
+            noteBorderColor: '#30363d'
           }
         });
         mermaid.run();
@@ -68,14 +68,12 @@
   .mermaid[data-processed="true"] {
     text-align: center;
     margin: 24px 0;
-    background: #ffffff !important;
-    padding: 20px !important;
-    border-radius: 6px;
+    background: transparent !important;
+    padding: 8px 0;
     overflow-x: auto;
-    color-scheme: light;
   }
   .mermaid svg {
-    background: #ffffff !important;
+    background: transparent !important;
     max-width: 100%;
     height: auto;
   }
@@ -88,17 +86,17 @@
   .mermaid foreignObject div,
   .mermaid foreignObject span,
   .mermaid foreignObject p {
-    color: #000000 !important;
-    font-weight: 600 !important;
+    color: #e6edf3 !important;
+    font-weight: 500 !important;
   }
   .mermaid text,
   .mermaid tspan {
-    fill: #000000 !important;
-    font-weight: 600 !important;
+    fill: #e6edf3 !important;
+    font-weight: 500 !important;
     stroke: none !important;
   }
   .mermaid .edgeLabel {
-    background-color: #ffffff !important;
+    background-color: #0d1117 !important;
     padding: 2px 4px;
     border-radius: 3px;
   }
@@ -107,20 +105,28 @@
   .mermaid .node ellipse,
   .mermaid .node polygon,
   .mermaid .node path {
-    stroke: #24292f !important;
+    fill: transparent !important;
+    stroke: #8b949e !important;
     stroke-width: 1.5px !important;
   }
   .mermaid .edgePath .path,
   .mermaid .flowchart-link {
-    stroke: #24292f !important;
+    stroke: #8b949e !important;
     stroke-width: 1.5px !important;
+    fill: none !important;
   }
-  .mermaid .arrowheadPath {
-    fill: #24292f !important;
+  .mermaid .arrowheadPath,
+  .mermaid marker path {
+    fill: #8b949e !important;
+    stroke: #8b949e !important;
   }
   .mermaid .cluster rect {
-    stroke: #57606a !important;
-    stroke-width: 1.5px !important;
+    fill: #161b22 !important;
+    stroke: #30363d !important;
+    stroke-width: 1px !important;
+    stroke-dasharray: 4 3;
+    rx: 6;
+    ry: 6;
   }
   mjx-container[display="true"] {
     overflow-x: auto;
