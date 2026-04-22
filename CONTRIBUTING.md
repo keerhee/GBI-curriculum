@@ -83,7 +83,7 @@ chore: .gitignore에 .obsidian/ 추가
 - `WeekXX_Infographic_<Topic>.svg` 명명 규칙
 - 가독성 폰트 크기 ≥ 14px
 - 색상: 강의노트 본문과 일관된 팔레트
-- 강의노트에서 `![[WeekXX_Infographic_<Topic>.svg]]` wikilink로 임베드
+- 강의노트에서 `![Alt](WeekXX_Infographic_<Topic>.svg)` 표준 Markdown 이미지 문법으로 임베드 (GitHub · Obsidian · VS Code 공통)
 
 ### 한국어·영어 혼용
 

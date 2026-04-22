@@ -32,7 +32,7 @@
   - W12: 종합 — GBI의 미래와 산업적 함의
 
 #### 인포그래픽 (24개 SVG)
-- 각 주차당 2개 · Obsidian wikilink 임베드 지원
+- 각 주차당 2개 · 표준 Markdown 이미지 문법(`![alt](…svg)`)으로 임베드
 - 주요 도식: MPT→GBI 패러다임 전환, Chhabra 피라미드, PT 가치함수,
   BPT 기하, MA 동등성, Brunel 4-goal, PSP/GHP, CPPI, Multi-Goal 상태공간,
   DP Bellman, RL Taxonomy, Bauman DRL, RA Framework, 한국 RA 생태계,
@@ -45,7 +45,7 @@
 ### 설계 원칙
 
 - **3-file set per week**: 강의노트(md) + 인포그래픽(svg) × 2
-- **Obsidian Vault 호환**: `![[…svg]]` wikilink 임베드
+- **GitHub · Obsidian · VS Code 호환**: 표준 Markdown 이미지 문법(`![alt](…svg)`)으로 임베드
 - **이론·수식·케이스·과제 통합**: 각 주차 학습포인트 · 핵심수식 · 실제 사례 · 과제 제시
 - **한국 시장 연계**: 코스콤 RA 테스트베드 · 미래에셋 TDF · KB 케이봇쌤 · 한국 3층 연금 등
 
