@@ -11,21 +11,19 @@
 
 ## 열람 방법
 
-### 1) Obsidian (권장)
+### 1) GitHub 웹
+
+각 `.md` 파일을 GitHub 웹에서 바로 열람 가능합니다. 강의노트의 인포그래픽(SVG)과 LaTeX 수식 모두 GitHub의 기본 Markdown 렌더러에서 자동으로 렌더링됩니다.
+
+### 2) Obsidian
 
 1. Obsidian 실행 → **File → Open vault**
 2. 이 `docs/` 폴더 선택
 3. `GBI_Curriculum_Syllabus.md` 또는 `Week01_Lecture_Note.md` 부터 열기
 
-강의노트 내 `![[WeekXX_Infographic_*.svg]]` wikilink가 자동으로 인포그래픽을 임베드 렌더링합니다.
+### 3) VS Code
 
-### 2) VS Code
-
-Markdown Preview + SVG Preview 확장으로 열람. SVG는 별도 파일로 열어서 확인.
-
-### 3) GitHub 웹
-
-각 `.md` 파일을 GitHub 웹에서 바로 열람 가능. 단 Obsidian wikilink는 렌더링되지 않으므로, 인포그래픽은 같은 폴더의 SVG 파일을 직접 클릭해 확인하세요.
+Markdown Preview 확장으로 열람. SVG 이미지는 프리뷰에서 자동 렌더링됩니다.
 
 ### 4) GitHub Pages
 

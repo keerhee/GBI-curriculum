@@ -28,9 +28,9 @@ version: "2026-04"
 ### 평가
 - 출석·토론 20% · 케이스 에세이(3회) 30% · 중간 프로젝트 20% · 최종 프로젝트 30%
 
-### 강의 자료 파일 구조 (Obsidian Vault)
+### 강의 자료 파일 구조
 
-각 주차는 **강의노트(md) 1개 + 인포그래픽(svg) 2개**의 3-file set로 구성된다. 강의노트 내 `![[…svg]]` embed가 적절한 섹션에 위치해 Obsidian에서 자동 렌더링된다.
+각 주차는 **강의노트(md) 1개 + 인포그래픽(svg) 2개**의 3-file set로 구성된다. 강의노트 내 표준 Markdown 이미지 문법(`![alt](…svg)`)으로 임베드되어 GitHub · Obsidian · VS Code 어디서든 자동 렌더링된다.
 
 ```
 GBI_Curriculum_Syllabus.md          (본 파일)

@@ -319,7 +319,7 @@ flowchart TD
     style F fill:#d4a244,color:#1a1a1a
 ```
 
-![[Week03_Infographic_SPA_to_GBI.svg]]
+![SPA to GBI](Week03_Infographic_SPA_to_GBI.svg)
 *Figure 1 · SP/A(심리학) + Safety-First(포트폴리오이론) → BPT-SA/BPT-MA → Chhabra·Das-Statman → GBI 산업 패러다임의 수학적 계보.*
 
 ### 4.6 BPT-MA 단점과 해결
@@ -379,7 +379,7 @@ BPT·MV 효율선이 **실질적으로 달라지는** 조건:
 
 이는 GBI가 **특히 효과를 발휘하는 환경**이 무엇인지의 지도이기도 하다.
 
-![[Week03_Infographic_BPT_Geometry.svg]]
+![BPT Geometry](Week03_Infographic_BPT_Geometry.svg)
 *Figure 2 · BPT-MA 3층 피라미드와 (σ, μ) 평면에서의 MV 효율선·Telser 제약선·BPT corner solutions의 기하학적 관계. Pfiffelmann et al.(2016) 실증 포함.*
 
 ---

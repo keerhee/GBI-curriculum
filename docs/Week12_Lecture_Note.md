@@ -53,7 +53,7 @@ Markowitz가 MVO 논문을 썼을 때(1952), 그는 **"리스크는 분산이다
 
 ### 1.1 Week 1~11 지식 맵
 
-![[Week12_Infographic_Roadmap.svg]]
+![Roadmap](Week12_Infographic_Roadmap.svg)
 
 #### 1.1.1 Part 1 (Week 1-4): 이론의 탄생
 
@@ -458,7 +458,7 @@ CFA Institute 내부에서 2024년부터 논의 중인 방향:
 
 ### 3.3 최종 프로젝트 — 3 Options
 
-![[Week12_Infographic_FinalProject.svg]]
+![FinalProject](Week12_Infographic_FinalProject.svg)
 
 #### 3.3.1 Option A — 이론 확장
 

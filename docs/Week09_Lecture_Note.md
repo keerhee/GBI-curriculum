@@ -317,7 +317,7 @@ $$
 
 GBWM에서는 **대체로 discrete action 선호** — 실무 연결성 + 학습 효율. 그러나 high-dim asset universe에서는 continuous 필요.
 
-![[Week09_Infographic_RL_Taxonomy.svg]]
+![RL Taxonomy](Week09_Infographic_RL_Taxonomy.svg)
 *Figure 1 · RL 3대 계열(Value-based · Policy-based · Actor-Critic)의 GBI 적용 계보. Das-Varma(2020) Q-learning · Prémont(2021) LR 개선 · Bauman(2024) PPO·HMM · Dixon-Halperin G-Learner.*
 
 ---
@@ -589,7 +589,7 @@ DORS2022 (multi-goal DP, 7주차) + Bauman DRL의 결합이 **다음 연구 fron
 
 Single RL 연구에서 multi-goal DRL로의 전환에는 여전히 연구 공백.
 
-![[Week09_Infographic_Bauman_DRL.svg]]
+![Bauman DRL](Week09_Infographic_Bauman_DRL.svg)
 *Figure 2 · Bauman (2024) DRL framework · HMM regime detection + PPO actor-critic architecture. Regime-switching 환경에서 DP 대비 +5.4%p 개선 실증.*
 
 ---

@@ -244,7 +244,7 @@ $\mathbb{R}^K$의 positive orthant. 각 cell은 유일한 **rebalancing action**
 - Region 2: 어떤 $\mathrm{FR}_j > 1$, 다른 $\mathrm{FR}_k < 1$ → transfer from $j$ to $k$
 - Region 3: 모든 $\mathrm{FR}_k < 1$ → triage (포기·축소)
 
-![[Week07_Infographic_Multi_Goal_State.svg]]
+![Multi Goal State](Week07_Infographic_Multi_Goal_State.svg)
 *Figure 1 · Multi-Goal Funding Ratio 동역학과 상태 공간. 2-goal 예시에서 (FR₁, FR₂) 평면의 rebalancing action regions, Das-Ostrov의 goal 포기 결정 경계.*
 
 ---
@@ -527,7 +527,7 @@ Ortec은 1981년 설립, **네덜란드 연금기금의 ALM** 40년 경험.
 3. **국민연금 가정 내장**: NPS replacement 가정을 floor에 동적 반영
 4. **상속세 아웃풋**: Dynasty goal의 한국형 설계
 
-![[Week07_Infographic_Commercial_Engines.svg]]
+![Commercial Engines](Week07_Infographic_Commercial_Engines.svg)
 *Figure 2 · 6대 상용 GBI 엔진의 방법론 비교(Datos Insights 2024 기반). 4대 methodology 분류, 각 벤더의 차별화와 한국 적용 가능성.*
 
 ---

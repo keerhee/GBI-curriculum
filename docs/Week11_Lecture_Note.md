@@ -63,7 +63,7 @@ Week 1에서 MPT의 5-가정 중 하나가 "과세는 없다(tax-free investor)"
 
 **핵심 관찰**: **세전 MVO는 세후 세계에서 더 이상 최적이 아니다**. Week 1에서 배운 $\max_w \mathbb{E}[R_p] - \frac{\lambda}{2}\text{Var}(R_p)$는 세전 문제였다. 세후 문제는 **다른 최적해**를 가진다.
 
-![[Week11_Infographic_3Pillar.svg]]
+![3Pillar](Week11_Infographic_3Pillar.svg)
 
 ### 1.2 Multi-Period Tax Optimization: 기본 수식
 
@@ -172,7 +172,7 @@ flowchart TD
 
 ### 1.4 한국 실전: 계좌별 Asset Location
 
-![[Week11_Infographic_Korea_Pension.svg]]
+![Korea Pension](Week11_Infographic_Korea_Pension.svg)
 
 #### 1.4.1 한국의 계좌별 세제 특성
 

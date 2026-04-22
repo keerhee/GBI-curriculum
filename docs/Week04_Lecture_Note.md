@@ -259,7 +259,7 @@ $$
 
 **BPT(행동) = VaR(리스크) = MV(전통)** — 이 셋은 서로 다른 언어일 뿐, 수학적으로는 **같은 대상의 세 관점**이다.
 
-![[Week04_Infographic_Equivalence.svg]]
+![Equivalence](Week04_Infographic_Equivalence.svg)
 *Figure 1 · MVT-MA-VaR 삼각 동등성. BPT(투자자 언어) · VaR(리스크매니저 언어) · MV(이론가 언어)가 정규분포 가정 하 동일한 최적 포트폴리오를 산출하는 수학적 구조.*
 
 ### 3.5 Baptista (2012)의 확장과 Safety-First 연결
@@ -483,7 +483,7 @@ print(f"Aggregate: μ={mu @ w_agg:.4f}, σ={np.sqrt(w_agg @ Sigma @ w_agg):.4f}"
 
 그럼에도 aggregate는 $(0.0\%,\ 55.5\%,\ 44.5\%)$의 단순·MV 효율적 포트폴리오. 이것이 **"투자자의 행동 구조(다목표·다확률)와 실무의 수학 엔진(MV)의 아름다운 중첩"** 의 수치적 모습이다.
 
-![[Week04_Infographic_Aggregate_Numeric.svg]]
+![Aggregate Numeric](Week04_Infographic_Aggregate_Numeric.svg)
 *Figure 2 · Das-Markowitz MA framework의 실제 수치 증명. 3-asset 3-account 설정에서 계정별 해(retirement/education/bequest)와 aggregate가 MV 효율선 위에 정확히 위치함을 cvxpy SOCP로 검증.*
 
 ---

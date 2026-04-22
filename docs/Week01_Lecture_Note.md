@@ -57,7 +57,7 @@ created: 2026-04-20
 
 이 한 장의 표가 본 강의 12주 전체의 축소판이다.
 
-![[Week01_Infographic_MPT_to_GBI.svg]]
+![MPT to GBI](Week01_Infographic_MPT_to_GBI.svg)
 *Figure 1 · Markowitz MPT에서 Goal-Based Investing으로의 패러다임 전환. Objective·Risk·Horizon·Wealth 4축에서의 관점 변화와 GBI 3-Axiom.*
 
 ---
@@ -200,7 +200,7 @@ Markowitz-Sharpe 옹호자는 흔히 "결국 aggregate portfolio는 MV 효율선
 
 이 "양립"의 구조가 GBI가 "비이성의 추구"가 아닌 **합리성의 확장**임을 보장한다.
 
-![[Week01_Infographic_Chhabra_Pyramid.svg]]
+![Chhabra Pyramid](Week01_Infographic_Chhabra_Pyramid.svg)
 *Figure 2 · Chhabra의 3-bucket 피라미드 구조. Personal(99%) · Market(70–85%) · Aspirational(10–30%)의 계층과 한국 시장 매핑.*
 
 ### 3.4 Proof Sketch — Aggregate Mean-Variance Equivalence (Das et al. 2010)
