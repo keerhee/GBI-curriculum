@@ -51,20 +51,50 @@
       border-radius: 6px;
       overflow-x: auto;
     }
-    /* Mermaid light theme 노드의 텍스트가 확실히 보이도록 강제 */
+    /* Mermaid 노드의 모든 텍스트 요소를 강한 검정 + 굵기로 강제 */
     .mermaid .nodeLabel,
     .mermaid .edgeLabel,
     .mermaid .cluster-label,
+    .mermaid .cluster text,
+    .mermaid .titleText,
     .mermaid span.nodeLabel,
-    .mermaid foreignObject div {
-      color: #1f2328 !important;
+    .mermaid foreignObject div,
+    .mermaid foreignObject span,
+    .mermaid foreignObject p {
+      color: #000000 !important;
+      font-weight: 600 !important;
+    }
+    .mermaid text,
+    .mermaid tspan {
+      fill: #000000 !important;
+      font-weight: 600 !important;
+      stroke: none !important;
     }
     .mermaid .edgeLabel {
       background-color: #ffffff !important;
       padding: 2px 4px;
+      border-radius: 3px;
     }
-    .mermaid text {
-      fill: #1f2328 !important;
+    /* 테두리·라인도 진하게 해서 전체 대비 강화 */
+    .mermaid .node rect,
+    .mermaid .node circle,
+    .mermaid .node ellipse,
+    .mermaid .node polygon,
+    .mermaid .node path {
+      stroke: #24292f !important;
+      stroke-width: 1.5px !important;
+    }
+    .mermaid .edgePath .path,
+    .mermaid .flowchart-link {
+      stroke: #24292f !important;
+      stroke-width: 1.5px !important;
+    }
+    .mermaid .arrowheadPath {
+      fill: #24292f !important;
+    }
+    .mermaid .cluster rect {
+      stroke: #57606a !important;
+      stroke-width: 1.5px !important;
     }
     /* MathJax 수식이 너무 커지지 않도록 */
     mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
@@ -98,9 +128,34 @@
       });
       mermaid.initialize({
         startOnLoad: false,
-        theme: 'default',
+        theme: 'base',
         securityLevel: 'loose',
-        flowchart: { htmlLabels: true, curve: 'basis' }
+        flowchart: { htmlLabels: true, curve: 'basis' },
+        themeVariables: {
+          // Mermaid 내부 팔레트를 고대비로 재정의
+          background: '#ffffff',
+          primaryColor: '#eef2ff',           // 노드 기본 배경 (연한 인디고)
+          primaryTextColor: '#000000',       // 노드 글자
+          primaryBorderColor: '#24292f',     // 노드 테두리
+          secondaryColor: '#fef3c7',         // 보조 노드 배경 (연한 앰버)
+          secondaryTextColor: '#000000',
+          secondaryBorderColor: '#24292f',
+          tertiaryColor: '#dcfce7',          // 3차 노드 배경 (연한 그린)
+          tertiaryTextColor: '#000000',
+          tertiaryBorderColor: '#24292f',
+          lineColor: '#24292f',              // 엣지 라인
+          textColor: '#000000',              // 일반 텍스트
+          mainBkg: '#eef2ff',
+          nodeTextColor: '#000000',
+          titleColor: '#000000',
+          edgeLabelBackground: '#ffffff',
+          clusterBkg: '#f6f8fa',             // subgraph 배경
+          clusterBorder: '#57606a',
+          labelBackground: '#ffffff',
+          noteBkgColor: '#fff8c5',
+          noteTextColor: '#000000',
+          noteBorderColor: '#57606a'
+        }
       });
       mermaid.run();
     });

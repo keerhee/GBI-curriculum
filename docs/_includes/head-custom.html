@@ -16,9 +16,33 @@
       if (typeof mermaid !== 'undefined') {
         mermaid.initialize({
           startOnLoad: false,
-          theme: 'default',
+          theme: 'base',
           securityLevel: 'loose',
-          flowchart: { htmlLabels: true, curve: 'basis' }
+          flowchart: { htmlLabels: true, curve: 'basis' },
+          themeVariables: {
+            background: '#ffffff',
+            primaryColor: '#eef2ff',
+            primaryTextColor: '#000000',
+            primaryBorderColor: '#24292f',
+            secondaryColor: '#fef3c7',
+            secondaryTextColor: '#000000',
+            secondaryBorderColor: '#24292f',
+            tertiaryColor: '#dcfce7',
+            tertiaryTextColor: '#000000',
+            tertiaryBorderColor: '#24292f',
+            lineColor: '#24292f',
+            textColor: '#000000',
+            mainBkg: '#eef2ff',
+            nodeTextColor: '#000000',
+            titleColor: '#000000',
+            edgeLabelBackground: '#ffffff',
+            clusterBkg: '#f6f8fa',
+            clusterBorder: '#57606a',
+            labelBackground: '#ffffff',
+            noteBkgColor: '#fff8c5',
+            noteTextColor: '#000000',
+            noteBorderColor: '#57606a'
+          }
         });
         mermaid.run();
       }
@@ -51,16 +75,45 @@
   .mermaid .nodeLabel,
   .mermaid .edgeLabel,
   .mermaid .cluster-label,
+  .mermaid .cluster text,
+  .mermaid .titleText,
   .mermaid span.nodeLabel,
-  .mermaid foreignObject div {
-    color: #1f2328 !important;
+  .mermaid foreignObject div,
+  .mermaid foreignObject span,
+  .mermaid foreignObject p {
+    color: #000000 !important;
+    font-weight: 600 !important;
+  }
+  .mermaid text,
+  .mermaid tspan {
+    fill: #000000 !important;
+    font-weight: 600 !important;
+    stroke: none !important;
   }
   .mermaid .edgeLabel {
     background-color: #ffffff !important;
     padding: 2px 4px;
+    border-radius: 3px;
   }
-  .mermaid text {
-    fill: #1f2328 !important;
+  .mermaid .node rect,
+  .mermaid .node circle,
+  .mermaid .node ellipse,
+  .mermaid .node polygon,
+  .mermaid .node path {
+    stroke: #24292f !important;
+    stroke-width: 1.5px !important;
+  }
+  .mermaid .edgePath .path,
+  .mermaid .flowchart-link {
+    stroke: #24292f !important;
+    stroke-width: 1.5px !important;
+  }
+  .mermaid .arrowheadPath {
+    fill: #24292f !important;
+  }
+  .mermaid .cluster rect {
+    stroke: #57606a !important;
+    stroke-width: 1.5px !important;
   }
   mjx-container[display="true"] {
     overflow-x: auto;
