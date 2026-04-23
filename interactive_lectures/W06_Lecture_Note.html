@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W6 — Martellini PSP/GHP: LDI에서 개인 은퇴문제로</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W6 강의노트</span>
+  <span class="ttl" id="sf-t">Martellini PSP/GHP</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W6 강의노트">
+  <div class="hero-badge">Week 06 · Phase 2 · LDI/GBI</div>
+  <h1>Martellini PSP/GHP — LDI에서 개인 은퇴문제로</h1>
+  <p class="hero-sub">Performance-Seeking + Goal-Hedging 이중분해 · CPPI 기반 동적 배분 · 한국 연금 2055 시나리오</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">α·m</span><span class="hero-meta-lbl">CPPI<br>Multiplier</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">426조</span><span class="hero-meta-lbl">퇴직연금<br>한국 2024</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W05_Lecture_Note.html">◀ W5</a> · <a href="index.html">Home</a> · <a href="W07_Lecture_Note.html">W7 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>기관 LDI</strong>의 liability 매칭 구조를 <strong>개인 GBI</strong>로 번역 (LHP → GHP, surplus → funding ratio)</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>GHP (Retirement Bond)</strong>의 cashflow matching과 inflation hedge 설계</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text"><strong>Martellini 동적 규칙</strong> $\alpha_t^{\text{PSP}} W_t = m(W_t - F_t)$의 CPPI 기원과 동작 원리 설명</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text"><strong>EDHEC Flexicure Solution</strong>의 essential/aspirational 이중 outcome 구조 이해</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> Brunel은 UHNW를 위한 정적 실무였다. Martellini는 <strong>평범한 DC 가입자</strong>를 위한 <strong>동적 GBI</strong>다. 기관 LDI(400년 진화)를 개인으로 down-scale해 <strong>$w^*(W_t, t)$ state-dependent 정책</strong>을 도출한다. 핵심 아이디어: <strong>PSP allocation = multiplier × risk budget</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. LDI 기원 ════ -->
+<section data-section="§2. LDI 기원">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">25min</span></div>
+  <h2>§2. LDI — 기관연금의 자산-부채 매칭</h2>
+
+  <h3>2.1 DB 연금의 경제학</h3>
+
+  <div class="eqbox">
+    $$L_T = \sum_{t} \text{payment}_t = \text{PV of future pension cashflows}$$
+    <div class="eq-cap">기금 문제: $\max_{w_t} U(A_T - L_T)$ — surplus 또는 funding ratio $A_T/L_T$ 관리.</div>
+  </div>
+
+  <h3>2.2 Asset-Only vs LDI</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl">Traditional Asset-Only</div>
+      <ul class="cmp-list">
+        <li>목표: asset 기대수익 극대화</li>
+        <li>리스크: asset 변동성</li>
+        <li><strong>실패:</strong> 금리↓ → liability↑ but asset 변함없음 → funding gap</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl">LDI Approach</div>
+      <ul class="cmp-list">
+        <li>목표: <strong>funding ratio 안정</strong></li>
+        <li>리스크: surplus risk</li>
+        <li>asset sensitivity = liability sensitivity</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>2.3 Two-Fund Separation (Tepper 1981, Black 1989)</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">🛡️</div>
+      <div class="bk-ttl">LHP</div>
+      <div class="bk-sub">Liability-Hedging</div>
+      <div class="bk-assets">Duration-matched bond · 안전 "복제" 자산</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">📈</div>
+      <div class="bk-ttl">PSP</div>
+      <div class="bk-sub">Performance-Seeking</div>
+      <div class="bk-assets">분산 주식 · 대체 · Surplus 성장</div>
+    </div>
+  </div>
+
+  <h3>2.4 개인 은퇴문제로의 번역</h3>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Martellini (2013, 2017) — 구조적 동일성</div>
+    <div class="prop-body">
+      <ul style="padding-left:18px;margin:0">
+        <li>개인의 "liability" = 은퇴 후 <strong>replacement income</strong> 현가</li>
+        <li>개인의 "LHP" → <strong>GHP</strong> (Goal-Hedging Portfolio) — 재프레임</li>
+        <li>개인의 "PSP" = 추가 성장 위험자산</li>
+      </ul>
+      <strong>용어 전환의 의미:</strong> "부채"(부정적 감정) → "목표"(긍정적 감정) — behavioral 이점.
+    </div>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">기관 LDI(DB 연금)와 개인 GBI(DC 가입자)의 구조적 병렬. LHP→GHP, 동일한 PSP, Martellini 동적 배분 규칙. (원본: <code>docs/Week06_Infographic_LDI_to_GBI.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. GHP ════ -->
+<section data-section="§3. GHP: Retirement Bond">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">30min</span></div>
+  <h2>§3. Goal-Hedging Portfolio (GHP) — "Retirement Bond"</h2>
+
+  <h3>3.1 개념과 구체</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">Replacement income 목표의 GHP (forward-start bond ladder):</div>
+    $$\text{GHP}_t = \sum_{s=T}^{T+20} \frac{C \cdot \text{CPI}_s}{(1+y_t^{(s-t)})^{s-t}}$$
+    <div class="eq-cap">$y_t^{(s-t)}$: 만기 $s-t$의 <strong>실질수익률</strong> 곡선.</div>
+  </div>
+
+  <h3>3.2 Synthetic Retirement Bond 구성</h3>
+  <p>미국을 제외한 대부분에서 실제 retirement bond가 거래되지 않는다. 따라서 합성:</p>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">①</div><div class="ax-body"><div class="ax-ttl">Cashflow matching</div><div class="ax-crack">각 미래 cashflow에 매치되는 zero-coupon bond ladder</div></div></div>
+    <div class="axiom"><div class="ax-tag">②</div><div class="ax-body"><div class="ax-ttl">Duration matching</div><div class="ax-crack">liability duration을 복제</div></div></div>
+    <div class="axiom"><div class="ax-tag">③</div><div class="ax-body"><div class="ax-ttl">Factor matching</div><div class="ax-crack">인플레이션·금리·longevity factor exposure 매칭</div></div></div>
+  </div>
+
+  <div class="callout red">
+    <strong>⚠️ 흔한 오해:</strong> "은퇴 준비 = 안전하게 예금·MMF"는 <strong>잘못</strong>. MMF는 nominal value만 보존. 한국 CPI 누적 2005→2025 약 50% 상승 → 2005년 월 200만원 실질가치 대폭 삭감.<br><br>
+    <strong>올바른 GHP:</strong> TIPS · 한국 물가연동국고채 · Duration-matched inflation-linked bond portfolio.
+  </div>
+
+  <h3>3.3 GHP ≡ Floor</h3>
+
+  <div class="eqbox">
+    $$F_t = \text{PV}_t(\text{goal cashflow}) = \text{GHP}_t$$
+    <div class="eq-cap">$W_t &lt; F_t$: GHP만 사도 목표 달성 불가 → <strong>risk-off 필요</strong></div>
+    <div class="eq-cap">$W_t &gt; F_t$: <strong>risk budget</strong> $= W_t - F_t$ 확보</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. PSP ════ -->
+<section data-section="§4. PSP: Factor Investing">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">30min</span></div>
+  <h2>§4. Performance-Seeking Portfolio — Goal-Agnostic Mass Production</h2>
+
+  <h3>4.1 PSP의 역할과 자율성</h3>
+
+  <div class="callout blue">
+    <strong>Martellini-Milhau(2017) 핵심 주장:</strong> PSP는 goal-specific일 필요 <strong>없다</strong>. 이유: PSP는 premium harvesting이 목적, GHP가 goal을 hedge. PSP는 "순수하게 risk-reward가 가장 좋은" 형태로 설계하면 됨 → <strong>mass production·scalability</strong>.
+  </div>
+
+  <h3>4.2 Factor-based PSP</h3>
+
+  <div class="eqbox">
+    $$\text{PSP} = w_1 \cdot F_{\text{value}} + w_2 \cdot F_{\text{momentum}} + w_3 \cdot F_{\text{quality}} + w_4 \cdot F_{\text{low-vol}} + \ldots$$
+    <div class="eq-cap">Smart factor indexes를 market-cap weighted equity 대신.</div>
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">PSP 설계 방법</div>
+      <ul class="cmp-list">
+        <li>Sharpe 극대화: $\max (\mu^\top w - r_f)/\sqrt{w^\top \Sigma w}$</li>
+        <li>Max diversification</li>
+        <li>Risk parity: $w_i \cdot \text{MRC}_i = w_j \cdot \text{MRC}_j$</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">이점</div>
+      <ul class="cmp-list">
+        <li>분산된 factor exposure → 높은 risk-adjusted return</li>
+        <li>저비용 (factor ETF)</li>
+        <li>Explainability</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>4.3 PSP vs GHP — 역할 분담</h3>
+
+  <table class="dtable">
+    <thead><tr><th>속성</th><th>GHP</th><th>PSP</th></tr></thead>
+    <tbody>
+      <tr><td>역할</td><td>Goal 복제 · floor</td><td>Premium harvesting · upside</td></tr>
+      <tr><td>자산</td><td>Inflation-linked bond ladder</td><td>Diversified equity · factor · alt</td></tr>
+      <tr><td>개인화</td><td><strong>필요</strong></td><td>불필요 (mass production)</td></tr>
+      <tr><td>기대수익</td><td>낮음 (실질 $r_f$)</td><td>높음 (risk premia)</td></tr>
+      <tr><td>동적 allocation</td><td>고정</td><td><strong>동적</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.4 Three-Fund Theorem</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">MARTELLINI 3-FUND THEOREM</div>
+    $$W_t = \alpha_t^{\text{cash}} \cdot M_t + \alpha_t^{\text{GHP}} \cdot GHP_t + \alpha_t^{\text{PSP}} \cdot PSP_t$$
+    <div class="meta-desc">현대 개인 은퇴 투자자에게 필요한 펀드는 <strong>3종</strong> — 현금(유동성) · GHP(목표헷지) · PSP(성장). $\alpha$ 동적 배분이 §5.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. 동적 배분 (핵심) ════ -->
+<section data-section="§5. CPPI 동적 배분">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">40min · Core</span></div>
+  <h2>§5. 동적 배분 규칙 — $\alpha_t^{\text{PSP}} W_t = m(W_t - F_t)$</h2>
+
+  <h3>5.1 Risk Budget</h3>
+
+  <div class="eqbox">
+    $$B_t = W_t - F_t, \quad \mathrm{FR}_t = \frac{W_t}{F_t}, \quad B_t = F_t(\mathrm{FR}_t - 1)$$
+  </div>
+
+  <h3>5.2 Martellini 동적 배분 규칙</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">CPPI CORE RULE (Deguest-Martellini-Milhau-Suri-Wang 2015)</div>
+    $$\alpha_t^{\text{PSP}} \cdot W_t = m \cdot B_t = m \cdot (W_t - F_t)$$
+    $$\alpha_t^{\text{GHP}} \cdot W_t = W_t - m(W_t - F_t)$$
+    <div class="meta-desc">PSP에 투입하는 달러 금액 = <strong>risk budget의 $m$배</strong>. $m$은 multiplier (상수 또는 상태의존).</div>
+  </div>
+
+  <h3>5.3 CPPI의 자연스런 행동 — State-Dependent Glide Path</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl">Bull Market</div>
+      <ul class="cmp-list">
+        <li>자산 $W_t$ 증가</li>
+        <li>risk budget 증가</li>
+        <li>PSP 비중 <strong>증가</strong></li>
+        <li>→ Lock in upside</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl">Bear Market</div>
+      <ul class="cmp-list">
+        <li>자산 감소</li>
+        <li>risk budget 감소</li>
+        <li>PSP 비중 자동 <strong>축소</strong></li>
+        <li>floor 근접 시 GHP only</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <strong>TDF 대비 우월성:</strong> Target-Date Fund는 <em>deterministic</em> glide path (나이 기반). CPPI는 <strong>동적·상태의존</strong>. 시장 상태에 자동 반응.
+  </div>
+
+  <h3>5.4 Multiplier $m$ 선택</h3>
+
+  <table class="dtable">
+    <thead><tr><th>$m$</th><th>특성</th><th>Trade-off</th></tr></thead>
+    <tbody>
+      <tr><td>$m = 5$ (큰)</td><td>Upside 크</td><td><strong>Gap risk</strong>: 단일 충격에 floor 돌파 가능</td></tr>
+      <tr><td>$m = 2$ (작)</td><td>안전</td><td>Upside 제한</td></tr>
+      <tr><td><strong>$m \in [2, 5]$</strong></td><td>실무 일반적</td><td>$m \le 1/k$, $k$ = max loss</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.5 수치 예시 — 45세 DC 가입자</h3>
+
+  <p>$W_0 = 1$억, 목표 floor $F_0 = 0.7$억 (20년 후 실질 4억의 현가), $m=3$.</p>
+
+  <table class="dtable">
+    <thead><tr><th>$t$</th><th>$W_t$</th><th>$F_t$</th><th>$B_t$</th><th>PSP</th><th>GHP</th><th>시장 상황</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>1.0억</td><td>0.7억</td><td>0.3억</td><td><strong>90%</strong></td><td>10%</td><td>시작</td></tr>
+      <tr style="background:#f0fdf4"><td>5</td><td>1.5억</td><td>0.8억</td><td>0.7억</td><td>≤90% (cap)</td><td>10%</td><td>🟢 Bull</td></tr>
+      <tr style="background:#fef2f2"><td>10</td><td>0.95억</td><td>0.9억</td><td>0.05억</td><td><strong>15%</strong></td><td>85%</td><td>🔴 Bear</td></tr>
+      <tr style="background:#fefbf0"><td>20</td><td>GHP 복원</td><td>4억</td><td>—</td><td>0%</td><td>100%</td><td>🎯 은퇴 달성</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout purple">
+    <strong>자동 방어 전환:</strong> $t=10$에서 시장 폭락으로 risk budget이 거의 0이 되자 PSP 비중이 자동으로 15%로 축소. 이것이 CPPI의 "<em>self-adaptive glide path</em>" 특성.
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">Martellini PSP/GHP 동적 배분의 Python Monte Carlo 시뮬레이션(W₀=1.0, F₀=0.7, m=3, T=20년). Bull/Normal/Bear 세 시나리오에서 CPPI의 세 특성(upside lock-in · aspirational 초과 · floor 정확 보호) 검증. (원본: <code>docs/Week06_Infographic_CPPI_Simulation.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. Flexicure ════ -->
+<section data-section="§6. EDHEC Flexicure">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">20min</span></div>
+  <h2>§6. EDHEC Flexicure Retirement Solution</h2>
+
+  <p><strong>Flexicure = Flexible + Secure</strong>: 최소 replacement income(essential)은 <strong>보장</strong>, 더 높은 income(aspirational)은 <strong>확률적 달성</strong>.</p>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    A["Individual<br/>DC Contributor"] --> B["GHP<br/>(retirement bond)"]
+    A --> C["PSP<br/>(smart factor equity)"]
+    B --> D["Essential Goal<br/>Guaranteed Replacement"]
+    C --> E["Aspirational Goal<br/>Higher Replacement"]
+    F["Dynamic<br/>α = m·(W−F)/W"] --> B
+    F --> C
+    style D fill:#4cbf7a
+    style E fill:#f0c869
+    style F fill:#1e5f8e
+    </pre>
+  </div>
+
+  <h3>6.1 이중 Outcome</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl" style="color:#14532d">Essential ($L^{\text{min}}$)</div>
+      <ul class="cmp-list">
+        <li>절대 달성 최소 (예: 월 150만원)</li>
+        <li>P(essential) = <strong>100%</strong></li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#fffbeb;border-color:#fde68a">
+      <div class="cmp-ttl" style="color:#92400e">Aspirational ($L^{\text{target}}$)</div>
+      <ul class="cmp-list">
+        <li>이상적 수준 (예: 월 300만원)</li>
+        <li>P(aspirational) = <strong>60–80%</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.2 TDF vs Flexicure</h3>
+
+  <table class="dtable">
+    <thead><tr><th>측면</th><th>TDF (생애주기)</th><th>Flexicure</th></tr></thead>
+    <tbody>
+      <tr><td>Glide path</td><td>나이 기반 deterministic</td><td><strong>$W_t, F_t$ 기반 state-dependent</strong></td></tr>
+      <tr><td>개인화</td><td>출생연도만</td><td>Essential goal · risk budget · multiplier</td></tr>
+      <tr><td>Goal definition</td><td>암묵적</td><td><strong>명시적</strong> (replacement income)</td></tr>
+      <tr><td>Downside protection</td><td>없음</td><td>Floor 기반 CPPI</td></tr>
+      <tr><td>재조정</td><td>정기</td><td><strong>Continuous state-responsive</strong></td></tr>
+      <tr><td>국내 구현</td><td>미래에셋·삼성</td><td><strong>거의 없음</strong> (2026년)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout blue">
+    <strong>EDHEC-Princeton Retirement GBI Index:</strong> 35, 40, 45, 50, 55, 60세 가입자 대상 benchmark. Essential 70% / Aspirational 100–150%. 공개 methodology로 연구 결과를 <strong>실제 거래 가능한 index로 제도화</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §7. 한국 연금 ════ -->
+<section data-section="§7. 한국 연금 적용">
+  <div class="session-head"><span class="session-tag">SESSION 7</span><span class="session-time">20min · Korea</span></div>
+  <h2>§7. 한국 연금시장 적용 — 2055 고갈 & 디폴트옵션</h2>
+
+  <h3>7.1 한국 연금 3층 현실</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">1️⃣</div>
+      <div class="bk-ttl">국민연금 (NPS)</div>
+      <div class="bk-sub">1,100조+ (2024말)</div>
+      <div class="bk-assets"><strong>2055년 고갈 예상</strong> (개혁안 적용 시 2065)</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">2️⃣</div>
+      <div class="bk-ttl">퇴직연금 DC/DB/IRP</div>
+      <div class="bk-sub">426조 (2024말)</div>
+      <div class="bk-assets">2023.07 <strong>디폴트옵션 의무화</strong></div>
+    </div>
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">3️⃣</div>
+      <div class="bk-ttl">개인연금·ISA</div>
+      <div class="bk-sub">성장세 있음</div>
+      <div class="bk-assets">세제 혜택 활용도 낮음</div>
+    </div>
+  </div>
+
+  <h3>7.2 디폴트옵션 4단계 = Martellini 스펙트럼</h3>
+
+  <table class="dtable">
+    <thead><tr><th>위험등급</th><th>구성</th><th>Martellini 대응</th></tr></thead>
+    <tbody>
+      <tr><td>초저위험</td><td>원리금보장형 100%</td><td>GHP only + floor 고정</td></tr>
+      <tr><td>저위험</td><td>원리금보장 80 + TDF 20</td><td><strong>Low-m CPPI</strong></td></tr>
+      <tr><td>중위험</td><td>원리금보장 50 + TDF 50</td><td>Moderate-m</td></tr>
+      <tr><td>고위험</td><td>TDF 100%</td><td>High-m, near-PSP</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.3 한국 적용 4대 과제</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">1</div><div class="ax-body"><div class="ax-ttl">Retirement Bond의 부재</div><div class="ax-crack">한국 물가연동국고채(KTIB) 유동성 낮고 forward-start 구조 없음. 국고채 ladder + 물가연동채 + 회사채 AA+ 합성으로 근사.</div></div></div>
+    <div class="axiom"><div class="ax-tag">2</div><div class="ax-body"><div class="ax-ttl">PSP goal-agnostic 설계</div><div class="ax-crack">현재 한국 TDF: 나이 기반 deterministic. <strong>state-dependent 구조</strong>로 진화 필요.</div></div></div>
+    <div class="axiom"><div class="ax-tag">3</div><div class="ax-body"><div class="ax-ttl">가계 저축율 저하</div><div class="ax-crack">Risk budget $B_t$ 자체가 낮아짐. Aggressive PSP 압박.</div></div></div>
+    <div class="axiom"><div class="ax-tag">4</div><div class="ax-body"><div class="ax-ttl">국민연금 replacement 불확실</div><div class="ax-crack">Essential floor 자체가 moving target. 3-layer hedge: 1층 할인 + 2층 main defense + 3층 inflation hedge.</div></div></div>
+  </div>
+
+  <h3>7.4 Negative Risk Budget — 한국 중위 가계의 현실</h3>
+
+  <div class="callout red">
+    45세 한국인 케이스: $W_0 = 2$억, 목표 4억, $F_0 = 2.8$억 → <strong>$B_0 = -0.8$억 (negative!)</strong>.<br><br>
+    <strong>처방:</strong> ① 추가 월 납입 증가 ② 목표 조정 (replacement 축소 or 은퇴 시점 지연) ③ 1층 국민연금 가정 재점검.<br>
+    이 "negative risk budget scenario"가 한국 중위 가계의 <strong>가장 흔한 실제 상황</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W6 · 5페이지</span>
+    <div class="hw-title">CPPI Monte Carlo + 한국 Retirement Bond</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">A · 수리·시뮬 (Python)</div>
+      <p>45세, $W_0 = 1$억, 20년 후 목표 4억, $m=3$ CPPI를 10,000 경로 Monte Carlo. <strong>TDF(deterministic glide path) 대비:</strong> 목표 달성확률, Drawdown, Essential income 100% 달성 확률.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">B · 개념·정책 (3p)</div>
+      <p>한국 Retirement Bond 부재 문제: (1) 정부 발행 가능성 (2) 민간 synthetic 구축 (3) 규제 장벽 분석. KIRI·EDHEC 자료 참조.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Martellini & Milhau (2017)</div>
+      <div class="ref-sub"><em>Mass Customisation vs. Mass Production in Retirement Investment Management</em></div>
+      <div class="ref-src">EDHEC-Risk Institute</div>
+    </div>
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Giron, Martellini et al. (2018)</div>
+      <div class="ref-sub"><em>Applying Goal-Based Investing Principles to the Retirement Problem</em></div>
+      <div class="ref-src">EDHEC-Risk</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">핵심</div>
+      <div class="ref-ttl">Deguest et al. (2015)</div>
+      <div class="ref-sub"><em>Comprehensive Investment Framework for GBWM</em></div>
+      <div class="ref-src">EDHEC</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">고전</div>
+      <div class="ref-ttl">Merton (1971)</div>
+      <div class="ref-sub">"Optimum consumption and portfolio rules..."</div>
+      <div class="ref-src"><em>JET</em></div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W7 미리보기:</strong> 여러 목표를 <strong>동시에</strong> 최적화. Multi-goal allocation rule, Das-Statman-Scheid(2018), 3rd-eyes Analytics·Ortec OPAL 등 상용 엔진의 알고리즘 구조.
+  </div>
+</section>
+
+<!-- ════ 부록 ════ -->
+<section data-section="부록 · 프레임워크 비교">
+  <div class="eyebrow">Appendix</div>
+  <h2>PSP/GHP와 다른 프레임워크 비교</h2>
+
+  <table class="dtable">
+    <thead><tr><th>측면</th><th>Das-Markowitz MA</th><th>Brunel 4-step</th><th>Martellini PSP/GHP</th></tr></thead>
+    <tbody>
+      <tr><td>투자자 단위</td><td>개인 (multi-account)</td><td>UHNW 가족</td><td>개인 DC 가입자</td></tr>
+      <tr><td>시간 구조</td><td>정적 (single period)</td><td>정적 + iterative review</td><td><strong>연속시간 동적</strong></td></tr>
+      <tr><td>목표 표현</td><td>$(H, \alpha)$</td><td>자연어 + 4-tuple</td><td>Replacement income</td></tr>
+      <tr><td>최적화 방법</td><td>MV/VaR 해석</td><td>Module library</td><td>CPPI + 동적</td></tr>
+      <tr><td>대표 구현</td><td>MA framework</td><td>ISP</td><td>Flexicure</td></tr>
+    </tbody>
+  </table>
+
+  <h3>한국 연금 타임라인</h3>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">2023.07</div><div class="tl-ttl">퇴직연금 디폴트옵션 의무화</div></div>
+    <div class="tl-item"><div class="tl-year">2024.12</div><div class="tl-ttl">퇴직연금 RA 일임 혁신금융서비스 지정</div></div>
+    <div class="tl-item"><div class="tl-year">2025.03</div><div class="tl-ttl">국민연금법 개정안 국회 통과 (요율 9→13%, 대체율 41.5→43%)</div></div>
+    <div class="tl-item"><div class="tl-year">2055</div><div class="tl-ttl">기존 추계 기금 고갈 시점</div></div>
+    <div class="tl-item"><div class="tl-year">2065</div><div class="tl-ttl">개혁안 적용 시 기금 소진 연기 시점</div></div>
+  </div>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W6 강의노트</strong> · Martellini PSP/GHP — LDI to Personal Retirement<br>
+  <a href="W05_Lecture_Note.html">◀ W5</a> · <a href="index.html">Home</a> · <a href="W07_Lecture_Note.html">W7: Multi-Goal Optimization ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

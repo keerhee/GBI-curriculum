@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W3 — Behavioral Portfolio Theory (Shefrin-Statman 2000)</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W3 강의노트</span>
+  <span class="ttl" id="sf-t">Behavioral Portfolio Theory</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W3 강의노트">
+  <div class="hero-badge">Week 03 · Phase 1 · BPT</div>
+  <h1>Behavioral Portfolio Theory — Shefrin-Statman (2000)</h1>
+  <p class="hero-sub">SP/A가 포트폴리오 이론으로 formalize되는 과정 · Bond + Lottery 피라미드의 탄생</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">BPT-SA/MA</span><span class="hero-meta-lbl">Single·Multi<br>Account</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">70%+</span><span class="hero-meta-lbl">MV 효율선<br>실증 일치율</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W02_Lecture_Note.html">◀ W2</a> · <a href="index.html">Home</a> · <a href="W04_Lecture_Note.html">W4 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>Telser(1956) Safety-First</strong>와 GBI·BPT의 수학적 조상 관계를 설명할 수 있다</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>BPT-SA</strong>(Single Account) 최적화의 decumulative weighted expected wealth와 chance constraint를 수식으로 서술</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text"><strong>BPT-MA</strong>(Multi Account) 피라미드에서 <em>Bond + Lottery Ticket</em> corner solution이 발생하는 직관 설명</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text">BPT와 MV 효율경계의 <strong>일치·불일치 조건</strong>을 4가지 이상 열거</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> Shefrin-Statman BPT는 SP/A의 aspiration을 제약으로, security/potential을 목적함수 구조로 번역해 <strong>"채권 + 복권"</strong> 형태의 피라미드 포트폴리오를 수학적 최적해로 도출한다. 이것이 Chhabra(2005)·Das-Markowitz-Statman(2010)으로 이어지는 GBI 수학 체계의 <strong>결정적 bridge</strong>다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. Telser Safety-First ════ -->
+<section data-section="§2. Telser Safety-First">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">30min</span></div>
+  <h2>§2. Telser Safety-First의 재조명</h2>
+
+  <h3>2.1 Safety-First의 역사적 뿌리 (Roy 1952 · Telser 1956)</h3>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1952</div>
+      <div class="tl-ttl">Roy — Safety-First Rule</div>
+      <div class="tl-dd">$\min_w \Pr(R_p \le d)$. Markowitz와 같은 해(!)에 "재앙 수준 $d$ 이하 확률 최소화" 제안.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1956</div>
+      <div class="tl-ttl">Telser — 변형</div>
+      <div class="tl-dd">$\max \mathbb{E}[R_p]$ s.t. $\Pr(R_p \le R_L) \le \varepsilon$. <strong>GBI의 원형이 이미 존재.</strong></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1963</div>
+      <div class="tl-ttl">Kataoka</div>
+      <div class="tl-dd">$\max R_L$ s.t. $\Pr(R_p \le R_L) \le \varepsilon$.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2000</div>
+      <div class="tl-ttl">Shefrin-Statman BPT</div>
+      <div class="tl-dd">Safety-First에 SP/A의 decumulative weighting 추가.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2010</div>
+      <div class="tl-ttl">Das-Markowitz-Scheid-Statman</div>
+      <div class="tl-dd">Safety-First = VaR = MV의 등가성 증명.</div>
+    </div>
+  </div>
+
+  <h3>2.2 Telser = GBI의 수학적 조상</h3>
+
+  <table class="dtable">
+    <thead><tr><th>Telser (1956)</th><th>GBI (2015+)</th></tr></thead>
+    <tbody>
+      <tr><td>$\max \mathbb{E}[R_p]$</td><td>$\max \mathbb{E}[W_T]$</td></tr>
+      <tr><td>$\Pr(R_p \le R_L) \le \varepsilon$</td><td>$\Pr(W_T &lt; H) \le \alpha$</td></tr>
+      <tr><td>$R_L$: 참담한 수익률</td><td>$H$: 목표 미달 수준</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <strong>재발견의 역사:</strong> GBI의 chance-constrained 형태는 <strong>1956년에 이미 존재</strong>했다. MPT가 교과서를 지배하면서 50년 가까이 변방으로 밀려났을 뿐이다.
+  </div>
+
+  <h3>2.3 정규분포 가정 하 Telser 기하학</h3>
+
+  <div class="eqbox">
+    $$\Pr(R_p \le R_L) = \Phi\!\left( \frac{R_L - \mu_p}{\sigma_p} \right) \le \varepsilon$$
+    <div class="eq-cap">정리:</div>
+    $$\mu_p \ge R_L + z_{1-\varepsilon}\, \sigma_p, \quad z_{1-\varepsilon} = \Phi^{-1}(1-\varepsilon)$$
+    <div class="eq-cap">$(\sigma_p, \mu_p)$ 평면의 <strong>반선(half-line)</strong>. Slope: $z_{1-\varepsilon}$ · Intercept: $R_L$.</div>
+  </div>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    A["MV 효율선<br/>(hyperbola)"] --> C["접점<br/>(tangent)"]
+    B["Safety-First 제약선<br/>μ = R_L + z·σ"] --> C
+    C --> D["Telser optimal<br/>= MV 효율선 위 한 점"]
+    style C fill:#d4a244
+    </pre>
+  </div>
+
+  <div class="callout blue">
+    <strong>중요 통찰:</strong> Telser 문제의 해는 여전히 <strong>MV 효율선 위</strong>에 있다. Telser는 효율선을 거부한 것이 아니라, <strong>효율선 위 어느 점을 고를 것인가의 기준</strong>을 "risk aversion $\lambda$"에서 "disaster avoidance $R_L, \varepsilon$"로 바꾼 것이다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. BPT-SA ════ -->
+<section data-section="§3. BPT-SA">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">45min</span></div>
+  <h2>§3. BPT-SA (Single Mental Account) 최적화</h2>
+
+  <h3>3.1 정식화</h3>
+
+  <div class="eqbox">
+    $$\max_w \; E^h[W] \quad \text{s.t. } \Pr(W \le A) \le 1 - \alpha,\ w^\top \mathbf{1}=1,\ w_i \ge 0$$
+    <div class="eq-cap">여기서 $E^h[W] = \int_0^\infty [1 - h(F_W(x))]\, dx$ (decumulatively weighted expected wealth).</div>
+  </div>
+
+  <h3>3.2 Lopes-Oden의 $h$ 함수</h3>
+
+  <div class="eqbox">
+    $$h(D) = \int_0^D \left[ q_s\, \phi_s(z) + q_p\, \phi_p(z) \right] dz$$
+    <div class="eq-cap">$\phi_s(z) = (1 + s_1)(1-z)^{s_1}$: security-minded · $\phi_p(z) = (1 + s_2) z^{s_2}$: potential-minded</div>
+  </div>
+
+  <table class="dtable">
+    <thead><tr><th>성향</th><th>$s_1$</th><th>$s_2$</th><th>$q_s$</th><th>$q_p$</th></tr></thead>
+    <tbody>
+      <tr><td>Security type</td><td>2.92</td><td>2.25</td><td>0.79</td><td>0.21</td></tr>
+      <tr><td>Potential type</td><td>0.77</td><td>0.23</td><td>0.16</td><td>0.84</td></tr>
+      <tr><td>Mixed</td><td>1.8</td><td>1.2</td><td>0.5</td><td>0.5</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.3 BPT-SA 최적해의 정성적 특징 — "Bond + Lottery Ticket"</h3>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Shefrin-Statman Theorem</div>
+    <div class="prop-body">일정 조건 하 BPT-SA 최적 포트폴리오는 <strong>무위험채권 + 복권형 자산</strong>의 조합으로 표현된다.</div>
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="cmp-ttl">🛡️ Bond 역할</div>
+      <ul class="cmp-list">
+        <li>$\Pr(W \ge A)$ 제약 <strong>만족시키는 hedge</strong></li>
+        <li>Aspiration 기저를 채움</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl">🎰 Lottery 역할</div>
+      <ul class="cmp-list">
+        <li>왜도 큰 자산 · potential-minded 충족</li>
+        <li>Upside potential</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <strong>중간적 자산 배제(Corner Solution):</strong> 분산된 주식 포트폴리오는 <em>domination</em>되어 포함되지 않는다. MV의 "모든 자산 일부씩 보유"와 <strong>정반대</strong>.
+  </div>
+
+  <h3>3.4 수치 예시 — 3-asset BPT-SA</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">설정</div>
+      <ul class="cmp-list">
+        <li>무위험채권 $r_f = 0.02$</li>
+        <li>주식시장 $r_s \sim \mathcal{N}(0.08, 0.2^2)$</li>
+        <li>복권: 상태 $\omega_1$ 100 ($p=0.001$), 매입가 0.1</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#fefbf0;border-color:#f5d88a">
+      <div class="cmp-ttl">결과 (potential-minded)</div>
+      <ul class="cmp-list">
+        <li>BPT: $(w_f, w_s, w_l) \approx (0.85, 0.10, \mathbf{0.05})$</li>
+        <li>MV: $(0.4, 0.6, 0.0)$</li>
+        <li><strong>전혀 다른</strong> 모양</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. BPT-MA ════ -->
+<section data-section="§4. BPT-MA Pyramid">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">45min</span></div>
+  <h2>§4. BPT-MA — Multiple Account 피라미드</h2>
+
+  <h3>4.1 BPT-MA 정식화</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">$K$개 계정 $k = 1, \ldots, K$, 각각 aspiration $A_k$, 목표 확률 $\alpha_k$, 자금할당 $\pi_k$:</div>
+    $$\max_{w_k} \; E^{h_k}[W_k] \quad \text{s.t. } \Pr(W_k \le A_k) \le 1 - \alpha_k$$
+    <div class="eq-cap">포트폴리오 집계:</div>
+    $$w^{\text{aggregate}} = \sum_{k=1}^K \pi_k\, w_k^*$$
+  </div>
+
+  <h3>4.2 피라미드 구조의 발생</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">🚀</div>
+      <div class="bk-ttl">TOP Layer</div>
+      <div class="bk-sub">부의 극적 확대</div>
+      <div class="bk-prob">$\alpha \approx $ <b>20%</b></div>
+      <div class="bk-assets">Lottery / 집중투자 · Potential-minded</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">📈</div>
+      <div class="bk-ttl">MIDDLE Layer</div>
+      <div class="bk-sub">성장</div>
+      <div class="bk-prob">$\alpha \approx $ <b>70%</b></div>
+      <div class="bk-assets">Diversified Equity · Mixed</div>
+    </div>
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">🛡️</div>
+      <div class="bk-ttl">BOTTOM Layer</div>
+      <div class="bk-sub">빈곤 회피</div>
+      <div class="bk-prob">$\alpha \approx $ <b>99%</b></div>
+      <div class="bk-assets">Bond 위주 · Security-minded</div>
+    </div>
+  </div>
+
+  <h3>4.3 두-펀드 정리가 BPT에서 깨지는 이유</h3>
+
+  <div class="proof-steps">
+    <div class="ps"><span class="ps-n">1</span><div>각 계정의 $A_k, \alpha_k, h_k$가 다르다.</div></div>
+    <div class="ps"><span class="ps-n">2</span><div>각 계정 최적해 $w_k^*$는 corner solution (bond + lottery)이며, <strong>포함되는 자산 집합이 다르다</strong>.</div></div>
+    <div class="ps"><span class="ps-n">3</span><div>aggregate $\sum_k \pi_k w_k^*$는 bond + 여러 종의 lottery의 조합.</div></div>
+    <div class="ps"><span class="ps-n">4</span><div>이는 single-fund (market portfolio)로 수렴하지 <strong>않는다</strong>. CAPM과 결별.</div></div>
+  </div>
+
+  <h3>4.4 Chhabra·Das-Statman과의 관계 — 계보도</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TD
+    A["Shefrin-Statman<br/>BPT (2000)"]
+    A --> B["BPT-SA<br/>단일 계정"]
+    A --> C["BPT-MA<br/>피라미드"]
+    C --> D["Chhabra (2005)<br/>3-bucket 실무화"]
+    C --> E["Das-Markowitz-<br/>Scheid-Statman (2010)<br/>MV 재화해"]
+    D --> F["GBI 산업화<br/>Brunel (2015)<br/>Martellini (2015+)"]
+    E --> F
+    style A fill:#8a5a8a,color:#fff
+    style F fill:#d4a244,color:#1a1a1a
+    </pre>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">SP/A(심리학) + Safety-First(포트폴리오이론) → BPT-SA/BPT-MA → Chhabra·Das-Statman → GBI 산업 패러다임의 수학적 계보. (원본: <code>docs/Week03_Infographic_SPA_to_GBI.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. BPT vs MV ════ -->
+<section data-section="§5. BPT vs MV">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">20min</span></div>
+  <h2>§5. BPT 효율경계 vs MV 효율경계</h2>
+
+  <h3>5.1 Shefrin-Statman의 원 문장</h3>
+  <div class="callout purple">
+    <em>"In general, the two frontiers do not coincide"</em> — 일반적으로 일치하지 않는다. 그러나 <strong>언제</strong> 일치하고 <strong>언제</strong> 괴리되는지에 대한 완전한 분석은 후속 연구의 몫이었다.
+  </div>
+
+  <h3>5.2 Das-Markowitz-Scheid-Statman (2010) — 일치 조건</h3>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Sufficient Conditions for BPT-MV Coincidence</div>
+    <div class="prop-body">다음 조건 모두 만족 시 aggregate portfolio는 MV 효율선 위:
+      <ol style="padding-left:20px;margin-top:6px">
+        <li>자산 수익률이 <strong>정규분포</strong></li>
+        <li><strong>Short-selling 허용</strong></li>
+        <li>각 계정의 제약이 <strong>VaR 형태</strong></li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>5.3 Pfiffelmann-Roger-Bourachnikova (2016) 실증</h3>
+  <p>CRSP 1995–2011 실증:</p>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl" style="color:#14532d">결과</div>
+      <ul class="cmp-list">
+        <li><strong>BPT 해가 MV 효율선 위: 70%+</strong></li>
+        <li>BPT 최적: 고위험·고수익·<strong>양(+)의 왜도</strong></li>
+        <li>MV의 10배 낮은 $\lambda$ 공격성</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">해석</div>
+      <ul class="cmp-list">
+        <li>BPT·MV는 같은 효율선을 공유할 수 있음</li>
+        <li>그러나 <strong>선택 규칙이 다르다</strong></li>
+        <li>BPT: 왜도·꼬리 민감 / MV: 분산 민감</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>5.4 언제 프론티어가 실질적으로 갈라지는가</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">1</div><div class="ax-body"><div class="ax-ttl">Skewness 중요</div><div class="ax-crack">자산에 유의한 왜도가 있을 때 (복권형·PE·옵션)</div></div></div>
+    <div class="axiom"><div class="ax-tag">2</div><div class="ax-body"><div class="ax-ttl">Tail fat</div><div class="ax-crack">정규분포 가정 깨질 때 (극단적 market event)</div></div></div>
+    <div class="axiom"><div class="ax-tag">3</div><div class="ax-body"><div class="ax-ttl">Short-selling 금지</div><div class="ax-crack">aggregate MV 효율성 보장 제약이 깨짐</div></div></div>
+    <div class="axiom"><div class="ax-tag">4</div><div class="ax-body"><div class="ax-ttl">Multiple disconnect goals</div><div class="ax-crack">계정 간 rebalancing 불가 시</div></div></div>
+  </div>
+
+  <div class="callout gold">
+    <strong>함의:</strong> 이 네 조건이 <strong>GBI가 특히 효과를 발휘하는 환경</strong>의 지도다.
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">BPT-MA 3층 피라미드와 (σ, μ) 평면에서의 MV 효율선·Telser 제약선·BPT corner solutions의 기하학적 관계. (원본: <code>docs/Week03_Infographic_BPT_Geometry.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. 한국 ELS 사례 ════ -->
+<section data-section="§6. 한국 ELS 사례">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">15min · Korea Case</span></div>
+  <h2>§6. 한국 사례 — ELS와 "채권 + 복권" 구조</h2>
+
+  <p>한국의 <strong>주가연계증권(ELS)</strong>은 Shefrin-Statman이 예측한 <strong>"bond + lottery ticket" 구조의 상품화 사례</strong>.</p>
+
+  <h3>6.1 스텝다운형 ELS의 BPT 해석</h3>
+
+  <div class="eqbox">
+    $$W_T \approx \begin{cases}
+    W_0 (1 + c T) & \text{조기상환 } (\Pr \approx 80\%) \\
+    W_0 (1 + c T') & \text{만기 쿠폰 } (\Pr \approx 15\%) \\
+    W_0 (1 - \ell) & \text{knock-in 손실 } (\Pr \approx 5\%)
+    \end{cases}$$
+    <div class="eq-cap">$A = W_0(1 + cT)$: aspiration, $\alpha \approx 0.95$. 극단 tail의 knock-in = put option 매도 프리미엄이 쿠폰 재원.</div>
+  </div>
+
+  <div class="callout blue">
+    <strong>심리적 매력:</strong> $\alpha=95\%$ 성공확률 → security-minded 충족. 채권 대비 2-3배 높은 쿠폰 → potential-minded 충족. <strong>완벽한 BPT 상품 구조</strong>.
+  </div>
+
+  <h3>6.2 2024년 H지수 ELS 사태 — BPT가 예측하는 실패</h3>
+
+  <div class="callout red">
+    <strong>실패 모드:</strong> 투자자 인식 "원금 거의 보장" ($\alpha=95\%$ aspiration 실현) vs 실제 "5% tail이 한꺼번에 실현" → 수조 원 손실. 투자자가 <strong>저확률 tail을 과소평가</strong>(probability weighting 실패).
+  </div>
+
+  <h3>6.3 GBI 관점의 처방</h3>
+
+  <div class="checklist">
+    <div class="ck-title">✅ ELS 상품의 올바른 편입 방식</div>
+    <div class="ck-item"><strong>Essential goal 버킷에 ELS 편입 금지</strong> — tail risk가 $\alpha=99\%$와 양립 불가</div>
+    <div class="ck-item"><strong>Aspirational 버킷에만</strong> — tail 실현도 감내 가능한 여유자금</div>
+    <div class="ck-item"><strong>목표 달성확률 명시</strong> — "95% 확률" vs "원금보장"은 <em>전혀 다른</em> 프레임</div>
+  </div>
+
+  <h3>6.4 한국 연금 3층 구조 = BPT-MA 피라미드</h3>
+
+  <table class="dtable">
+    <thead><tr><th>층</th><th>상품</th><th>BPT 대응</th></tr></thead>
+    <tbody>
+      <tr><td>1층</td><td>국민연금·기초연금</td><td>Bottom ($\alpha \approx 99\%$, bond-like)</td></tr>
+      <tr><td>2층</td><td>퇴직연금 DC·IRP</td><td>Middle ($\alpha \approx 80\%$, TDF·분산)</td></tr>
+      <tr><td>3층</td><td>개인연금·ISA·일반계좌</td><td>Top ($\alpha \approx 30$–$50\%$, 성장·집중)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W3 · 4페이지</span>
+    <div class="hw-title">BPT-SA 구현과 Aggregate 효율성 증명</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">A · 수리 (Python)</div>
+      <p>3-asset(bond, equity, lottery) BPT-SA를 <code>scipy.optimize</code>로 구현. 두 투자자 유형(security $s_1=2.92, q_s=0.79$ vs potential $s_1=0.77, q_s=0.16$) 비교: weights, aspiration 달성확률, expected wealth, variance.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">B · 개념 (2p)</div>
+      <p>Das-Markowitz-Scheid-Statman(2010) "aggregate MV efficiency" + Pfiffelmann et al.(2016) 실증(BPT 해가 70%+ MV 위)을 종합해, BPT가 MV를 <strong>대체</strong>하는지 <strong>보완</strong>하는지 입장 제시.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Shefrin & Statman (2000)</div>
+      <div class="ref-sub">"Behavioral Portfolio Theory"</div>
+      <div class="ref-src"><em>JFQA</em>, 35(2), 127–151 · 전편</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">핵심</div>
+      <div class="ref-ttl">Das, Markowitz, Scheid, Statman (2010)</div>
+      <div class="ref-sub">"Portfolio Optimization with Mental Accounts"</div>
+      <div class="ref-src"><em>JFQA</em>, 45(2), 311–334</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">실증</div>
+      <div class="ref-ttl">Pfiffelmann, Roger, Bourachnikova (2016)</div>
+      <div class="ref-sub">"When BPT meets Markowitz"</div>
+      <div class="ref-src"><em>Economic Modelling</em>, 53</div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W4 미리보기:</strong> Das-Markowitz-Scheid-Statman(2010)의 <strong>MVT–MA–VaR 삼각 동등성 증명</strong>. BPT가 실무적 최적화 프레임으로 진화. VaR-based 제약의 MV 동등성 증명, 다계정 aggregation 정합성.
+  </div>
+</section>
+
+<!-- BPT vs MV 한눈 비교 ── -->
+<section data-section="부록 · BPT vs MV">
+  <div class="eyebrow">Appendix</div>
+  <h2>BPT vs MV 한눈 비교</h2>
+
+  <table class="dtable">
+    <thead><tr><th>측면</th><th>MV (Markowitz)</th><th>BPT (Shefrin-Statman)</th></tr></thead>
+    <tbody>
+      <tr><td>위험 정의</td><td>Variance</td><td>$\Pr(W &lt; A)$</td></tr>
+      <tr><td>선호 구조</td><td>$\mathbb{E}[W] - \frac{\lambda}{2}\text{Var}(W)$</td><td>$E^h[W]$ s.t. chance constraint</td></tr>
+      <tr><td>계정 수</td><td>1</td><td>1 (SA) 또는 $K$ (MA)</td></tr>
+      <tr><td>최적해 형태</td><td>내부해 (다수 자산 분산)</td><td><strong>Corner solution</strong> (bond + lottery)</td></tr>
+      <tr><td>Two-fund separation</td><td>성립</td><td>일반적으로 <strong>불성립</strong></td></tr>
+      <tr><td>왜도·꼬리 민감도</td><td>낮음</td><td>높음</td></tr>
+      <tr><td>양립 조건</td><td>—</td><td>Normal + short-sales 허용 시 aggregate 일치</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W3 강의노트</strong> · Behavioral Portfolio Theory<br>
+  <a href="W02_Lecture_Note.html">◀ W2</a> · <a href="index.html">Home</a> · <a href="W04_Lecture_Note.html">W4: Das-Markowitz MA Framework ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

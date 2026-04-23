@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W2 — 행동재무학적 기초: PT · MA · SP/A</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W2 강의노트</span>
+  <span class="ttl" id="sf-t">행동재무학적 기초</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<!-- ════ HERO ════ -->
+<div class="hero" data-section="W2 강의노트">
+  <div class="hero-badge">Week 02 · Phase 1 · Behavioral</div>
+  <h1>행동재무학적 기초 — Prospect Theory · Mental Accounting · SP/A</h1>
+  <p class="hero-sub">인간 의사결정의 구조 그 자체가 goal-based임을 수학적으로 형식화한 세 이론</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">λ=2.25</span><span class="hero-meta-lbl">손실회피<br>(TK 1992)</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">3 이론</span><span class="hero-meta-lbl">PT · MA · SP/A<br>수렴</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W01_Lecture_Note.html">◀ W1</a> · <a href="index.html">Home</a> · <a href="W03_Lecture_Note.html">W3 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════ 학습 목표 ════ -->
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="lesson-meta">
+    <div class="meta-card"><div class="meta-card-lbl">레벨</div><div class="meta-card-val">중급</div></div>
+    <div class="meta-card"><div class="meta-card-lbl">선수</div><div class="meta-card-val">W1</div></div>
+    <div class="meta-card"><div class="meta-card-lbl">실습</div><div class="meta-card-val">Python</div></div>
+    <div class="meta-card"><div class="meta-card-lbl">과제</div><div class="meta-card-val">3p</div></div>
+  </div>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>Prospect Theory</strong>의 value function $v(x)$와 probability weighting $w(p)$를 수식으로 서술하고 파라미터($\alpha=\beta=0.88,\ \lambda=2.25,\ \gamma\approx0.65$)의 의미를 설명</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>Thaler Mental Accounting</strong>의 3요소(perception · assignment · frequency)와 "<em>두 얼굴</em>"(cognitive bias vs rational goal allocation) 구분</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text"><strong>Lopes SP/A</strong>의 두-축(Security-Potential + Aspiration)과 decumulative weighting $h(\cdot)$의 구조 이해</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text">세 이론이 공통으로 가리키는 <strong>"goal-based 수렴"</strong>을 통합 value function으로 표현</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> GBI는 편향을 "교정"하는 장치가 아니라, <strong>인간 의사결정 구조 그 자체</strong>가 목표-기반임을 수용한 프레임이다. 세 이론은 서로 다른 각도에서 같은 결론으로 수렴한다 — "<em>인간은 mean-variance가 아니라 목표-기반으로 사고한다.</em>"
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. 4개의 선택 문제 ════ -->
+<section data-section="§1. 4개의 선택 문제">
+  <div class="session-head"><span class="session-tag">SESSION 1</span><span class="session-time">15min · 즉석 설문</span></div>
+  <h2>§1. Opening — 4개의 선택 문제</h2>
+
+  <p>강의 시작 직후, 5분 간 종이에 각자 선택 기록 (타인과 상의 금지).</p>
+
+  <div class="quiz-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0">
+    <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:#fffbeb">
+      <div style="font-size:9.5px;font-weight:900;color:#92400e;letter-spacing:1.5px;margin-bottom:6px">Q1 · GAIN DOMAIN</div>
+      <div style="font-size:12px;margin-bottom:7px"><strong>A:</strong> 확실한 +100만원 획득</div>
+      <div style="font-size:12px"><strong>B:</strong> 50% +220만원 / 50% 0원</div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:#fef2f2">
+      <div style="font-size:9.5px;font-weight:900;color:#991b1b;letter-spacing:1.5px;margin-bottom:6px">Q2 · LOSS DOMAIN</div>
+      <div style="font-size:12px;margin-bottom:7px"><strong>A:</strong> 확실한 −100만원 손실</div>
+      <div style="font-size:12px"><strong>B:</strong> 50% −220만원 / 50% 0원</div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:#faf5ff">
+      <div style="font-size:9.5px;font-weight:900;color:#5b21b6;letter-spacing:1.5px;margin-bottom:6px">Q3 · FUNGIBILITY</div>
+      <div style="font-size:12px;margin-bottom:7px">"10만원이 생겼다. 둘 중 하나?"</div>
+      <div style="font-size:12px;margin-bottom:4px"><strong>A:</strong> 로또 5장</div>
+      <div style="font-size:12px"><strong>B:</strong> 국민연금 추가납입</div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:#eff6ff">
+      <div style="font-size:9.5px;font-weight:900;color:#1e40af;letter-spacing:1.5px;margin-bottom:6px">Q4 · MENTAL ACCOUNTING</div>
+      <div style="font-size:12px;margin-bottom:5px">은퇴자금 1억, 2천만원은 1년 내 필요 의료비.</div>
+      <div style="font-size:12px;margin-bottom:4px"><strong>A:</strong> 1억 전체 80/20</div>
+      <div style="font-size:12px"><strong>B:</strong> 2천만원 MMF + 8천만원 80/20</div>
+    </div>
+  </div>
+
+  <h3>1.2 결과의 교훈</h3>
+  <ul style="font-size:12px;line-height:1.75;padding-left:18px;color:#333">
+    <li><strong>Q1→A, Q2→B:</strong> 손실 앞에서는 <em>위험추구</em>로 반전 — <strong>Reflection Effect</strong></li>
+    <li><strong>Q3 A·B 동시 존재:</strong> 같은 돈인데 "기회의 10만원"은 로또, "안전의 10만원"은 연금 — <strong>fungibility 위반</strong></li>
+    <li><strong>Q4→B 압도:</strong> 수학적 동일 aggregate이지만 목표별 계정 분리가 심리적으로 편함 — <strong>mental accounting</strong></li>
+  </ul>
+
+  <div class="callout purple">
+    <strong>오늘의 과제:</strong> 이 세 직관을 각각 형식화한 것이 <strong>Prospect Theory · Mental Accounting · SP/A</strong>이며, 이들이 모두 <strong>GBI로 수렴</strong>함을 보이는 것.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. Prospect Theory ════ -->
+<section data-section="§2. Prospect Theory">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">40min · Kahneman–Tversky</span></div>
+  <h2>§2. Prospect Theory — Kahneman & Tversky</h2>
+
+  <h3>2.1 기대효용이론(EU)의 실증적 실패</h3>
+  <div class="eqbox">
+    <div class="eq-cap">von Neumann–Morgenstern(1944):</div>
+    $$U(L) = \sum_i p_i\, u(x_i)$$
+  </div>
+  <p>1960년대 이후 Allais·Ellsberg 등 다수의 실증 위반 축적. Kahneman-Tversky(1979) <em>Econometrica</em>에서 <strong>Prospect Theory</strong>로 4현상을 통합 설명:</p>
+  <ul style="font-size:12px;line-height:1.8;padding-left:18px;color:#333;margin-bottom:10px">
+    <li><strong>Certainty effect:</strong> 확실한 결과에 과도한 가중</li>
+    <li><strong>Reflection effect:</strong> gain/loss 도메인에서 위험선호 반전</li>
+    <li><strong>Isolation effect:</strong> framing에 따른 평가 왜곡</li>
+    <li><strong>Loss aversion:</strong> 손실 $100 ≈ 이익 $220의 심리적 충격</li>
+  </ul>
+
+  <h3>2.2 Prospect Theory의 두 축</h3>
+
+  <div class="axiom-cards">
+    <div class="ax-card">
+      <div class="ax-num">AXIS 1</div>
+      <div class="ax-head">Value Function $v(x)$</div>
+      <div class="ax-eq">$$v(x) = \begin{cases} x^\alpha & x \ge 0 \\ -\lambda(-x)^\beta & x < 0 \end{cases}$$</div>
+      <ul class="ax-items">
+        <li>TK(1992): $\alpha = \beta \approx 0.88$, $\lambda \approx 2.25$</li>
+        <li>Gain concave → 위험회피</li>
+        <li>Loss convex → 위험선호 (reflection)</li>
+        <li>$\lambda &gt; 1$ = loss aversion</li>
+      </ul>
+      <div class="ax-foot">$x$는 <strong>준거점(reference point)</strong> 대비 편차 — 이것이 EU와의 근본적 차이</div>
+    </div>
+
+    <div class="ax-card">
+      <div class="ax-num">AXIS 2</div>
+      <div class="ax-head">Probability Weighting $w(p)$</div>
+      <div class="ax-eq">$$w(p) = \frac{p^\gamma}{\left(p^\gamma + (1-p)^\gamma\right)^{1/\gamma}}$$</div>
+      <ul class="ax-items">
+        <li>$\gamma \approx 0.61$ (gains), $0.69$ (losses)</li>
+        <li>inverse-S 형상</li>
+        <li>작은 확률 <strong>과대평가</strong> → 로또</li>
+        <li>큰 확률 <strong>과소평가</strong> → 보험</li>
+      </ul>
+      <div class="ax-foot">로또와 보험이 동시에 존재하는 수학적 근거</div>
+    </div>
+  </div>
+
+  <h3>2.3 Cumulative Prospect Theory (TK 1992)</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">rank-dependent utility를 차용한 누적 버전:</div>
+    $$V(L) = \sum_{i=1}^n \pi_i^+\, v(x_i^+) + \sum_{j=1}^m \pi_j^-\, v(x_j^-)$$
+    <div class="eq-cap">여기서 $\pi$는 누적 확률에 $w$를 적용해 얻은 decision weight.</div>
+  </div>
+
+  <h3>2.4 GBI 관점의 해석</h3>
+
+  <div class="callout gold">
+    <strong>준거점 = 목표금액 $H$:</strong> 준거점이 목표금액으로 설정되면, $W_T &lt; H$는 "손실", $W_T &gt; H$는 "이익". 목표 $H$ 기준 효용은 자연스럽게 <strong>kinked(꺾임)</strong> → 전통 MV 효용과 양립 불가능. 이것이 §3 MA, §4 SP/A와 같은 논리적 근원이다.
+  </div>
+
+  <h3>2.5 한국 실증 (자본시장연구원 2022)</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">관찰된 패턴</div>
+      <ul class="cmp-list">
+        <li><strong>여성 &gt; 남성:</strong> 손실회피 강도</li>
+        <li><strong>30대 &gt; 60대:</strong> 처분효과 강도</li>
+        <li>신규·저분산 → 편향 심화</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">GBI 설계 함의</div>
+      <ul class="cmp-list">
+        <li>세분화된 페르소나(age × gender × exp)</li>
+        <li>목표 달성확률 % 중심 UX</li>
+        <li>일간 평가를 숨기는 UI</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">Prospect Theory의 Value Function v(x)과 Probability Weighting w(p)의 실제 수치 그래프. λ=2.25 손실 증폭과 inverse-S 확률왜곡이 GBI 설계에 주는 함의. (원본: <code>docs/Week02_Infographic_PT_Curves.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. Mental Accounting ════ -->
+<section data-section="§3. Mental Accounting">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">35min · Thaler</span></div>
+  <h2>§3. Mental Accounting — Thaler</h2>
+
+  <h3>3.1 Thaler의 3요소</h3>
+  <ol style="padding-left:20px;font-size:12.5px;line-height:1.75;color:#333;margin-bottom:10px">
+    <li><strong>Perception of outcomes</strong> — 결과를 어떻게 인식·평가 (framing)</li>
+    <li><strong>Assignment of activities to accounts</strong> — 활동의 계정 귀속</li>
+    <li><strong>Frequency of evaluation</strong> — 평가 빈도 (myopic loss aversion)</li>
+  </ol>
+
+  <h3>3.2 화폐의 비-대체성 (Non-Fungibility)</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#fffbeb;border-color:#fde68a">
+      <div class="cmp-ttl">Thaler-Johnson(1990) "House Money"</div>
+      <ul class="cmp-list">
+        <li>카지노에서 번 돈은 "하우스 머니" → 공격 베팅</li>
+        <li>월급 vs 보너스 = 심리적으로 다른 돈</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#faf5ff;border-color:#e9d5ff">
+      <div class="cmp-ttl">Prelec-Loewenstein(1998) "Painful Coupling"</div>
+      <ul class="cmp-list">
+        <li>현금 결제 vs 신용카드 = 지출의 고통 차이</li>
+        <li>선결제 휴가 → 사용 시점 "공짜" 심리</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>3.3 MA의 수학적 형식화</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">투자자는 부를 $K$개 계정으로 분할:</div>
+    $$W = \sum_{k=1}^K W_k, \quad W_k = \pi_k W$$
+    <div class="eq-cap">각 계정은 고유의 효용함수:</div>
+    $$U(W) = \sum_{k=1}^K \phi_k \cdot u_k(W_k - R_k)$$
+    <div class="eq-cap">$u_k$: 계정 $k$의 value function (PT 형태) · $R_k$: 준거점(=목표) · $\phi_k$: 중요도</div>
+  </div>
+
+  <h3>3.4 MA의 두 얼굴 — 편향인가, 기법인가? (Brunel 2015)</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl" style="color:#991b1b">Type A · Cognitive Bias (비합리)</div>
+      <ul class="cmp-list">
+        <li>신용카드 리볼빙 18% 유지 + 적금 3.5%</li>
+        <li>세금환급액을 "공짜돈" 인식 → 과소비</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl" style="color:#14532d">Type B · Rational Goal Allocation (합리)</div>
+      <ul class="cmp-list">
+        <li>자녀 교육비 = 안전자산</li>
+        <li>은퇴자금 = 분산투자</li>
+        <li>여유자금 = 공격투자</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <strong>GBI의 선택:</strong> B형 mental accounting을 <strong>의도적·명시적</strong>으로 설계. 편향의 이용이 아니라 <strong>구조의 선택</strong>이다.
+  </div>
+
+  <h3>3.5 한국 세제계정의 자연스런 MA</h3>
+
+  <table class="dtable">
+    <thead><tr><th>계정</th><th>심리적 라벨</th><th>자연스런 자산배분</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IRP · 퇴직연금 DC</strong></td><td>"은퇴까지 건드리면 안되는 돈"</td><td>TDF · 안정형</td></tr>
+      <tr><td><strong>연금저축펀드</strong></td><td>"노후 보충용"</td><td>중위험</td></tr>
+      <tr><td><strong>ISA 중개형</strong></td><td>"세제혜택 받으며 굴리는 돈"</td><td>주식·ETF 중심</td></tr>
+      <tr><td><strong>일반 위탁계좌</strong></td><td>"자유롭게 굴리는 돈"</td><td>공격적·단타</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. SP/A Theory ════ -->
+<section data-section="§4. SP/A Theory">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">40min · Lopes</span></div>
+  <h2>§4. SP/A Theory — Lopes</h2>
+
+  <div class="callout purple">
+    <strong>PT vs SP/A:</strong> Prospect Theory가 "<em>왜</em> 목표지향적으로 사고하는가"를 설명한다면, SP/A는 "<em>어떻게</em> 목표지향적으로 사고하는가"의 수학적 구조를 제공한다. Shefrin-Statman(2000) BPT가 <strong>SP/A에 직접 기반</strong>한다 → 3주차의 전제.
+  </div>
+
+  <h3>4.1 Lopes의 두 요인(two-factor) 구조</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="cmp-ttl" style="color:#1e40af">Dispositional (성향)</div>
+      <ul class="cmp-list">
+        <li><strong>Security-mindedness (S)</strong> — fear, 최악을 피하려는 성향</li>
+        <li><strong>Potential-mindedness (P)</strong> — hope, 최선을 추구하려는 성향</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#fff8ed;border-color:#fdba74">
+      <div class="cmp-ttl" style="color:#92400e">Situational (상황)</div>
+      <ul class="cmp-list">
+        <li><strong>Aspiration level $\rho$</strong> — 달성하고 싶은 임계값</li>
+        <li>목표 그 자체가 독립 decision criterion</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>4.2 SP/A의 수학적 정식화</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap"><strong>SP 기준</strong> — Decumulatively Weighted Value (He-Zhou 2012):</div>
+    $$SP(X) = \int x\, d[-h(1 - F_X(x))]$$
+    <div class="eq-cap">두 성향의 혼합 가중함수:</div>
+    $$h(z) = q_s\, h_s(z) + q_p\, h_p(z), \quad q_s + q_p = 1$$
+    <div class="eq-cap">$h_s$ convex (security), $h_p$ concave (potential). 결과적 $h$는 inverse-S.</div>
+  </div>
+
+  <div class="eqbox">
+    <div class="eq-cap"><strong>A 기준</strong> — Aspiration (Dubins-Savage 1976):</div>
+    $$A(X; \rho) = \Pr(X \ge \rho)$$
+    <div class="eq-cap"><strong>통합</strong> SP/A 목적함수:</div>
+    $$V(X) = f\!\left(\, SP(X),\, A(X; \rho) \,\right)$$
+    <div class="eq-cap">실무 구현: aspiration이 제약으로 들어가는 형태:</div>
+    $$\max_X \; SP(X) \quad \text{s.t. } A(X; \rho) \ge \bar{A}$$
+  </div>
+
+  <h3>4.3 SP/A vs Prospect Theory 비교</h3>
+
+  <table class="dtable">
+    <thead><tr><th>측면</th><th>Prospect Theory</th><th>SP/A Theory</th></tr></thead>
+    <tbody>
+      <tr><td>준거점</td><td>$x = 0$ (기점)</td><td>도메인 전체의 aspiration $\rho$</td></tr>
+      <tr><td>위험태도</td><td>효용함수 곡률</td><td>decumulative weighting $h$</td></tr>
+      <tr><td>의사결정 축</td><td>단일 (value·weight)</td><td><strong>이중</strong> (SP · A)</td></tr>
+      <tr><td>실증 적합도</td><td>—</td><td>Lopes-Oden(1999) 실험에서 CPT보다 <strong>우수</strong></td></tr>
+      <tr><td>GBI 함의</td><td>value function 꺾임점 = 목표</td><td>aspiration = 목표 <strong>그 자체</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <strong>핵심:</strong> SP/A의 강점은 <strong>aspiration이 decision criterion의 독립 축</strong>이라는 점. GBI에서 목표금액 $H$는 bolted-on 제약이 아니라 <strong>의사결정의 핵심 축</strong>이 되어야 한다.
+  </div>
+
+  <h3>4.4 SP/A → Chhabra 3-bucket 대응</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">🛡️</div>
+      <div class="bk-ttl">Security</div>
+      <div class="bk-sub">→ Essential goals</div>
+      <div class="bk-prob">Personal bucket · <b>99%</b></div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">🎯</div>
+      <div class="bk-ttl">Aspiration</div>
+      <div class="bk-sub">→ Explicit goals</div>
+      <div class="bk-prob">Market bucket · <b>70–85%</b></div>
+    </div>
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">🚀</div>
+      <div class="bk-ttl">Potential</div>
+      <div class="bk-sub">→ Upside goals</div>
+      <div class="bk-prob">Aspirational · <b>20–30%</b></div>
+    </div>
+  </div>
+
+  <p style="margin-top:8px">즉 <strong>Chhabra(2005)의 3-bucket이 SP/A의 3축을 그대로 제도화한 것</strong>이다.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. 세 이론의 공통분모 ════ -->
+<section data-section="§5. 세 이론의 통합">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">25min · Unification</span></div>
+  <h2>§5. 세 이론의 공통분모 — 왜 Goal-Based로 수렴하는가</h2>
+
+  <h3>5.1 수학적 통합 시각</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TB
+    subgraph Ideas["세 이론의 공통 구성요소"]
+        R["준거점·임계값·목표<br/>(Reference · Threshold · Aspiration)"]
+        A["비대칭 위험태도<br/>(Asymmetric Risk Attitude)"]
+        F["비-대체 부<br/>(Non-Fungible Wealth)"]
+    end
+    PT["Prospect Theory"] --> R
+    PT --> A
+    MA["Mental Accounting"] --> R
+    MA --> F
+    SPA["SP/A Theory"] --> R
+    SPA --> A
+    R --> GBI["GBI"]
+    A --> GBI
+    F --> GBI
+    style GBI fill:#1e5f8e,color:#fff
+    </pre>
+  </div>
+
+  <h3>5.2 단일 수식으로의 통합 — BPT의 예고</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">UNIFIED GOAL-BASED VALUE FUNCTION</div>
+    $$V(W; \mathcal{G}) = \sum_{k=1}^K \phi_k \cdot \mathbb{E}^h\!\left[ v_k(W_k - H_k) \cdot \mathbf{1}\{W_k \ge H_k\} \right]$$
+    <div class="meta-desc">
+      <strong>$\phi_k$</strong> = MA의 account weight · <strong>$v_k$</strong> = PT의 kinked utility · <strong>$\mathbb{E}^h$</strong> = SP/A의 decumulative weighted expectation · <strong>$\mathbf{1}\{W_k \ge H_k\}$</strong> = aspiration 달성 지시함수<br><br>
+      이 식이 Shefrin-Statman(2000) BPT로 이어지고, Das-Statman(2010) MA 프레임, Martellini(2015+) GBI formalization으로 확장된다 (W3–W4 주제).
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <strong>"GBI는 교정 장치가 아니다" — 철학적 정립:</strong><br>
+    ❌ <em>흔한 오해</em>: GBI는 투자자의 비합리성을 수용해 차선의 해를 주는 것.<br>
+    ✅ <em>정확한 관점</em>: GBI는 <strong>인간 의사결정 구조의 원래 형태를 수학적으로 formalize한 최적화 프레임</strong>이다. 편향의 수용이 아니라 <strong>구조의 수용</strong>.
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">Prospect Theory · Mental Accounting · SP/A 세 이론의 공통 구조(준거점·비대칭 위험·비-대체성)가 GBI로 수렴하는 지도. (원본: <code>docs/Week02_Infographic_Three_Theories.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. 한국 사례 ════ -->
+<section data-section="§6. 한국 실증">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">20min · Korea Insights</span></div>
+  <h2>§6. 한국 개인투자자 행동편향 실증</h2>
+
+  <h3>6.1 처분효과 (자본시장연구원 2022)</h3>
+  <p>2020.3–2021.2 거래 데이터 기반: 개인투자자는 <strong>이익 종목을 빨리 팔고, 손실 종목을 오래 보유</strong>. Prospect Theory가 예측하는 패턴과 정확히 일치.</p>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">처분효과 패턴</div>
+      <ul class="cmp-list">
+        <li>연령: <strong>30대 최강</strong>, 60대 최약</li>
+        <li>성별: <strong>여성 &gt; 남성</strong></li>
+        <li>분산투자 수준 낮을수록 심화</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">군집거래 (Herding)</div>
+      <ul class="cmp-list">
+        <li>신규·젊은 투자자 강하게 관찰</li>
+        <li>군집 이후 <strong>수익률 반전</strong></li>
+        <li>비합리적 행태로 판단</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.2 연금계좌의 현상유지편향</h3>
+  <div class="callout orange">
+    <strong>2024년말 퇴직연금 426조 원</strong> 대부분이 <strong>디폴트 원리금보장형</strong>에 장기 방치. 이것이 바로 <strong>TDF·RA 디폴트옵션 도입(2022)</strong>의 배경이다.
+  </div>
+
+  <h3>6.3 행동편향 → GBI 설계 대응</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    subgraph Biases["관찰된 행동편향"]
+        B1["처분효과<br/>(젊은층·여성 강)"]
+        B2["현상유지편향<br/>(연금 원리금보장 방치)"]
+        B3["군집거래<br/>(신규투자자)"]
+        B4["단기 손실회피<br/>(myopic LA)"]
+    end
+    subgraph Solutions["GBI 설계 대응"]
+        S1["목표-기반 평가<br/>(일간 손익 숨김)"]
+        S2["기본형 TDF<br/>+ 자동 rebalancing"]
+        S3["개인화 로보<br/>(peer influence 차단)"]
+        S4["long-horizon framing<br/>(FR 중심)"]
+    end
+    B1 --> S1
+    B2 --> S2
+    B3 --> S3
+    B4 --> S4
+    </pre>
+  </div>
+
+  <h3>6.4 로보어드바이저 UX 설계 원칙</h3>
+  <p>2025년말 국내 RA 가입자 <strong>37.5만 명·1.17조 원</strong>:</p>
+  <ul style="font-size:12px;line-height:1.75;padding-left:18px;color:#333">
+    <li><strong>"목표 달성 확률 %"</strong>를 메인 KPI로 노출 → 일간 수익률 중독 완화</li>
+    <li><strong>"은퇴까지 자산 궤적"</strong> 시뮬레이션 → long-horizon framing</li>
+    <li><strong>"멘탈 어카운트별 진행도"</strong> 별도 표시 → non-fungibility 활용</li>
+  </ul>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §7. 케이스 & 과제 ════ -->
+<section data-section="§7. 케이스 & 과제">
+  <div class="eyebrow">Case & Homework</div>
+  <h2>§7. Mr. Kim의 3개 계좌 케이스</h2>
+
+  <p>45세 직장인 김철수씨 자산:</p>
+
+  <table class="dtable">
+    <thead><tr><th>계좌</th><th>잔액</th><th>용도(본인 인식)</th></tr></thead>
+    <tbody>
+      <tr><td>주택청약종합저축</td><td>2,000만원</td><td>"집 살 때 쓸 돈"</td></tr>
+      <tr><td>퇴직연금 IRP</td><td>1억 2,000만원</td><td>"노후 자금"</td></tr>
+      <tr><td>일반 위탁계좌</td><td>3,000만원</td><td>"굴려볼 돈"</td></tr>
+      <tr><td>신용카드 리볼빙</td><td>−500만원</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="disc-block">
+    <div class="disc-q"><span class="dq-n">Q1</span><div>김씨 행동은 <code>fungibility</code> 관점에서 비합리적인가? (Thaler의 두 얼굴 논의 적용)</div></div>
+    <div class="disc-q"><span class="dq-n">Q2</span><div>현재 자산배분을 $(H, T, \omega, \alpha)$ 4-tuple로 재구성하라.</div></div>
+    <div class="disc-q"><span class="dq-n">Q3</span><div>PT와 SP/A <strong>각각의 관점</strong>에서 김씨의 의사결정 구조를 설명하라.</div></div>
+    <div class="disc-q"><span class="dq-n">Q4</span><div>GBI 상품을 제안할 때 김씨의 <strong>심리적 저항을 줄이기 위해</strong> 어떤 UX·프레이밍이 필요한가?</div></div>
+  </div>
+</section>
+
+<section data-section="과제 A/B">
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W2 · 3페이지</span>
+    <div class="hw-title">행동재무 이론 실증 구현</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">A · 필수 (Python)</div>
+      <p>2015–2025 월간 <code>KOSPI200</code> · <code>KIS 종합채권</code> 데이터로 <strong>PT value function</strong>($\alpha=\beta=0.88,\ \lambda=2.25$) 적용한 월간 심리적 효용 계산. "일간 평가" vs "연간 평가" 시뮬 → <strong>myopic loss aversion</strong> 효과 수치화. 결론: 평가 빈도가 투자자 행동에 미치는 영향 논의.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">B · 선택 (추가 점수)</div>
+      <p>Lopes-Oden(1999) 실험의 45 lottery pair 중 5쌍 선택. 본인 선택이 (a) EU, (b) CPT, (c) SP/A 중 어느 모델에 부합하는지 분석. <strong>본인의 실제 선택 패턴을 수식화</strong>.</p>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:12px">
+    <strong>💡 W3 미리보기:</strong> Shefrin-Statman(2000) BPT가 SP/A를 포트폴리오 이론으로 formalize하는 과정. <strong>Bond + Lottery Ticket</strong>의 corner solution과 BPT-MA 피라미드.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ Reading ════ -->
+<section data-section="Reading & References">
+  <div class="eyebrow">References</div>
+  <h2>Reading</h2>
+
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Kahneman & Tversky (1979)</div>
+      <div class="ref-sub">"Prospect Theory: An Analysis of Decision under Risk"</div>
+      <div class="ref-src"><em>Econometrica</em>, 47(2), 263–291 · §1–4</div>
+    </div>
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Thaler (1999)</div>
+      <div class="ref-sub">"Mental Accounting Matters"</div>
+      <div class="ref-src"><em>JBDM</em>, 12, 183–206</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">권장</div>
+      <div class="ref-ttl">Lopes (1987)</div>
+      <div class="ref-sub">"Between Hope and Fear: The Psychology of Risk"</div>
+      <div class="ref-src"><em>Adv. Exp. Soc. Psych.</em>, 20</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">데이터</div>
+      <div class="ref-ttl">자본시장연구원 (2022)</div>
+      <div class="ref-sub">"국내 개인투자자의 행태적 편의와 거래행태"</div>
+      <div class="ref-src"><code>kcmi.re.kr</code></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 부록 ════ -->
+<section data-section="부록 · 핵심 수식 요약">
+  <div class="eyebrow">Appendix</div>
+  <h2>핵심 수식 요약</h2>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">Prospect Theory (TK 1992)</div>
+      <div class="ax-eq">$$v(x) = \begin{cases} x^\alpha & x \ge 0 \\ -\lambda(-x)^\beta & x<0 \end{cases}$$</div>
+      <div class="ax-eq">$$w(p) = \frac{p^\gamma}{(p^\gamma + (1-p)^\gamma)^{1/\gamma}}$$</div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">Mental Accounting (Thaler 1985)</div>
+      <div class="ax-eq">$$U(W) = \sum_{k=1}^K \phi_k\, u_k(W_k - R_k)$$</div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">SP/A Theory (Lopes 1987)</div>
+      <div class="ax-eq">$$SP(X) = \int x\, d[-h(1-F_X(x))]$$</div>
+      <div class="ax-eq">$$A(X;\rho) = \Pr(X \ge \rho)$$</div>
+    </div>
+    <div class="cmp-card" style="background:#fefbf0;border-color:#f5d88a">
+      <div class="cmp-ttl">통합 GBI Value Function</div>
+      <div class="ax-eq">$$V(W; \mathcal{G}) = \sum_k \phi_k\, \mathbb{E}^h[v_k(W_k - H_k)\mathbf{1}\{W_k \ge H_k\}]$$</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<div class="ft">
+  <strong>W2 강의노트</strong> · 행동재무학적 기초 — PT · MA · SP/A<br>
+  <a href="W01_Lecture_Note.html">◀ W1</a> · <a href="index.html">Home</a> · <a href="W03_Lecture_Note.html">W3: Behavioral Portfolio Theory ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

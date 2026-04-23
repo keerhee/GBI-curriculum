@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W10 — 로보어드바이저와 GBI의 대중화</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W10 강의노트</span>
+  <span class="ttl" id="sf-t">Robo-Advisors</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W10 강의노트">
+  <div class="hero-badge">Week 10 · Phase 3 · Robo-Advisory</div>
+  <h1>로보어드바이저와 GBI의 대중화</h1>
+  <p class="hero-sub">Grealish-Kolm 5-Stage · Tax Alpha · Betterment/Wealthfront · 한국 3-Layer 생태계</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">0.77%</span><span class="hero-meta-lbl">Tax α<br>Wealthfront 실증</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">501조</span><span class="hero-meta-lbl">한국 퇴직연금<br>2025년말</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W09_Lecture_Note.html">◀ W9</a> · <a href="index.html">Home</a> · <a href="W11_Lecture_Note.html">W11 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>Grealish-Kolm 5-Stage Framework</strong>(Onboarding → Allocation → Selection → Monitoring → Tax) 서술</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>TLH Tax Alpha</strong> 수식 $\alpha_{\text{TLH}} \approx \tau_{\text{cg}} \cdot \sigma^2 \cdot f$ 유도 및 Wealthfront 0.77% 근거</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text"><strong>HITL</strong>(Human-in-the-Loop)이 2018년 이후 표준이 된 3가지 근거</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text">한국 RA 3-레이어(핀테크·기관·샌드박스)와 퇴직연금 규제 3단계 관문 이해</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> "로보어드바이저는 기술 혁신이 아니라 <strong>GBI 이론의 대중화 장치</strong>다." Betterment·Wealthfront가 자동화한 것은 ETF 매매가 아니라 <strong>BPT(W3) · MA(W4) · Brunel(W5) · Das-Ostrov DP(W8)</strong>의 이론적 프레임. 2026년 한국은 동일한 포팅을 연금 계좌에서 수행하는 <strong>3단계 규제 관문</strong>을 통과 중.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. 두 첫 만남 ════ -->
+<section data-section="§1. 두 첫 만남">
+  <div class="session-head"><span class="session-tag">OPENING</span><span class="session-time">15min · Two Encounters</span></div>
+  <h2>§1. 두 개의 "첫 만남" — 1995 vs 2016</h2>
+
+  <div class="persona-grid">
+    <div class="persona-card persona-a">
+      <div class="p-badge">1995 · Merrill Lynch</div>
+      <div class="p-title">이영주 씨</div>
+      <div class="p-desc">강남 Merrill Lynch 지점. PB가 1시간에 걸쳐 30장 ISP 설명. 최소 $250K, 연 1.2% + 커미션. 1년 뒤 S&amp;P500 under.</div>
+      <div class="p-metric"><span>최저 가입</span><b>$250,000</b></div>
+      <div class="p-metric"><span>수수료</span><b class="down">1.2%</b></div>
+      <div class="p-metric"><span>팔린 것</span><b>자산(asset)</b></div>
+    </div>
+    <div class="persona-card persona-b">
+      <div class="p-badge">2016 · Betterment App</div>
+      <div class="p-title">김민수 씨</div>
+      <div class="p-desc">출근길 지하철, 12문항·3분. 목표 입력: "은퇴 30년 후 $1M". $0, 0.25%. 자동 리밸런싱·TLH·goal tracking 포함.</div>
+      <div class="p-metric"><span>최저 가입</span><b class="up">$0</b></div>
+      <div class="p-metric"><span>수수료</span><b class="up">0.25%</b></div>
+      <div class="p-metric"><span>팔린 것</span><b class="up">목표(goal)</b></div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    같은 상품(분산 ETF 포트폴리오)이지만 완전히 다른 경험. Grealish-Kolm: <strong>차이는 기술이 아니라 프레임워크</strong>. 전통 wirehouse는 "자산"을, RA는 <strong>"목표"</strong>를 판다. 이것이 Week 1에서 시작한 GBI 여정의 <strong>상업적 결론</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. Grealish-Kolm 5-Stage ════ -->
+<section data-section="§2. 5-Stage Framework">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">60min · Core Framework</span></div>
+  <h2>§2. Grealish-Kolm 2022: 5-Stage Framework</h2>
+
+  <div class="axiom-cards">
+    <div class="ax-card">
+      <div class="ax-num">STAGE 1</div>
+      <div class="ax-head">Onboarding</div>
+      <ul class="ax-items">
+        <li>KYC · RTQ · Goal Discovery</li>
+        <li>Risk Tolerance → $\gamma$ 매핑</li>
+        <li>Conversational AI (GPT-4)</li>
+      </ul>
+      <div class="ax-foot">★ 행동재무학적 함정 주의</div>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">STAGE 2</div>
+      <div class="ax-head">Asset Allocation</div>
+      <ul class="ax-items">
+        <li>MVO · BL · Risk Parity · GBI</li>
+        <li>대부분 <strong>하이브리드</strong></li>
+        <li>Betterment: BL + DP glide</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">STAGE 3</div>
+      <div class="ax-head">Portfolio Selection</div>
+      <ul class="ax-items">
+        <li>ETF 우선 (98~100%)</li>
+        <li>TER · TE · Liq · Tax Eff</li>
+        <li>In-kind redemption 자동 효율</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">STAGE 4</div>
+      <div class="ax-head">Monitoring</div>
+      <ul class="ax-items">
+        <li>Calendar · Threshold · Hybrid</li>
+        <li>업계: 분기 + 5%</li>
+        <li>Das-Ostrov 영감 dynamic glide</li>
+      </ul>
+    </div>
+    <div class="ax-card" style="background:#fefbf0;border-color:#f5d88a">
+      <div class="ax-num">STAGE 5</div>
+      <div class="ax-head">Tax Overlay ★</div>
+      <ul class="ax-items">
+        <li><strong>RA의 가장 독창적 기여</strong></li>
+        <li>TLH · Asset Location · Lot</li>
+        <li>연 0.5–1.5% tax α</li>
+      </ul>
+      <div class="ax-foot">세후 수익은 <strong>알고리즘이 만든다</strong></div>
+    </div>
+  </div>
+
+  <h3>2.1 RTQ → 위험회피계수 매핑</h3>
+
+  <div class="eqbox">
+    $$\text{점수 } s \in [0, 100] \;\longrightarrow\; \gamma = \gamma_{\min} + (\gamma_{\max} - \gamma_{\min}) \cdot \frac{100 - s}{100}$$
+    <div class="eq-cap">$\gamma_{\min} \approx 2$, $\gamma_{\max} \approx 10$. MVO: $\max_w \mu^\top w - \tfrac{\gamma}{2} w^\top \Sigma w$.</div>
+  </div>
+
+  <div class="callout red">
+    <strong>⚠ RTQ의 행동재무학적 함정:</strong> Kahneman-Tversky(1979) — 응답은 framing에 극도로 민감. 같은 사람이 "−30% 손실"을 "70% 회복"으로 리프레임 시 $\gamma$가 1.5–2배 달라진다. Grealish-Kolm 대안: <strong>실제 거래 관측</strong>에서 추정.
+  </div>
+
+  <h3>2.2 Onboarding Flow</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TD
+    A["고객 가입 시작"] --> B["KYC<br/>신원·소득·자산"]
+    B --> C["목표 설정<br/>금액·시점"]
+    C --> D["RTQ 10문항"]
+    D --> E{"행동재무<br/>일관성"}
+    E -->|일관| F["위험회피 γ"]
+    E -->|불일관| G["재질문"]
+    G --> D
+    F --> H["포트폴리오 제안"]
+    H --> I["Stage 2"]
+    style A fill:#E3F2FD
+    style E fill:#FFF9C4
+    style I fill:#E8F5E9
+    </pre>
+  </div>
+
+  <h3>2.3 Black-Litterman Posterior (Stage 2 Core)</h3>
+
+  <div class="eqbox">
+    $$\mu_{\text{BL}} = \left[ (\tau \Sigma)^{-1} + P^\top \Omega^{-1} P \right]^{-1} \left[ (\tau \Sigma)^{-1} \Pi + P^\top \Omega^{-1} Q \right]$$
+    <div class="eq-cap">$\Pi$: 시장균형 implied, $P, Q$: 투자자 view, $\Omega$: view 불확실성. RA는 $P, Q$를 "고객 목표 + 시장 view"의 결합으로 변용.</div>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">Grealish-Kolm 5-Stage Framework 전체 파이프라인 + HITL 레이어 + 4대 기여. (원본: <code>docs/Week10_Infographic_RA_Framework.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. 4사 비교 ════ -->
+<section data-section="§3. 4사 비교 2026">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">15min</span></div>
+  <h2>§3. 1세대 RA 4사 — 2016 vs 2026</h2>
+
+  <table class="dtable">
+    <thead><tr><th>지표</th><th>Betterment</th><th>Wealthfront</th><th>Schwab IP</th><th>Vanguard Digital</th></tr></thead>
+    <tbody>
+      <tr><td>AUM ('25말)</td><td>$65B</td><td>$88B</td><td>$80B</td><td><strong>$311B ★</strong></td></tr>
+      <tr><td>고객 수</td><td>100만</td><td>130만</td><td>비공개</td><td>비공개</td></tr>
+      <tr><td>최저가입금</td><td>$0</td><td>$500</td><td>$5,000</td><td>$3,000</td></tr>
+      <tr><td>수수료</td><td>0.25%</td><td>0.25%</td><td>0% (cash drag)</td><td>0.15%</td></tr>
+      <tr><td>TLH</td><td>$0+</td><td>$500+</td><td>$50K+</td><td>없음</td></tr>
+      <tr><td>HITL</td><td>0.40% Premium</td><td>미제공</td><td>$30/월</td><td><strong>PAS 기본</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout orange">
+    <strong>"Pure Robo는 끝났다":</strong> 2014 KPMG 예측 2020 $3.7T → 2022 겨우 $1T. <strong>2018 이후 HITL 필수</strong>. Vanguard PAS가 $311B로 압도적 1위 → "인간 advisor 기본 포함"이 결정적.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. Tax Alpha ════ -->
+<section data-section="§4. Tax Alpha">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">70min · Tax Math</span></div>
+  <h2>§4. Tax Alpha의 수학과 TLH 심층</h2>
+
+  <h3>4.1 세금은 숨은 수수료</h3>
+
+  <div class="callout gold">
+    미국 투자자 평균 한계세율: <strong>LTCG 15–20% · STCG 37% · 일반소득 10–37%</strong>. S&amp;P500 10% 수익률 중 <strong>2–3.5%p가 세금으로 사라진다</strong>. "Tax is the biggest expense" (Wealthfront 2014).
+  </div>
+
+  <h3>4.2 TLH — 메커니즘</h3>
+
+<pre class="code-block">t₀: VTI 매수 @$200  (시총 가중 미국 전체)
+t₁: VTI 가격 $170  (<span class="str">−15%, 미실현 손실 $30</span>)
+       ↓ TLH 실행
+       매도: VTI @$170 (<span class="fn">손실 $30 실현</span>)
+       매수: ITOT @$170 (블랙록, 거의 동일)
+       → 경제적 노출 유지 + 세무상 손실 확보
+t₂: ITOT 가격 $200 (원가 $170 → 미실현 이익 $30)
+     손실 $30은 이미 세무에 활용됨</pre>
+
+  <h3>4.3 Tax Alpha 수식</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">TLH TAX ALPHA (Chaudhuri-Burnham-Lo 2020)</div>
+    $$\alpha_{\text{TLH}} \approx \tau_{\text{cg}} \cdot \sigma^2 \cdot f(\text{harvest, wash-sale, correlation})$$
+    <div class="meta-desc">
+      $\tau_{\text{cg}}=0.20$ · $\sigma^2 = 0.18^2 = 0.0324$ · $f = 0.90$ → $\alpha_{\text{TLH}} \approx 0.58\%/\text{년}$<br>
+      <strong>실증:</strong> Wealthfront 2014 = <strong>0.77%/년</strong> (2000-2013, 1만 고객) · Betterment 0.48–1.14%/년.
+    </div>
+  </div>
+
+  <h3>4.4 왜 $\sigma^2$가 결정적인가</h3>
+
+  <div class="proof-steps">
+    <div class="ps"><span class="ps-n">1</span><div>$\sigma^2$ 클수록 특정 기간 내 <strong>손실 구간이 많아짐</strong> (Brownian local time)</div></div>
+    <div class="ps"><span class="ps-n">2</span><div>harvest 기회 횟수 $\propto \sigma \cdot \sqrt{T}$</div></div>
+    <div class="ps"><span class="ps-n">3</span><div>각 harvest의 평균 손실 $\propto \sigma$</div></div>
+    <div class="ps"><span class="ps-n">4</span><div>총 실현 손실 $\propto \sigma^2$. Berkin-Ye 2003, Chaudhuri 2020 Itô-Tanaka로 엄밀 증명.</div></div>
+  </div>
+
+  <div class="callout red">
+    <strong>⚠ TLH의 5대 제약:</strong><br>
+    ① <strong>Wash-sale(30일)</strong> IRS §1091 — IRA·taxable 계정 간에도 적용<br>
+    ② <strong>Substantially identical</strong> — SPY vs IVV? IRS 명시적 답 없음<br>
+    ③ <strong>Cost basis</strong> — Specific Identification lot 선택 필수<br>
+    ④ <strong>Deferral ≠ savings</strong> — 세금 연기이지 감면 아님 (상속 step-up 필요)<br>
+    ⑤ <strong>행동위험</strong> — 손실 확정이 loss aversion 자극
+  </div>
+
+  <h3>4.5 Asset Location — 두 번째 α</h3>
+
+  <table class="dtable">
+    <thead><tr><th>자산</th><th>세제 특성</th><th>최적 계정</th></tr></thead>
+    <tbody>
+      <tr><td>채권 (이자)</td><td>일반소득세 37%</td><td><strong>Tax-deferred (IRA, 401k)</strong></td></tr>
+      <tr><td>주식 (LTCG)</td><td>15–20%</td><td>Taxable (step-up 고려)</td></tr>
+      <tr><td>REIT</td><td>일반소득 배당</td><td>Tax-deferred</td></tr>
+      <tr><td>TIPS</td><td>phantom income</td><td>Tax-deferred 필수</td></tr>
+    </tbody>
+  </table>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Dammon-Spatt-Zhang (2004, JF) Rule</div>
+    <div class="prop-body">"모든 채권을 먼저 tax-deferred에. taxable의 남는 공간에만 주식." — <strong>"bonds in IRA, stocks in taxable"</strong>. Wealthfront 2014 자동화.<br><br>
+    <strong>수치 예시 (30년):</strong> 초기 $100K, 50/50, τ_bond=35%, τ_cg=15%<br>
+    AA만: $520K · AA+AL: <strong>$605K</strong> · 차이 $85K (16%) · 연 0.5% α</div>
+  </div>
+
+  <h3>4.6 After-Tax 통합</h3>
+
+  <div class="eqbox">
+    $$W_T^{\text{AT}} = W_T - \tau_{\text{cg}} \cdot \max(W_T - B_0, 0) + \text{TLH credit}_T + \text{Loc}_T$$
+    <div class="eq-cap">세후 목표 위험:</div>
+    $$\text{Risk}_{\text{GBI}}^{\text{AT}} = \Pr(W_T^{\text{AT}} < H)$$
+    <div class="eq-cap">Week 1의 GBI 목적함수가 <strong>세후 기준으로 재정의</strong>. RA는 이 확률을 <strong>2–4%p 개선</strong>.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. HITL & B vs W ════ -->
+<section data-section="§5. HITL & Betterment vs Wealthfront">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">30min</span></div>
+  <h2>§5. HITL · Betterment vs Wealthfront 상업 모델</h2>
+
+  <h3>5.1 HITL 3가지 모델</h3>
+
+  <table class="dtable">
+    <thead><tr><th>모델</th><th>대표</th><th>구조</th><th>수수료</th></tr></thead>
+    <tbody>
+      <tr><td>Hybrid tier</td><td>Betterment Premium</td><td>RA + CFP (≥$100K)</td><td>0.40%</td></tr>
+      <tr><td>Subscription</td><td>Schwab IP Premium</td><td>$300 + 월 $30</td><td>Flat</td></tr>
+      <tr><td><strong>Embedded</strong></td><td><strong>Vanguard PAS</strong></td><td>전원 advisor 매칭</td><td>0.15–0.30%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 Betterment vs Wealthfront</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl" style="color:#991b1b">Betterment — Goal-based Behavioral</div>
+      <ul class="cmp-list">
+        <li>2008 Jon Stein · $65B · 100만+</li>
+        <li>Goal-centric: "Safety Net · Retirement · Major Purchase"</li>
+        <li><strong>BPT-inspired 3-tier UX</strong></li>
+        <li>BL 변형 + TLH $0+</li>
+        <li>0.25% basic / 0.40% Premium (CFP)</li>
+        <li>2025: Ellevest·Marcus 인수</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="cmp-ttl" style="color:#1e40af">Wealthfront — Automated Tax-Alpha</div>
+      <ul class="cmp-list">
+        <li>2008 Andy Rachleff · $88B · 130만</li>
+        <li>Engineering-first 자동화</li>
+        <li><strong>Path planner · Direct Indexing ($100K+)</strong></li>
+        <li>MPT + Risk Parity / Stock-level TLH</li>
+        <li>0.25% (단일 plan)</li>
+        <li><strong>HITL 미제공</strong> (철학)</li>
+        <li>2025: IPO 신청</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>5.3 Betterment의 리버스 엔지니어링</h3>
+
+  <table class="dtable">
+    <thead><tr><th>Layer</th><th>Betterment 구현</th><th>학술 대응</th></tr></thead>
+    <tbody>
+      <tr><td>Goal discovery</td><td>목표별 시점·금액·우선순위</td><td>Das-Markowitz MA (W4)</td></tr>
+      <tr><td>Risk by goal</td><td>목표별 다른 stock/bond</td><td>Brunel 4-bucket (W5)</td></tr>
+      <tr><td>Glide path</td><td>시간 경과 auto de-risk</td><td>Das-Ostrov DP (W8)</td></tr>
+      <tr><td>Confidence interval</td><td>달성확률 50/75/99% viz</td><td>BPT-SA (W3)</td></tr>
+      <tr><td>TLH logic</td><td>Wash-sale 회피 ETF 쌍</td><td>Chaudhuri-Burnham-Lo (2020)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout blue">
+    <strong>핵심 추론:</strong> Betterment "Safety Net" 버킷 = Brunel Personal goal(99%). "Retirement" = Market goal(85%). "Major Purchase" = Aspirational(50%). 즉 <strong>W5 강의 내용의 상용 구현</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. 한국 RA ════ -->
+<section data-section="§6. 한국 RA 3-레이어">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">50min · Korea</span></div>
+  <h2>§6. 한국 RA 산업 — 3-Layer 생태계</h2>
+
+  <h3>6.1 구조적 특이점</h3>
+
+  <div class="callout orange">
+    <strong>2016 테스트베드 개설 10년,</strong> AUM은 미국의 1/100 수준. 원인:<br>
+    ① <strong>세제 인센티브 부재</strong>(TLH 대응 없음, 손실 이월 3년)<br>
+    ② <strong>계좌 파편화</strong>(ISA·연금저축·IRP·일반, asset location 불가)<br>
+    ③ <strong>규제 3단계 관문</strong>(RATB → 샌드박스 → 제휴)<br>
+    ④ <strong>퇴직연금 제약</strong>: DB+DC+IRP <strong>501조 원 중 87%가 원리금보장</strong>
+  </div>
+
+  <h3>6.2 Layer 1 · 독립 핀테크 RA</h3>
+
+  <table class="dtable">
+    <thead><tr><th>사업자</th><th>특성</th><th>엔진</th></tr></thead>
+    <tbody>
+      <tr><td><strong>파운트</strong></td><td>업계 1위 (AUM ~1.5조)</td><td>Global AA + BL + <strong>GPT-4 대화형 3.0</strong></td></tr>
+      <tr><td>디셈버/핀트</td><td>한국 최초 비대면 일임 (2019)</td><td>AI Agent 4종 (Scout·Guardian·Optimizer·Coach)</td></tr>
+      <tr><td>업라이즈</td><td>'매크로알파' 1년 24.19%</td><td>RATB 통과, 샤프 2.02</td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.3 Layer 2 · 기관 (증권·은행)</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">미래에셋 · 한국투자</div>
+      <ul class="cmp-list">
+        <li>M-STOCK RA 통합</li>
+        <li>KOBI (퇴직연금 전용 2종)</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">NH · <strong>KB WM</strong></div>
+      <ul class="cmp-list">
+        <li>NH-Amundi 연계, 2024.08/12 순차</li>
+        <li><strong>KB마이머니 + 파운트 제휴</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.4 Layer 3 · 퇴직연금 샌드박스 (2024.12~)</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TD
+    A["RA 사업자"] --> B["① 코스콤 RATB<br/>알고리즘 심사"]
+    B -->|통과| C["② 혁신금융서비스<br/>금융위 지정"]
+    C -->|통과| D["③ 퇴직연금사업자<br/>제휴"]
+    D -->|통과| E["IRP 일임 상용화"]
+    B -->|실패| F["재신청<br/>6개월 후"]
+    F --> B
+    style E fill:#E8F5E9
+    style F fill:#FFEBEE
+    </pre>
+  </div>
+
+  <div class="callout blue">
+    <strong>왜 2024–2025 이 시점?</strong><br>
+    ① <strong>501조 원</strong> DB+DC+IRP 적립금<br>
+    ② <strong>10년 IRP 수익률 1.74%</strong> (물가 아래)<br>
+    ③ <strong>87% 원보형</strong> — "저수익 함정"<br><br>
+    <strong>업라이즈 '든든' 사례:</strong> 2023.07 개발 → 2024.06 RATB 통과 → 2024.12 혁신금융 지정 → 2025 상용.
+  </div>
+
+  <h3>6.5 한국 vs 미국 GBI 성숙도 (6차원)</h3>
+
+  <table class="dtable">
+    <thead><tr><th>차원</th><th>Betterment</th><th>KB·파운트</th><th>Gap</th></tr></thead>
+    <tbody>
+      <tr><td>Goal-based UX</td><td>★★★★★</td><td>★★★☆☆</td><td>다목표 통합 부족</td></tr>
+      <tr><td>Risk bucket</td><td>★★★★★</td><td>★★★☆☆</td><td>3-tier 단순형</td></tr>
+      <tr><td>Dynamic glide</td><td>★★★★☆</td><td>★★☆☆☆</td><td>분기 threshold</td></tr>
+      <tr style="background:#fef2f2"><td><strong>TLH tax α</strong></td><td>★★★★★</td><td><strong>☆☆☆☆☆</strong></td><td><strong>세제 미지원</strong></td></tr>
+      <tr><td>Asset location</td><td>★★★★☆</td><td>★★☆☆☆</td><td>계좌 파편</td></tr>
+      <tr style="background:#f0fdf4"><td><strong>HITL</strong></td><td>★★★★☆</td><td><strong>★★★★★</strong></td><td><strong>은행 PB 네트워크 강점</strong></td></tr>
+      <tr><td>DC 연금</td><td>★★★★☆</td><td>★☆☆☆☆</td><td>IRP 한정</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <strong>결론:</strong> 한국 RA는 <strong>HITL 강점</strong>(지점 네트워크). 그러나 <strong>tax α 구조적 부재</strong>. <strong>3단계 로드맵:</strong> IRP → DC 편입 → 세제 연동.
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">한국 RA 3-레이어 생태계(핀테크·기관·연금샌드박스). (원본: <code>docs/Week10_Infographic_Korea_RA.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W10 · 10페이지</span>
+    <div class="hw-title">한국 RA 3개 GBI 구현 비교 리포트</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">Part A · 데이터 수집</div>
+      <p>3개 RA 조합: (파운트+KB+KOBI) or (핀트+미래에셋+불리오) or (업라이즈+NH+에임). RTQ·엔진·수수료·TLH·계좌·HITL 수집.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">Part B · GBI 성숙도 평가 (6차원)</div>
+      <p>Goal discovery · Risk by goal · Glide path · Confidence viz · Tax overlay · HITL 각 1–5점.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">Part C · Monte Carlo (10,000 경로)</div>
+      <p>가상 고객 이영주(45세, 2억, 15년 후 5억). 각 RA 포트폴리오의 $\Pr(W_T \ge 5억)$ · CVaR · violin plot.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Grealish & Kolm (2022)</div>
+      <div class="ref-sub">"Robo-Advisory: From Investing Principles and Algorithms..."</div>
+      <div class="ref-src"><em>ML in Financial Markets</em>, Cambridge UP</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">Tax α</div>
+      <div class="ref-ttl">Chaudhuri, Burnham, Lo (2020)</div>
+      <div class="ref-sub">"An Empirical Evaluation of Tax-Loss Harvesting Alpha"</div>
+      <div class="ref-src"><em>JFDS</em></div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">고전</div>
+      <div class="ref-ttl">Dammon, Spatt, Zhang (2004)</div>
+      <div class="ref-sub">"Optimal Asset Location"</div>
+      <div class="ref-src"><em>JF</em>, 59(3)</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">한국</div>
+      <div class="ref-ttl">자본시장연구원 (2025)</div>
+      <div class="ref-sub">"퇴직연금 로보어드바이저 일임서비스 도입의 기대효과"</div>
+      <div class="ref-src">자본시장포커스</div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W11 미리보기:</strong> <strong>Tax·ESG·Alternative 통합 GBI</strong>. After-tax goal 정식화 · ESG 제약 하 효율경계 · PE·부동산·헤지 J-curve · 기관투자자 GBI · 한국 3층 연금 생태계와 디폴트옵션.
+  </div>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W10 강의노트</strong> · 로보어드바이저와 GBI 대중화<br>
+  <a href="W09_Lecture_Note.html">◀ W9</a> · <a href="index.html">Home</a> · <a href="W11_Lecture_Note.html">W11: 한국 3층 연금 생태계 ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

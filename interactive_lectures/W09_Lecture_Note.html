@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W9 — RL 기반 GBI: Das-Varma · Bauman HMM+PPO · G-Learner</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W9 강의노트</span>
+  <span class="ttl" id="sf-t">RL 기반 GBI</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W9 강의노트">
+  <div class="hero-badge">Week 09 · Phase 3 · Deep RL</div>
+  <h1>RL 기반 GBI — Das-Varma · Bauman HMM+PPO · G-Learner</h1>
+  <p class="hero-sub">Q-learning DP 동등성에서 Regime-Switching DRL까지 · 실무 진입 3대 장벽</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">PPO · SAC</span><span class="hero-meta-lbl">Actor-Critic<br>Algorithms</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">+5.4%p</span><span class="hero-meta-lbl">HMM vs DP<br>Regime 환경</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W08_Lecture_Note.html">◀ W8</a> · <a href="index.html">Home</a> · <a href="W10_Lecture_Note.html">W10 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>Das-Varma(2020) Q-learning</strong>이 DORS2020 DP와 동일한 optimal policy로 수렴하는 조건 설명</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text">Deep RL 3대 계열(Value-based · Policy-based · Actor-Critic)과 PPO/SAC의 core idea 파악</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text"><strong>Bauman(2024) HMM + PPO</strong> architecture: augmented state $s = (W, t, \hat{p}_{\text{bull}}, \hat{p}_{\text{bear}})$</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text">실무 진입 <strong>3대 장벽</strong>(해석·규제·Robustness)을 한국 코스콤 RA 테스트베드 맥락에서 분석</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> DP의 두 한계(모델 의존·차원의 저주)를 RL이 극복한다. Das-Varma(2020) Q-learning → Bauman(2024) HMM+PPO는 <strong>regime 환경에서 DP를 +5.4%p 능가</strong>. 그러나 해석성·규제·robustness 3대 장벽이 한국 실무 진입을 제약.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. DP → RL 전환 ════ -->
+<section data-section="§1. DP의 한계">
+  <div class="session-head"><span class="session-tag">SESSION 1</span><span class="session-time">15min</span></div>
+  <h2>§1. DP의 한계 → RL 전환의 필연</h2>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl">DORS2020의 빛</div>
+      <ul class="cmp-list">
+        <li>Bellman optimality 보장</li>
+        <li>$(W, t)$ 격자 완전 해석</li>
+        <li>TDF +28%p 성능</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl">DORS2020의 그림자</div>
+      <ul class="cmp-list">
+        <li><strong>모델 의존</strong>: GBM · i.i.d. 가정</li>
+        <li><strong>차원의 저주</strong></li>
+        <li>Discrete action K=15</li>
+        <li>Path independence 가정</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>1.2 RL의 3대 해결책</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">①</div><div class="ax-body"><div class="ax-ttl">Model-free</div><div class="ax-crack">환경 dynamics를 <strong>데이터로 학습</strong> — GBM 가정 필요 없음</div></div></div>
+    <div class="axiom"><div class="ax-tag">②</div><div class="ax-body"><div class="ax-ttl">Function Approximation</div><div class="ax-crack">NN으로 $V(s)$·$Q(s,a)$·$\pi(s)$ 근사 — 차원의 저주 극복</div></div></div>
+    <div class="axiom"><div class="ax-tag">③</div><div class="ax-body"><div class="ax-ttl">Continuous Policy</div><div class="ax-crack">Actor-critic 계열이 연속 action space 자연스럽게 처리</div></div></div>
+  </div>
+
+  <h3>1.3 GBWM을 MDP로</h3>
+
+  <table class="dtable">
+    <thead><tr><th>MDP 요소</th><th>GBWM 매핑</th></tr></thead>
+    <tbody>
+      <tr><td>$s \in \mathcal{S}$</td><td>$(W_t, t)$ 또는 $(W_t, \text{regime}_t, t)$</td></tr>
+      <tr><td>$a \in \mathcal{A}$</td><td>Portfolio weight / index $k$</td></tr>
+      <tr><td>$r$</td><td>중간 0, terminal $\mathbb{1}\{W_T \ge G\}$</td></tr>
+      <tr><td>$\mathcal{P}$</td><td>(model-based) GBM / (model-free) 데이터</td></tr>
+      <tr><td>$\gamma$</td><td>1 (또는 시간할인)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. Das-Varma Q-learning ════ -->
+<section data-section="§2. Das-Varma Q-learning">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">30min</span></div>
+  <h2>§2. Das-Varma (2020) — Q-learning GBWM</h2>
+
+  <h3>2.1 Q-learning Update Rule (Watkins 1989)</h3>
+
+  <div class="eqbox">
+    $$Q^*(s, a) = \mathbb{E}\!\left[ r_t + \gamma \max_{a'} Q^*(s_{t+1}, a') \mid s_t = s, a_t = a \right]$$
+    $$Q(s, a) \leftarrow Q(s, a) + \alpha [r + \gamma \max_{a'} Q(s', a') - Q(s, a)]$$
+  </div>
+
+  <h3>2.2 DP 동등성 (Watkins-Dayan 1992)</h3>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Convergence Theorem</div>
+    <div class="prop-body">tabular Q-learning은 $\sum_t \alpha_t = \infty$ + $\sum_t \alpha_t^2 < \infty$ 조건 하 $Q^*$로 수렴.<br>
+      <strong>Das-Varma 2020 실증:</strong> DP $V(100, 0) = 0.627$ vs Q-learning $\approx 0.620$–$0.625$ (10⁶ episodes 후). 차이 &lt; 1%p.</div>
+  </div>
+
+  <h3>2.3 Training Loop Python</h3>
+
+<pre class="code-block"><span class="kw">for</span> episode <span class="kw">in</span> <span class="fn">range</span>(N_episodes):
+    W, t = W_0, <span class="num">0</span>
+    <span class="kw">while</span> t &lt; T:
+        <span class="cm"># ε-greedy</span>
+        <span class="kw">if</span> <span class="fn">random</span>() &lt; epsilon:
+            k = random.randint(<span class="num">0</span>, K-<span class="num">1</span>)
+        <span class="kw">else</span>:
+            k = <span class="fn">argmax</span>(Q[s])
+        <span class="cm"># GBM simulation</span>
+        W_next = W * np.exp((mu[k] - sig[k]**<span class="num">2</span>/<span class="num">2</span>)*h + sig[k]*np.sqrt(h)*Z)
+        r = <span class="num">1</span> <span class="kw">if</span> (t+h == T <span class="kw">and</span> W_next &gt;= G) <span class="kw">else</span> <span class="num">0</span>
+        <span class="cm"># Q-update</span>
+        s_next = (W_next, t+h)
+        Q[s][k] += alpha * (r + gamma * <span class="fn">max</span>(Q[s_next]) - Q[s][k])
+        s, W, t = s_next, W_next, t+h</pre>
+
+  <h3>2.4 Prémont(2021) 개선 — Adaptive Learning Rate</h3>
+
+  <div class="eqbox">
+    $$\alpha_k(n) = \frac{1}{1 + \text{visits}(s_k, a_k, n)}$$
+    <div class="eq-cap">Watkins-Dayan 2차 조건 충족 + 수렴 속도 2–3배 가속.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. Deep RL 3대 계열 ════ -->
+<section data-section="§3. Deep RL 3대 계열">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">35min</span></div>
+  <h2>§3. Deep RL 3대 계열</h2>
+
+  <div class="axiom-cards">
+    <div class="ax-card">
+      <div class="ax-num">VALUE</div>
+      <div class="ax-head">Value-Based</div>
+      <ul class="ax-items">
+        <li>NN으로 $Q(s,a;\theta_Q)$ 근사</li>
+        <li>DQN · Double DQN · Dueling</li>
+        <li>✓ Off-policy · sample efficient</li>
+        <li>✗ Discrete action만</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">POLICY</div>
+      <div class="ax-head">Policy-Based</div>
+      <ul class="ax-items">
+        <li>$\pi(a|s;\theta_\pi)$ 직접 학습</li>
+        <li>REINFORCE · TRPO</li>
+        <li>✓ Continuous · stochastic</li>
+        <li>✗ High variance</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">A-C</div>
+      <div class="ax-head">Actor-Critic</div>
+      <ul class="ax-items">
+        <li>Actor + Critic</li>
+        <li>A2C · <strong>PPO · SAC</strong> · TD3</li>
+        <li>✓ Low variance · continuous</li>
+        <li>✗ 구현 복잡</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>3.1 PPO (Proximal Policy Optimization)</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">Schulman et al. (2017). RL 실무의 default choice.</div>
+    $$L^{\text{CLIP}}(\theta) = \mathbb{E}_t\!\left[ \min(r_t(\theta) A_t,\ \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) A_t) \right]$$
+    <div class="eq-cap">$r_t(\theta) = \pi_\theta / \pi_{\theta_{\text{old}}}$: importance ratio. $\epsilon \approx 0.2$: clip 범위. <strong>Trust region</strong> 제약으로 large update 방지.</div>
+  </div>
+
+  <h3>3.2 SAC (Soft Actor-Critic)</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">Haarnoja et al. (2018). Off-policy + continuous action.</div>
+    $$J(\pi) = \mathbb{E}\!\left[ \sum_t r_t + \alpha_H \mathcal{H}(\pi(\cdot|s_t)) \right]$$
+    <div class="eq-cap">Entropy 보너스 $\mathcal{H}(\pi)$ 추가로 탐험을 보상에 내재화.</div>
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">언제 PPO</div>
+      <ul class="cmp-list">
+        <li>Discrete or simple continuous</li>
+        <li>Robustness 우선</li>
+        <li>★ <strong>Bauman(2024) 선택</strong></li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">언제 SAC</div>
+      <ul class="cmp-list">
+        <li>Complex continuous</li>
+        <li>Sample efficiency 중요</li>
+        <li>Off-policy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">RL 3대 계열(Value-based · Policy-based · Actor-Critic)의 GBI 적용 계보. Das-Varma(2020) Q-learning · Prémont(2021) LR 개선 · Bauman(2024) PPO·HMM · Dixon-Halperin G-Learner. (원본: <code>docs/Week09_Infographic_RL_Taxonomy.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. PPO 구현 ════ -->
+<section data-section="§4. PPO 실습 구현">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">25min</span></div>
+  <h2>§4. PPO 구현 — Stable-Baselines3 + Gym</h2>
+
+  <h3>4.1 GBWM Environment (OpenAI Gym API)</h3>
+
+<pre class="code-block"><span class="kw">import</span> gymnasium <span class="kw">as</span> gym
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="kw">class</span> <span class="fn">GBWMEnv</span>(gym.Env):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, W0=<span class="num">100</span>, G=<span class="num">200</span>, T=<span class="num">10</span>, K=<span class="num">15</span>):
+        self.action_space = gym.spaces.Discrete(K)
+        self.observation_space = gym.spaces.Box(
+            low=np.array([<span class="num">0</span>, <span class="num">0</span>]), high=np.array([<span class="num">1000</span>, T]),
+            dtype=np.float32)
+        self.W0, self.G, self.T, self.K = W0, G, T, K
+        self.mus = np.linspace(<span class="num">0.02</span>, <span class="num">0.10</span>, K)
+        self.sigs = np.linspace(<span class="num">0.05</span>, <span class="num">0.20</span>, K)
+
+    <span class="kw">def</span> <span class="fn">step</span>(self, action):
+        k = <span class="kw">int</span>(action)
+        mu, sig = self.mus[k], self.sigs[k]
+        Z = self.np_random.standard_normal()
+        self.W *= np.exp((mu - sig**<span class="num">2</span>/<span class="num">2</span>) + sig * Z)
+        self.t += <span class="num">1</span>
+        terminated = (self.t &gt;= self.T)
+        reward = <span class="kw">float</span>(self.W &gt;= self.G) <span class="kw">if</span> terminated <span class="kw">else</span> <span class="num">0.0</span>
+        <span class="kw">return</span> self._get_obs(), reward, terminated, <span class="kw">False</span>, {}</pre>
+
+  <h3>4.2 PPO Training</h3>
+
+<pre class="code-block"><span class="kw">from</span> stable_baselines3 <span class="kw">import</span> PPO
+<span class="kw">from</span> stable_baselines3.common.env_util <span class="kw">import</span> make_vec_env
+
+env = <span class="fn">make_vec_env</span>(GBWMEnv, n_envs=<span class="num">8</span>)
+
+model = <span class="fn">PPO</span>(<span class="str">"MlpPolicy"</span>, env,
+    learning_rate=<span class="num">3e-4</span>,
+    n_steps=<span class="num">2048</span>,
+    batch_size=<span class="num">64</span>,
+    gamma=<span class="num">1.0</span>,           <span class="cm"># GBWM: no discount</span>
+    clip_range=<span class="num">0.2</span>,
+    ent_coef=<span class="num">0.01</span>)
+
+model.learn(total_timesteps=<span class="num">1_000_000</span>)</pre>
+
+  <h3>4.3 Bauman 2024 Table 1 재현 결과</h3>
+
+  <table class="dtable">
+    <thead><tr><th>전략</th><th>Success Rate</th></tr></thead>
+    <tbody>
+      <tr><td>DP benchmark</td><td>62.7%</td></tr>
+      <tr><td>Q-learning</td><td>62.5%</td></tr>
+      <tr><td>PPO (simple)</td><td>62.3%</td></tr>
+      <tr style="background:#fefbf0"><td><strong>PPO + HMM regime</strong></td><td><strong>63.8%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout green">
+    Stationary 환경에서 RL ≈ DP. <strong>Non-stationary(regime) 환경에서 RL이 DP를 능가</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. Bauman HMM+PPO ════ -->
+<section data-section="§5. Bauman HMM+PPO">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">30min · Core</span></div>
+  <h2>§5. Bauman (2024) — HMM Regime-Switching DRL</h2>
+
+  <p><strong>Bauman, Gašperov, Goluža, Kostanjčar (2024)</strong> NLDL 2024. University of Zagreb 연구팀.</p>
+
+  <h3>5.1 HMM Regime Detection</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">Hidden states $X_t \in \{1, \ldots, R\}$, $R=2$ (bull, bear):</div>
+    $$Y_t | X_t \sim \mathcal{N}(\mu_{X_t}, \Sigma_{X_t})$$
+    <div class="eq-cap">Baum-Welch (EM)로 훈련. Forward-backward로 $P(X_t | Y_{1:t})$ 추정:</div>
+    $$\hat{p}_r(t) = P(X_t = r | Y_{1:t}) \propto P(Y_t|X_t=r) \sum_{r'} P(X_t=r|X_{t-1}=r') \hat{p}_{r'}(t-1)$$
+  </div>
+
+  <h3>5.2 State Augmentation (핵심 혁신)</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">AUGMENTED STATE</div>
+    $$s_t = (W_t, t, \hat{p}_{\text{bull}}, \hat{p}_{\text{bear}})$$
+    <div class="meta-desc">HMM regime 확률을 <strong>state에 직접 통합</strong>. Policy $\pi(a | W, t, \hat{p})$가 regime에 조건부로 반응.</div>
+  </div>
+
+  <h3>5.3 PPO + HMM Architecture</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    M[Market Returns Y_t] --> H[Gaussian HMM<br/>Baum-Welch training]
+    H --> P[Regime Probability<br/>p_bull, p_bear]
+    W[Wealth W_t, Time t] --> S
+    P --> S[Augmented State<br/>s = W, t, p_bull, p_bear]
+    S --> A[PPO Actor NN]
+    S --> C[PPO Critic NN]
+    A --> O[Action: Portfolio k]
+    C --> V[Value V_s]
+    style H fill:#1e5f8e,color:#fff
+    style A fill:#d4a244
+    style C fill:#d4a244
+    </pre>
+  </div>
+
+  <h3>5.4 실증 결과 — Historical Shiller Data</h3>
+
+  <table class="dtable">
+    <thead><tr><th>전략</th><th>Simulated (regime)</th><th>Historical Shiller</th></tr></thead>
+    <tbody>
+      <tr><td>Static 70/30</td><td>47.2%</td><td>48%</td></tr>
+      <tr><td>TDF glide path</td><td>39.1%</td><td>—</td></tr>
+      <tr><td>Variance budgeting</td><td>51.8%</td><td>—</td></tr>
+      <tr><td>DP (DORS2020)</td><td>58.4%</td><td>59%</td></tr>
+      <tr><td>Q-learning</td><td>57.9%</td><td>—</td></tr>
+      <tr style="background:#fefbf0"><td><strong>Bauman PPO+HMM</strong></td><td><strong>63.8%</strong></td><td><strong>65%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.5 왜 작동하는가 — 직관</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl">Bull Regime 감지</div>
+      <ul class="cmp-list"><li>공격적 portfolio 선택</li></ul>
+    </div>
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl">Bear Regime 감지</div>
+      <ul class="cmp-list"><li>방어적 전환</li></ul>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    Advisor가 market timing하는 대신, <strong>PPO agent가 regime probability에 따라 자동 조정</strong>. 동적 asset allocation의 자동화.
+  </div>
+
+  <h3>5.6 한계</h3>
+
+  <ul style="font-size:12px;line-height:1.75;padding-left:18px;color:#333">
+    <li><strong>2-asset 한정</strong> (stock + bond)</li>
+    <li>$R=2$ 가정 (3, 4 regime 확장 연구 필요)</li>
+    <li>Shiller 1871–1991 학습 — 미래 안정성?</li>
+    <li><strong>Single goal</strong> — multi-goal DRL은 open</li>
+    <li>해석 가능성 (§7)</li>
+  </ul>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">Bauman (2024) DRL framework · HMM regime detection + PPO actor-critic architecture. Regime-switching 환경에서 DP 대비 +5.4%p 개선 실증. (원본: <code>docs/Week09_Infographic_Bauman_DRL.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. G-Learner ════ -->
+<section data-section="§6. G-Learner & GIRL">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">20min</span></div>
+  <h2>§6. Dixon-Halperin G-Learner · GIRL — 대안 접근</h2>
+
+  <h3>6.1 핵심 아이디어</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">Entropy-regularized RL + LQR 연결:</div>
+    $$V(s) = \max_a \mathbb{E}[r + \gamma V(s')] - \lambda D_{KL}(\pi_\theta(\cdot|s) \| \pi_0(\cdot|s))$$
+    <div class="eq-cap">Quadratic reward + Gaussian reference → <strong>LQR 구조</strong>, closed-form 가능.</div>
+  </div>
+
+  <h3>6.2 LQR Connection의 의미</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#fefbf0;border-color:#f5d88a">
+      <div class="cmp-ttl">G-Learner 장점</div>
+      <ul class="cmp-list">
+        <li>해석 가능성 ↑</li>
+        <li>계산 복잡도 ↓</li>
+        <li>100+ assets 확장</li>
+        <li>규제 당국 설득 용이</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">GIRL — Inverse RL</div>
+      <ul class="cmp-list">
+        <li>역사적 거래 관찰</li>
+        <li>투자자 implicit goal 추출</li>
+        <li>ISP 자동 작성</li>
+        <li>행동재무 관점 결합</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.3 세 RL 접근의 비교</h3>
+
+  <table class="dtable">
+    <thead><tr><th>특성</th><th>Das-Varma</th><th>Bauman PPO+HMM</th><th>Dixon-Halperin G-Learner</th></tr></thead>
+    <tbody>
+      <tr><td>패러다임</td><td>Value-based</td><td>Actor-Critic</td><td>Entropy-reg</td></tr>
+      <tr><td>환경 가정</td><td>Stationary GBM</td><td>Regime-switching</td><td>Generic</td></tr>
+      <tr><td>Neural network</td><td>Tabular/DQN</td><td>Deep MLP</td><td>Linear-Gaussian</td></tr>
+      <tr><td>Closed-form</td><td>No</td><td>No</td><td><strong>Yes (LQR)</strong></td></tr>
+      <tr><td>실무 진입성</td><td>학술</td><td>학술+일부</td><td><strong>가장 친화적</strong></td></tr>
+      <tr><td>해석 가능성</td><td>보통</td><td>낮음</td><td><strong>높음</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §7. 3대 장벽 ════ -->
+<section data-section="§7. 실무 3대 장벽">
+  <div class="session-head"><span class="session-tag">SESSION 7</span><span class="session-time">20min · Practical Barriers</span></div>
+  <h2>§7. 실무 진입의 3대 장벽</h2>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">1</div><div class="ax-body">
+      <div class="ax-ttl">해석 가능성 (Interpretability)</div>
+      <div class="ax-crack">
+        <strong>문제:</strong> Deep NN policy는 black box. "왜 이 결정?" 설명 불가. ISP 문서 기록 불가능.<br>
+        <strong>해결:</strong> Model distillation · SHAP/LIME · Policy heatmap · Hybrid (G-Learner).
+      </div>
+    </div></div>
+    <div class="axiom"><div class="ax-tag">2</div><div class="ax-body">
+      <div class="ax-ttl">규제 (Regulation)</div>
+      <div class="ax-crack">
+        <strong>한국 환경:</strong> 금감원 혁신금융서비스 지정, 자문·일임업 규제, 상품 "어떻게 작동"설명 의무.<br>
+        <strong>RL 이슈:</strong> 학습 데이터 대표성, OOD 동작 보장, model drift, accountability.
+      </div>
+    </div></div>
+    <div class="axiom"><div class="ax-tag">3</div><div class="ax-body">
+      <div class="ax-ttl">Robustness (견고성)</div>
+      <div class="ax-crack">
+        <strong>OOD 우려:</strong> 학습 1871–1991, 실행 2020–2030(금리0, 팬데믹, 지정학). Catastrophic failure 가능성.<br>
+        <strong>검증:</strong> Stress testing(GFC·COVID·bond crash) · Adversarial · Domain randomization · Fat-tail MC.
+      </div>
+    </div></div>
+  </div>
+
+  <h3>7.2 한국 코스콤 RA 테스트베드 (2025말)</h3>
+
+  <div class="kr-stats">
+    <div class="kr-card"><div class="kr-num">727</div><div class="kr-lbl">누적 통과<br>알고리즘</div></div>
+    <div class="kr-card"><div class="kr-num">257</div><div class="kr-lbl">연금 부문</div></div>
+    <div class="kr-card gold"><div class="kr-num">60%</div><div class="kr-lbl">Rule-based<br>추정 비중</div></div>
+    <div class="kr-card gold"><div class="kr-num">~1%</div><div class="kr-lbl">DRL 기반<br>추정 비중</div></div>
+  </div>
+
+  <h3>7.3 신뢰 구축의 단계적 Roadmap</h3>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">Year 1–2</div><div class="tl-ttl">DORS2020 DP</div><div class="tl-dd">해석 가능 + 학술 보장 — 출발점.</div></div>
+    <div class="tl-item"><div class="tl-year">Year 2–3</div><div class="tl-ttl">G-Learner 도입</div><div class="tl-dd">LQR 구조 유지하며 adaptive.</div></div>
+    <div class="tl-item"><div class="tl-year">Year 3–5</div><div class="tl-ttl">PPO+HMM hybrid</div><div class="tl-dd">부분 RL, nominal baseline.</div></div>
+    <div class="tl-item"><div class="tl-year">Year 5+</div><div class="tl-ttl">Full DRL</div><div class="tl-dd">충분한 track record 축적 후.</div></div>
+  </div>
+
+  <div class="callout orange">
+    <strong>한국 현실:</strong> 2026년 현재 1–2 단계조차 <strong>초기 진행 상태</strong>. EU AI Act(2024)·한국 AI 기본법(2024)·SEC Predictive Data Analytics 등이 RL GBI 진입 속도를 결정.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 TEAM PROJECT · W9 · 12페이지</span>
+    <div class="hw-title">한국 DRL GBI 연구 제안서</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">팀 프로젝트 (3–4명)</div>
+      <ol style="padding-left:20px;margin:5px 0 0;font-size:11px;color:rgba(255,255,255,.9);line-height:1.65">
+        <li>Introduction (1p) — 한국 연금·RA 시장 motivation</li>
+        <li>Literature Review (2p) — Das-Varma · Bauman · G-Learner 비교</li>
+        <li>Proposed Methodology (3p) — 선택 알고리즘 + architecture</li>
+        <li>Korean Data & Environment (2p) — KOSPI·국고채·규제</li>
+        <li>Experimental Design (2p) — Train/test · benchmark · metrics</li>
+        <li>Expected Results & Limitations (1p)</li>
+        <li>Regulatory Pathway (1p) — 테스트베드 + 혁신금융 전략</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Das & Varma (2020)</div>
+      <div class="ref-sub">"Dynamic Goals-Based Wealth Management using RL"</div>
+      <div class="ref-src"><em>JIM</em>, 18(2)</div>
+    </div>
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Bauman et al. (2024)</div>
+      <div class="ref-sub">"Deep RL for GBI Under Regime-Switching"</div>
+      <div class="ref-src">NLDL 2024, PMLR 233</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">대안</div>
+      <div class="ref-ttl">Dixon & Halperin (2020)</div>
+      <div class="ref-sub">"G-Learner and GIRL"</div>
+      <div class="ref-src">arXiv:2002.10990</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">교과서</div>
+      <div class="ref-ttl">Sutton & Barto (2018)</div>
+      <div class="ref-sub"><em>RL: An Introduction</em> 2nd ed.</div>
+      <div class="ref-src">MIT Press</div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W10 미리보기:</strong> <strong>Robo-Advisors</strong> — Grealish-Kolm(2022). Onboarding questionnaire, algorithm selection, human-in-the-loop, tax-loss harvesting. Betterment·Wealthfront·한국 RA 업체 비교.
+  </div>
+</section>
+
+<!-- 부록 -->
+<section data-section="부록 · RL Timeline">
+  <div class="eyebrow">Appendix</div>
+  <h2>GBI 관련 RL Algorithm Timeline</h2>
+
+<pre class="code-block">1957  Bellman DP 원리
+1989  Watkins Q-learning 논문
+1992  Watkins-Dayan 수렴 증명
+2013  DQN (Mnih et al. Nature)
+2015  DDPG (Lillicrap et al.)
+2017  <span class="fn">PPO</span> (Schulman et al.)
+2018  <span class="fn">SAC</span> (Haarnoja et al.)
+      Sutton-Barto RL 2nd ed.
+2020  <span class="str">DORS2020</span> GBWM DP (Comp Mgmt Sci)
+      <span class="str">Das-Varma</span> Q-learning GBWM (JIM)
+      <span class="str">Dixon-Halperin G-Learner</span> (arXiv)
+2021  Prémont LR 개선 (HEC Montréal)
+      Raffin Stable-Baselines3 (JMLR)
+2022  <span class="str">DORS2022 Multi-goal DP</span> (JBF)
+2023  Volakakis DQN/REINFORCE GBWM
+      <span class="str">Bauman PPO+HMM</span> (AIAI)
+2024  <span class="str">Bauman NLDL</span> 확장판 (PMLR)
+2025  Bauman IEEE Access 추가 확장</pre>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W9 강의노트</strong> · RL 기반 GBI<br>
+  <a href="W08_Lecture_Note.html">◀ W8</a> · <a href="index.html">Home</a> · <a href="W10_Lecture_Note.html">W10: Robo-Advisors ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

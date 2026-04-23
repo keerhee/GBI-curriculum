@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W5 — Brunel Goals-Based Wealth Management (UHNW·Family Office)</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W5 강의노트</span>
+  <span class="ttl" id="sf-t">Brunel GBWM</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W5 강의노트">
+  <div class="hero-badge">Week 05 · Phase 2 · UHNW</div>
+  <h1>Brunel의 실무 Goals-Based Wealth Management</h1>
+  <p class="hero-sub">UHNW·Family Office — 이론을 실제 가족단위 자산관리로 번역하는 프레임</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">4-Step</span><span class="hero-meta-lbl">Iterative<br>Model</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">170가문</span><span class="hero-meta-lbl">삼성증권<br>56조 원</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W04_Lecture_Note.html">◀ W4</a> · <a href="index.html">Home</a> · <a href="W06_Lecture_Note.html">W6 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>Brunel 3-Goal Taxonomy</strong>(Personal·Dynastic·Philanthropic)과 Chhabra 3-bucket의 대응 관계 설명</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>Internal vs External Assets</strong> 구분과 <em>Lifestyle Hedge</em> 개념 이해</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text"><strong>4-Step Iterative Model</strong>(Identify → Dollar-Weight → Build Modules → Monitor)의 각 단계별 산출물 설명</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text"><strong>ISP(Investment Strategy Proposal)</strong> 7-section 구조를 서술하고 한국 UHNW 특수성을 반영</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> 1–4주차에서 이론적 backbone이 완성됐다. 그러나 <strong>JP Morgan Private Bank · UBS · Citi</strong>의 UHNW 담당자는 Das-Markowitz 수식을 가지고 고객 미팅에 들어가지 않는다. Brunel은 이론을 <strong>산업 언어로 번역</strong>해 GBI를 산업 표준으로 만들었다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. 실무 3대 공백 ════ -->
+<section data-section="§1. 실무 3대 공백">
+  <div class="session-head"><span class="session-tag">SESSION 1</span><span class="session-time">15min</span></div>
+  <h2>§1. "이론에서 실무로" — 3가지 공백</h2>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">A</div><div class="ax-body">
+      <div class="ax-ttl">Goal articulation</div>
+      <div class="ax-crack">고객은 "$H_i = 1.5$억, $\alpha_i = 0.95$"로 말하지 않는다. "자녀 결혼 때 집 한 채는 사줘야지"로 말한다. 자연어를 <strong>4-tuple로 번역</strong>하는 것이 어드바이저의 일.</div>
+    </div></div>
+    <div class="axiom"><div class="ax-tag">B</div><div class="ax-body">
+      <div class="ax-ttl">Multi-generational structure</div>
+      <div class="ax-crack">Das-Markowitz의 단일 투자자 가정은 <strong>가족 단위에서 깨진다</strong>. 부모·자녀·손주의 위험선호가 모두 다르고 자산 귀속도 layered.</div>
+    </div></div>
+    <div class="axiom"><div class="ax-tag">C</div><div class="ax-body">
+      <div class="ax-ttl">Beyond financial assets</div>
+      <div class="ax-crack">UHNW 실무에서 <strong>non-fungible illiquid asset이 자산의 60-80%</strong>. 가족기업·부동산·예술품·인적자본.</div>
+    </div></div>
+  </div>
+
+  <h3>Brunel의 4축 번역</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-market">
+      <div class="bk-ic">①</div>
+      <div class="bk-ttl">3-Goal Taxonomy</div>
+      <div class="bk-assets">Personal · Dynastic · Philanthropic</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">②</div>
+      <div class="bk-ttl">Internal/External</div>
+      <div class="bk-assets">Lifestyle hedge 구조</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">③</div>
+      <div class="bk-ttl">4-Step Iterative</div>
+      <div class="bk-assets">Identify → DW → Modules → Monitor</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">④</div>
+      <div class="bk-ttl">ISP 문서</div>
+      <div class="bk-assets">고객이 읽고 서명하는 프로포절</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. 3-Goal Taxonomy ════ -->
+<section data-section="§2. 3-Goal Taxonomy">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">30min</span></div>
+  <h2>§2. Brunel 3-Goal Taxonomy</h2>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TD
+    W["UHNW 가족의 총자산"]
+    W --> P["Personal<br/>개인 목표"]
+    W --> D["Dynastic<br/>가문 목표"]
+    W --> F["Philanthropic<br/>자선 목표"]
+    P --> P1["생활수준 유지·개선"]
+    P --> P2["개인 aspiration"]
+    D --> D1["세대간 이전"]
+    D --> D2["가문 유산·Legacy"]
+    F --> F1["기부·재단"]
+    F --> F2["임팩트 투자·ESG"]
+    style P fill:#d4f1d4
+    style D fill:#fff4cc
+    style F fill:#e4d4f1
+    </pre>
+  </div>
+
+  <table class="dtable">
+    <thead><tr><th>범주</th><th>시간지평</th><th>리스크 허용</th><th>대표 자산</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Personal</strong></td><td>잔여 기대수명</td><td>낮음 (lifestyle 붕괴 회피)</td><td>현금·단기채·균형 포트폴리오</td></tr>
+      <tr><td><strong>Dynastic</strong></td><td>multi-generational (30–100년)</td><td>중–고 (장기 지평)</td><td>분산 주식·PE·부동산·family trust</td></tr>
+      <tr><td><strong>Philanthropic</strong></td><td>영구 or time-limited</td><td>가변 (Yale 사례)</td><td>재단형 분산·임팩트</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.2 Brunel 5대 질문 (고객 인터뷰)</h3>
+
+  <div class="disc-block">
+    <div class="disc-q"><span class="dq-n">Q1</span><div><strong>Purchasing power 유지 기대</strong>: 세대 후에도 같은 실질 lifestyle 유지?</div></div>
+    <div class="disc-q"><span class="dq-n">Q2</span><div><strong>Family 성장 수용</strong>: 가족 수 증가 시 대응?</div></div>
+    <div class="disc-q"><span class="dq-n">Q3</span><div><strong>인플레이션 우려</strong>: 특정 경제적 충격 시나리오 민감도?</div></div>
+    <div class="disc-q"><span class="dq-n">Q4</span><div><strong>Wealth equitable 분배</strong>: 세대간 형평성의 중요도?</div></div>
+    <div class="disc-q"><span class="dq-n">Q5</span><div><strong>Scoring 방식</strong>: 투자성과를 어떤 언어로 측정? ← <em>가장 중요</em></div></div>
+  </div>
+
+  <h3>2.3 Chhabra 3-Bucket과의 대응</h3>
+
+  <table class="dtable">
+    <thead><tr><th>Brunel (UHNW)</th><th>Chhabra (Universal)</th><th>공통 특징</th></tr></thead>
+    <tbody>
+      <tr><td>Needs (기저)</td><td>Personal</td><td>99% 필수·bond</td></tr>
+      <tr><td>Personal</td><td>(Personal의 일부)</td><td>생활수준</td></tr>
+      <tr><td>Dynastic</td><td>Market</td><td>장기성장·분산</td></tr>
+      <tr><td>Philanthropic</td><td>Aspirational</td><td>장기·부의 확대</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. Internal/External ════ -->
+<section data-section="§3. Internal/External">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">30min</span></div>
+  <h2>§3. Internal vs External Assets — Lifestyle Hedge</h2>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#fffbeb;border-color:#fde68a">
+      <div class="cmp-ttl">Internal Assets</div>
+      <ul class="cmp-list">
+        <li>가족기업 지분, 주택, 예술품</li>
+        <li>가족이 직접 <strong>운영·통제</strong></li>
+        <li>Lifestyle 충족에 직접 기여</li>
+        <li>Lifestyle asset은 <strong>최적화 제외</strong></li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="cmp-ttl">External Assets</div>
+      <ul class="cmp-list">
+        <li>증권·펀드·외부 관리 PE</li>
+        <li>제3자 운영, 시장성</li>
+        <li>Lifestyle hedge + 성장</li>
+        <li>3 용도: Preservation / Growth / Discretionary</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="eqbox">
+    $$W^{\text{total}}_{\text{family}} = W^{\text{internal}}_{\text{lifestyle}} + W^{\text{external}}_{\text{non-lifestyle}}$$
+    $$W^{\text{external}}_{\text{non-lifestyle}} = \pi_P W^{\text{ext}} + \pi_D W^{\text{ext}} + \pi_F W^{\text{ext}}$$
+    <div class="eq-cap">최적화는 $W^{\text{external}}_{\text{non-lifestyle}}$만을 대상. Internal lifestyle은 "주어진 hedge"로 treat.</div>
+  </div>
+
+  <h3>3.2 가족기업의 이중 역할</h3>
+  <div class="callout red">
+    <strong>가족기업 = 가장 중요한 internal asset + 가장 큰 집중위험.</strong> 가족 수입의 50-80% 의존. 2·3세 승계 시 liquidity crunch. <strong>외부 포트폴리오가 "if 가족기업 = 0이 되어도 lifestyle 유지 가능"하도록 over-hedge</strong>해야 한다.
+  </div>
+
+  <div class="callout orange">
+    <strong>한국 맥락:</strong> 한국 대기업 지배가족의 주된 이슈 — 지주회사·<strong>상속세 최고 50%(최대주주 할증 시 60%)</strong>와 결합하면 외부 hedge의 중요도가 극단적으로 상승.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. 4-Step Iterative ════ -->
+<section data-section="§4. 4-Step Iterative Model">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">40min · Core</span></div>
+  <h2>§4. 4-Step Iterative Model</h2>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    S1["① Identify goals<br/>목표 발굴"] --> S2["② Dollar-weight goals<br/>자본 할당"]
+    S2 --> S3["③ Build module portfolios<br/>모듈 포트폴리오"]
+    S3 --> S4["④ Monitor & re-allocate<br/>모니터링·재배분"]
+    S4 -.->|iterate| S1
+    style S1 fill:#cde8ff
+    style S2 fill:#cde8ff
+    style S3 fill:#cde8ff
+    style S4 fill:#cde8ff
+    </pre>
+  </div>
+
+  <div class="axiom-cards">
+    <div class="ax-card">
+      <div class="ax-num">STEP 1</div>
+      <div class="ax-head">Identify Goals</div>
+      <ul class="ax-items">
+        <li>인터뷰 30–60분 × 3–5회</li>
+        <li>세대별 priority 표명</li>
+        <li>가족 ethos 공식화</li>
+        <li>출력: 5–15개 목표 목록</li>
+      </ul>
+      <div class="ax-foot">도구: Brunel 5대 질문</div>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">STEP 2</div>
+      <div class="ax-head">Dollar-Weight Goals</div>
+      <div class="ax-eq">$$F_i = \text{PV}_0(H_i, T_i, r_i^{\text{real}})$$</div>
+      <div class="ax-eq">$$\pi_i = \frac{F_i}{\sum_j F_j}$$</div>
+      <div class="ax-foot"><strong>Feasibility check:</strong> $\sum_j F_j \le W^{\text{ext}}$?</div>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">STEP 3</div>
+      <div class="ax-head">Build Modules</div>
+      <ul class="ax-items">
+        <li>Module A: Capital Preservation</li>
+        <li>Module B: Balanced Growth</li>
+        <li>Module C: Long-term Growth</li>
+        <li>Module D: Aggressive Growth</li>
+        <li>Module E: Perpetual Endowment</li>
+      </ul>
+      <div class="ax-foot">Das-Markowitz MA 엔진 호출</div>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">STEP 4</div>
+      <div class="ax-head">Monitor & Reallocate</div>
+      <div class="ax-eq">$$\mathrm{FR}_i = \frac{W_{t,i}}{F_{t,i}}$$</div>
+      <ul class="ax-items">
+        <li>$\mathrm{FR} &gt; 1.2$: de-risking</li>
+        <li>$\mathrm{FR} &lt; 0.8$: 추가 납입</li>
+      </ul>
+      <div class="ax-foot">시장 · 시점 · 목표변경 trigger</div>
+    </div>
+  </div>
+
+  <h3>4.2 Das-Markowitz(2010) 대비 Brunel의 추가 기여</h3>
+
+  <table class="dtable">
+    <thead><tr><th>요소</th><th>Das-Markowitz (2010)</th><th>Brunel (2011, 2015)</th></tr></thead>
+    <tbody>
+      <tr><td>목표 정의</td><td>외생적 $(H, T, \alpha)$</td><td>인터뷰·translation 프로세스</td></tr>
+      <tr><td>$\pi_i$ 결정</td><td>외생적</td><td>Dollar-weighting via PV</td></tr>
+      <tr><td>Portfolio 구축</td><td>Analytical</td><td>Module library</td></tr>
+      <tr><td>동적 업데이트</td><td>정적</td><td>4-step iterative cycle</td></tr>
+      <tr><td>대상</td><td>단일 투자자</td><td>가족·multi-generational</td></tr>
+      <tr><td>Internal asset</td><td>고려 안 함</td><td>Explicit lifestyle hedge</td></tr>
+      <tr><td>Implementation</td><td>학술·알고리즘</td><td>ISP 문서·고객 서명</td></tr>
+    </tbody>
+  </table>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">Brunel의 4-Step Iterative Model(Identify → Dollar-Weight → Build Modules → Monitor). Das-Markowitz 수학 엔진과 UHNW 실무 워크플로우의 bridge. (원본: <code>docs/Week05_Infographic_4Step_Iterative.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. ISP ════ -->
+<section data-section="§5. ISP 프로토콜">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">35min</span></div>
+  <h2>§5. ISP — Investment Strategy Proposal</h2>
+
+  <h3>5.1 ISP의 4가지 기능</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">① Translation record</div>
+      <ul class="cmp-list"><li>가족 자연어 → 4-tuple 재무언어</li></ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">② Commitment device</div>
+      <ul class="cmp-list"><li>시장 변동 하 행동편향 억제</li></ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">③ Delegation protocol</div>
+      <ul class="cmp-list"><li>어드바이저의 의사결정 권한 범위</li></ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">④ Monitoring baseline</div>
+      <ul class="cmp-list"><li>향후 KPI 평가의 기준선</li></ul>
+    </div>
+  </div>
+
+  <h3>5.2 ISP 7-Section 구조 (Brunel 2015)</h3>
+
+<pre class="code-block"><span class="cm">[1] Executive Summary         — 가족 요약 · 3-goal 구조</span>
+<span class="cm">[2] Family Profile             — 구성원·Internal lifestyle assets·가족기업</span>
+<span class="cm">[3] Goals Articulation         — Personal/Dynastic/Philanthropic · (H, T, α, π)</span>
+<span class="cm">[4] Strategic Asset Allocation — External total · Module mapping · Illiquidity · Tax location</span>
+<span class="cm">[5] Risk Framework             — Shortfall prob · Stress · Liquidity</span>
+<span class="cm">[6] Governance                 — 의사결정 구조 · Advisor 권한</span>
+<span class="cm">[7] Monitoring & Review        — FR dashboard · Rebalancing trigger</span>
+<span class="cm">[부록] Policy Exceptions · Tax · Legal Structures</span></pre>
+
+  <h3>5.3 Funding Ratio Dashboard (Step 4의 핵심 도구)</h3>
+
+<pre class="code-block">─────────────────────────────────────────────────
+Goal            Target PV   Current   FR    Status
+─────────────────────────────────────────────────
+Lifestyle 1세대 30억         33억     110%  ● OK
+Lifestyle 2세대 40억         38억      95%  ◐ Watch
+Education 유학  8억          9.5억    119%  ● Ahead
+Dynasty 3세대   80억         72억      90%  ◐ Watch
+Foundation 2045 100억        95억      95%  ◐ Watch
+─────────────────────────────────────────────────
+Aggregate       258억        247.5억   96%</pre>
+
+  <div class="callout blue">
+    <strong>6대 원칙:</strong> ① 고객 언어 우선 · ② 가족 정체성 통합 · ③ Feasibility 명시 · ④ Scenario 표현(Monte Carlo) · ⑤ 세대간 확장성 · ⑥ 5–7년 주기 전면 재작성.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. 한국 FO 지형 ════ -->
+<section data-section="§6. 한국 Family Office">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">20min · Korea</span></div>
+  <h2>§6. 한국 Family Office 산업 지형</h2>
+
+  <div class="kr-stats">
+    <div class="kr-card"><div class="kr-num">1.01만</div><div class="kr-lbl">초고액 자산가<br>(300억+ 금융자산)</div></div>
+    <div class="kr-card"><div class="kr-num">42.2만</div><div class="kr-lbl">10억–100억<br>자산가</div></div>
+    <div class="kr-card gold"><div class="kr-num">170</div><div class="kr-lbl">삼성증권 SNI<br>가문 수</div></div>
+    <div class="kr-card gold"><div class="kr-num">56조</div><div class="kr-lbl">삼성증권 SNI<br>운용 규모</div></div>
+  </div>
+
+  <h3>6.1 국내 증권사 PB의 Brunel 적용도</h3>
+
+  <table class="dtable">
+    <thead><tr><th>Brunel 요소</th><th>국내 현황 (2026년)</th></tr></thead>
+    <tbody>
+      <tr><td>3-goal taxonomy</td><td>Personal/Dynastic 도입, <strong>Philanthropic 초기</strong></td></tr>
+      <tr><td>Internal/External 구분</td><td>가족기업·지배주주 이슈로 <strong>미흡</strong></td></tr>
+      <tr><td>4-step iterative</td><td>연간 review 있으나 체계적 Monte Carlo 부족</td></tr>
+      <tr><td>Module portfolios</td><td>ETF·펀드 바스켓 수준</td></tr>
+      <tr><td>ISP 문서</td><td>Investment Proposal 존재, Brunel 기능성 미달</td></tr>
+      <tr><td>MC 기반 KPI</td><td>케이봇쌤·KB골든라이프 <strong>초기 구현</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.2 한국 특수성 4대 과제</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">1</div><div class="ax-body"><div class="ax-ttl">상속세 50% (최대 60%)</div><div class="ax-crack">Dynasty goal의 <strong>거의 절반이 tax에 잠식</strong>. 미국·싱가포르 대비 압도적 부담.</div></div></div>
+    <div class="axiom"><div class="ax-tag">2</div><div class="ax-body"><div class="ax-ttl">가족기업 지배구조 연동</div><div class="ax-crack">국내 UHNW 자산이 가족기업 지분에 <strong>극도로 집중</strong>. External hedge의 중요성 극대화.</div></div></div>
+    <div class="axiom"><div class="ax-tag">3</div><div class="ax-body"><div class="ax-ttl">Philanthropic 저조</div><div class="ax-crack">미국·유럽 대비 절대적 저조. 세제 혜택·공익법인 신뢰 이슈. 세대 교체와 함께 <strong>가장 빠른 성장 여지</strong>.</div></div></div>
+    <div class="axiom"><div class="ax-tag">4</div><div class="ax-body"><div class="ax-ttl">해외 PE·VC 접근성</div><div class="ax-crack">규제·환전·세제 복합 장벽. Non-lifestyle external asset의 다양성 부족.</div></div></div>
+  </div>
+
+  <h3>6.3 하우스별 차별화</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">삼성증권 · 미래에셋</div>
+      <ul class="cmp-list">
+        <li><strong>삼성 SNI 프리미엄</strong>: 단일 컨설턴트 + 가족기업 M&A·상속 자문</li>
+        <li><strong>미래에셋 APEX</strong>: 글로벌 자산배분 + 일관된 goal-based 언어</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">KB · 신영·한국투자·NH</div>
+      <ul class="cmp-list">
+        <li><strong>KB Gold&amp;Wise</strong>: 디지털 골든라이프 + 오프라인 PB</li>
+        <li><strong>전통 PB</strong>: 가문별 맞춤 portfolio</li>
+        <li><strong>NH·신한</strong>: 농지·IPO 특수 asset class</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">Brunel 3-Goal Taxonomy + Internal/External Asset 구조 + 한국 Family Office 지형(삼성증권 170가문·56조, 초고액자산가 1.01만 명, 한국 특수 과제). (원본: <code>docs/Week05_Infographic_Brunel_Korea.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §7. 이정호 회장 케이스 ════ -->
+<section data-section="§7. 이정호 회장 케이스">
+  <div class="session-head"><span class="session-tag">SESSION 7</span><span class="session-time">20min · Case Study</span></div>
+  <h2>§7. 케이스 — 이정호 회장 가족 (가상)</h2>
+
+  <h3>7.1 가족 프로파일 & 자산</h3>
+  <p>이정호(68세, 회장), 배우자 박미경(65세), 자녀 2명(42, 39세), 손주 4명(8–15세).</p>
+
+  <table class="dtable">
+    <thead><tr><th>자산 구분</th><th>규모 (억원)</th><th>분류</th></tr></thead>
+    <tbody>
+      <tr><td>가족기업 지분 (비상장)</td><td>1,200</td><td>Internal · non-lifestyle</td></tr>
+      <tr><td>상장주식 (기업 지분)</td><td>600</td><td>Internal · non-lifestyle</td></tr>
+      <tr><td>국내 부동산 (주거·빌딩)</td><td>400</td><td>Internal (주거 100 lifestyle + 빌딩 300 non-lifestyle)</td></tr>
+      <tr><td>해외 금융자산</td><td>250</td><td>External</td></tr>
+      <tr><td>국내 금융자산</td><td>150</td><td>External</td></tr>
+      <tr style="background:#fefbf0"><td><strong>External non-lifestyle 합계</strong></td><td><strong>400</strong></td><td>→ 최적화 대상</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.2 Feasibility Check</h3>
+
+  <div class="callout red">
+    <strong>문제:</strong> External asset 400억 vs 상속세 준비 750억 필요. <strong>압도적 부족</strong>. 반드시 internal monetization 필요:
+    <ol style="padding-left:20px;margin-top:6px">
+      <li>부동산 일부 매각 → 200-300억 유동화</li>
+      <li>가족기업 IPO → 500-1,000억 유동화</li>
+      <li>보험 활용 (종신보험 leverage)</li>
+    </ol>
+  </div>
+
+  <h3>7.3 Module Mapping (External 400 + Liquidity 500 = 900억)</h3>
+
+  <table class="dtable">
+    <thead><tr><th>목표</th><th>배분</th><th>Module</th><th>구성</th></tr></thead>
+    <tbody>
+      <tr><td>Personal (부부 lifestyle)</td><td>300</td><td>Capital Preservation</td><td>bond 70/equity 30</td></tr>
+      <tr><td>Personal (자녀 지원)</td><td>200</td><td>Balanced Growth</td><td>equity 50/bond 50</td></tr>
+      <tr><td>Dynasty (손주 50년)</td><td>200</td><td>Long-term Growth</td><td>equity 75/PE 25</td></tr>
+      <tr><td>Foundation (2035)</td><td>150</td><td>Perpetual Endowment</td><td>Yale-like</td></tr>
+      <tr><td>Liquidity Buffer (상속세)</td><td>50</td><td>Cash/단기채</td><td>MMF</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.4 토론</h3>
+  <div class="disc-block">
+    <div class="disc-q"><span class="dq-n">Q1</span><div>이 가족의 <strong>실제 bottleneck</strong>은 자산배분이 아니라 상속세 재원. Brunel framework가 충분히 대응하는가?</div></div>
+    <div class="disc-q"><span class="dq-n">Q2</span><div>가족기업 IPO 시점의 <strong>optionality</strong>를 ISP에 어떻게 반영?</div></div>
+    <div class="disc-q"><span class="dq-n">Q3</span><div>한국 특수성 고려 시 Philanthropic 비중을 얼마나 늘리는 것이 현실적·효율적?</div></div>
+    <div class="disc-q"><span class="dq-n">Q4</span><div>이지원(39세, 미국 거주)의 <strong>해외 goals</strong>를 별도 module로 포함할지, 통합할지?</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 TEAM PROJECT · W5 · 10페이지</span>
+    <div class="hw-title">Comprehensive ISP Drafting</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">팀 프로젝트 (4–5명)</div>
+      <p>가상 UHNW 가족을 설정해 <strong>Full ISP 작성</strong>: ① Family Profile (2p) ② Goals Articulation (2p, $(H,T,\alpha,\pi)$) ③ Feasibility Analysis (1p) ④ Strategic Asset Allocation (2p) ⑤ Risk & Monitoring (1p, FR dashboard) ⑥ 한국 특수성 반영 (2p).</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Brunel (2011)</div>
+      <div class="ref-sub">"Goal-Based Wealth Management in Practice"</div>
+      <div class="ref-src"><em>JWM</em>, 14(3), 17–26</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">서적</div>
+      <div class="ref-ttl">Brunel (2015)</div>
+      <div class="ref-sub"><em>Goals-Based Wealth Management</em>, Wiley</div>
+      <div class="ref-src">Ch. 1–5</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">한국</div>
+      <div class="ref-ttl">자본시장연구원 최순영 (2025)</div>
+      <div class="ref-sub">"국내 증권사의 초고액자산가 자산관리 전략"</div>
+      <div class="ref-src">이슈보고서 25-07</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">데이터</div>
+      <div class="ref-ttl">KB 2024 한국 부자 보고서</div>
+      <div class="ref-sub">금융자산 300억+ 1.01만 명 등 최신 지표</div>
+      <div class="ref-src">KB 경영연구소</div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W6 미리보기:</strong> UHNW Brunel에서 <strong>평범한 DC 가입자</strong>의 GBI로 — Martellini PSP/GHP framework. LDI의 개인 확장 · <strong>CPPI 동적 배분</strong> · 한국 연금 2055 고갈과 디폴트옵션 맥락.
+  </div>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W5 강의노트</strong> · Brunel Goals-Based Wealth Management<br>
+  <a href="W04_Lecture_Note.html">◀ W4</a> · <a href="index.html">Home</a> · <a href="W06_Lecture_Note.html">W6: Martellini PSP/GHP ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

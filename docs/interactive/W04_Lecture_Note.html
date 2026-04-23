@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W4 — Das-Markowitz MA Framework: MV와의 수학적 화해</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W4 강의노트</span>
+  <span class="ttl" id="sf-t">Das-Markowitz MA</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W4 강의노트">
+  <div class="hero-badge">Week 04 · Phase 1 · MV 화해</div>
+  <h1>Das-Markowitz MA Framework — BPT와 MV의 수학적 화해</h1>
+  <p class="hero-sub">MVT · MA · VaR 삼각 동등성 증명 — GBI 계산 가능 backbone의 완성</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">3 Theorem</span><span class="hero-meta-lbl">증명<br>완전판</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">cvxpy</span><span class="hero-meta-lbl">SOCP<br>수치 재현</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W03_Lecture_Note.html">◀ W3</a> · <a href="index.html">Home</a> · <a href="W05_Lecture_Note.html">W5 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>VaR 제약의 선형 변환</strong>: $\Pr(W_T &lt; H) \le \alpha \iff (1+w^\top\mu) - z_{1-\alpha}\sqrt{w^\top\Sigma w} \ge H/W_0$ 유도</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>MVT–MA–VaR Equivalence Theorem</strong> 증명 스케치 재현 — $\gamma^* = \lambda z_{1-\alpha} / ((1-\lambda)\sigma_p^*)$</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text"><strong>Aggregate MV Efficiency</strong> 증명 — convex combination argument · Short-sale 허용 가정의 역할</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text"><code>cvxpy</code>로 3-asset 3-account 수치 예시 재현 및 aggregate의 MV 효율선 위 검증</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> Das-Markowitz-Scheid-Statman(2010)은 BPT의 chance-constrained 형태를 <strong>VaR 제약</strong>으로 재해석하고, 정규분포·short-sales 허용 조건 하 <strong>MV와 수학적으로 동등</strong>함을 증명한다. 이로써 GBI는 "행동재무 기반의 MV 재해석"으로 재정립되며, 이후 모든 실무 GBI 엔진의 <strong>계산 가능한 backbone</strong>이 완성된다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. VaR 재정식화 ════ -->
+<section data-section="§2. VaR 재정식화">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">30min</span></div>
+  <h2>§2. VaR 제약의 수학적 재정식화</h2>
+
+  <h3>2.1 정의와 직관</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">$\alpha$-수준 VaR:</div>
+    $$\mathrm{VaR}_\alpha(W) = -\inf\{w : \Pr(W \le w) > \alpha\}$$
+    <div class="eq-cap">chance constraint 형태:</div>
+    $$\Pr(W < H) \le \alpha$$
+  </div>
+
+  <h3>2.2 정규분포 선형화</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">$W_T = W_0(1 + w^\top R),\ R \sim \mathcal{N}(\mu, \Sigma)$:</div>
+    $$W_T \sim \mathcal{N}\!\left( W_0(1 + w^\top \mu), W_0^2\, w^\top \Sigma w \right)$$
+    <div class="eq-cap">$\Pr(W_T \le H) \le \alpha$를 전개:</div>
+    $$\Phi\!\left( \frac{H/W_0 - (1+w^\top\mu)}{\sqrt{w^\top \Sigma w}} \right) \le \alpha$$
+  </div>
+
+  <div class="metaobj">
+    <div class="meta-tag">LINEAR VaR FORM — GBI 전체의 기초</div>
+    $$(1 + w^\top\mu) - z_{1-\alpha}\sqrt{w^\top \Sigma w} \ge H/W_0$$
+    <div class="meta-desc">이는 $(\sigma_p, \mu_p)$ 평면의 <strong>직선 제약</strong>. Telser(1956) safety-first 제약선과 <strong>완전히 동일</strong>. 60년에 걸친 지적 계보를 단일 수식으로 수렴.</div>
+  </div>
+
+  <h3>2.3 세 언어의 수학적 동일성</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="bk-ic">🧠</div>
+      <div class="bk-ttl">BPT (행동)</div>
+      <div class="bk-sub">chance constraint</div>
+      <div class="bk-assets">$\Pr(W &lt; H) \le \alpha$</div>
+    </div>
+    <div class="bucket" style="background:#fff8ed;border-color:#fdba74">
+      <div class="bk-ic">⚠️</div>
+      <div class="bk-ttl">VaR (리스크)</div>
+      <div class="bk-sub">Value-at-Risk</div>
+      <div class="bk-assets">$\mathrm{VaR}_\alpha(W_T) \le -H$</div>
+    </div>
+    <div class="bucket" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="bk-ic">📐</div>
+      <div class="bk-ttl">MV (이론)</div>
+      <div class="bk-sub">efficient frontier</div>
+      <div class="bk-assets">$\mu_p \ge \theta + z_{1-\alpha}\sigma_p$</div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <strong>단일 수학적 대상의 세 관점:</strong> BPT(투자자 언어) = VaR(리스크매니저 언어) = MV(이론가 언어). 세 direct 동의어.
+  </div>
+
+  <h3>2.4 기하학적 의미</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    A["MV 효율선<br/>(hyperbola)"] --> T["Tangent point<br/>= MA/BPT/Telser<br/>optimal"]
+    B["VaR 제약선<br/>μ ≥ (H−W₀)/W₀ + z·σ"] --> T
+    style T fill:#d4a244
+    </pre>
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">$H$와 $\alpha$의 영향</div>
+      <ul class="cmp-list">
+        <li>$H$↓ (goal 느슨) → 접점 효율선 <strong>아래쪽</strong></li>
+        <li>$\alpha$↓ (성공확률 요구↑) → 접점 <strong>아래쪽</strong></li>
+        <li>$\alpha$↑ → 접점 <strong>위쪽</strong>(공격적)</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">투자자 제어 변수</div>
+      <ul class="cmp-list">
+        <li>$(H, T, \alpha)$ = <strong>투자자 언어</strong></li>
+        <li>$\gamma$ = <strong>MV 이론가 언어</strong></li>
+        <li>§3 Theorem이 둘을 <strong>1-1 매핑</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. Theorem 증명 ════ -->
+<section data-section="§3. MVT-MA-VaR Theorem">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">40min · Proof</span></div>
+  <h2>§3. Theorem — MVT–MA–VaR Equivalence</h2>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Theorem (Das, Markowitz, Scheid, Statman 2010)</div>
+    <div class="prop-body">
+      자산 수익률 $R \sim \mathcal{N}(\mu, \Sigma)$, $\Sigma \succ 0$. Mental accounting 문제:
+      $$\max_w \; \mu^\top w \quad \text{s.t. } \mu^\top w - z_{1-\alpha}\sqrt{w^\top \Sigma w} \ge \theta,\ \mathbf{1}^\top w = 1 \tag{MA}$$
+      평균-분산 효용 문제:
+      $$\max_w \; \mu^\top w - \tfrac{\gamma}{2}\, w^\top \Sigma w \quad \text{s.t. } \mathbf{1}^\top w = 1 \tag{MVU}$$
+      이때:
+      <ol style="padding-left:18px;margin-top:6px">
+        <li>임의의 $(\alpha, \theta)$에 대해, (MA) 해 = (MVU) 해인 $\gamma^*$가 <strong>존재</strong>.</li>
+        <li>역으로 임의의 $\gamma &gt; 0$에 대해 구현하는 $(\alpha, \theta)$ 쌍 존재.</li>
+        <li>(MA) 해는 <strong>MV 효율선 위</strong>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>3.1 증명 — Part (a): MA → MVU 매핑</h3>
+
+  <div class="proof-steps">
+    <div class="ps"><span class="ps-n">1</span><div><strong>제약 재배열.</strong> $\mu^\top w - \theta \ge z_{1-\alpha}\sqrt{w^\top \Sigma w}$. 양변 제곱: $(\mu^\top w - \theta)^2 \ge z_{1-\alpha}^2\, w^\top \Sigma w$.</div></div>
+    <div class="ps"><span class="ps-n">2</span><div><strong>Binding constraint.</strong> $(MA)$ 해에서 제약이 등호 성립 (아닐 경우 $\mu^\top w$를 더 키울 수 있어 모순): $\mu^\top w = \theta + z_{1-\alpha}\sqrt{w^\top\Sigma w}$.</div></div>
+    <div class="ps"><span class="ps-n">3</span><div><strong>Lagrangian (KKT).</strong><br>$\mathcal{L}(w, \lambda, \eta) = \mu^\top w - \lambda[\mu^\top w - z_{1-\alpha}\sqrt{w^\top\Sigma w} - \theta] - \eta(\mathbf{1}^\top w - 1)$</div></div>
+    <div class="ps"><span class="ps-n">4</span><div><strong>$\partial\mathcal{L}/\partial w = 0$:</strong><br>$(1-\lambda)\mu + \frac{\lambda z_{1-\alpha}}{\sigma_p}\Sigma w = \eta\mathbf{1}$</div></div>
+    <div class="ps"><span class="ps-n">5</span><div><strong>MVU FOC 비교.</strong> $\mu - \gamma\Sigma w = \tilde\eta\mathbf{1}$. 일치하려면:<br>$\gamma^* = \dfrac{\lambda z_{1-\alpha}}{(1-\lambda)\,\sigma_p^*}$</div></div>
+    <div class="ps"><span class="ps-n">6</span><div><strong>유효성.</strong> $\lambda \in (0, 1)$·$\sigma_p^* > 0$ → $\gamma^* > 0$. <strong>∎</strong></div></div>
+  </div>
+
+  <h3>3.2 정리의 해석</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">TRIPLE EQUIVALENCE</div>
+    $$\max \mu^\top w \; \text{s.t.}\; \Pr(W_T < H) \le \alpha \;\Leftrightarrow\; \max \mu^\top w - z_{1-\alpha}\sigma_p \;\Leftrightarrow\; \max \mu^\top w - \tfrac{\gamma^*}{2} \sigma_p^2$$
+    <div class="meta-desc"><strong>BPT(행동) = VaR(리스크) = MV(전통)</strong> — 세 언어, 하나의 수학적 대상.</div>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">MVT-MA-VaR 삼각 동등성. BPT(투자자 언어) · VaR(리스크매니저 언어) · MV(이론가 언어)가 정규분포 가정 하 동일한 최적 포트폴리오를 산출하는 수학적 구조. (원본: <code>docs/Week04_Infographic_Equivalence.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. Aggregate Efficiency ════ -->
+<section data-section="§4. Aggregate Efficiency">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">35min</span></div>
+  <h2>§4. Aggregate Portfolio의 MV Efficiency</h2>
+
+  <h3>4.1 Theorem</h3>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Theorem · Aggregate MV Efficiency</div>
+    <div class="prop-body">
+      조건: ① 자산 수익률 공통 $(\mu, \Sigma)$ 정규분포 · ② Short-selling 허용 · ③ 공통 asset universe.<br><br>
+      이면 $w^{\text{agg}} = \sum_{k=1}^K \pi_k\, w_k^*$도 <strong>MV 효율선 위</strong>.
+    </div>
+  </div>
+
+  <h3>4.2 증명 — Convex Combination Argument</h3>
+
+  <div class="proof-steps">
+    <div class="ps"><span class="ps-n">1</span><div>§3 Theorem: 각 $w_k^*$는 어떤 $\gamma_k^*$에 대한 MV 해.</div></div>
+    <div class="ps"><span class="ps-n">2</span><div>Markowitz two-fund: $w_k^* = \frac{1}{\gamma_k^*} \Sigma^{-1}(\mu - \tilde\eta_k \mathbf{1})$. 모든 계정의 해가 $(\Sigma^{-1}\mu, \Sigma^{-1}\mathbf{1})$ span에 있다.</div></div>
+    <div class="ps"><span class="ps-n">3</span><div>Aggregate: $w^{\text{agg}} = \sum_k \pi_k w_k^* = \frac{1}{\gamma^{\text{agg}}} \Sigma^{-1}(\mu - \tilde\eta^{\text{agg}} \mathbf{1})$.<br>여기서 $\frac{1}{\gamma^{\text{agg}}} = \sum_k \frac{\pi_k}{\gamma_k^*}$.</div></div>
+    <div class="ps"><span class="ps-n">4</span><div>$w^{\text{agg}}$는 어떤 $\gamma^{\text{agg}}$에 대한 MV 효용 해의 형태 → <strong>MV 효율선 위</strong>. <strong>∎</strong></div></div>
+  </div>
+
+  <div class="callout purple">
+    <strong>실무 함의:</strong> "Mental account를 쓴다고 효율성을 잃지 않는다" — 계정별 전혀 다른 $(H_k, \alpha_k)$ 설정(행동재무 유연성) + 전체 포트폴리오 MV 효율(이론 정합성). 1주차 §3.4에서 약속한 proof의 완성본.
+  </div>
+
+  <h3>4.3 Aggregation의 한계 조건</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">1</div><div class="ax-body"><div class="ax-ttl">다른 자산 universe</div><div class="ax-crack">계정 A는 US equity, 계정 B는 EM bond → aggregation 무의미</div></div></div>
+    <div class="axiom"><div class="ax-tag">2</div><div class="ax-body"><div class="ax-ttl">다른 시간지평</div><div class="ax-crack">$T_1 \ne T_2$이면 $\mu_k, \Sigma_k$ 자체가 달라져 정리 기본 가정 깨짐</div></div></div>
+    <div class="axiom"><div class="ax-tag">3</div><div class="ax-body"><div class="ax-ttl">비정규 분포</div><div class="ax-crack">Fat tail·skewness → VaR 제약이 MV 형태로 변환 안 됨</div></div></div>
+    <div class="axiom"><div class="ax-tag">4</div><div class="ax-body"><div class="ax-ttl">Dynamic rebalancing</div><div class="ax-crack">정적 framework, multi-period는 W8 Das-Ostrov에서</div></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. Short-sale 제약 ════ -->
+<section data-section="§5. Short-sale 제약">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">30min</span></div>
+  <h2>§5. Short-selling 제약의 영향</h2>
+
+  <h3>5.1 Long-only MA 최적화 (SOCP)</h3>
+
+  <div class="eqbox">
+    $$\max \; \mu^\top w \;\text{s.t.}\; \|\Sigma^{1/2} w\|_2 \le \frac{\mu^\top w - \theta}{z_{1-\alpha}},\; \mathbf{1}^\top w = 1,\; w \ge 0$$
+    <div class="eq-cap">Second-order cone programming → cvxpy·scipy로 효율적으로 풀리는 convex program.</div>
+  </div>
+
+  <h3>5.2 Das-Markowitz의 실증 관찰</h3>
+
+  <div class="callout blue">
+    <strong>Certainty Equivalent Loss:</strong> Short-sale 제약이 binding일 때도 효용 손실은 <strong>매우 작다(1–2 bp 이하)</strong>. Normal 가정 하 short-sale 없이도 근접한 $(\mu_p, \sigma_p)$ 조합 달성 가능.<br><br>
+    <strong>실무 함의:</strong> 한국처럼 <strong>공매도 제한 환경</strong>에서도 Das-Markowitz framework는 근사적으로 유효. 이론의 robustness.
+  </div>
+
+  <h3>5.3 Baptista(2012) Estimation Risk 확장</h3>
+
+  <p>$\mu, \Sigma$가 <strong>추정치</strong>임을 고려하면:</p>
+  <ul style="font-size:12px;line-height:1.75;padding-left:18px;color:#333;margin-bottom:10px">
+    <li>Short-sale 없을 때 MA 해의 out-of-sample 성과가 MV보다 <strong>종종 더 좋음</strong></li>
+    <li>이유: MA는 $\alpha, H$로 <strong>직접적</strong>으로 위험 제어 → estimation error에 덜 민감</li>
+    <li>GBI는 단순한 "MV의 리브랜딩" 이상</li>
+  </ul>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. 수치 재현 ════ -->
+<section data-section="§6. 수치 재현">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">20min · cvxpy</span></div>
+  <h2>§6. Das et al. 수치 예시 완전 재현</h2>
+
+  <h3>6.1 설정</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">자산 3종 (bond, stock, commodity):</div>
+    $$\mu = \begin{pmatrix} 0.02 \\ 0.09 \\ 0.06 \end{pmatrix}, \quad
+    \Sigma = \begin{pmatrix} 0.0016 & 0.001 & 0.0005 \\ 0.001 & 0.04 & 0.01 \\ 0.0005 & 0.01 & 0.0225 \end{pmatrix}$$
+    <div class="eq-cap">$\sigma_{\text{bond}}=4\%$, $\sigma_{\text{stock}}=20\%$, $\sigma_{\text{cmd}}=15\%$</div>
+  </div>
+
+  <table class="dtable">
+    <thead><tr><th>계정</th><th>$H$</th><th>$\alpha$</th><th>$\pi$</th><th>성격</th></tr></thead>
+    <tbody>
+      <tr><td>Retirement</td><td>−0.05</td><td>0.05</td><td>0.60</td><td>보수</td></tr>
+      <tr><td>Education</td><td>−0.10</td><td>0.10</td><td>0.20</td><td>중도</td></tr>
+      <tr><td>Bequest</td><td>−0.20</td><td>0.20</td><td>0.20</td><td>공격</td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.2 수치 해 (short-sale 허용)</h3>
+
+  <table class="dtable">
+    <thead><tr><th>계정</th><th>$w_{\text{bond}}$</th><th>$w_{\text{stock}}$</th><th>$w_{\text{cmd}}$</th><th>$\mu$</th><th>$\sigma$</th></tr></thead>
+    <tbody>
+      <tr><td>Retirement</td><td>0.727</td><td>0.133</td><td>0.140</td><td>3.49%</td><td>5.16%</td></tr>
+      <tr><td>Education</td><td>0.097</td><td>0.499</td><td>0.404</td><td>7.11%</td><td>13.35%</td></tr>
+      <tr style="background:#fef2f2"><td>Bequest</td><td style="color:#991b1b"><strong>−2.279</strong></td><td>1.878</td><td>1.401</td><td>20.75%</td><td>48.42%</td></tr>
+      <tr style="background:#fefbf0"><td><strong>Aggregate (0.6, 0.2, 0.2)</strong></td><td>−0.001</td><td>0.555</td><td>0.445</td><td><strong>7.67%</strong></td><td><strong>14.75%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout green">
+    <strong>MV 효율성 검증:</strong> 동일 universe에서 $\mu = 7.67\%$ 요구하는 MV min-variance 문제의 해가 $\sigma = 14.75\%$. <strong>Aggregate가 정확히 효율선 위에 위치</strong>함이 수치적으로 증명.
+  </div>
+
+  <h3>6.3 Python 실습 스크립트</h3>
+
+<pre class="code-block"><span class="kw">import</span> numpy <span class="kw">as</span> np, cvxpy <span class="kw">as</span> cp
+<span class="kw">from</span> scipy.stats <span class="kw">import</span> norm
+
+mu = np.array([<span class="num">0.02</span>, <span class="num">0.09</span>, <span class="num">0.06</span>])
+Sigma = np.array([[<span class="num">0.0016</span>, <span class="num">0.001</span>,  <span class="num">0.0005</span>],
+                  [<span class="num">0.001</span>,  <span class="num">0.04</span>,   <span class="num">0.01</span>],
+                  [<span class="num">0.0005</span>, <span class="num">0.01</span>,   <span class="num">0.0225</span>]])
+L = np.linalg.cholesky(Sigma)
+
+<span class="kw">def</span> <span class="fn">solve_ma</span>(H, alpha, short_sell=<span class="kw">True</span>):
+    w = cp.Variable(<span class="num">3</span>)
+    z = <span class="fn">float</span>(norm.ppf(<span class="num">1</span> - alpha))
+    cons = [cp.sum(w) == <span class="num">1</span>,
+            mu @ w - z * cp.norm(L.T @ w, <span class="num">2</span>) &gt;= H]
+    <span class="kw">if not</span> short_sell:
+        cons.append(w &gt;= <span class="num">0</span>)
+    cp.Problem(cp.Maximize(mu @ w), cons).solve()
+    <span class="kw">return</span> w.value
+
+w1 = <span class="fn">solve_ma</span>(-<span class="num">0.05</span>, <span class="num">0.05</span>)   <span class="cm"># retirement</span>
+w2 = <span class="fn">solve_ma</span>(-<span class="num">0.10</span>, <span class="num">0.10</span>)   <span class="cm"># education</span>
+w3 = <span class="fn">solve_ma</span>(-<span class="num">0.20</span>, <span class="num">0.20</span>)   <span class="cm"># bequest</span>
+w_agg = <span class="num">0.6</span>*w1 + <span class="num">0.2</span>*w2 + <span class="num">0.2</span>*w3
+
+<span class="fn">print</span>(<span class="str">f"Aggregate: μ={mu @ w_agg:.4f}, σ={np.sqrt(w_agg @ Sigma @ w_agg):.4f}"</span>)
+<span class="cm"># Aggregate: μ=0.0767, σ=0.1475  (MV 효율선 위!)</span></pre>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">Das-Markowitz MA framework의 실제 수치 증명. 3-asset 3-account 설정에서 계정별 해(retirement/education/bequest)와 aggregate가 MV 효율선 위에 정확히 위치함을 cvxpy SOCP로 검증. (원본: <code>docs/Week04_Infographic_Aggregate_Numeric.svg</code>)</div>
+  </div>
+
+  <h3>6.4 관찰</h3>
+  <div class="callout gold">
+    세 계정의 weight가 극도로 다름(bond 73% / 고루 분산 / bond 공매도 228%). 그럼에도 <strong>aggregate는 (0.0%, 55.5%, 44.5%)</strong>의 단순·MV 효율적 포트폴리오. "투자자의 행동 구조(다목표·다확률)와 실무의 수학 엔진(MV)의 <strong>아름다운 중첩</strong>"의 수치적 모습.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §7. 한국 사례 & 과제 ════ -->
+<section data-section="§7. 한국 사례">
+  <div class="session-head"><span class="session-tag">SESSION 7</span><span class="session-time">10min · Korea</span></div>
+  <h2>§7. 한국 적용</h2>
+
+  <h3>7.1 MA 프레임으로 본 한국 상품</h3>
+
+  <table class="dtable">
+    <thead><tr><th>상품</th><th>MA 관점 해석</th></tr></thead>
+    <tbody>
+      <tr><td><strong>KB 골든라이프</strong></td><td>입력 $(T_k, H_k, \alpha_k)$ → Monte Carlo → proposed weights. <strong>Das-Markowitz MA의 단순화 버전</strong></td></tr>
+      <tr><td><strong>미래에셋 TDF Glide Path</strong></td><td>deterministic $\gamma(t)$ — MA보다 <strong>한 단계 아래</strong>의 개인화</td></tr>
+      <tr><td><strong>RA 테스트베드 알고리즘</strong></td><td>"변동성 목표" = $\alpha$ 고정 + $H$ 내생 결정 → MA와 <strong>동등</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.2 한국 공매도 제약 하의 현실성</h3>
+  <div class="callout blue">
+    개인투자자 공매도 제한 환경에서도 retail GBI 상품은 <strong>long-only SOCP</strong>로 구현. Das-Markowitz의 "short-sale 제약에서도 utility loss 작음" 결과가 <strong>핵심 robustness 보장</strong>. 2025년 국내 ETF AUM 200조 원+은 MA의 실무 구현을 크게 용이하게 했다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W4 · 4페이지</span>
+    <div class="hw-title">Das-Markowitz MA 완전 재현</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">A · 수리·구현</div>
+      <p>§6의 3-asset 3-account 예시를 Python으로 완전 재현. Short-sale 허용·금지 두 버전. Aggregate의 $(\mu, \sigma)$를 MV 효율선과 함께 플롯. Short-sale 제약의 <strong>certainty equivalent loss</strong> 계산.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">B · 확장</div>
+      <p>본인의 실제 재무 목표 2–3개를 $(H, T, \alpha, \pi)$로 정의. 한국 시장 데이터(KOSPI200·KIS 종합채권·원자재 ETF)로 MA 최적화. <strong>MV 일치성 검증</strong>.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">C · 개념</div>
+      <p>Baptista(2012)와 Das-Markowitz(2010)의 estimation risk 처리 차이를 1페이지로 비교. Pfiffelmann et al.(2016) 실증과 통합해 "GBI가 MV보다 robust한가"에 대한 입장 제시.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Das, Markowitz, Scheid, Statman (2010)</div>
+      <div class="ref-sub">"Portfolio Optimization with Mental Accounts"</div>
+      <div class="ref-src"><em>JFQA</em>, 45(2) · §III–V</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">확장</div>
+      <div class="ref-ttl">Das et al. (2011)</div>
+      <div class="ref-sub">"Portfolios for Investors Who Want to Reach Their Goals..."</div>
+      <div class="ref-src"><em>JWM</em>, 14(2)</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">권장</div>
+      <div class="ref-ttl">Baptista (2012)</div>
+      <div class="ref-sub">"Portfolio selection with mental accounts and background risk"</div>
+      <div class="ref-src"><em>J. Banking & Finance</em>, 36(4)</div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W5 미리보기:</strong> 수학적 화해가 완료된 MA framework가 <strong>실제 UHNW 가계·Family Office</strong>에서 어떻게 운용되는가. Brunel 4-goal 분류, ISP 작성, "합리적 mental accounting"의 구분. 삼성증권 <strong>170가문·56조 원</strong> 패밀리오피스 시장.
+  </div>
+</section>
+
+<!-- ════ 부록 ════ -->
+<section data-section="부록 · 세 Theorem 요약">
+  <div class="eyebrow">Appendix</div>
+  <h2>세 Theorem 요약</h2>
+
+  <table class="dtable">
+    <thead><tr><th>#</th><th>Theorem</th><th>조건</th><th>결론</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>MA-VaR equivalence</td><td>Normal, binding constraint</td><td>$\exists\, \gamma^*$ : MA해 = MVU해</td></tr>
+      <tr><td>2</td><td>Aggregate efficiency</td><td>Normal + short-sale + common universe</td><td>$w^{\text{agg}}$ on MV frontier</td></tr>
+      <tr><td>3</td><td>Short-sale robustness</td><td>Normal + binding long-only</td><td>CE loss O(bp)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W4 강의노트</strong> · Das-Markowitz MA Framework<br>
+  <a href="W03_Lecture_Note.html">◀ W3</a> · <a href="index.html">Home</a> · <a href="W05_Lecture_Note.html">W5: Brunel GBWM ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

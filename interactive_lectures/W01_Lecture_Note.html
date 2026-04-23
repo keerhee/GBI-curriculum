@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W1 — 왜 GBI인가: MPT의 한계와 패러다임 전환</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W1 강의노트</span>
+  <span class="ttl" id="sf-t">왜 GBI인가</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<!-- ════ HERO ════ -->
+<div class="hero" data-section="W1 강의노트">
+  <div class="hero-badge">Week 01 · Phase 1 · Foundation</div>
+  <h1>왜 GBI인가 — 전통 MPT의 한계와 패러다임 전환</h1>
+  <p class="hero-sub">Markowitz 50년의 "이론적 정답" 이후, 실무는 왜 목표기반으로 이동하는가</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">5대</span><span class="hero-meta-lbl">MPT<br>숨은 가정</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">3-bucket</span><span class="hero-meta-lbl">Chhabra<br>피라미드</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="index.html">◀ 커리큘럼 Home</a> · <a href="W02_Lecture_Note.html">W2 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════ 학습 목표 ════ -->
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="lesson-meta">
+    <div class="meta-card"><div class="meta-card-lbl">레벨</div><div class="meta-card-val">MBA 입문</div></div>
+    <div class="meta-card"><div class="meta-card-lbl">선수지식</div><div class="meta-card-val">Finance I</div></div>
+    <div class="meta-card"><div class="meta-card-lbl">토론</div><div class="meta-card-val">20분</div></div>
+    <div class="meta-card"><div class="meta-card-lbl">과제</div><div class="meta-card-val">2p 개인</div></div>
+  </div>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text">Markowitz <strong>평균-분산 모형의 5대 숨은 가정</strong>을 서술하고 각각이 개인투자자 현실에서 어떻게 깨지는지 설명할 수 있다</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>Chhabra(2005) 3-bucket 프레임</strong>(Personal·Market·Aspirational)과 각 bucket의 목표확률(99%·70–85%·10–30%)을 설명할 수 있다</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text">리스크의 두 정의(<strong>분산 σ vs 목표 미달확률</strong>)가 동일 상황에서 왜 다른 의사결정을 낳는지 사례로 설명할 수 있다</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text">Das-Markowitz-Scheid-Statman(2010)의 <strong>aggregate MV equivalence</strong> 증명 스케치를 재현할 수 있다</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>이번 주의 한 문장:</strong> "Markowitz의 MV 효율성을 <em>버리지</em> 않는다. 그러나 투자자의 언어는 $\gamma$가 아니라 $(H, T, \alpha)$다." GBI는 이 두 세계를 수학적으로 연결하는 프레임이다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. Opening Vignette ════ -->
+<section data-section="§1. 두 투자자의 이야기">
+  <div class="eyebrow">Section 1 · 20min</div>
+  <h2>§1. Opening — 두 투자자의 이야기</h2>
+
+  <p>동일 자산·동일 시장에서 <strong>왜 두 사람의 행동이 완전히 다른가</strong>. 이 한 쌍의 사례가 12주 강의의 축소판이다.</p>
+
+  <div class="persona-grid">
+    <div class="persona-card persona-a">
+      <div class="p-badge">Investor A · MPT형</div>
+      <div class="p-title">"I want to beat the KOSPI"</div>
+      <div class="p-desc">40대 후반, 연봉 1.2억, 퇴직연금 DC 3억. PB 권유로 <strong>공격형(주식 70/채권 30)</strong>. 판단기준 = <strong>매월 KOSPI 대비</strong>. 2022년 KOSPI −24.9%에서 본인 −22%. "벤치마크 대비 나음" 설명에도 <strong>자녀 대학 D−2년</strong>을 상기하며 공황 매도.</div>
+      <div class="p-metric"><span>2022 수익률</span><b class="down">−22%</b></div>
+      <div class="p-metric"><span>벤치마크 대비</span><b>+3%p</b></div>
+      <div class="p-metric"><span>행동</span><b class="down">공황 매도</b></div>
+    </div>
+    <div class="persona-card persona-b">
+      <div class="p-badge">Investor B · GBI형</div>
+      <div class="p-title">"Son needs college funding in 2028"</div>
+      <div class="p-desc">동일한 40대·3억. 그러나 <strong>3개 멘탈 계정</strong>으로 분리: 자녀 대학 1.5억(D−4년) · 은퇴 2040 · 여유자금. 각 계정은 <strong>목표 달성확률</strong>로 모니터. 2022년 대학자금 계정 −6%(채권 비중↑), 은퇴계정 −20%지만 15년 지평이라 <strong>공황 없음</strong>.</div>
+      <div class="p-metric"><span>2022 대학계정</span><b class="flat">−6%</b></div>
+      <div class="p-metric"><span>2022 은퇴계정</span><b class="down">−20%</b></div>
+      <div class="p-metric"><span>행동</span><b class="up">Rebalance만</b></div>
+    </div>
+  </div>
+
+  <h3>핵심 질문 — 자산은 같은데, 왜 행동이 다른가?</h3>
+
+  <div class="sbs-table">
+    <table class="dtable">
+      <thead><tr><th>구분</th><th>Investor A (MPT형)</th><th>Investor B (GBI형)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>목표</strong></td><td>벤치마크 대비 초과수익</td><td>구체적 인생 이벤트 자금 확보</td></tr>
+        <tr><td><strong>리스크 정의</strong></td><td>변동성(σ) / 트래킹에러</td><td>목표 미달 확률 $\Pr(W_T &lt; H)$</td></tr>
+        <tr><td><strong>평가 단위</strong></td><td>수익률 %</td><td>목표별 funding ratio</td></tr>
+        <tr><td><strong>감정반응</strong></td><td>하락장 → 공황</td><td>하락장 → 긴 호흡</td></tr>
+        <tr><td><strong>재조정 트리거</strong></td><td>시장상황 기반</td><td>목표 달성도 기반</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout gold">
+    <strong>핵심 통찰:</strong> 자산총액·시장상황은 <em>동일</em>. 다른 것은 <strong>"risk"의 정의와 측정 단위</strong>뿐이다. 이 한 장의 표가 12주 전체의 축소판이다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. MPT의 구조적 한계 ════ -->
+<section data-section="§2. MPT의 구조적 한계">
+  <div class="eyebrow">Section 2 · 30min</div>
+  <h2>§2. Markowitz MPT의 구조적 한계</h2>
+
+  <h3>2.1 Markowitz(1952)의 본래 주장</h3>
+  <p>Markowitz의 기여는 "분산투자가 좋다"가 아니라, <strong>평균-분산 공간에서 효율경계를 수학적으로 정의</strong>한 것이다.</p>
+
+  <div class="eqbox">
+    $$\min_w \; \tfrac{1}{2}\, w^\top \Sigma w \quad \text{s.t. } \mu^\top w = \mu_p,\ w^\top \mathbf{1} = 1$$
+    <div class="eq-cap">Lagrangian으로 풀면 두-펀드 정리(Two-Fund Separation):</div>
+    $$w^* = \Sigma^{-1}\!\left(\lambda_1 \mu + \lambda_2 \mathbf{1}\right)$$
+  </div>
+
+  <h3>2.2 MPT의 5대 숨은 가정 — 각각 어떻게 깨지는가</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">A1</div><div class="ax-body">
+      <div class="ax-ttl">효용은 평균·분산만의 함수</div>
+      $$U(W) = \mathbb{E}[W] - \tfrac{\lambda}{2}\mathrm{Var}(W)$$
+      <div class="ax-crack"><strong>현실의 균열:</strong> Kahneman-Tversky(1979) <strong>loss aversion</strong>. 손실을 이익의 2-2.5배 크게 평가. 분산은 좌우 대칭 벌점이라 "상방 불확실성까지 리스크"로 취급한다.</div>
+    </div></div>
+
+    <div class="axiom"><div class="ax-tag">A2</div><div class="ax-body">
+      <div class="ax-ttl">시간지평은 단일 (single-period)</div>
+      <div class="ax-crack"><strong>현실의 균열:</strong> 가계는 주택(5년) · 교육(10년) · 은퇴(30년) · 상속(무기한)이 <strong>동시 공존</strong>. 목표별 최적 위험자산 비중은 전혀 달라야 한다.</div>
+    </div></div>
+
+    <div class="axiom"><div class="ax-tag">A3</div><div class="ax-body">
+      <div class="ax-ttl">자산은 완전 대체 가능 (fungible)</div>
+      <div class="ax-crack"><strong>현실의 균열:</strong> Thaler(1985) <strong>mental accounting</strong>. Brunel의 구분: ① 비합리적 편향으로서의 MA(카드빚 + 저금통) ② 합리적 목표분할로서의 MA. GBI가 이용하는 것은 <em>후자</em>.</div>
+    </div></div>
+
+    <div class="axiom"><div class="ax-tag">A4</div><div class="ax-body">
+      <div class="ax-ttl">리스크 선호는 상수 (single $\lambda$)</div>
+      <div class="ax-crack"><strong>현실의 균열:</strong> 동일인이 "은퇴계정 99% safety" + "여유자금 로또"를 동시에 갖는다. Friedman-Savage(1948) 보험+복권 퍼즐. 계정별 효용함수 모양이 다르다.</div>
+    </div></div>
+
+    <div class="axiom"><div class="ax-tag">A5</div><div class="ax-body">
+      <div class="ax-ttl">벤치마크가 자연스럽게 정의된다</div>
+      <div class="ax-crack"><strong>현실의 균열:</strong> "자녀 대학자금 5년 후 1.5억"의 벤치마크는 KOSPI가 아니라 <strong>미래시점 목표금액의 현가</strong>. 할인율·인플레·등록금 상승률에 의존하는 <em>부채형 벤치마크</em>.</div>
+    </div></div>
+  </div>
+
+  <h3>2.3 그림으로 보는 MPT → GBI 관점 전환</h3>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    subgraph MPT["Markowitz 관점"]
+        A1[자산 하나의 pool]
+        A2[벤치마크 대비 초과수익]
+        A3[리스크 = 변동성 σ]
+        A4[단일 risk aversion λ]
+    end
+    subgraph GBI["Goal-Based 관점"]
+        B1[목표별 멘탈 계정]
+        B2[각 목표 달성확률]
+        B3[리스크 = 목표 미달확률]
+        B4[계정별 risk budget]
+    end
+    MPT -.->|패러다임 전환| GBI
+    A1 --> B1
+    A2 --> B2
+    A3 --> B3
+    A4 --> B4
+    style MPT fill:#eaeaea
+    style GBI fill:#cde8ff
+    </pre>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">Markowitz MPT에서 Goal-Based Investing으로의 패러다임 전환. Objective·Risk·Horizon·Wealth 4축에서의 관점 변화와 GBI 3-Axiom. (원본: <code>docs/Week01_Infographic_MPT_to_GBI.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. Chhabra 3-bucket ════ -->
+<section data-section="§3. Chhabra 3-bucket 피라미드">
+  <div class="eyebrow">Section 3 · 40min</div>
+  <h2>§3. 전환점 — Chhabra(2005) "Beyond Markowitz"</h2>
+
+  <p>Ashvin Chhabra는 2005년 *Journal of Wealth Management*에서 "<strong>개인은 세 종류의 리스크를 동시에 직면</strong>한다"고 주장했다. 한 사람 안에 <strong>세 명의 다른 투자자</strong>가 공존함을 인정한 프레임이다.</p>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">🛡️</div>
+      <div class="bk-ttl">Personal Risk</div>
+      <div class="bk-sub">생활수준 붕괴 방지</div>
+      <div class="bk-prob">목표확률 ≥ <b>99%</b></div>
+      <div class="bk-assets">현금 · MMF · 단기국채</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">📈</div>
+      <div class="bk-ttl">Market Risk</div>
+      <div class="bk-sub">시장 평균수익 확보</div>
+      <div class="bk-prob">목표확률 ≈ <b>70–85%</b></div>
+      <div class="bk-assets">분산 주식/채권</div>
+    </div>
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">🚀</div>
+      <div class="bk-ttl">Aspirational Risk</div>
+      <div class="bk-sub">부의 극적 확대</div>
+      <div class="bk-prob">목표확률 ≈ <b>10–30%</b></div>
+      <div class="bk-assets">집중투자 · PE · 스타트업</div>
+    </div>
+  </div>
+
+  <h3>3.1 수학적 재정식화 — Safety-First의 재발견</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">Telser(1956) safety-first 원칙:</div>
+    $$\max_w \; \mathbb{E}[R_p] \quad \text{s.t. } \Pr(R_p \le R_L) \le \varepsilon$$
+    <div class="eq-cap">Chhabra의 프레임은 이를 <strong>다차원화</strong>. 목표 $i \in \{P, M, A\}$에 대해:</div>
+    $$\max_{w_i} \; \mathbb{E}[W_T^i] \quad \text{s.t. } \Pr(W_T^i < H_i) \le \alpha_i$$
+    <div class="eq-cap">aggregate portfolio:</div>
+    $$W^{\text{total}} = \sum_{i} \pi_i W_0\, (1+R^i), \qquad \sum_i \pi_i = 1$$
+  </div>
+
+  <h3>3.2 왜 이것이 단순 MV의 개량이 아닌가</h3>
+  <p>Das-Markowitz-Scheid-Statman(2010)의 핵심 기여는 <strong>이를 수학적으로 증명</strong>했다는 점이다 — short-selling이 허용되면 aggregate portfolio는 <strong>MV 효율선 위에 있다</strong>.</p>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Proposition · Aggregate MV Equivalence (Das et al. 2010)</div>
+    <div class="prop-body">정규분포 + short-selling 허용 가정 하, chance-constrained 문제들의 aggregate:
+      $$w^{\text{agg}} = \sum_i \pi_i\, w_i^* \;\in\; \text{MV 효율선}$$
+      <strong>함의:</strong> GBI는 aggregate 수준에서 MV 효율성과 양립 가능 (이론 정합성) + 계정 수준에서 투자자에게 해석·행동 가능한 정보 제공 (실무 우월성). 즉 GBI는 <em>"비이성의 추구"가 아닌 <strong>합리성의 확장</strong>"</em>.</div>
+  </div>
+
+  <h3>3.3 Proof Sketch — Das et al. 2010</h3>
+
+  <div class="proof-steps">
+    <div class="ps"><span class="ps-n">1</span><div>각 mental account $i$의 VaR 제약: $\Pr(W_T^i &lt; H_i) \le \alpha_i$.</div></div>
+    <div class="ps"><span class="ps-n">2</span><div>정규분포 가정으로 선형화: $H_i \le W_0^i \left( \mu_i^\top w_i - z_{1-\alpha_i}\sqrt{w_i^\top \Sigma_i w_i} \right)$.</div></div>
+    <div class="ps"><span class="ps-n">3</span><div>$(w_i^\top \mu_i,\ w_i^\top \Sigma_i w_i)$ 공간의 <strong>선형 제약</strong>. 각 계정의 최적해는 MV 효율선 위의 한 점.</div></div>
+    <div class="ps"><span class="ps-n">4</span><div>가중평균 $\sum_i \pi_i w_i^*$은 $\Sigma_i$ 공통·short-sale 허용 시 convex 결합으로 MV 효율선 위. <strong>Q.E.D.</strong></div></div>
+  </div>
+
+  <div class="callout purple">
+    <strong>실무적 함의:</strong> <strong>투자자 언어(목표·확률)로 입력</strong>하고, <strong>이론가 언어(MV)로 출력이 정당화</strong>된다. 이 "양립"이 GBI 전체 강의의 수학적 기둥이다.
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">Chhabra의 3-bucket 피라미드 구조. Personal(99%) · Market(70–85%) · Aspirational(10–30%)의 계층과 한국 시장 매핑. (원본: <code>docs/Week01_Infographic_Chhabra_Pyramid.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. GBI의 3대 공리 ════ -->
+<section data-section="§4. GBI의 3대 공리">
+  <div class="eyebrow">Section 4 · 30min</div>
+  <h2>§4. GBI의 3대 공리와 리스크 재정의</h2>
+
+  <div class="axiom-cards">
+    <div class="ax-card">
+      <div class="ax-num">AXIOM 1</div>
+      <div class="ax-head">목표의 조작적 정의</div>
+      <div class="ax-eq">$$\mathcal{G}_i = \langle H_i, T_i, \omega_i, \alpha_i \rangle$$</div>
+      <ul class="ax-items">
+        <li><code>$H_i$</code> 실질 구매력 기준 필요금액</li>
+        <li><code>$T_i$</code> 목표 달성 시점</li>
+        <li><code>$\omega_i$</code> 우선순위(essential/important/aspirational)</li>
+        <li><code>$\alpha_i$</code> 달성 필요 확률</li>
+      </ul>
+      <div class="ax-foot"><strong>중요:</strong> Cash-flow goal(교육비·생활비) vs Wealth goal(주택구매·유산) 구분</div>
+    </div>
+
+    <div class="ax-card">
+      <div class="ax-num">AXIOM 2</div>
+      <div class="ax-head">리스크의 재정의</div>
+      <div class="ax-eq">$$\text{Risk}_{\mathcal{G}_i}(w) = \Pr\!\left( W_{T_i} < H_i \,\big|\, w \right)$$</div>
+      <div class="ax-sub">Expected Shortfall 일반화:</div>
+      <div class="ax-eq">$$\mathrm{ES}_{\mathcal{G}_i}(w) = \mathbb{E}\!\left[ \max(H_i - W_{T_i}, 0)\right]$$</div>
+      <div class="ax-foot"><strong>변화:</strong> 리스크 = 변동성 σ → 리스크 = <em>목표 미달</em></div>
+    </div>
+
+    <div class="ax-card">
+      <div class="ax-num">AXIOM 3</div>
+      <div class="ax-head">자산배분은 상태-의존·동적</div>
+      <div class="ax-eq">$$w^*(W_t, t; \mathcal{G})$$</div>
+      <ul class="ax-items">
+        <li>Overfunded ($\mathrm{FR} &gt; 1$) → <strong>de-risking</strong> (lock in)</li>
+        <li>Underfunded ($\mathrm{FR} &lt; 1$) → <strong>risk-on</strong> (만기 전 공격)</li>
+      </ul>
+      <div class="ax-foot"><strong>TDF 대비:</strong> 나이 glide path보다 훨씬 동적·개인화. Week 8 Das-Ostrov에서 엄밀 전개.</div>
+    </div>
+  </div>
+
+  <h3>4.4 세 공리의 통합 — Meta-Objective</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">META OBJECTIVE · 11주 전체의 backbone</div>
+    $$\max_{\{w_i(\cdot)\}}\ \sum_i \omega_i\, \Pr\!\left( W_{T_i}^i \ge H_i \right)
+    \quad \text{s.t. } \sum_i \pi_i W_0 = W_0,\ w_i \in \mathcal{W}^{\text{admissible}}$$
+    <div class="meta-desc">각 주차는 이 식의 특정 부분을 파고든다 — 목표 구조(W2~W4), 최적화 방법(W3~W4), 동적 rule(W6~W8), 실무 제약(W9~W12).</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. 한국 사례 ════ -->
+<section data-section="§5. 한국 사례">
+  <div class="eyebrow">Section 5 · 30min · Korea Insights</div>
+  <h2>§5. 한국 사례 — 패러다임 전환은 어디까지 왔나</h2>
+
+  <h3>5.1 로보어드바이저 테스트베드 — GBI의 제도적 인프라</h3>
+
+  <div class="kr-stats">
+    <div class="kr-card"><div class="kr-num">145</div><div class="kr-lbl">참여사 (누적)</div></div>
+    <div class="kr-card"><div class="kr-num">906</div><div class="kr-lbl">알고리즘 참여</div></div>
+    <div class="kr-card gold"><div class="kr-num">725</div><div class="kr-lbl">통과 알고리즘</div></div>
+    <div class="kr-card gold"><div class="kr-num">80%</div><div class="kr-lbl">통과율</div></div>
+  </div>
+
+  <p>2016년 <strong>코스콤 RA 테스트베드</strong> 운영 개시, 2025년말 누적 <strong>145사·906 알고리즘</strong>. 2024년 12월 <strong>퇴직연금 RA 일임</strong> 혁신금융서비스 지정으로 퇴직연금 <strong>426조 원</strong> 시장이 GBI의 운동장으로 떠올랐다.</p>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart LR
+    A["알고리즘<br/>참여 신청"] --> B["서면심사"]
+    B --> C["포트폴리오<br/>운용심사<br/>(6개월)"]
+    C --> D{"유효성·안전성·<br/>법규준수·보안"}
+    D -->|통과 80%| E["테스트베드<br/>공시·운용"]
+    D -->|탈락 20%| F["재심사 or 탈락"]
+    E --> G["사후운용심사<br/>(상시 감독)"]
+    style E fill:#d4f1d4
+    style F fill:#ffd6d6
+    </pre>
+  </div>
+
+  <div class="callout blue">
+    <strong>2025년 국내 RA 평균 수익률 14.89%</strong> vs 같은 해 KOSPI 약 75.63%, S&amp;P500 16.39%. 표면적 "언더퍼폼"이 아니라 <strong>"정해진 리스크 버짓 내 목표 달성"</strong>으로 해석해야 한다 — 이것이 §2에서 말한 프레임 전환의 실증이다.
+  </div>
+
+  <h3>5.2 미래에셋 TDF — 생애주기 프레임의 한국형 구현</h3>
+
+  <table class="dtable">
+    <thead><tr><th>요소</th><th>TDF (나이 기반)</th><th>GBI (목표 기반)</th></tr></thead>
+    <tbody>
+      <tr><td>Glide path 기준</td><td>나이 (deterministic)</td><td>자산/목표 비율 (FR)</td></tr>
+      <tr><td>Bob·Alice 동년 시나리오</td><td>동일 배분</td><td>자산 상태별 다름</td></tr>
+      <tr><td>시장 급락 대응</td><td>자동 rebalancing</td><td>Funding ratio 기반 dynamic</td></tr>
+      <tr><td>이론 근거</td><td>Target-Date 헤징</td><td>Das-Ostrov(2020) DP</td></tr>
+    </tbody>
+  </table>
+
+  <p>2025년말 <strong>전략배분TDF2025 AUM ≈ 1.37조 원</strong>. 미래에셋 TDF는 단순 주식·채권 비중조절이 아닌 <strong>자본수익·멀티인컴·시장중립·기본수익 4전략</strong>으로 분산하는 "전략-수준 분산" 채택. W8 Das-Ostrov에서 동적 GBWM의 우월성을 엄밀히 다룬다.</p>
+
+  <h3>5.3 KB 케이봇쌤 + KB골든라이프</h3>
+  <p>입력단(은퇴시점·생활비·교육이벤트) + 알고리즘(Monte Carlo) + 출력단(<strong>"목표 달성확률 xx%"</strong> + 권장 포트폴리오 + 월납입액 조정안). 산업이 <strong>벤치마크 초과수익에서 목표 달성확률로 KPI를 교체</strong> 중임의 실증.</p>
+
+  <h3>5.4 한국형 GBI의 세 과제</h3>
+
+  <table class="dtable">
+    <thead><tr><th>과제</th><th>현 상태</th><th>필요</th><th>주차</th></tr></thead>
+    <tbody>
+      <tr><td>다목표 통합</td><td>대부분 "은퇴 단일목표"</td><td>주택·교육·은퇴·상속 동시 최적화 엔진</td><td>W7</td></tr>
+      <tr><td>동적 개인화</td><td>정적 glide path 위주</td><td>FR 기반 state-dependent 정책</td><td>W8–9</td></tr>
+      <tr><td>세제·연금통합</td><td>계정별 분리 조언</td><td>IRP·연금저축·ISA·일반 통합 asset location</td><td>W11</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. Yale 케이스 ════ -->
+<section data-section="§6. Yale Endowment 케이스">
+  <div class="eyebrow">Section 6 · 20min · Case Study</div>
+  <h2>§6. 케이스 — Yale Endowment의 Goal-Based Framing</h2>
+
+  <p><strong>David Swensen(1985–2021)</strong>이 Yale 기금을 운용한 36년의 핵심 프레임은 <strong>"spending policy 우선, 자산배분은 이에 종속"</strong>. 매년 5.25% 실질지출 가능성을 최대화하되, 원금의 실질가치를 세대간 보존하는 이중 제약.</p>
+
+  <table class="dtable">
+    <thead><tr><th>요소</th><th>Yale의 경우</th><th>GBI 프레임 대응</th></tr></thead>
+    <tbody>
+      <tr><td>Essential goal</td><td>매년 5.25% 실질지출</td><td>$H_1$ = 연 운영비, $\alpha_1 = 99\%$</td></tr>
+      <tr><td>Secondary goal</td><td>원금 실질가치 보존</td><td>$H_2$ = real PV preservation, $\alpha_2 \approx 80\%$</td></tr>
+      <tr><td>Aspirational goal</td><td>부의 확대</td><td>$H_3$ = 인플레+지출 상회, $\alpha_3 \approx 40\%$</td></tr>
+      <tr><td>Risk 정의</td><td>지출 중단 가능성</td><td>$\Pr(W_T &lt; H_1)$</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout green">
+    <strong>벤치마크 대비 초과수익이 목적이 아니다.</strong> Swensen은 오히려 S&amp;P500과의 상관을 적극 낮추기 위해 <strong>대체투자(PE·VC·부동산·헤지)</strong>를 공격적으로 편입. 벤치마크 중심 운용자라면 <em>career risk</em>(벤치마크 언더퍼폼) 때문에 절대 못할 선택이다.
+  </div>
+
+  <h3>6.4 토론 질문 (소그룹 15분)</h3>
+  <div class="disc-block">
+    <div class="disc-q"><span class="dq-n">Q1</span><div>한국 공적연금이 Yale식 goal-based framing을 채택하지 못하는 <strong>제도적·정치적 장벽</strong>은 무엇인가?</div></div>
+    <div class="disc-q"><span class="dq-n">Q2</span><div>"운영비 연 5.25% 실질지출"을 개인 가계의 "생활비+의료비"로 치환하면 Swensen 전략이 개인에게도 유효한가?</div></div>
+    <div class="disc-q"><span class="dq-n">Q3</span><div>2008년 금융위기에서 Yale은 −24.6% 손실. 이것은 GBI의 <strong>실패인가, 정상 작동인가</strong>?</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 체크리스트 ════ -->
+<section data-section="W1 완료 체크리스트">
+  <div class="eyebrow">Completion Checklist</div>
+  <h2>이번 주 완료 체크리스트</h2>
+
+  <div class="checklist">
+    <div class="ck-title">✅ 아래 항목이 모두 체크되면 W1 완료</div>
+    <div class="ck-item">MPT 5대 숨은 가정(A1–A5)을 <strong>외워서</strong> 설명 가능</div>
+    <div class="ck-item">Chhabra 3-bucket(Personal 99% / Market 70–85% / Aspirational 10–30%) 확률 숙지</div>
+    <div class="ck-item">$\Pr(W_T &lt; H)$ chance constraint의 정규분포 선형화 직접 풀이</div>
+    <div class="ck-item">Das-Markowitz-Scheid-Statman(2010) aggregate MV equivalence 증명 스케치 재현</div>
+    <div class="ck-item">한국 RA 테스트베드·미래에셋 TDF·KB 케이봇쌤의 차이 설명</div>
+    <div class="ck-item">필독 논문 Chhabra(2005) "Beyond Markowitz" 완독</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 ════ -->
+<section data-section="이번 주 과제">
+  <div class="eyebrow">Homework</div>
+  <h2>과제 — 개인, 2페이지</h2>
+
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W1</span>
+    <div class="hw-title">MPT vs GBI 프레임 비교 분석</div>
+    <div class="hw-body">
+      <div class="hw-opt">
+        <div class="hw-opt-ttl">과제 A — 개념 (택1)</div>
+        <p>본인(또는 가족) 가계의 <strong>mental accounting map</strong>을 작성. 최소 3개 목표. 각 목표에 대해 $(H_i, T_i, \omega_i, \alpha_i)$ 4-tuple을 명시하고, 현재 자산배분이 각 목표에 적절한지 <strong>비판적으로 분석</strong>.</p>
+      </div>
+      <div class="hw-opt">
+        <div class="hw-opt-ttl">과제 B — 실증 (택1)</div>
+        <p>2015–2025 월별 <code>KOSPI200</code> · <code>KIS 종합채권지수</code> 데이터로 <strong>"4:6 정적 포트폴리오"</strong>가 <strong>"2028년 1억 원 목표"</strong> 달성에 필요한 월 납입액 시뮬레이션. MPT 관점의 결론(σ 기반)과 GBI 관점의 결론($\Pr$ 기반)을 <strong>비교</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:12px">
+    <strong>💡 W2 미리보기:</strong> 다음 주에는 <strong>행동재무학 3대 이론</strong>을 해부한다 — Kahneman-Tversky Prospect Theory($\lambda = 2.25$), Thaler Mental Accounting, Lopes SP/A. 세 이론이 서로 다른 각도에서 어떻게 GBI로 수렴하는지.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ Reading ════ -->
+<section data-section="Reading & References">
+  <div class="eyebrow">References</div>
+  <h2>Reading & 참고 자료</h2>
+
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Chhabra, A. (2005)</div>
+      <div class="ref-sub">"Beyond Markowitz: A Comprehensive Wealth Allocation Framework"</div>
+      <div class="ref-src"><em>Journal of Wealth Management</em>, 7(4), 8–34</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">권장</div>
+      <div class="ref-ttl">Brunel, J.L.P. (2015)</div>
+      <div class="ref-sub"><em>Goals-Based Wealth Management</em>, Ch. 1</div>
+      <div class="ref-src">Wiley Finance Series</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">심화</div>
+      <div class="ref-ttl">Das, Markowitz, Scheid, Statman (2010)</div>
+      <div class="ref-sub">"Portfolio Optimization with Mental Accounts"</div>
+      <div class="ref-src"><em>JFQA</em>, 45(2) — W4 필독으로 재등장</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">데이터</div>
+      <div class="ref-ttl">코스콤 RA 테스트베드</div>
+      <div class="ref-sub">실제 알고리즘 운용 공시, 725개 통과 list</div>
+      <div class="ref-src"><code>www.ratestbed.kr</code></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 부록 A: 용어 ════ -->
+<section data-section="부록 A · 핵심 용어">
+  <div class="eyebrow">Appendix A</div>
+  <h2>핵심 용어 정의</h2>
+
+  <table class="dtable">
+    <thead><tr><th>용어</th><th>영문</th><th>정의</th></tr></thead>
+    <tbody>
+      <tr><td>목표기반투자</td><td>Goal-Based Investing (GBI)</td><td>목표 달성확률 극대화를 목적으로 하는 자산운용 패러다임</td></tr>
+      <tr><td>멘탈 어카운팅</td><td>Mental Accounting</td><td>화폐를 심리적으로 분리된 계정으로 관리하는 현상/기법</td></tr>
+      <tr><td>플로어</td><td>Floor</td><td>필수목표의 현가. 이 이하로 자산이 내려가면 안 됨</td></tr>
+      <tr><td>리스크 버짓</td><td>Risk Budget</td><td>현재자산 − 플로어. 위험자산 투자 한도</td></tr>
+      <tr><td>펀딩 비율</td><td>Funding Ratio (FR)</td><td>현재자산 / 목표 현가. $\mathrm{FR} &gt; 1$이면 overfunded</td></tr>
+      <tr><td>글라이드패스</td><td>Glide Path</td><td>시간·상태에 따른 위험자산 비중 경로</td></tr>
+      <tr><td>PSP</td><td>Performance-Seeking Portfolio</td><td>성장형 위험자산 포트폴리오 (W6)</td></tr>
+      <tr><td>GHP</td><td>Goal-Hedging Portfolio</td><td>목표 현가를 복제하는 헷지용 포트폴리오 (W6)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════ 부록 B ════ -->
+<section data-section="부록 B · Markowitz 정석해">
+  <div class="eyebrow">Appendix B</div>
+  <h2>Markowitz MV 문제의 정석 해</h2>
+
+  <div class="eqbox">
+    <div class="eq-cap">제약 $\mu^\top w = \mu_p$, $w^\top \mathbf{1} = 1$ 하:</div>
+    $$\mathcal{L} = \tfrac{1}{2} w^\top \Sigma w - \lambda_1 (\mu^\top w - \mu_p) - \lambda_2 (w^\top \mathbf{1} - 1)$$
+    <div class="eq-cap">$\partial \mathcal{L}/\partial w = 0 \Rightarrow \Sigma w = \lambda_1 \mu + \lambda_2 \mathbf{1}$, 따라서:</div>
+    $$w^* = \lambda_1 \Sigma^{-1}\mu + \lambda_2 \Sigma^{-1}\mathbf{1}$$
+    <div class="eq-cap">$A = \mathbf{1}^\top\Sigma^{-1}\mu,\ B = \mu^\top\Sigma^{-1}\mu,\ C = \mathbf{1}^\top\Sigma^{-1}\mathbf{1},\ D = BC - A^2$:</div>
+    $$\lambda_1 = \frac{C\mu_p - A}{D}, \quad \lambda_2 = \frac{B - A\mu_p}{D}$$
+  </div>
+
+  <div class="callout red">
+    <strong>★ GBI와의 결정적 대비:</strong> 이 해에는 $T$(시간지평)도 $H$(목표금액)도 $\alpha$(성공확률)도 <strong>등장하지 않는다</strong>. 이것이 §2의 모든 비판의 수학적 근원이다.
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<div class="ft">
+  <strong>W1 강의노트</strong> · 왜 GBI인가 — MPT의 한계와 패러다임 전환<br>
+  Goal-Based Investing · MBA Finance · 2026<br>
+  <a href="index.html">◀ Home</a> · <a href="W02_Lecture_Note.html">W2: 행동재무학적 기초 ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

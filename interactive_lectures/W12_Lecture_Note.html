@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W12 — GBI의 미래와 산업적 함의 [종합]</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W12 강의노트</span>
+  <span class="ttl" id="sf-t">GBI Synthesis · Capstone</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W12 강의노트">
+  <div class="hero-badge">Week 12 · Phase 4 · Capstone</div>
+  <h1>GBI의 미래와 산업적 함의 [종합]</h1>
+  <p class="hero-sub">74년의 수학적 여정을 "언어"로 완성 · Mass Customization · Agentic AI · Outcome Fee · 한국 현지화</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">1952→2050</span><span class="hero-meta-lbl">74년<br>로드맵</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">3 Options</span><span class="hero-meta-lbl">Final<br>Project</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W11_Lecture_Note.html">◀ W11</a> · <a href="index.html">Home</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 (최종) 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text">Week 1–11의 <strong>74년 궤적을 한 페이지로 요약</strong> · "GBI 언어 6-원소" 내재화</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>GBI 미래 5대 축</strong>: Mass Customization · Agentic AI · Outcome Fee · 규제 수렴 · GIPS×GBI</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text">한국 Wealth Management의 <strong>GBI 현지화 5대 과제</strong> 파악 및 처방</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text"><strong>Final Project 3-Option</strong>(이론 확장 · 실무 제안서 · 기술 시뮬레이터) 중 1개 설계·발표</div></div>
+  </div>
+
+  <div class="callout gold">
+    <strong>메타 메시지:</strong> "패러다임 전환은 학술이 완성한다. 상용화는 산업이 완성한다. 그러나 <strong>언어 전환</strong>은 두 세계가 함께 완성한다." Markowitz(1952) "리스크 = 분산" → Shefrin-Statman·Brunel·Martellini·Grealish-Kolm "리스크 = 목표 미달 확률". 2026년 두 언어가 공존하며 <strong>Gen Z 자산관리는 거의 전적으로 GBI 언어</strong>가 될 것.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. 12주 여정 종합 ════ -->
+<section data-section="§1. 12주 여정 종합">
+  <div class="session-head"><span class="session-tag">SESSION 1</span><span class="session-time">60min · Synthesis</span></div>
+  <h2>§1. 12주 여정의 종합 — GBI 언어의 완성</h2>
+
+  <h3>1.1 Part 1 (Week 1–4) · 이론의 탄생</h3>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">W1</div><div class="tl-ttl">MPT의 한계</div><div class="tl-dd">$\max \mathbb{E}[R_p] - \tfrac{\lambda}{2}\mathrm{Var}(R_p)$는 "개인 목표"를 담지 못한다. Yale Swensen이 기관 GBI 최초 실증.</div></div>
+    <div class="tl-item"><div class="tl-year">W2</div><div class="tl-ttl">Prospect Theory · MA · SP/A</div><div class="tl-dd">Kahneman-Tversky $w(p), v(x)$ · Thaler 비대체성 · Lopes Security-Potential-Aspiration.</div></div>
+    <div class="tl-item"><div class="tl-year">W3</div><div class="tl-ttl">BPT 피라미드</div><div class="tl-dd">Shefrin-Statman(2000) · Friedman-Savage puzzle 해결 · $\max \mathbb{E}[W]$ s.t. $\Pr(W \ge A) \ge \alpha$.</div></div>
+    <div class="tl-item"><div class="tl-year">W4</div><div class="tl-ttl">MA Framework</div><div class="tl-dd">Das-Markowitz-Scheid-Statman(2010) — BPT ↔ MPT 수학적 동등성. 상업 bucket의 이론적 기반.</div></div>
+  </div>
+
+  <h3>1.2 Part 2 (Week 5–8) · 방법론 구축</h3>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">W5</div><div class="tl-ttl">Brunel 4-Goal</div><div class="tl-dd">Personal(99%) · Market(85%) · Aspirational(50%) · Legacy(75%). UHNW 표준.</div></div>
+    <div class="tl-item"><div class="tl-year">W6</div><div class="tl-ttl">LDI → PSP/GHP</div><div class="tl-dd">Martellini-Milhau · Floor $F_t = \mathrm{PV}_t(L_T)$ · Fund separation 현대적 확장.</div></div>
+    <div class="tl-item"><div class="tl-year">W7</div><div class="tl-ttl">Multi-Goal</div><div class="tl-dd">$K$개 목표 동시 3-step. AdvisorEngine · Envestnet · Ortec 엔진 기반.</div></div>
+    <div class="tl-item"><div class="tl-year">W8</div><div class="tl-ttl">Dynamic GBWM</div><div class="tl-dd">Das-Ostrov(2020) DP · state-dependent · TDF +2–10%p.</div></div>
+  </div>
+
+  <h3>1.3 Part 3 (Week 9–11) · 확장과 상용화</h3>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">W9</div><div class="tl-ttl">RL 기반 GBI</div><div class="tl-dd">Das-Varma · Bauman PPO+HMM · G-Learner · IRL. CVaR · rank-dependent.</div></div>
+    <div class="tl-item"><div class="tl-year">W10</div><div class="tl-ttl">로보어드바이저</div><div class="tl-dd">Grealish-Kolm 5-stage · TLH α 0.77% · HITL 전환 · 한국 3-레이어.</div></div>
+    <div class="tl-item"><div class="tl-year">W11</div><div class="tl-ttl">3-Pillar Tax·ESG·Alt</div><div class="tl-dd">Constantinides · Dammon-Spatt-Zhang · Pedersen · Takahashi-Alexander.</div></div>
+  </div>
+
+  <h3>1.4 GBI 언어의 6-원소</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-market"><div class="bk-ic">🎯</div><div class="bk-ttl">목표 ≠ 벤치마크</div><div class="bk-assets">"S&amp;P 이기기" → "월 300 확보"</div></div>
+    <div class="bucket bucket-market"><div class="bk-ic">📉</div><div class="bk-ttl">리스크 ≠ 분산</div><div class="bk-assets">$\sigma^2$ → $\Pr(W_T &lt; H)$</div></div>
+    <div class="bucket bucket-market"><div class="bk-ic">🪣</div><div class="bk-ttl">효용 ≠ 단일</div><div class="bk-assets">목표별 risk tolerance</div></div>
+    <div class="bucket bucket-market"><div class="bk-ic">💰</div><div class="bk-ttl">자산 ≠ 세전</div><div class="bk-assets">after-tax/fee/ESG</div></div>
+    <div class="bucket bucket-market"><div class="bk-ic">⚡</div><div class="bk-ttl">배분 ≠ 정적</div><div class="bk-assets">state-dependent 동적</div></div>
+    <div class="bucket bucket-market"><div class="bk-ic">🤝</div><div class="bk-ttl">advisor ≠ 판매자</div><div class="bk-assets">fiduciary + coach + tax</div></div>
+  </div>
+
+  <div class="callout purple">
+    이 6-원소는 <strong>하나로 묶일 때</strong>만 의미를 가진다. 단일 원소만으로는 진정한 GBI가 아니다.
+  </div>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TD
+    A["W1-4<br/>이론 기초"] --> B["W5-8<br/>방법론"]
+    B --> C["W9-11<br/>확장·상용화"]
+    C --> D["W12 종합"]
+    A --> E["MPT→BPT<br/>패러다임"]
+    B --> F["LDI·DP<br/>동적 최적화"]
+    C --> G["RL·RA·Tax<br/>실무 적용"]
+    D --> H["최종 프로젝트"]
+    style A fill:#E3F2FD
+    style B fill:#E8F5E9
+    style C fill:#FFF3E0
+    style D fill:#FFEBEE
+    style H fill:#FFF9C4
+    </pre>
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">GBI 진화 로드맵 1952–2050. (원본: <code>docs/Week12_Infographic_Roadmap.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. GBI 미래 5대 축 ════ -->
+<section data-section="§2. GBI 미래 5대 축">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">70min · Future Axes</span></div>
+  <h2>§2. GBI의 미래 — 5대 축</h2>
+
+  <h3>2.1 축 1 · Mass Customization</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">3대 기술 Stack</div>
+      <ul class="cmp-list">
+        <li><strong>Direct Indexing</strong> (Wealthfront · Frec · Fidelity · $100K+)</li>
+        <li><strong>Fractional Shares</strong> ($10로 Berkshire)</li>
+        <li><strong>Tokenization</strong> (BlackRock BUIDL · RWA $18B+)</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">Causal GBI (Pearl do-calculus)</div>
+      <ul class="cmp-list">
+        <li>$\Pr(W_T \ge H \mid do(w_t), s_t)$</li>
+        <li>Personal digital twin</li>
+        <li>Counterfactual ("2020에 안 팔았다면?")</li>
+        <li>DoWhy · EconML · CausalForest</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>2.2 축 2 · Agentic AI</h3>
+
+  <table class="dtable">
+    <thead><tr><th>세대</th><th>기술</th><th>예시</th><th>GBI 적용</th></tr></thead>
+    <tbody>
+      <tr><td>1세대 ('10–'22)</td><td>Rules · ML</td><td>Betterment 자동 리밸</td><td>Stage 4</td></tr>
+      <tr><td>2세대 ('23–'25)</td><td>Generative AI</td><td>대화형 onboarding</td><td>Stage 1</td></tr>
+      <tr style="background:#fefbf0"><td><strong>3세대 ('26~)</strong></td><td><strong>Agentic AI</strong></td><td>자율 실행·전략</td><td><strong>5 stages 전체</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TD
+    A["고객 컨텍스트"] --> B["Agent Planning"]
+    B --> C["Tool 선택"]
+    C --> D{의사결정}
+    D -->|실행| E["포트폴리오 조정"]
+    D -->|자문| F["고객 승인 요청"]
+    E --> G["결과 모니터링"]
+    F --> G
+    G --> H["Memory 갱신"]
+    H --> A
+    style B fill:#FFEBEE
+    style D fill:#FFF9C4
+    style G fill:#E8F5E9
+    </pre>
+  </div>
+
+  <p><strong>2026 AI 투자 경쟁:</strong> BlackRock Aladdin+Copilot · Morgan Stanley AI ($4.5B 매출 영향) · Goldman GS AI · JPMorgan IndexGPT. EY(2026): wealth AI 생산성 25–40%↑. IDC(2026): 2026 gen AI wealth $300B 시장.</p>
+
+  <h3>2.3 축 3 · Outcome-Based Fee</h3>
+
+  <div class="callout red">
+    <strong>AUM Fee 구조적 한계:</strong> ① 이익상충 (AUM 유지 유인) ② Passive bias ③ Goal invariance.
+  </div>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">Option A · Goal-achievement</div>
+      <div class="ax-eq">$$\text{Fee}_t = \beta \cdot \mathbf{1}\{\text{goal}\} + \gamma \cdot W_t$$</div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">Option B · High Water Mark</div>
+      <div class="ax-eq">$$\text{Fee}_t = \max(0, W_t - H \cdot e^{-r(T-t)}) \cdot \alpha + \gamma W_t$$</div>
+    </div>
+    <div class="cmp-card" style="background:#fefbf0;border-color:#f5d88a">
+      <div class="cmp-ttl">Option C · Hybrid (Wealthfront 실험중)</div>
+      <ul class="cmp-list">
+        <li>기본 0.15% AUM</li>
+        <li>목표 달성 +0.10% 보너스</li>
+        <li>연간 점검</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">규제·회계 장애</div>
+      <ul class="cmp-list">
+        <li>SEC: qualified client만</li>
+        <li>GIPS TWR 불일치</li>
+        <li>회계 recognition 불확실</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>2.4 축 4 · 규제 수렴</h3>
+
+  <table class="dtable">
+    <thead><tr><th>규제</th><th>지역</th><th>핵심</th></tr></thead>
+    <tbody>
+      <tr><td>Reg BI (2020)</td><td>미국</td><td>Disclosure·Care·Conflict·Compliance. 2025 SEC 우선: AI advice·고령자</td></tr>
+      <tr><td>MiFID II → III (2025)</td><td>EU</td><td>Product governance · ESG preference · algorithm disclosure</td></tr>
+      <tr><td>금융소비자보호법 (2021)</td><td>한국</td><td>적합성 + 설명 + 부당권유 금지. <strong>"달성확률" 개념 아직 부재</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout blue">
+    <strong>3대 글로벌 수렴:</strong> ① Fiduciary standard · ② AI governance 통합 · ③ ESG·Net-Zero 공시 의무화 (EU SFDR · SEC climate · 한국 ESG 2027)
+  </div>
+
+  <h3>2.5 축 5 · GIPS × GBI 성과측정</h3>
+
+  <table class="dtable">
+    <thead><tr><th>측면</th><th>GIPS 2020</th><th>GBI 철학</th></tr></thead>
+    <tbody>
+      <tr><td>측정 대상</td><td>composite return</td><td>개별 goal 달성 확률</td></tr>
+      <tr><td>단위</td><td>portfolio</td><td>goal account</td></tr>
+      <tr><td>비교</td><td>benchmark relative</td><td>absolute goal threshold</td></tr>
+      <tr><td>risk</td><td>std dev</td><td>$\Pr(W &lt; H)$</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout purple">
+    <strong>"GIPS for GBI" 제안</strong> (CFA Institute 2024~ 논의): Goal-specific composite · Probability-based reporting · MWR 기본 · Glide path disclosure. EDHEC-Yale-CFA-GIPS Council joint working group 활동 중.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. 한국 현지화 & 메타 & Final ════ -->
+<section data-section="§3. 한국 현지화 · Final Project">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">50min</span></div>
+  <h2>§3. 한국 현지화·메타 질문·최종 프로젝트</h2>
+
+  <h3>3.1 한국 GBI 현지화 5대 과제</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">1</div><div class="ax-body"><div class="ax-ttl">"목표 언어" 부재</div><div class="ax-crack">"수익률 X%" · "벤치마크 Y%" · "위험등급 1–5"만. "85% 달성확률" 없음. CFA Korea · 금융연수원 GBI 인증 필요.</div></div></div>
+    <div class="axiom"><div class="ax-tag">2</div><div class="ax-body"><div class="ax-ttl">세제 파편화</div><div class="ax-crack">일반·ISA·연금저축·IRP·DC·DB가 독립 세제. 미국 TLH 같은 단일 메커니즘 없음. 통합 계좌 view 플랫폼 필요.</div></div></div>
+    <div class="axiom"><div class="ax-tag">3</div><div class="ax-body"><div class="ax-ttl">Alternatives 양극화</div><div class="ax-crack">상위 1%만 해외 PE 직접 access. 중산층 공모주·ETF만. <strong>ELTIF·interval fund 부재</strong>. 2027–28 제도 정착 예상.</div></div></div>
+    <div class="axiom"><div class="ax-tag">4</div><div class="ax-body"><div class="ax-ttl">ESG·Net-Zero 뒤처짐</div><div class="ax-crack">NPS <strong>NZAOA 미가입</strong>. climate scenario 미실시. 한국 AOA 설립 검토(2026~).</div></div></div>
+    <div class="axiom"><div class="ax-tag">5</div><div class="ax-body"><div class="ax-ttl">디지털·AI 격차</div><div class="ax-crack">RA AUM 3조(미국 1/100). AI Agent 초기. Direct Indexing 없음. 마이데이터 통합 → AI 개인화 기반.</div></div></div>
+  </div>
+
+  <h3>3.2 메타 질문 — "GBI는 패러다임 전환인가?"</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#fef2f2;border-color:#fecaca">
+      <div class="cmp-ttl" style="color:#991b1b">리브랜딩 비판</div>
+      <ul class="cmp-list">
+        <li>MVO에 제약 추가한 것뿐</li>
+        <li>BPT aggregate는 MV frontier</li>
+        <li>"새 언어는 있지만 새 수학은 없다"</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="cmp-ttl" style="color:#14532d">진정한 전환</div>
+      <ul class="cmp-list">
+        <li>측정 대상 $\sigma^2 \to \Pr(W&lt;H)$ = categorical shift</li>
+        <li>State-dependent 최적화</li>
+        <li>Multi-mental accounts</li>
+        <li>UX·언어·규제 변화 → 실제 결과 다름</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <strong>본 강의의 답 — "실용적 패러다임 전환":</strong><br>
+    ① Advisor-client 커뮤니케이션 질적 변화 (Sharpe 1.2 → "85% 은퇴 성공확률")<br>
+    ② Fiduciary 기반 변화 (best interest를 달성확률로 측정)<br>
+    ③ 기술 플랫폼 언어 수렴 (Betterment · Wealthfront · 파운트 동일 프레임 경쟁)
+  </div>
+
+  <h3>3.3 Final Project — 3 Options</h3>
+
+  <div class="axiom-cards">
+    <div class="ax-card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="ax-num">OPT A</div>
+      <div class="ax-head">이론 확장</div>
+      <ul class="ax-items">
+        <li>Rank-dependent GBI (Yaari+Brunel)</li>
+        <li>CVaR-GBI vs Das-Ostrov DP</li>
+        <li>Regime-Switching (Bauman 확장)</li>
+        <li>Causal GBI (do-operator)</li>
+      </ul>
+      <div class="ax-foot">수학 35%·문헌 20%·실증 25%·통찰 20%</div>
+    </div>
+    <div class="ax-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div class="ax-num">OPT B</div>
+      <div class="ax-head">실무 제안서</div>
+      <ul class="ax-items">
+        <li>한국 중산층 3-bucket (5억)</li>
+        <li>UHNW 4-bucket ($50M)</li>
+        <li>기관 GBI 도입안</li>
+        <li>퇴직연금 RA DC 로드맵</li>
+      </ul>
+      <div class="ax-foot">시장 25%·실현성 30%·정합성 20%·발표 25%</div>
+    </div>
+    <div class="ax-card" style="background:#fefbf0;border-color:#f5d88a">
+      <div class="ax-num">OPT C</div>
+      <div class="ax-head">기술 시뮬레이터</div>
+      <ul class="ax-items">
+        <li>Static·DP·RL 벤치마킹 툴킷</li>
+        <li>한국 Asset Location Optimizer</li>
+        <li>Flexicure 한국 시뮬</li>
+        <li>Causal GBI Digital Twin</li>
+      </ul>
+      <div class="ax-foot">코드 35%·이론 20%·UX 20%·실무 25%</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <strong>제출·발표:</strong> 리포트 15p PDF · 코드 GitHub (Opt C 필수) · 발표 10분 + Q&amp;A 5분. <strong>동료평가 30% + 교수평가 70%</strong>.
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">3-Option × 6-역량 평가 매트릭스. (원본: <code>docs/Week12_Infographic_FinalProject.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 강의 전체 종합 ════ -->
+<section data-section="§4. 강의 전체 종합">
+  <div class="eyebrow">Synthesis Flow</div>
+  <h2>§4. 강의 전체 종합</h2>
+
+  <div class="mermaid-box">
+    <pre class="mermaid">
+flowchart TD
+    A["Week 1-4<br/>이론 기초"] --> B["Week 5-8<br/>방법론"]
+    B --> C["Week 9-11<br/>확장·상용화"]
+    C --> D["Week 12<br/>종합·미래"]
+    D --> E["최종 프로젝트"]
+    E --> F["Option A<br/>이론"]
+    E --> G["Option B<br/>실무"]
+    E --> H["Option C<br/>기술"]
+    style A fill:#E3F2FD
+    style B fill:#E8F5E9
+    style C fill:#FFF3E0
+    style D fill:#FFEBEE
+    style E fill:#FFF9C4
+    </pre>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ Closing ════ -->
+<section data-section="Closing">
+  <div class="eyebrow">Closing</div>
+  <h2>마무리 — "투자는 수학이 아니라 삶이다" (Brunel 2015)</h2>
+
+  <div class="axiom-cards">
+    <div class="ax-card">
+      <div class="ax-num">GIFT 1</div>
+      <div class="ax-head">언어</div>
+      <ul class="ax-items">
+        <li>GBI로 투자를 말할 수 있음</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">GIFT 2</div>
+      <div class="ax-head">도구</div>
+      <ul class="ax-items">
+        <li>BPT·Flexicure·DP·RL 수학적 도구</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">GIFT 3</div>
+      <div class="ax-head">관점</div>
+      <ul class="ax-items">
+        <li>고객의 "목표"를 중심에 두는 fiduciary mindset</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>첫 강의의 질문 — 12주 후의 답</h3>
+
+  <div class="callout gold">
+    <strong>Q:</strong> "Markowitz는 1952년 리스크를 분산이라 정의했다. 그러나 80세 할머니에게 리스크는 월 연금이 모자랄 확률이다. 두 정의 중 무엇이 옳은가?"<br><br>
+    <strong>A (12주 후):</strong> 둘 다 옳다. 그러나 <strong>다른 질문에 답한다</strong>. 분산은 포트폴리오의 수학적 속성, 목표 미달 확률은 <strong>인생의 수학적 속성</strong>. 자산운용업의 다음 25년은 이 두 언어를 <strong>동시에 구사</strong>하는 advisor·기관·알고리즘이 주도할 것이다.
+  </div>
+
+  <div class="metaobj">
+    <div class="meta-tag">FINAL QUOTE</div>
+    <div style="font-size:16px;font-weight:700;color:#fff;text-align:center;padding:10px 0;font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.5">
+      "Investing is not about beating markets.<br>It is about reaching goals."
+    </div>
+    <div style="text-align:center;font-size:11.5px;color:rgba(255,255,255,.7);margin-top:6px">— Adam Grealish &amp; Petter Kolm, 2022</div>
+  </div>
+
+  <div class="callout purple" style="margin-top:18px">
+    <strong>미래는 이미 시작됐다:</strong> 2026년 RA AUM $3.5T · 퇴직연금 샌드박스 500건 · agentic AI 상용화 · outcome-based fee 실험. 여러분이 자산운용업에 종사하는 25년 동안 <strong>모든 것이 바뀔 것</strong>. 본 강의는 그 변화를 <strong>이끄는 사람</strong>이 되기 위한 첫 걸음.
+  </div>
+</section>
+
+<!-- ════ 용어집 요약 ════ -->
+<section data-section="전 12주 용어 요약">
+  <div class="eyebrow">Appendix · Glossary Synthesis</div>
+  <h2>12주 핵심 용어 (50+)</h2>
+
+  <table class="dtable">
+    <thead><tr><th>Week</th><th>핵심 용어</th></tr></thead>
+    <tbody>
+      <tr><td>W1</td><td>MPT · GBI · Chhabra 3-bucket · Aggregate MV</td></tr>
+      <tr><td>W2</td><td>Prospect Theory · Mental Accounting · SP/A · Friedman-Savage</td></tr>
+      <tr><td>W3</td><td>BPT · Telser Safety-First · Bond + Lottery · Two-Fund separation</td></tr>
+      <tr><td>W4</td><td>MA-VaR Equivalence · Aggregate Efficiency · SOCP · Certainty Equivalent Loss</td></tr>
+      <tr><td>W5</td><td>Brunel 4-Goal · Internal/External · 4-Step Iterative · ISP · Family Office</td></tr>
+      <tr><td>W6</td><td>LDI · PSP · GHP · CPPI · Risk Budget · Funding Ratio · Flexicure</td></tr>
+      <tr><td>W7</td><td>Multi-Goal · Funding Ratio Dynamics · Surplus Transfer · Goal Forgo $\delta_k$ · 6 Engines</td></tr>
+      <tr><td>W8</td><td>Bellman · DORS2020 · Backward Induction · Hockey Stick · Gambler's Behavior</td></tr>
+      <tr><td>W9</td><td>Q-learning · PPO · SAC · HMM Regime · G-Learner · IRL · DRL</td></tr>
+      <tr><td>W10</td><td>5-Stage · RTQ · TLH α · Asset Location · HITL · Direct Indexing · 한국 3-Layer</td></tr>
+      <tr><td>W11</td><td>Constantinides · Dammon-Spatt-Zhang · Pedersen ESG Frontier · Takahashi-Alexander · J-Curve</td></tr>
+      <tr><td>W12</td><td>Mass Customization · Agentic AI · Outcome Fee · GIPS × GBI · Causal GBI · Digital Twin</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════ Week별 필독 논문 ════ -->
+<section data-section="Week별 필독 논문">
+  <div class="eyebrow">Appendix · Core Papers</div>
+  <h2>1–12주 필독 논문</h2>
+
+  <div class="ref-grid">
+    <div class="ref-card must"><div class="ref-tag">W1</div><div class="ref-ttl">Chhabra (2005)</div><div class="ref-sub">"Beyond Markowitz"</div><div class="ref-src">JWM 7(4)</div></div>
+    <div class="ref-card must"><div class="ref-tag">W2</div><div class="ref-ttl">Thaler (1985)</div><div class="ref-sub">"Mental Accounting and Consumer Choice"</div><div class="ref-src">Marketing Science</div></div>
+    <div class="ref-card must"><div class="ref-tag">W3</div><div class="ref-ttl">Shefrin & Statman (2000)</div><div class="ref-sub">"Behavioral Portfolio Theory"</div><div class="ref-src">JFQA 35(2)</div></div>
+    <div class="ref-card must"><div class="ref-tag">W4</div><div class="ref-ttl">Das et al. (2010)</div><div class="ref-sub">"Portfolio Optimization with Mental Accounts"</div><div class="ref-src">JFQA 45(2)</div></div>
+    <div class="ref-card must"><div class="ref-tag">W5</div><div class="ref-ttl">Brunel (2015)</div><div class="ref-sub"><em>Goals-Based Wealth Management</em> Ch.1–3</div><div class="ref-src">Wiley</div></div>
+    <div class="ref-card must"><div class="ref-tag">W6</div><div class="ref-ttl">Martellini & Milhau (2017)</div><div class="ref-sub">"Mass Customization in Retirement"</div><div class="ref-src">EDHEC</div></div>
+    <div class="ref-card must"><div class="ref-tag">W7</div><div class="ref-ttl">Deguest et al. (2015)</div><div class="ref-sub">"Comprehensive Framework for GBWM"</div><div class="ref-src">EDHEC</div></div>
+    <div class="ref-card must"><div class="ref-tag">W8</div><div class="ref-ttl">Das, Ostrov et al. (2020)</div><div class="ref-sub">"Dynamic GBWM"</div><div class="ref-src">CMS 17(4)</div></div>
+    <div class="ref-card must"><div class="ref-tag">W9</div><div class="ref-ttl">Das & Varma (2020)</div><div class="ref-sub">"Dynamic GBWM using RL"</div><div class="ref-src">JIM 18(2)</div></div>
+    <div class="ref-card must"><div class="ref-tag">W10</div><div class="ref-ttl">Grealish & Kolm (2022)</div><div class="ref-sub">"Robo-Advisory"</div><div class="ref-src">Cambridge UP</div></div>
+    <div class="ref-card must"><div class="ref-tag">W11</div><div class="ref-ttl">Pedersen et al. (2021)</div><div class="ref-sub">"ESG-Efficient Frontier"</div><div class="ref-src">JFE 142(2)</div></div>
+    <div class="ref-card must"><div class="ref-tag">W12</div><div class="ref-ttl">Martellini (2019)</div><div class="ref-sub">"From Asset Allocation to GBI"</div><div class="ref-src">EDHEC WP</div></div>
+  </div>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W12 강의노트 · 최종 강의</strong><br>
+  GBI Synthesis: Past · Present · Future<br>
+  <a href="W11_Lecture_Note.html">◀ W11</a> · <a href="index.html">◎ Home</a> · <strong>🎓 Course Complete</strong>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

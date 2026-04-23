@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W7 — Multi-Goal Optimization: 여러 목표의 동시 최적화</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W7 강의노트</span>
+  <span class="ttl" id="sf-t">Multi-Goal Optimization</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W7 강의노트">
+  <div class="hero-badge">Week 07 · Phase 2 · Multi-Goal</div>
+  <h1>Multi-Goal Optimization — 여러 목표의 동시 최적화</h1>
+  <p class="hero-sub">Das-Ostrov-Radhakrishnan-Srivastav(2022) · Goal Forgo Decision · 6대 상용 엔진</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">6 엔진</span><span class="hero-meta-lbl">Envestnet · Nebo<br>Ortec 등</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">δ_k ∈ {0,1}</span><span class="hero-meta-lbl">Goal Forgo<br>Decision</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W06_Lecture_Note.html">◀ W6</a> · <a href="index.html">Home</a> · <a href="W08_Lecture_Note.html">W8 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text">Multi-goal 문제의 통합 효용함수 $V(\mathcal{G}) = \sum_k \omega_k \cdot \mathbb{1}\{G_k\} \cdot U_k(\cdot)$를 서술하고 single-goal과 다른 점 설명</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>Funding Ratio 상태 공간</strong>과 transfer / forgo action regions 파악</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text">3가지 rebalancing type(Scheduled · Threshold · Continuous)의 장단점 비교</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text">6대 상용 GBI 엔진을 4가지 methodology(MC / Deterministic / MV-MA / Dynamic CPPI)로 분류</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> 실제 가계는 4–6개 목표를 <strong>동시에</strong> 보유 — 주택·교육·은퇴·유산. 이들은 자원을 공유하고 시간 축에서 충돌한다. Das-Ostrov-Radhakrishnan-Srivastav(2022)의 혁신: <strong>goal 포기 여부 $\delta_k$도 최적화 변수</strong>로.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. Recap ════ -->
+<section data-section="§1. 단일에서 다중으로">
+  <div class="session-head"><span class="session-tag">SESSION 1</span><span class="session-time">15min</span></div>
+  <h2>§1. 단일 목표에서 다중 목표로</h2>
+
+  <h3>1.1 지금까지의 한계</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">Das-Markowitz MA (W4)</div>
+      <ul class="cmp-list">
+        <li>$K$개 계정의 <strong>독립</strong> 최적화</li>
+        <li>Aggregate MV-efficient</li>
+        <li><strong>한계:</strong> 계정 간 상호작용 없음</li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">Martellini PSP/GHP (W6)</div>
+      <ul class="cmp-list">
+        <li>단일 essential + single aspirational</li>
+        <li>Dynamic CPPI $\alpha = m(W-F)/W$</li>
+        <li><strong>한계:</strong> 여러 목표 간 동시 고려 없음</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>1.2 실제 40대 가계의 4-Goal</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">🏠</div>
+      <div class="bk-ttl">Home Upgrade</div>
+      <div class="bk-sub">2030, 3억</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">🎓</div>
+      <div class="bk-ttl">Education</div>
+      <div class="bk-sub">2035, 2억</div>
+    </div>
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">🏖️</div>
+      <div class="bk-ttl">Retirement</div>
+      <div class="bk-sub">65세+, 현가 6억</div>
+    </div>
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">✈️</div>
+      <div class="bk-ttl">Aspirational</div>
+      <div class="bk-sub">2040, 세계여행</div>
+    </div>
+  </div>
+
+  <ul style="font-size:12px;line-height:1.75;padding-left:18px;color:#333;margin-top:8px">
+    <li><strong>Compete for limited wealth</strong> — 한 목표가 더 받으면 다른 목표 덜</li>
+    <li><strong>Different horizons</strong> — 5년(주택) vs 15년(교육) vs 25년(은퇴)</li>
+    <li><strong>Different priority</strong> — 은퇴 essential, 세계여행 aspirational</li>
+    <li><strong>Time-conflict</strong> — 2035 교육비 지출이 은퇴 적립에 영향</li>
+  </ul>
+
+  <h3>1.3 Das-Ostrov(2022) 핵심 논지</h3>
+
+  <div class="prop-block">
+    <div class="prop-ttl">Dynamic Optimization for Multi-Goals Wealth Management</div>
+    <div class="prop-body">"When an investor has limited means, they must choose whether or not to <strong>fulfill or forgo each goal</strong>... Our approach dynamically makes the optimal determination for both <strong>goal fulfillment</strong> and <strong>portfolio selection</strong>. This approach vastly outperforms static portfolio strategies and target-date funds."</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. 수학적 정식화 ════ -->
+<section data-section="§2. Multi-Goal 정식화">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">30min</span></div>
+  <h2>§2. Multi-Goal 문제의 수학적 정식화</h2>
+
+  <div class="eqbox">
+    <div class="eq-cap">목표 집합:</div>
+    $$\mathcal{G} = \{G_k = (H_k, T_k, \omega_k, \alpha_k, \chi_k)\}_{k=1}^K$$
+    <div class="eq-cap">$\chi_k \in \{\text{essential, important, aspirational}\}$: 포기 가능성</div>
+  </div>
+
+  <div class="metaobj">
+    <div class="meta-tag">INTEGRATED MULTI-GOAL OBJECTIVE</div>
+    $$\max_{\{w_k(\cdot), \pi_k(\cdot), \delta_k(\cdot)\}}\; \sum_{k=1}^K \omega_k \delta_k \cdot \Pr(W_{T_k}^k \ge H_k) + \sum_k \omega_k^{\text{up}} \cdot \mathbb{E}[U_k(W_{T_k}^k - H_k)^+]$$
+    <div class="meta-desc">
+      제약: $\sum_k \pi_{k,t} W_t = W_t$ · $w_{k,t} \in \Delta$ · target-date 지출 $W_{T_k}^k \ge H_k$ 때 $H_k$ 지출
+    </div>
+  </div>
+
+  <h3>2.1 두 해결 전략</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div class="cmp-ttl">A · 분해 (Das-Markowitz 전통)</div>
+      <ul class="cmp-list">
+        <li>$\pi_{k,0}$ 외생 결정</li>
+        <li>각 계정 독립 $w_k^*$</li>
+        <li>주기적 $\pi_k$ 재조정</li>
+        <li><strong>상용 엔진 대부분</strong></li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#faf5ff;border-color:#e9d5ff">
+      <div class="cmp-ttl">B · 통합 DP (Das-Ostrov 2022)</div>
+      <ul class="cmp-list">
+        <li>$(W_t, $ goals achieved$)$ 상태 변수</li>
+        <li>Portfolio + forgo 동시 최적화</li>
+        <li>Backward DP</li>
+        <li><strong>학술 진화 방향</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. Funding Ratio Dynamics ════ -->
+<section data-section="§3. Funding Ratio 동역학">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">35min</span></div>
+  <h2>§3. Funding Ratio Dynamics & 상태 공간</h2>
+
+  <div class="eqbox">
+    $$\mathrm{FR}_{k,t} = \frac{W_{k,t}}{F_{k,t}}, \quad F_{k,t} = \text{PV}_t(H_k, T_k)$$
+    <div class="eq-cap">Multi-Goal State Vector:</div>
+    $$\mathbf{s}_t = (\mathrm{FR}_{1,t}, \ldots, \mathrm{FR}_{K,t}, T-t)$$
+  </div>
+
+  <h3>3.1 FR 동역학</h3>
+
+  <div class="eqbox">
+    $$\mathrm{FR}_{k,t+1} = \mathrm{FR}_{k,t} \cdot \frac{1 + w_{k,t}^\top r_{t+1}}{1 + r_{k,t+1}^F}$$
+    <div class="eq-cap">Asset return (제어 가능) vs Floor growth (시장 금리 의존)의 경쟁.</div>
+  </div>
+
+  <h3>3.2 Aggregate Surplus</h3>
+
+  <div class="eqbox">
+    $$S_t = W_t - \sum_{k=1}^K F_{k,t}, \quad \overline{\mathrm{FR}}_t = \frac{W_t}{\sum_k F_{k,t}}$$
+  </div>
+
+  <div class="callout orange">
+    $S_t > 0$: self-sufficient · <strong>$S_t < 0$: 모든 목표 달성 불가능 → 일부 포기 필요</strong>
+  </div>
+
+  <h3>3.3 상태 공간 Action Regions (3-goal)</h3>
+
+  <table class="dtable">
+    <thead><tr><th>Region</th><th>조건</th><th>최적 Action</th></tr></thead>
+    <tbody>
+      <tr style="background:#f0fdf4"><td>Region 1</td><td>모든 $\mathrm{FR}_k > 1$</td><td>De-risking + 잉여 분배</td></tr>
+      <tr style="background:#fffbeb"><td>Region 2</td><td>$\mathrm{FR}_j > 1$, $\mathrm{FR}_k < 1$</td><td>$j \to k$ <strong>Transfer</strong></td></tr>
+      <tr style="background:#fef2f2"><td>Region 3</td><td>모든 $\mathrm{FR}_k < 1$</td><td><strong>Triage (포기·축소)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">Multi-Goal Funding Ratio 동역학과 상태 공간. 2-goal 예시에서 (FR₁, FR₂) 평면의 rebalancing action regions, Das-Ostrov goal 포기 결정 경계. (원본: <code>docs/Week07_Infographic_Multi_Goal_State.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. Rebalancing Rules ════ -->
+<section data-section="§4. Rebalancing Rules">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">40min</span></div>
+  <h2>§4. 목표 간 Rebalancing Rules</h2>
+
+  <h3>4.1 3가지 기본 형태</h3>
+
+  <div class="axiom-cards">
+    <div class="ax-card">
+      <div class="ax-num">TYPE A</div>
+      <div class="ax-head">Scheduled (정기)</div>
+      <ul class="ax-items">
+        <li>고정 주기 (분기·반기·연간)</li>
+        <li>target allocation으로 복귀</li>
+        <li>✓ 예측 가능, 단순</li>
+        <li>✗ 최적 아님, 거래비용</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">TYPE B</div>
+      <div class="ax-head">Threshold-based</div>
+      <ul class="ax-items">
+        <li>$|\mathrm{FR}_k - \mathrm{FR}_k^{\text{target}}| > \epsilon$</li>
+        <li>✓ 거래 최소화</li>
+        <li>✗ threshold arbitrary</li>
+      </ul>
+    </div>
+    <div class="ax-card">
+      <div class="ax-num">TYPE C</div>
+      <div class="ax-head">Continuous (Martellini)</div>
+      <ul class="ax-items">
+        <li>매 시점 상태의존 정책</li>
+        <li>CPPI: $\alpha = m(W-F)$</li>
+        <li>✓ 이론적 최적</li>
+        <li>✗ 거래비용 고려 시 어려움</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>4.2 Surplus Transfer Rules</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">R1</div><div class="ax-body"><div class="ax-ttl">Lock &amp; Transfer</div><div class="ax-crack">$\mathrm{FR}_j > 1.2$이면 초과분을 lock하고 잉여를 $\min \mathrm{FR}$ 목표로 이전: $\Delta = (\mathrm{FR}_j - 1.1) F_j$, $W_{k^*} += \Delta$, $k^* = \arg\min_k \mathrm{FR}_k$.</div></div></div>
+    <div class="axiom"><div class="ax-tag">R2</div><div class="ax-body"><div class="ax-ttl">Proportional Redistribution</div><div class="ax-crack">모든 goal 간 FR을 균등화 방향으로 지속 이전.</div></div></div>
+    <div class="axiom"><div class="ax-tag">R3</div><div class="ax-body"><div class="ax-ttl">Priority-Weighted</div><div class="ax-crack">높은 priority ($\omega_k$ 큰) 목표로 우선 이전.</div></div></div>
+  </div>
+
+  <h3>4.3 Das et al.(2022) 거래비용 분석</h3>
+
+  <table class="dtable">
+    <thead><tr><th>주기</th><th>정적 대비 개선</th><th>거래비용</th><th>권장</th></tr></thead>
+    <tbody>
+      <tr><td>연 1회</td><td>+3–5%p</td><td>낮음</td><td>OK</td></tr>
+      <tr style="background:#fefbf0"><td><strong>분기</strong></td><td>+1–2%p 추가</td><td>중</td><td><strong>★ 권장</strong></td></tr>
+      <tr><td>월별</td><td>거의 없음</td><td>높음</td><td>비권장</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.4 Multi-Goal CPPI 확장</h3>
+
+  <div class="eqbox">
+    $$\alpha_{k,t}^{\text{PSP}} = m_k \cdot \frac{W_{k,t} - F_{k,t}}{W_{k,t}}$$
+    <div class="eq-cap">Essential goals: $m_k$ 작음(2–3). Aspirational: $m_k$ 큼(4–6). Chhabra 3-bucket의 동적 버전.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. Priority & Forgo ════ -->
+<section data-section="§5. Priority & Forgo">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">25min · Das-Ostrov</span></div>
+  <h2>§5. Priority & Forgo — 포기 가능 목표의 결정</h2>
+
+  <h3>5.1 Tier 3단계</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">1️⃣</div>
+      <div class="bk-ttl">Essential</div>
+      <div class="bk-sub">필수 생활비·의료비</div>
+      <div class="bk-assets">포기 <strong>불가능</strong></div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">2️⃣</div>
+      <div class="bk-ttl">Important</div>
+      <div class="bk-sub">교육·주택</div>
+      <div class="bk-assets">시점 이동·규모 축소</div>
+    </div>
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">3️⃣</div>
+      <div class="bk-ttl">Aspirational</div>
+      <div class="bk-sub">여행·사업·유산</div>
+      <div class="bk-assets">자원 부족 시 <strong>적극 포기</strong></div>
+    </div>
+  </div>
+
+  <h3>5.2 Das-Ostrov Goal Forgo Decision</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">GOAL FORGO DECISION VARIABLE</div>
+    $$\delta_{k,t} \in \{0, 1\}: \text{goal } k \text{를 시점 } t \text{에서 포기할지}$$
+    <div class="meta-desc"><strong>Augmented objective:</strong></div>
+    $$V(\mathbf{s}_t) = \max_{\{w_t, \delta_t\}}\; \sum_k \omega_k \delta_{k,t} \cdot U_k$$
+    <div class="meta-desc">Bellman equation:</div>
+    $$V(\mathbf{s}_t) = \max_{w, \delta}\; \sum_k \omega_k \delta_k + \mathbb{E}[V(\mathbf{s}_{t+1}) \mid \mathbf{s}_t, w, \delta]$$
+  </div>
+
+  <h3>5.3 Optimal Forgo Rule (informal)</h3>
+
+  <div class="eqbox">
+    $$\delta_k^* = 1 \iff \frac{\partial V}{\partial W_{k,t}} > \frac{\partial V}{\partial W_{j,t}} \cdot \text{transfer ratio}, \quad \forall j$$
+    <div class="eq-cap">"해당 goal의 marginal utility가 transfer 기회비용보다 클 때만 유지".</div>
+  </div>
+
+  <h3>5.4 Fuzzy Threshold — 단계적 포기</h3>
+  <p>Das-Ostrov 분석: Optimal forgo는 한 번에 이루어지지 않는다. <strong>FR 임계값 아래로 떨어질 때 단계적 포기</strong>.</p>
+
+  <div class="callout purple">
+    <strong>Behavioral Challenge:</strong> 수학적으로 포기가 최적이어도 투자자는 감정적 거부 ("5년 준비한 여행이 이제 포기?"). 실무 처방:<br>
+    ① ISP 문서에 feasibility 가정·포기 우선순위 <strong>미리 명시</strong><br>
+    ② Annual review에서 feasibility test 정기 검증<br>
+    ③ 위기 시 감정적 결정보다 <strong>사전 서약 rule 준수</strong>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. 6대 상용 엔진 ════ -->
+<section data-section="§6. 6대 상용 GBI 엔진">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">30min · Datos Insights 2024</span></div>
+  <h2>§6. 6대 상용 GBI 엔진의 방법론</h2>
+
+  <h3>6.1 4대 Methodology</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-market">
+      <div class="bk-ic">🎲</div>
+      <div class="bk-ttl">M1 · Monte Carlo</div>
+      <div class="bk-sub">Probability-of-Success</div>
+      <div class="bk-assets">가장 널리 쓰임</div>
+    </div>
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">📏</div>
+      <div class="bk-ttl">M2 · Deterministic</div>
+      <div class="bk-sub">Cashflow Planning</div>
+      <div class="bk-assets">단순·이해 쉬움</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">📐</div>
+      <div class="bk-ttl">M3 · MV / MA</div>
+      <div class="bk-sub">Das-Markowitz</div>
+      <div class="bk-assets">학술 정합성</div>
+    </div>
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">⚡</div>
+      <div class="bk-ttl">M4 · Dynamic / CPPI</div>
+      <div class="bk-sub">PSP/GHP</div>
+      <div class="bk-assets">가장 sophisticated</div>
+    </div>
+  </div>
+
+  <h3>6.2 6대 벤더 차별화</h3>
+
+  <table class="dtable">
+    <thead><tr><th>벤더</th><th>주 Methodology</th><th>차별화</th><th>주 고객</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AdvisorEngine</strong></td><td>MC</td><td>Core/Dynamic 2버전</td><td>RIA</td></tr>
+      <tr><td><strong>Envestnet MoneyGuide</strong></td><td>MC + tax</td><td>최대 규모, tax-aware 통합</td><td>Wirehouse, large RIA</td></tr>
+      <tr style="background:#fefbf0"><td><strong>GMO Nebo Wealth</strong></td><td>Goal-driven Het MVO</td><td>GMO 자체 엔진, 2024 Benchmark</td><td>상위 RIA</td></tr>
+      <tr><td><strong>MSCI WealthBench</strong></td><td>Factor + risk</td><td>MSCI 리스크 모델</td><td>기관·운용사</td></tr>
+      <tr style="background:#fefbf0"><td><strong>Ortec Finance OPAL</strong></td><td>ESG + dynamic</td><td>네덜란드 연금 ALM 강점</td><td>UK·유럽·캐나다</td></tr>
+      <tr><td><strong>Voyant</strong></td><td>Deterministic</td><td>Life planning · UI 강점</td><td>UK</td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.3 Cross-Reference Matrix</h3>
+
+  <table class="dtable">
+    <thead><tr><th>벤더</th><th>MC</th><th>Determ.</th><th>MV/MA</th><th>Dynamic</th></tr></thead>
+    <tbody>
+      <tr><td>AdvisorEngine</td><td>✓</td><td></td><td></td><td>✓ (Dyn.)</td></tr>
+      <tr><td>Envestnet MG Pro</td><td>✓✓</td><td></td><td></td><td></td></tr>
+      <tr><td><strong>GMO Nebo</strong></td><td></td><td></td><td>✓</td><td><strong>✓✓</strong></td></tr>
+      <tr><td>MSCI WealthBench</td><td>✓</td><td></td><td>✓ (factor)</td><td></td></tr>
+      <tr><td><strong>Ortec OPAL</strong></td><td>✓ (ESG)</td><td></td><td></td><td><strong>✓✓</strong></td></tr>
+      <tr><td>Voyant</td><td></td><td>✓✓</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.4 한국 시장의 GBI 엔진 현황 (2026)</h3>
+
+  <div class="callout orange">
+    <strong>자체 GBI 엔진이 거의 없다:</strong> KB 케이봇쌤·골든라이프(MC 간이), 미래에셋 TDF(Glide path), 삼성 Family Office(ISP 있으나 엔진 제한). RA 테스트베드도 단일 portfolio 중심.<br><br>
+    <strong>기회 영역:</strong><br>
+    ① 한국형 Monte Carlo 엔진 (퇴직연금 세제 내장)<br>
+    ② 가계 multi-goal 표준 템플릿 (주택·교육·은퇴·부모봉양)<br>
+    ③ 국민연금 가정 내장 floor<br>
+    ④ 상속세 아웃풋 Dynasty 모듈
+  </div>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">6대 상용 GBI 엔진의 방법론 비교(Datos Insights 2024 기반). 4대 methodology 분류, 각 벤더의 차별화와 한국 적용 가능성. (원본: <code>docs/Week07_Infographic_Commercial_Engines.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §7. 한국 케이스 ════ -->
+<section data-section="§7. 한국 케이스">
+  <div class="session-head"><span class="session-tag">SESSION 7</span><span class="session-time">15min · Korea Case</span></div>
+  <h2>§7. 한국 중산층 Multi-Goal 케이스</h2>
+
+  <p>40대 맞벌이 가계: 세전 1.5억/년, 순자산 6억 (주택 4억), 자녀 2명.</p>
+
+  <table class="dtable">
+    <thead><tr><th>Goal</th><th>H (현가)</th><th>T</th><th>α</th><th>Tier</th></tr></thead>
+    <tbody>
+      <tr><td>Retirement (부부 65+)</td><td>8억</td><td>2045</td><td>0.85</td><td>Essential</td></tr>
+      <tr><td>자녀 1 대학</td><td>1.2억</td><td>2033</td><td>0.90</td><td>Important</td></tr>
+      <tr><td>자녀 2 대학</td><td>1.2억</td><td>2036</td><td>0.90</td><td>Important</td></tr>
+      <tr><td>주택 upgrade</td><td>3억</td><td>2030</td><td>0.60</td><td>Aspirational</td></tr>
+      <tr style="background:#fef2f2"><td><strong>합계 PV</strong></td><td><strong>13.4억</strong></td><td colspan="3">가용 2억 + 월 200만 × 25년 = 8억 → <strong>Infeasible</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Triage 옵션</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">Option 1 · 주택 포기</div>
+      <ul class="cmp-list"><li>Total PV 10.4억</li><li>심리적 수용 어려움</li></ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">Option 2 · 교육 축소</div>
+      <ul class="cmp-list"><li>국내 중심, H 1.2→0.8억</li><li>Total 12.6억</li></ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">Option 3 · 은퇴 연기</div>
+      <ul class="cmp-list"><li>65 → 70세</li><li>추가 5년 납입 + 필요 자금 감소</li></ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-ttl">Option 4 · Replacement 축소</div>
+      <ul class="cmp-list"><li>생활비 150% → 120%</li><li>Retirement H 8 → 5.5억</li></ul>
+    </div>
+  </div>
+
+  <h3>Monte Carlo Output (Nebo/Ortec 예)</h3>
+
+<pre class="code-block"><span class="cm">[Monte Carlo 10,000 paths, current trajectory]</span>
+─────────────────────────────────────────────
+Goal              Success Prob   Shortfall (P50)
+Retirement        <span class="num">62%</span>            -2.1억
+College 1         <span class="num">85%</span>            -0.15억
+College 2         <span class="num">75%</span>            -0.3억
+House upgrade     <span class="num">45%</span>            -1.5억
+─────────────────────────────────────────────
+
+<span class="cm">[Recommended: Delay retirement 5y + reduce house 30%]</span>
+Retirement        <span class="num">88%</span>
+College 1         <span class="num">92%</span>
+College 2         <span class="num">88%</span>
+House (reduced)   <span class="num">68%</span></pre>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W7 · 5페이지</span>
+    <div class="hw-title">Multi-Goal Simulator 구현</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">A · Python 구현</div>
+      <p>3-goal multi-goal simulator: Retirement(T=25, H=5억, α=0.85) · Education(T=12, H=1억, α=0.9) · House(T=8, H=2억, α=0.6). 2-asset, MC 10,000 경로. <strong>Rebalancing R1/R2/R3 비교</strong> + success probability + aggregate FR trajectory.</p>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">B · 상용 엔진 평가</div>
+      <p>6대 엔진 중 하나 선택: 방법론·차별화·약점·한국 도입 issue 분석 (공개 자료 기반).</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Das, Ostrov, Radhakrishnan, Srivastav (2022)</div>
+      <div class="ref-sub">"Dynamic optimization for multi-goals wealth management"</div>
+      <div class="ref-src"><em>JBF</em>, 140</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">업계</div>
+      <div class="ref-ttl">Datos Insights (2024)</div>
+      <div class="ref-sub"><em>The Future of Goals-Based Investing</em></div>
+      <div class="ref-src">6-engine profile</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">White paper</div>
+      <div class="ref-ttl">Nebo Wealth (2024)</div>
+      <div class="ref-sub">"Beyond Risk Scores"</div>
+      <div class="ref-src">GMO</div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W8 미리보기:</strong> 전략 B의 완성판 — <strong>Dynamic Programming (Das-Ostrov)</strong>. Bellman equation, backward induction, wealth-dependent 정책. TDF 대비 실증 우월성. RL로의 전환점.
+  </div>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W7 강의노트</strong> · Multi-Goal Optimization<br>
+  <a href="W06_Lecture_Note.html">◀ W6</a> · <a href="index.html">Home</a> · <a href="W08_Lecture_Note.html">W8: Dynamic Programming ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

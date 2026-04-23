@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W8 — Dynamic Programming: Das-Ostrov 상태공간 DP</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{primaryColor:'#f3f3f3',primaryTextColor:'#0d0d0d',primaryBorderColor:'#333',lineColor:'#555',fontSize:'12px'}});</script>
+</head>
+<body>
+
+<div id="sf">
+  <span class="lbl">W8 강의노트</span>
+  <span class="ttl" id="sf-t">Dynamic Programming</span>
+  <span class="pct" id="sf-p">0%</span>
+</div>
+
+<div class="hero" data-section="W8 강의노트">
+  <div class="hero-badge">Week 08 · Phase 2 · Dynamic Programming</div>
+  <h1>Dynamic Programming — Das-Ostrov 상태공간 DP</h1>
+  <p class="hero-sub">DORS2020 Bellman · Backward Induction · TDF 대비 +18%p 우월</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-num">3시간</span><span class="hero-meta-lbl">강의<br>시간</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">K=15</span><span class="hero-meta-lbl">Frontier<br>Portfolios</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-num">+18%p</span><span class="hero-meta-lbl">DP vs TDF<br>Goal 달성</span></div>
+  </div>
+  <div class="hero-nav">
+    <a href="W07_Lecture_Note.html">◀ W7</a> · <a href="index.html">Home</a> · <a href="W09_Lecture_Note.html">W9 ▶</a>
+  </div>
+</div>
+
+<div class="container">
+
+<section data-section="학습 목표">
+  <div class="eyebrow">Learning Objectives</div>
+  <h2>이번 주 학습 목표</h2>
+
+  <div class="goals">
+    <div class="goal"><div class="goal-chk">1</div><div class="goal-text"><strong>Bellman's Principle of Optimality</strong>와 finite horizon DP의 backward induction 구조 설명</div></div>
+    <div class="goal"><div class="goal-chk">2</div><div class="goal-text"><strong>DORS2020 framework</strong>: $(W_t, t)$ 상태공간, log-space wealth grid, transition probability 계산</div></div>
+    <div class="goal"><div class="goal-chk">3</div><div class="goal-text">최적 정책 $\pi^*(W, t)$의 4개 region 특성(underfunded→gambler, overfunded→lock-in) 해석</div></div>
+    <div class="goal"><div class="goal-chk">4</div><div class="goal-text">차원의 저주와 <strong>RL로의 전환 이유</strong> 설명 (Das-Varma 2020 · Bauman 2024 예고)</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>논지:</strong> 7주차까지 <strong>분해 전략(A)</strong>이었다. 오늘 <strong>통합 DP(B)</strong>로 전환. Das-Markowitz 본인들이 2020년 논문에서 "정적 모델은 <em>myopic</em>하다"고 인정. DORS2020은 이산 격자 + Bellman backward induction으로 <strong>전역 최적 $\pi^*(W, t)$</strong>를 계산한다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §1. 분해 → 통합 ════ -->
+<section data-section="§1. 분해에서 통합으로">
+  <div class="session-head"><span class="session-tag">SESSION 1</span><span class="session-time">15min</span></div>
+  <h2>§1. 분해(A)의 한계 → 통합 DP(B)로 도약</h2>
+
+  <div class="callout red">
+    <strong>DORS2020 저자들의 자기 반성:</strong><br>
+    "These static models are not fully optimal, because they can only be implemented period by period in a <strong>myopic</strong> manner." — 자기 2010년 정적 MA framework의 한계를 명시적으로 인정.
+  </div>
+
+  <h3>Optimal Policy의 3요건</h3>
+
+  <div class="axiom-list">
+    <div class="axiom"><div class="ax-tag">1</div><div class="ax-body"><div class="ax-ttl">Bellman optimality</div><div class="ax-crack">현재 결정 = 미래 모든 상태에서의 최적 결정 전제</div></div></div>
+    <div class="axiom"><div class="ax-tag">2</div><div class="ax-body"><div class="ax-ttl">Time consistency</div><div class="ax-crack">시간이 지나도 정책 optimal 유지</div></div></div>
+    <div class="axiom"><div class="ax-tag">3</div><div class="ax-body"><div class="ax-ttl">State-dependent</div><div class="ax-crack">현재 부 $W_t$ · 남은 시간 $T-t$에 의존</div></div></div>
+  </div>
+
+  <div class="callout blue">
+    이 셋을 <strong>동시에 만족</strong>하는 유일한 방법이 <strong>Dynamic Programming</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §2. DP 기본 원리 ════ -->
+<section data-section="§2. DP 기본 원리">
+  <div class="session-head"><span class="session-tag">SESSION 2</span><span class="session-time">35min</span></div>
+  <h2>§2. DP 기본 원리 — Bellman & Backward Induction</h2>
+
+  <h3>2.1 Bellman Equation</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">BELLMAN'S PRINCIPLE OF OPTIMALITY (1957)</div>
+    $$V_t(s) = \max_{a \in \mathcal{A}(s)}\; \left[ r(s, a) + \sum_{s'} p(s'|s,a)\, V_{t+1}(s') \right]$$
+    <div class="meta-desc">Terminal condition: $V_T(s) = U(s)$. GBWM에서 $U(s) = \mathbb{1}\{W \ge G\}$.</div>
+  </div>
+
+  <h3>2.2 Backward Induction 알고리즘</h3>
+
+  <div class="proof-steps">
+    <div class="ps"><span class="ps-n">1</span><div><strong>Terminal:</strong> $V_T(s) = U(s)$ for all $s$</div></div>
+    <div class="ps"><span class="ps-n">2</span><div><strong>Backward loop:</strong> For $t = T-1, T-2, \ldots, 0$: For each $s$: $V_t(s) = \max_a [\ldots]$, $\pi_t(s) = \arg\max_a$</div></div>
+    <div class="ps"><span class="ps-n">3</span><div><strong>Optimal policy:</strong> $\pi = \{\pi_0, \pi_1, \ldots, \pi_{T-1}\}$</div></div>
+  </div>
+
+  <h3>2.3 GBWM에서 DP 요소의 구체화</h3>
+
+  <table class="dtable">
+    <thead><tr><th>DP 요소</th><th>GBWM에서의 의미</th></tr></thead>
+    <tbody>
+      <tr><td>상태 $s$</td><td>$(W_t, t)$: 현재 부·시점</td></tr>
+      <tr><td>Action $a$</td><td>Portfolio 선택 (efficient frontier 상 위치)</td></tr>
+      <tr><td>Reward $r$</td><td>중간 0, terminal $\mathbb{1}\{W_T \ge H\}$</td></tr>
+      <tr><td>Transition $p$</td><td>GBM 수익률의 이산 probability</td></tr>
+      <tr><td>Terminal $U$</td><td>$\mathbb{1}\{W_T \ge G\}$</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.4 연속 vs 이산 접근</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">Merton (1969, 1971)</div>
+      <ul class="cmp-list">
+        <li>연속시간 DP</li>
+        <li>HJB equation</li>
+        <li>Closed-form (CRRA + i.i.d.)</li>
+        <li>한계: GBWM에 closed-form 없음</li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#fefbf0;border-color:#f5d88a">
+      <div class="cmp-ttl">DORS2020 ★ 본 주차</div>
+      <ul class="cmp-list">
+        <li>이산 DP</li>
+        <li>Wealth grid + backward induction</li>
+        <li>구현·이해 쉬움</li>
+        <li>GBWM에 <strong>정확히 적합</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>2.5 역사적 계보</h3>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">1957</div><div class="tl-ttl">Bellman — Dynamic Programming</div><div class="tl-dd">Principle of Optimality.</div></div>
+    <div class="tl-item"><div class="tl-year">1969–71</div><div class="tl-ttl">Merton — Consumption-Investment</div><div class="tl-dd">연속시간 고전.</div></div>
+    <div class="tl-item"><div class="tl-year">1997–99</div><div class="tl-ttl">Browne — Continuous Goal-Based</div><div class="tl-dd">HJB 기반 효시.</div></div>
+    <div class="tl-item"><div class="tl-year">2018</div><div class="tl-ttl">DORS2018 — New Approach</div><div class="tl-dd">정적 single-period.</div></div>
+    <div class="tl-item"><div class="tl-year"><strong>2020</strong></div><div class="tl-ttl"><strong>DORS2020 ★ 본 주차</strong></div><div class="tl-dd">이산 multi-period DP, <em>CMS</em>.</div></div>
+    <div class="tl-item"><div class="tl-year">2022</div><div class="tl-ttl">DORS2022 — Multi-Goal (W7)</div></div>
+    <div class="tl-item"><div class="tl-year">2020+</div><div class="tl-ttl">Das-Varma — RL 확장 (W9)</div></div>
+    <div class="tl-item"><div class="tl-year">2024</div><div class="tl-ttl">Bauman — DRL + Regime-Switching (W9)</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §3. DORS2020 Framework ════ -->
+<section data-section="§3. DORS2020 Framework">
+  <div class="session-head"><span class="session-tag">SESSION 3</span><span class="session-time">40min · Core</span></div>
+  <h2>§3. DORS2020 Framework — 상태공간·격자·Backward Induction</h2>
+
+  <h3>3.1 문제 설정</h3>
+
+  <div class="eqbox">
+    <div class="eq-cap">초기 자산 $W_0$, 목표 $G$, 기간 $T$:</div>
+    $$\max_{\{\pi_t\}_{t=0}^{T-1}}\; \Pr(W_T \ge G)$$
+  </div>
+
+  <h3>3.2 Efficient Frontier 위 $K$개 Portfolio</h3>
+
+  <div class="callout blue">
+    <strong>핵심 단순화:</strong> Action space를 frontier 위 $K$개 (예: $K=15$)로 축소. 모든 weight vector $w \in \Delta^n$ 대신. <strong>이론적으로도 near-optimal</strong>이며, 실무 운용사 model portfolio 메뉴와 정확히 일치.
+  </div>
+
+  <h3>3.3 Wealth Grid (Log-Space)</h3>
+
+  <div class="eqbox">
+    $$W_i = W_0 \cdot \exp\!\left(\rho_{\text{grid}} \cdot i \cdot \sigma_{\min}\sqrt{h}\right)$$
+    <div class="eq-cap">GBM 하 $\ln W$가 정규분포 → log-space가 equal probability intervals. $\rho_{\text{grid}}$: grid density (DORS $m=15$ 권장).</div>
+  </div>
+
+  <h3>3.4 Transition Probabilities</h3>
+
+  <div class="eqbox">
+    $$p_{ij}^{(k)} = \Phi\!\left(\frac{\ln W_{j+1/2} - \ln W_i - (\mu_k - \sigma_k^2/2)h}{\sigma_k\sqrt{h}}\right) - \Phi\!\left(\frac{\ln W_{j-1/2} - \ln W_i - (\mu_k - \sigma_k^2/2)h}{\sigma_k\sqrt{h}}\right)$$
+    <div class="eq-cap">log-normal 분포의 각 grid 구간 확률.</div>
+  </div>
+
+  <h3>3.5 Bellman Equation 완전판</h3>
+
+  <div class="metaobj">
+    <div class="meta-tag">DORS2020 BELLMAN FOR GBWM</div>
+    $$V_T(W_i) = \mathbb{1}\{W_i \ge G\}$$
+    $$V_t(W_i) = \max_{k \in \{1, \ldots, K\}}\; \sum_j p_{ij}^{(k)}\, V_{t+h}(W_j)$$
+    $$\pi_t^*(W_i) = \arg\max_{k}\; \sum_j p_{ij}^{(k)}\, V_{t+h}(W_j)$$
+  </div>
+
+  <h3>3.6 Python Pseudocode</h3>
+
+<pre class="code-block"><span class="kw">def</span> <span class="fn">solve_gbwm_dp</span>(W_grid, time_grid, portfolios, G, T):
+    N = <span class="fn">len</span>(W_grid); M = <span class="fn">len</span>(time_grid); K = <span class="fn">len</span>(portfolios)
+    V = np.zeros((N, M))
+    policy = np.zeros((N, M-<span class="num">1</span>), dtype=<span class="kw">int</span>)
+
+    <span class="cm"># Terminal</span>
+    V[:, -<span class="num">1</span>] = (W_grid &gt;= G).astype(<span class="kw">float</span>)
+
+    <span class="cm"># Backward recursion</span>
+    <span class="kw">for</span> t_idx <span class="kw">in</span> <span class="fn">range</span>(M-<span class="num">2</span>, -<span class="num">1</span>, -<span class="num">1</span>):
+        <span class="kw">for</span> i, W <span class="kw">in</span> <span class="fn">enumerate</span>(W_grid):
+            best_v = -<span class="num">1</span>; best_k = <span class="num">0</span>
+            <span class="kw">for</span> k <span class="kw">in</span> <span class="fn">range</span>(K):
+                mu_k, sig_k = portfolios[k]
+                probs = <span class="fn">compute_transitions</span>(W, W_grid, mu_k, sig_k, h)
+                v = np.sum(probs * V[:, t_idx + <span class="num">1</span>])
+                <span class="kw">if</span> v &gt; best_v:
+                    best_v = v; best_k = k
+            V[i, t_idx] = best_v
+            policy[i, t_idx] = best_k
+    <span class="kw">return</span> V, policy</pre>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 1</div>
+    <div class="fig-desc">DORS2020 Dynamic Programming framework의 상태공간·격자·Bellman 구조. $(W_t, t)$ 2차원 격자에서 backward induction으로 optimal policy $\pi^*(W, t)$ 계산. (원본: <code>docs/Week08_Infographic_DP_Framework.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §4. 최적 정책 특성 ════ -->
+<section data-section="§4. π*(W,t)의 형태">
+  <div class="session-head"><span class="session-tag">SESSION 4</span><span class="session-time">30min</span></div>
+  <h2>§4. 최적 정책의 특성 — Wealth-Dependent Risk</h2>
+
+  <h3>4.1 $\pi^*(W, t)$의 4개 Region</h3>
+
+  <div class="bucket-grid">
+    <div class="bucket bucket-aspirational">
+      <div class="bk-ic">🎰</div>
+      <div class="bk-ttl">Region 1 · Severely Underfunded</div>
+      <div class="bk-sub">$W \ll $ PV of G</div>
+      <div class="bk-assets"><strong>최공격</strong> · "Gambler's behavior"</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">⚖️</div>
+      <div class="bk-ttl">Region 2 · Moderately Under</div>
+      <div class="bk-sub">약간 낮음</div>
+      <div class="bk-assets">중간 risk · Hope + Fear</div>
+    </div>
+    <div class="bucket bucket-market">
+      <div class="bk-ic">🎯</div>
+      <div class="bk-ttl">Region 3 · On Track</div>
+      <div class="bk-sub">$W \approx $ PV of G</div>
+      <div class="bk-assets">중간 · CPPI와 유사</div>
+    </div>
+    <div class="bucket bucket-personal">
+      <div class="bk-ic">🛡️</div>
+      <div class="bk-ttl">Region 4 · Overfunded</div>
+      <div class="bk-sub">$W > $ PV of G</div>
+      <div class="bk-assets"><strong>위험자산 축소</strong> · Lock in</div>
+    </div>
+  </div>
+
+  <h3>4.2 Gambler's Behavior at Low Wealth</h3>
+
+  <div class="callout purple">
+    <strong>DORS2020 핵심 관찰:</strong> "<em>When the portfolio has less money, it moves towards higher portfolio numbers, since the increase in both expected return and volatility makes it more likely to attain the goal wealth.</em>"<br><br>
+    이는 <strong>Prospect Theory의 loss domain risk-seeking</strong>과 수학적으로 일치. Binary goal indicator가 <strong>S-shape value function의 극단 버전</strong>이므로, DP가 자연스럽게 PT와 일치.
+  </div>
+
+  <h3>4.3 Hockey Stick Shape</h3>
+  <p>$\pi^*(W, t)$를 $W$에 대해 plot하면 <strong>hockey stick 모양</strong>. Inflection point는 남은 시간 $T-t$에 따라 이동:</p>
+  <ul style="font-size:12px;line-height:1.75;padding-left:18px;color:#333;margin-bottom:10px">
+    <li>$T-t = 20$년: 완만한 transition</li>
+    <li>$T-t = 5$년: sharp transition</li>
+    <li>$T-t = 1$년: <strong>step function</strong> — 임계 $W^*$에서 갑자기 risk on/off</li>
+  </ul>
+
+  <h3>4.4 TDF vs DP — 극명한 대비</h3>
+
+  <table class="dtable">
+    <thead><tr><th>상황</th><th>TDF</th><th>DP</th></tr></thead>
+    <tbody>
+      <tr><td>45세 + underfunded</td><td>70% equity (나이만)</td><td><strong>90% equity</strong></td></tr>
+      <tr><td>45세 + on-track</td><td>70% equity</td><td>60% equity</td></tr>
+      <tr><td>45세 + overfunded</td><td>70% equity</td><td><strong>30% equity</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <strong>이 차이가 성과 차이의 핵심.</strong> TDF는 $\pi(t)$ — wealth 무관. DP는 $\pi(W, t)$ — wealth와 시간 모두 의존.
+  </div>
+
+  <h3>4.5 DP ≈ CPPI의 이론적 상한</h3>
+  <p>Martellini CPPI는 DP의 <strong>simple approximation</strong>. 실증: DP vs CPPI 차이 1–3%p. 따라서 CPPI가 실무적으로 충분히 가까운 근사.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §5. DP vs TDF 실증 ════ -->
+<section data-section="§5. DP vs TDF 실증">
+  <div class="session-head"><span class="session-tag">SESSION 5</span><span class="session-time">30min · Numerical</span></div>
+  <h2>§5. DP vs TDF 실증 — 수치 시뮬레이션</h2>
+
+  <h3>5.1 DORS2020 §4 Example</h3>
+  <p>$W_0 = 100$, $G = 200$ (100% 성장), $T = 10$년, $K=15$ portfolios, $\mu \in [3\%, 10\%]$, $\sigma \in [5\%, 20\%]$.</p>
+
+  <h3>5.2 Monte Carlo 성과 비교 (10,000 경로)</h3>
+
+  <table class="dtable">
+    <thead><tr><th>전략</th><th>Goal Prob</th><th>평균 $W_T$</th><th>P10</th><th>P50</th><th>P90</th></tr></thead>
+    <tbody>
+      <tr style="background:#fefbf0"><td><strong>DP Optimal</strong></td><td><strong>63%</strong></td><td>205</td><td>85</td><td>195</td><td>350</td></tr>
+      <tr><td>TDF (glide path)</td><td>45%</td><td>170</td><td>75</td><td>160</td><td>290</td></tr>
+      <tr><td>Buy-and-hold 70/30</td><td>50%</td><td>185</td><td>80</td><td>175</td><td>320</td></tr>
+      <tr><td>All-equity</td><td>52%</td><td>220</td><td>55</td><td>185</td><td>450</td></tr>
+      <tr><td>All-bond</td><td>5%</td><td>135</td><td>115</td><td>135</td><td>155</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout green">
+    <strong>DP는 TDF 대비 +18%p 우월.</strong> 평균 수익률은 all-equity가 높지만 downside(P10 55)가 훨씬 크다. <strong>DP는 upside 확보하면서 downside 완화</strong>.
+  </div>
+
+  <h3>5.3 Policy Heatmap Pattern</h3>
+
+  <table class="dtable">
+    <thead><tr><th>Position</th><th>Policy</th></tr></thead>
+    <tbody>
+      <tr><td>Early + Low W</td><td>공격적 (gambler)</td></tr>
+      <tr><td>Early + High W</td><td>중간</td></tr>
+      <tr><td>Late + Low W</td><td><strong>최공격</strong> (last chance)</td></tr>
+      <tr><td>Late + High W</td><td>보수적 (lock in)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="fig-ref">
+    <div class="fig-label">Figure 2</div>
+    <div class="fig-desc">DP optimal policy vs TDF deterministic glide path · Python 10,000 경로 시뮬레이션. Goal 달성확률·$W_T$ 분포·policy heatmap 비교. (원본: <code>docs/Week08_Infographic_DP_vs_TDF.svg</code>)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §6. DORS2020 확장 ════ -->
+<section data-section="§6. 확장">
+  <div class="session-head"><span class="session-tag">SESSION 6</span><span class="session-time">20min</span></div>
+  <h2>§6. DORS2020 확장 — Withdrawals · Infusions · Non-Frontier</h2>
+
+  <h3>6.1 Time-Varying Contributions</h3>
+
+  <div class="eqbox">
+    $$W_{t+h} = (W_t + c_t)(1 + r_k^{(t)})$$
+    <div class="eq-cap">은퇴 전 납입 $c_t &gt; 0$ + 은퇴 후 인출 $c_t &lt; 0$ 모두 커버.</div>
+  </div>
+
+  <h3>6.2 Probability of Ruin</h3>
+  <p>상태공간에 "absorbing state" $W = 0$ 추가 → $\Pr(\min_{t} W_t \le 0)$ 최소화.</p>
+
+  <h3>6.3 Path-Dependent Goals</h3>
+  <p>매년 특정 지출 충족(annuity-like), max drawdown 제한 등. 상태공간 확장 필요: $s_t = (W_t, \text{state vars}, t)$.</p>
+
+  <h3>6.4 Regime-Switching (Bauman 2024)</h3>
+
+  <div class="eqbox">
+    $$s_t = (W_t, \text{regime}_t, t)$$
+    <div class="eq-cap">HMM으로 regime 추정 + DRL로 regime-aware policy. DORS2020 단일 regime 가정의 확장. W9에서.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ §7. 차원의 저주 → RL ════ -->
+<section data-section="§7. 차원의 저주 → RL">
+  <div class="session-head"><span class="session-tag">SESSION 7</span><span class="session-time">20min · RL Prequel</span></div>
+  <h2>§7. Computational Challenges — RL로의 전환</h2>
+
+  <h3>7.1 차원의 저주</h3>
+
+  <table class="dtable">
+    <thead><tr><th>설정</th><th>State Dim</th><th>Feasibility</th></tr></thead>
+    <tbody>
+      <tr><td>Simple 1-goal</td><td>2 $(W, t)$</td><td>✓ Feasible</td></tr>
+      <tr><td>Multi-goal</td><td>$K + 2$</td><td>⚠️ 급증</td></tr>
+      <tr><td>+ Regime</td><td>$K + 3$ or more</td><td>❌ 10차원 = $10^{20}$ 점</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.2 해결 방법</h3>
+
+  <div class="cmp-grid">
+    <div class="cmp-card">
+      <div class="cmp-ttl">① Approximate DP (ADP)</div>
+      <ul class="cmp-list">
+        <li>Sampled states만 고려</li>
+        <li>MC rollout으로 $V(s)$ 추정</li>
+        <li>NN function approximation</li>
+        <li>Powell (2011) <em>ADP</em></li>
+      </ul>
+    </div>
+    <div class="cmp-card" style="background:#faf5ff;border-color:#e9d5ff">
+      <div class="cmp-ttl">② Reinforcement Learning (RL)</div>
+      <ul class="cmp-list">
+        <li>ADP의 특수 형태</li>
+        <li><strong>Model-free</strong></li>
+        <li>Exploration-exploitation</li>
+        <li>Temporal difference learning</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>7.3 Q-Learning</h3>
+
+  <div class="eqbox">
+    $$Q(s, a) \leftarrow Q(s, a) + \alpha [r + \gamma \max_{a'} Q(s', a') - Q(s, a)]$$
+    <div class="eq-cap">Deep Q-Network (DQN): Q-function을 neural network로.</div>
+  </div>
+
+  <h3>7.4 DP에서 RL로 — 비교</h3>
+
+  <table class="dtable">
+    <thead><tr><th>측면</th><th>DP (DORS2020)</th><th>RL (Das-Varma 2020)</th></tr></thead>
+    <tbody>
+      <tr><td>환경 모델</td><td>필요 (GBM)</td><td><strong>불필요 (data-driven)</strong></td></tr>
+      <tr><td>State space</td><td>이산 격자</td><td>연속 (NN embedding)</td></tr>
+      <tr><td>Action space</td><td>$K$개 ($K=15$)</td><td>연속 가능</td></tr>
+      <tr><td>계산</td><td>Backward induction</td><td>Forward sampling + gradient</td></tr>
+      <tr><td>확장성</td><td>낮음 (차원의 저주)</td><td><strong>높음</strong></td></tr>
+      <tr><td>이론 보장</td><td>Bellman optimality</td><td>Convergence 조건부</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout orange">
+    <strong>실무 진입의 3대 장벽:</strong> ① <strong>해석 가능성</strong>(NN 결정 설명 어려움) ② <strong>규제 승인</strong>(예측 불가능) ③ <strong>Robustness</strong>(OOD 실패). W9에서 상세.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════ 과제 & Reading ════ -->
+<section data-section="과제 & Reading">
+  <div class="hw-block">
+    <span class="hw-tag">📝 HOMEWORK · W8 · 6페이지</span>
+    <div class="hw-title">DORS2020 DP Python 완전 구현</div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">A · 수치 구현</div>
+      <ol style="padding-left:20px;margin:5px 0 0;font-size:11.5px;color:rgba(255,255,255,.9);line-height:1.65">
+        <li>DORS2020 §4 example 완전 재현</li>
+        <li>TDF·buy-and-hold·all-equity·all-bond 대비 성과</li>
+        <li>Policy $\pi^*(W, t)$ heatmap 시각화</li>
+        <li>Grid density $m$ sensitivity ($m=5, 10, 15, 20, 30$)</li>
+        <li>한국 universe(KOSPI200·국고채·원자재)로 재구현</li>
+      </ol>
+    </div>
+    <div class="hw-opt">
+      <div class="hw-opt-ttl">B · 정성 (1p)</div>
+      <p>DP → RL 전환에서 <strong>잃어버리는 것</strong>(Bellman 보장, 해석성) vs <strong>얻는 것</strong>(확장성, model-free) trade-off.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Reading</h2>
+  <div class="ref-grid">
+    <div class="ref-card must">
+      <div class="ref-tag">★ 필독</div>
+      <div class="ref-ttl">Das, Ostrov, Radhakrishnan, Srivastav (2020)</div>
+      <div class="ref-sub">"Dynamic Portfolio Allocation in Goals-Based Wealth Management"</div>
+      <div class="ref-src"><em>Comp. Mgmt. Sci.</em>, 17(4)</div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">개선</div>
+      <div class="ref-ttl">Trigeorgis (2021)</div>
+      <div class="ref-sub">"A note on a dynamic goal-based wealth management problem"</div>
+      <div class="ref-src"><em>Finance Research Letters</em></div>
+    </div>
+    <div class="ref-card rec">
+      <div class="ref-tag">고전</div>
+      <div class="ref-ttl">Bellman (1957)</div>
+      <div class="ref-sub"><em>Dynamic Programming</em></div>
+      <div class="ref-src">Princeton</div>
+    </div>
+    <div class="ref-card data">
+      <div class="ref-tag">실습</div>
+      <div class="ref-ttl">MATLAB Financial Toolbox</div>
+      <div class="ref-sub">"Dynamic Portfolio Allocation in GBWM" example</div>
+      <div class="ref-src">srdas.github.io Python</div>
+    </div>
+  </div>
+
+  <div class="callout green" style="margin-top:14px">
+    <strong>💡 W9 미리보기:</strong> Das-Varma(2020) <strong>Q-learning GBWM</strong> · Bauman et al.(2024) <strong>DRL regime-switching</strong> · Actor-critic · PPO/SAC · Continuous action · Robustness. DP의 확장 + 실무 한계.
+  </div>
+</section>
+
+<!-- 부록 -->
+<section data-section="부록 · 프레임워크 비교">
+  <div class="eyebrow">Appendix</div>
+  <h2>DP vs 다른 프레임워크 비교</h2>
+
+  <table class="dtable">
+    <thead><tr><th>측면</th><th>DORS2020 DP</th><th>Martellini CPPI</th><th>Das-Markowitz MA</th><th>TDF</th></tr></thead>
+    <tbody>
+      <tr><td>이론 근거</td><td>Bellman optimality</td><td>Risk budget</td><td>Static MV</td><td>Rule of thumb</td></tr>
+      <tr><td>State-dependent</td><td>✓ $(W, t)$</td><td>✓ $(W-F)$</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Time-consistent</td><td>✓</td><td>≈</td><td>N/A</td><td>✗</td></tr>
+      <tr><td>Wealth-dependent</td><td>✓</td><td>✓</td><td>✗</td><td>✗</td></tr>
+      <tr><td>계산 비용</td><td>중</td><td>낮</td><td>낮</td><td>최저</td></tr>
+      <tr><td>최적 보장</td><td>✓ (격자 내)</td><td>Approximate</td><td>N/A</td><td>✗</td></tr>
+      <tr><td>한국 실무</td><td><strong>거의 없음</strong></td><td>부분 (Flexicure)</td><td>Nebo류</td><td>대다수 TDF</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<div class="ft">
+  <strong>W8 강의노트</strong> · Dynamic Programming — DORS2020<br>
+  <a href="W07_Lecture_Note.html">◀ W7</a> · <a href="index.html">Home</a> · <a href="W09_Lecture_Note.html">W9: Deep RL for GBI ▶</a>
+</div>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>
